@@ -475,7 +475,7 @@
                 } 
             });
 
-            return measure+ ' by ' + chartVars + ' in '+ statefilter+' for '+yearfilter;
+            return measure+ ' by ' + chartVars + ' for selected filters';
         }
 
         function horizontalStack(filter1, filter2, data, primaryFilter, postFixToTooltip) {
@@ -1010,7 +1010,7 @@
                            }
                        });
                         // Set chart title
-                       layout.title = eachChartData.longtitle;
+                       // layout.title = eachChartData.longtitle;
                        layout.width = 1000;
                        layout.height = 750;
                        layout.showlegend= true;
@@ -1063,7 +1063,7 @@
                 controller: function ($scope, close, shareUtilService, searchFactory) {
                     var eg = this;
                     eg.chartData = updateChart(chartData, tableView);
-                    eg.graphTitle = graphTitle;
+                    eg.graphTitle = chartData[0].longtitle;
                     eg.graphSubTitle = graphSubTitle;
                     eg.chartTypes = chartTypes;
                     eg.primaryFilters = primaryFilters;

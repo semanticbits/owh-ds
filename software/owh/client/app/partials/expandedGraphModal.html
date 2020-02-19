@@ -48,6 +48,9 @@
                                        options="[ {key:'bar', title:'Grouped', tooltip:'Select to view grouped bars'},{key:'stack', title:'Stacked', tooltip:'Select to view stacked bars'}]"
                                        model="eg.barmode">
                     </owh-toggle-switch>
+                    <list-selected-filters sort="eg.selectedFiltersTxt"
+                                           filters="eg.primaryFilters.allFilters" class="flex-grow">
+                    </list-selected-filters>
                     <plotly id="chart_expanded_{{$index}}" plotly-data="eachChartData.data" plotly-layout="eachChartData.layout" plotly-options=eachChartData.options barmode="eg.barmode" style="width: 95%; height: 95%; display: inline-block;horiz-align: center;"></plotly>
                 </div>
                 <div class="usa-width-one-whole" id="expanded_us_map" ng-if="eg.activeTab=='map'">
