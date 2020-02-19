@@ -878,6 +878,8 @@
                     var eg = this;
                     eg.mapTitle = mapTitle;
                     eg.mapData = mapData;
+                    eg.selectedPrimaryFilter = sc.filters.selectedPrimaryFilter.allFilters;
+                    eg.selectedFiltersTxt = utilService.getSelectedFiltersText(sc.filters.selectedPrimaryFilter.allFilters, sc.sort[sc.filters.selectedPrimaryFilter.title]);
                     eg.showFBDialogForMap = function(mapID) {
                         showFBDialogForMap(mapID);
                     };

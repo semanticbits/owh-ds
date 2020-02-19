@@ -876,6 +876,7 @@
                     var values = value.split(';');
                     var minValue = Number(values[0]);
                     var maxValue = Number(values[1]);
+                    if(maxValue<self.to) maxValue-=1;
                     var ageGroupFilter = utilService.findByKeyAndValue(bridgeDataFilters, 'key', 'agegroup');
 
                     var prevValue = angular.copy(ageGroupFilter.value);

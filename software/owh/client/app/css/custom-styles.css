@@ -2287,3 +2287,9 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 .font-32 {
 	font-size: 32px !important;
 }
+.padding-5 {
+	padding: 5px;
+}
+.expanded-graph .selected-filters {
+	padding: 10px;
+}

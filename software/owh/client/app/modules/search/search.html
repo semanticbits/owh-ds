@@ -152,9 +152,10 @@
                 <div class="usa-width-one-whole overflow-visible">
                     <!-- show hide percentage -->
                     <div id="togglePercentage" class="togglePercentage pull-left"
-                         ng-show="sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths' ||
+                         ng-show="(sc.filters.selectedPrimaryFilter.title === 'label.filter.mortality' && sc.tableView === 'number_of_deaths' ||
                                   sc.filters.selectedPrimaryFilter.title === 'label.filter.natality' && sc.tableView === 'number_of_births' ||
-                                  sc.filters.selectedPrimaryFilter.title === 'label.census.bridge.race.pop.estimate' && sc.tableView === 'bridge_race'">
+                                  sc.filters.selectedPrimaryFilter.title === 'label.census.bridge.race.pop.estimate' && sc.tableView === 'bridge_race') &&
+                                  (!sc.tableData.hidePercentageButton)">
                         <a id="showPercentage" class="active-link custom-link " ng-class="{'selected': sc.tableData.calculatePercentage === true}" ng-click="sc.tableData.calculatePercentage = true;" title="Show percentage" href="javascript:void(0)">
                             <span ng-show="sc.tableData.calculatePercentage === false" ng-bind="'label.mortality.search.table.show.percentage.button' | translate"></span>
                             <span ng-show="sc.tableData.calculatePercentage === true" ng-bind="'label.mortality.search.table.showing.percentage.button' | translate"></span>
@@ -181,7 +182,7 @@
                     <p id="tb-disclaimer2" class="dark-link" ng-if="sc.tableView === 'tb'" ng-bind=" 'label.tb.rates.statement' | translate"></p>
                     <p id="hiv-disclaimer" class="dark-link" ng-if="sc.tableView === 'aids'" ng-bind=" 'label.hiv.aids.rates.statement' | translate"></p>
 
-                    <owh-table table-data="sc.tableData" show-percentage="sc.tableData.calculatePercentage"
+                    <owh-table table-data="sc.tableData" show-percentage="sc.tableData.calculatePercentage" hide-percentage-button="sc.tableData.hidePercentageButton"
                                ng-if="(sc.filters.selectedPrimaryFilter.headers && sc.filters.selectedPrimaryFilter.key === 'deaths' ||
                                sc.filters.selectedPrimaryFilter.key === 'bridge_race' ||
                                sc.filters.selectedPrimaryFilter.key === 'natality' ||

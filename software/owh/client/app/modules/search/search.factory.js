@@ -1850,6 +1850,7 @@
                     var values = value.split(';');
                     var minValue = Number(values[0]);
                     var maxValue = Number(values[1]);
+                    if(maxValue<self.to) maxValue-=1;
                     var agegroupFilter = utilService.findByKeyAndValue(filters.allMortalityFilters, 'key', 'agegroup');
 
                     var prevValue = angular.copy(agegroupFilter.value);

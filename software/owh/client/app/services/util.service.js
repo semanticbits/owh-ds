@@ -390,6 +390,13 @@
                 totalCount, grandTotals, calculatePercentage, calculateRowTotal, secondaryCountKeys, true,
                 tableView, [], []);
             tableData.calculatePercentage = calculatePercentage;
+            //"Show Percentages" button will be hidden in following scenarios
+            //  > If there are no columns or no rows available
+            //  > If there one row and one column available
+            tableData.hidePercentageButton = (((headers.rowHeaders.length==0 || headers.columnHeaders.length==0) ||
+                (tableData.data.length<=2 && headers.columnHeaders.length==1 &&
+                    ((headers.columnHeaders[0].allChecked && headers.columnHeaders[0].autoCompleteOptions.length==1) ||
+                        headers.columnHeaders[0].value.length==1))));
             return tableData;
         }
 

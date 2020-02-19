@@ -9,6 +9,7 @@
             bindings: {
                 tableData: '<',
                 showPercentage: '<',
+                hidePercentageButton: '<',
                 tableView: '@',
                 rowspanThreshold: '<'
             }
@@ -232,7 +233,7 @@
                                 cell += '<span>Not Available</span>';
                             } else {
                                 cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
-                                if(colIndex !== row.length - 1 && column.percentage  > 0 && otc.showPercentage) {
+                                if(colIndex !== row.length - 1 && column.percentage  > 0 && otc.showPercentage && !otc.hidePercentageButton) {
                                     cell += '<span class="count-value" title="Row Percentage"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
                                 }
                             }
