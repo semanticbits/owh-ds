@@ -38,7 +38,8 @@
     "angular-filter": "^0.5.15",
     "leaflet": "^1.2.0",
     "ui-leaflet": "^2.0.0",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "dom-to-image": "^2.6.0"
   },
   "resolutions": {
     "angular": "~1.5.5",

@@ -56,19 +56,38 @@
             if(format != 'PPT') {
                 getPNGfromSVG(chart).then(function (response) {
                     if (format == 'PNG') {
-                        if(isIE()) {
-                            getImageCanvasForIE(response).then(function (canvas) {
-                                canvas.toBlob(function (blob) {
-                                    saveAs(blob, filename + 'file.png');
-                                }, "image/png");
+                        var graphSection = jQuery('#graphBody');
+                        graphSection.addClass('html-png-download-active');
+
+                        var node = document.getElementById('graphBody');
+                        domtoimage.toPng(node)
+                            .then(function (dataUrl) {
+                                var img = new Image();
+                                img.src = dataUrl;
+                                var link = document.createElement("a");
+                                link.download = filename + 'file.png';
+                                link.href = dataUrl;
+                                document.body.appendChild(link);
+                                link.click();
+                                graphSection.removeClass('html-png-download-active');
+                            })
+                            .catch(function (error) {
+                                console.error('oops, something went wrong!', error);
                             });
-                        } else {
-                            var link = document.createElement("a");
-                            link.download = filename + 'file.png';
-                            link.href = response.replace("image/png", "image/octet-stream");
-                            document.body.appendChild(link);
-                            link.click();
-                        }
+
+                        /*                        if(isIE()) {
+                                                    getImageCanvasForIE(response).then(function (canvas) {
+                                                        canvas.toBlob(function (blob) {
+                                                            saveAs(blob, filename + 'file.png');
+                                                        }, "image/png");
+                                                    });
+                                                } else {
+                                                    var link = document.createElement("a");
+                                                    link.download = filename + 'file.png';
+                                                    link.href = response.replace("image/png", "image/octet-stream");
+                                                    document.body.appendChild(link);
+                                                    link.click();
+                                                }*/
                     } else {
                         var doc = new jsPDF('l');
                         doc.rect(5,5,285, 200);

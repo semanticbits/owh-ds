@@ -2293,3 +2293,13 @@ div#expandedMap > div.leaflet-control-container > div.leaflet-bottom > div.leafl
 .expanded-graph .selected-filters {
 	padding: 10px;
 }
+#graphBody {
+	background: white;
+}
+.html-png-download-active .hide-png-download{
+	display: none;
+}
+.html-png-download-active .filter-pill {
+	display: inline;
+	padding: 1px 7px;
+}

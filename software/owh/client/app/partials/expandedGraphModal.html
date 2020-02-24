@@ -35,7 +35,7 @@
                 </li>
             </ul>
 
-            <div class="usa-grid">
+            <div class="usa-grid" id="graphBody">
                 <div ng-if="eg.activeTab !== 'map'" class="usa-width-one-whole" ng-repeat="eachChartData in eg.chartData">
                     <div class="text-center margin-top-5" ng-if="eg.chartData.length > 1">
                         <span ng-bind="eachChartData.layout.title" class="graph-title"></span>
@@ -45,7 +45,7 @@
                         </a>
                     </div>
                     <owh-toggle-switch ng-if="(eachChartData.charttype  !== 'pieChart' && eachChartData.charttype  !== 'lineChart' &&
-                     eachChartData.charttype !== 'multiLineChart') && eachChartData.longtitle.indexOf('Rate') < 0" class="left-float chart-view-toggle padding-5"
+                     eachChartData.charttype !== 'multiLineChart') && eachChartData.longtitle.indexOf('Rate') < 0" class="left-float chart-view-toggle padding-5 hide-png-download"
                                        options="[ {key:'bar', title:'Grouped', tooltip:'Select to view grouped bars'},{key:'stack', title:'Stacked', tooltip:'Select to view stacked bars'}]"
                                        model="eg.barmode">
                     </owh-toggle-switch>
