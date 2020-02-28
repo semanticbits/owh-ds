@@ -10938,6 +10938,418 @@
         }
       ]
     },
+    "natality": {
+      "prepregnancy_hypertension": {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "prepregnancy_hypertension": "Yes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2016"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "gestational_hypertension": {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "gestational_hypertension": "Yes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2016"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "prepregnancy_diabetes": {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "prepregnancy_diabetes": "Yes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2016"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "gestational_diabetes": {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "gestational_diabetes": "Yes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2016"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "eclampsia": {
+        "size": 0,
+        "aggregations": {
+          "group_table_current_year": {
+            "terms": {
+              "field": "current_year",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "eclampsia": "Yes"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2016"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
     "cancer": {
       "breast": [
         {

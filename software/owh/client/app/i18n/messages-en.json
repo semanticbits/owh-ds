@@ -627,6 +627,7 @@
   "fs.women.health.mortality.footnote2":"Age adjustment is a technique for \"removing\" the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures.",
   "fs.women.health.mortality.footnote3":"Top 10 causes of death nationally are displayed in the table above",
   "fs.women.prams.footnote":"Sources: 2011, CDC PRAMS",
+  "fs.women.natality.footnote":"Source: 2016, CDC NVSS",
   "fs.women.brfss.footnote":"Source:  2016, CDC BRFSS",
   "fs.women.yrbs.footnote":"Sources: 2015, CDC YRBS",
   "fs.women.std.footnote":"Source: 2016, CDC NCHHSTP Atlas",

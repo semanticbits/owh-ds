@@ -55,6 +55,9 @@ WomenHealthFactSheet.prototype.prepareFactSheet = function (state, fsType, sex) 
             return getCancerDataForFactSheet(factSheetQueryJSON, sex)
         }).then(function (cancerData) {
             factsheet.cancerData = cancerData;
+            return getNatalityDataForFactSheet(factSheetQueryJSON, sex);
+        }).then(function (natalityData) {
+            factsheet.natality = natalityData;
             factsheet.state = state;
             factsheet.fsType = fsType;
             deferred.resolve(factsheet);
@@ -386,6 +389,47 @@ function getHivDataForFactSheet(factSheetQueryJSON) {
     return deferred.promise;
 }
 
+function getNatalityDataForFactSheet(factSheetQueryJSON, sex) {
+    var deferred = Q.defer();
+    if(sex != 'male') {
+        var prepregnancyHypertensionESQuery = factSheetQueryJSON.natality["prepregnancy_hypertension"];
+        var gestationalHypertensionESQuery = factSheetQueryJSON.natality["gestational_hypertension"];
+        var prepregnancyDiabetesESQuery = factSheetQueryJSON.natality["prepregnancy_diabetes"];
+        var gestationalDiabetesESQuery = factSheetQueryJSON.natality["gestational_diabetes"];
+        var eclampsiaESQuery = factSheetQueryJSON.natality["eclampsia"];
+        var es = new elasticSearch();
+        var promises = [
+            es.executeMultipleESQueries(prepregnancyHypertensionESQuery, 'owh_natality', 'natality'),
+            es.executeMultipleESQueries(gestationalHypertensionESQuery, 'owh_natality', 'natality'),
+            es.executeMultipleESQueries(prepregnancyDiabetesESQuery, 'owh_natality', 'natality'),
+            es.executeMultipleESQueries(gestationalDiabetesESQuery, 'owh_natality', 'natality'),
+            es.executeMultipleESQueries(eclampsiaESQuery, 'owh_natality', 'natality'),
+        ];
+
+        Q.all(promises).then(function (resp) {
+            var prepregnancyHypertensionData = searchUtils.populateDataWithMappings(resp[0], 'natality');
+            var gestationalHypertensionData = searchUtils.populateDataWithMappings(resp[1], 'natality');
+            var prepregnancyDiabetesData = searchUtils.populateDataWithMappings(resp[2], 'natality');
+            var gestationalDiabetesData = searchUtils.populateDataWithMappings(resp[3], 'natality');
+            var eclampsiaData = searchUtils.populateDataWithMappings(resp[4], 'natality');
+
+            var data = [
+                {cause:"Prepregnancy Hypertension", data: prepregnancyHypertensionData.data.nested.table.current_year[0].natality},
+                {cause:"Gestational Hypertension", data: gestationalHypertensionData.data.nested.table.current_year[0].natality},
+                {cause:"Prepregnancy Diabetes", data: prepregnancyDiabetesData.data.nested.table.current_year[0].natality},
+                {cause:"Gestational Diabetes", data: gestationalDiabetesData.data.nested.table.current_year[0].natality},
+                {cause:"Eclampsia", data: eclampsiaData.data.nested.table.current_year[0].natality}
+            ];
+            deferred.resolve(data);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    } else {
+        deferred.resolve([]);
+    }
+    return deferred.promise;
+}
 function getCancerDataForFactSheet(factSheetQueryJSON, sex) {
     var breastCancerESQuery = factSheetQueryJSON.cancer["breast"][0];
     var breastCancerPopulationQuery = factSheetQueryJSON.cancer["breast"][1];
