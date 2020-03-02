@@ -27,9 +27,11 @@ WomenHealthFactSheet.prototype.prepareFactSheet = function (state, fsType, sex) 
         //For YRBS & prams - If state 'Arizona', change code to 'AZB'
         if(state && state === 'AZ') {
             factSheetQueryJSON.yrbs["alcohol"].query.sitecode.value = 'AZB';
-            Object.keys(factSheetQueryJSON.prams).forEach(function(eachKey){
-                factSheetQueryJSON.prams[eachKey].query.sitecode.value = ["AZB"];
-            });
+            if(sex != 'male') {
+                Object.keys(factSheetQueryJSON.prams).forEach(function(eachKey){
+                    factSheetQueryJSON.prams[eachKey].query.sitecode.value = ["AZB"];
+                });
+            }
         }
         var factsheet = {};
         getBridgeRaceDataForFactSheet(factSheetQueryJSON).then(function (bridgeRaceData) {
