@@ -214,11 +214,14 @@
                                     $rootScope.nationalFactSheet = response.resultData;
                                     $rootScope.previousFSType = fsType;
                                 }
-                                if(fsc.fsType == fsc.fsTypes.state_health) prepareStateHealthPopulationTable();
-                                else if(fsc.fsType == fsc.fsTypes.womens_health) {
+                                if(fsc.fsType == fsc.fsTypes.state_health) {
+                                    prepareStateHealthPopulationTable();
+                                } else if(fsc.fsType == fsc.fsTypes.womens_health) {
                                     womensHealthCallback(res.resultData.fsType, res.resultData.state);
-                                } else if(fsc.fsType == fsc.fsTypes.state_health) prepareWomensOfReproductiveAgeHealthPopulationTable();
-                                else prepareMinorityHealthPopulationTable();
+                                } else if(fsc.fsType == fsc.fsTypes.women_of_reproductive_age_health) {
+                                    prepareWomensOfReproductiveAgeHealthPopulationTable();
+                                } else
+                                    prepareMinorityHealthPopulationTable();
                                 deffered.resolve(res);
                             });
                         });
@@ -963,11 +966,11 @@
         function prepareWomensOfReproductiveAgeHealthPopulationTable() {
             fsc.populationTableEntries = [];
             var entriesTitles = ["15-19", "20-44"];
-            for(var i=0; i<entriesTitles.length-1;i++) {
+            for(var i=0; i<entriesTitles.length; i++) {
                 var tableRow = [];
                 tableRow.push(entriesTitles[i]);
-                tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
-                tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i));
+                tableRow.push(getPopValue(fsc.factSheet.ageGroups, i, fsc.fsType));
+                tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i, fsc.fsType));
                 fsc.populationTableEntries.push(tableRow);
             }
         }
@@ -987,12 +990,16 @@
             }
             fsc.populationTableEntries.push(tableRow);
         }
-        function getPopValue(ageGroups, index) {
+        function getPopValue(ageGroups, index, fsType) {
             var popValue;
             if (index==1) {
-                popValue = $filter('number')(ageGroups[1]["15-44 years"][0].bridge_race);
+                popValue = (fsType && fsType == fsc.fsTypes.women_of_reproductive_age_health) ?
+                    $filter('number')(ageGroups[1].bridge_race) :
+                    $filter('number')(ageGroups[1]["15-44 years"][0].bridge_race);
             } else if (index==2) {
-                popValue = $filter('number')(ageGroups[1]["15-44 years"][1].bridge_race);
+                popValue = (fsType && fsType == fsc.fsTypes.women_of_reproductive_age_health) ?
+                    $filter('number')(ageGroups[1].bridge_race) :
+                    $filter('number')(ageGroups[1]["15-44 years"][0].bridge_race);
             } else {
                 popValue = $filter('number')(ageGroups[(index==0)?index:index-1].bridge_race);
             }
