@@ -10,6 +10,7 @@ var dsmetadata = require('../api/dsmetadata');
 var factSheet = require('../api/factSheet');
 var minorityFactSheet = require('../api/minorityFactSheet');
 var womenHealthFactSheet = require('../api/womensHealthFactsheet');
+var womensOfReproductiveAgeHealthFactsheet = require('../api/womensOfReproductiveAgeHealthFactsheet');
 var Q = require('q');
 var config = require('../config/config');
 var svgtopng = require('svg2png');
@@ -129,6 +130,17 @@ var searchRouter = function(app, rConfig) {
                     } else if (fsType === "Women's and Girls' Health") {
                         var sex = req.sanitize(req.body.sex);
                         new womenHealthFactSheet().prepareFactSheet(state, fsType, sex).then(function(response) {
+                            if(!config.disableQueryCache) {
+                                var resData = {};
+                                resData.queryJSON = {};
+                                resData.resultData = response;
+                                queryCache.cacheQuery(queryId, 'fact_sheets', resData);
+                            }
+                            res.send(new result('OK', resData, "success"));
+                        });
+                    } else if (fsType === "Women Of Reproductive Age Health") {
+                        var sex = req.sanitize(req.body.sex);
+                        new womensOfReproductiveAgeHealthFactsheet().prepareFactSheet(state, fsType, sex).then(function(response) {
                             if(!config.disableQueryCache) {
                                 var resData = {};
                                 resData.queryJSON = {};

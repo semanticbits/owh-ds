@@ -2,26 +2,21 @@ var elasticSearch = require('../models/elasticSearch');
 var yrbs = require("../api/yrbs");
 var factSheetQueries = require('../json/factsheet-queries.json');
 var factSheetCountriesQueries = require('../json/factsheet-country-queries.json');
-var factSheetMensQueries = require('../json/factsheet-mens-queries.json');
 var searchUtils = require('../api/utils');
 var wonder = require("../api/wonder");
 var Q = require('q');
 var logger = require('../config/logging');
 var AppConstants = require('../utils/constant');
 
-var WomenHealthFactSheet = function() {};
+var WomenOfReproductiveAgeHealthFactSheet = function() {};
 
-WomenHealthFactSheet.prototype.prepareFactSheet = function (state, fsType, sex) {
+WomenOfReproductiveAgeHealthFactSheet.prototype.prepareFactSheet = function (state, fsType, sex) {
     var deferred = Q.defer();
     var factSheetQueryJSON;
     if(state) {
-        if(sex == 'male') {
-            factSheetQueryJSON = JSON.parse(JSON.stringify(factSheetMensQueries.women_health).split("$state$").join(state));
-        } else {
-            factSheetQueryJSON = JSON.parse(JSON.stringify(factSheetQueries.women_health).split("$state$").join(state));
-        }
+        factSheetQueryJSON = JSON.parse(JSON.stringify(factSheetQueries.women_age_health).split("$state$").join(state));
     } else {
-        factSheetQueryJSON = factSheetCountriesQueries.women_health;
+        factSheetQueryJSON = factSheetCountriesQueries.women_age_health;
     }
     if (factSheetQueryJSON) {
         //For YRBS & prams - If state 'Arizona', change code to 'AZB'
@@ -57,6 +52,9 @@ WomenHealthFactSheet.prototype.prepareFactSheet = function (state, fsType, sex) 
             return getCancerDataForFactSheet(factSheetQueryJSON, sex)
         }).then(function (cancerData) {
             factsheet.cancerData = cancerData;
+            return getNatalityDataForFactSheet(factSheetQueryJSON, sex);
+        }).then(function (natalityData) {
+            factsheet.natality = natalityData;
             factsheet.state = state;
             factsheet.fsType = fsType;
             deferred.resolve(factsheet);
@@ -71,20 +69,13 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
     var es = new elasticSearch();
     var promises = [
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.gender_population),
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.nonHispanicRace_population),
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.race_population),
-        es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.hispanic_population),
         es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_population)
     ];
 
     Q.all(promises).then( function (resp) {
         var genderData = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop');
-        var nonHispanicRaceData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
-        var raceData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
-        var hispanicData = searchUtils.populateDataWithMappings(resp[3], 'bridge_race', 'pop');
-        var ageGroupData = searchUtils.populateDataWithMappings(resp[4], 'bridge_race', 'pop');
-        var data =  prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-            raceData, hispanicData, ageGroupData);
+        var ageGroupData = searchUtils.populateDataWithMappings(resp[1], 'bridge_race', 'pop');
+        var data =  prepareFactSheetForPopulation(genderData, ageGroupData);
         deferred.resolve(data);
     }, function (err) {
         logger.error(err.message);
@@ -93,103 +84,49 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
     return deferred.promise;
 }
 
-function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
-    var alzheimerESQuery = factSheetQueryJSON.detailMortality["alzheimer"][0];
-    var alzheimerWonderQuery = factSheetQueryJSON.detailMortality["alzheimer"][1];
-    var malignantNeoplasmESQuery = factSheetQueryJSON.detailMortality["malignant_neoplasm"][0];
-    var malignantNeoplasmWonderQuery = factSheetQueryJSON.detailMortality["malignant_neoplasm"][1];
-    var accidentESQuery = factSheetQueryJSON.detailMortality["accident"][0];
-    var accidentWonderQuery = factSheetQueryJSON.detailMortality["accident"][1];
+function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {[1];
     var cerebrovascularESQuery = factSheetQueryJSON.detailMortality["cerebrovascular"][0];
     var cerebrovascularWonderQuery = factSheetQueryJSON.detailMortality["cerebrovascular"][1];
-    var chronicRespiratoryESQuery = factSheetQueryJSON.detailMortality["chronic_respiratory"][0];
-    var chronicRespiratoryWonderQuery = factSheetQueryJSON.detailMortality["chronic_respiratory"][1];
     var diabetesMellitusESQuery = factSheetQueryJSON.detailMortality["diabetes_mellitus"][0];
     var diabetesMellitusWonderQuery = factSheetQueryJSON.detailMortality["diabetes_mellitus"][1];
-    var influenzaESQuery = factSheetQueryJSON.detailMortality["influenza"][0];
-    var influenzaWonderQuery = factSheetQueryJSON.detailMortality["influenza"][1];
-    var nephritisESQuery = factSheetQueryJSON.detailMortality["nephritis"][0];
-    var nephritisWonderQuery = factSheetQueryJSON.detailMortality["nephritis"][1];
-    var suicideESQuery = factSheetQueryJSON.detailMortality["suicide"][0];
-    var suicideWonderQuery = factSheetQueryJSON.detailMortality["suicide"][1];
     var heartDiseasesESQuery = factSheetQueryJSON.detailMortality["heart_diseases"][0];
     var heartDiseasesWonderQuery = factSheetQueryJSON.detailMortality["heart_diseases"][1];
+    var pregnancyChildbirthPuerperiumESQuery = factSheetQueryJSON.detailMortality["pregnancy_childbirth_puerperium"][0];
+    var pregnancyChildbirthPuerperiumWonderQuery = factSheetQueryJSON.detailMortality["pregnancy_childbirth_puerperium"][1];
     var es = new elasticSearch();
     var promises = [
-        es.executeMultipleESQueries(malignantNeoplasmESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(malignantNeoplasmWonderQuery),
-        es.executeMultipleESQueries(alzheimerESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(alzheimerWonderQuery),
-        es.executeMultipleESQueries(accidentESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(accidentWonderQuery),
         es.executeMultipleESQueries(cerebrovascularESQuery, 'owh_mortality', 'mortality'),
         new wonder('D77').invokeWONDER(cerebrovascularWonderQuery),
-        es.executeMultipleESQueries(chronicRespiratoryESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(chronicRespiratoryWonderQuery),
         es.executeMultipleESQueries(diabetesMellitusESQuery, 'owh_mortality', 'mortality'),
         new wonder('D77').invokeWONDER(diabetesMellitusWonderQuery),
-        es.executeMultipleESQueries(influenzaESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(influenzaWonderQuery),
-        es.executeMultipleESQueries(nephritisESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(nephritisWonderQuery),
-        es.executeMultipleESQueries(suicideESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(suicideWonderQuery),
         es.executeMultipleESQueries(heartDiseasesESQuery, 'owh_mortality', 'mortality'),
-        new wonder('D77').invokeWONDER(heartDiseasesWonderQuery)
+        new wonder('D77').invokeWONDER(heartDiseasesWonderQuery),
+        es.executeMultipleESQueries(pregnancyChildbirthPuerperiumESQuery, 'owh_mortality', 'mortality'),
+        new wonder('D77').invokeWONDER(pregnancyChildbirthPuerperiumWonderQuery)
     ];
     var deferred = Q.defer();
     Q.all(promises).then(function (resp) {
-        var malignantNeoplasmData = searchUtils.populateDataWithMappings(resp[0], 'deaths');
-        searchUtils.mergeAgeAdjustedRates(malignantNeoplasmData.data.nested.table, resp[1].table);
-        searchUtils.applySuppressions(malignantNeoplasmData, 'deaths');
-
-        var alzheimerData = searchUtils.populateDataWithMappings(resp[2], 'deaths');
-        searchUtils.mergeAgeAdjustedRates(alzheimerData.data.nested.table, resp[3].table);
-        searchUtils.applySuppressions(alzheimerData, 'deaths');
-
-        var accidentData = searchUtils.populateDataWithMappings(resp[4], 'deaths');
-        searchUtils.mergeAgeAdjustedRates(accidentData.data.nested.table, resp[5].table);
-        searchUtils.applySuppressions(accidentData, 'deaths');
-
-        var cerebrovascularData = searchUtils.populateDataWithMappings(resp[6], 'deaths');
-        searchUtils.mergeAgeAdjustedRates(cerebrovascularData.data.nested.table, resp[7].table);
+        var cerebrovascularData = searchUtils.populateDataWithMappings(resp[0], 'deaths');
+        searchUtils.mergeAgeAdjustedRates(cerebrovascularData.data.nested.table, resp[1].table);
         searchUtils.applySuppressions(cerebrovascularData, 'deaths');
 
-        var chronicRespiratoryData = searchUtils.populateDataWithMappings(resp[8], 'deaths');
-        searchUtils.mergeAgeAdjustedRates(chronicRespiratoryData.data.nested.table, resp[9].table);
-        searchUtils.applySuppressions(chronicRespiratoryData, 'deaths');
-
-        var diabetesMellitusData = searchUtils.populateDataWithMappings(resp[10], 'deaths');
-        searchUtils.mergeAgeAdjustedRates(diabetesMellitusData.data.nested.table, resp[11].table);
+        var diabetesMellitusData = searchUtils.populateDataWithMappings(resp[2], 'deaths');
+        searchUtils.mergeAgeAdjustedRates(diabetesMellitusData.data.nested.table, resp[3].table);
         searchUtils.applySuppressions(diabetesMellitusData, 'deaths');
 
-        var influenzaData = searchUtils.populateDataWithMappings(resp[12], 'deaths');
-        searchUtils.mergeAgeAdjustedRates(influenzaData.data.nested.table, resp[13].table);
-        searchUtils.applySuppressions(influenzaData, 'deaths');
-
-        var nephritisData = searchUtils.populateDataWithMappings(resp[14], 'deaths');
-        searchUtils.mergeAgeAdjustedRates(nephritisData.data.nested.table, resp[15].table);
-        searchUtils.applySuppressions(nephritisData, 'deaths');
-
-        var suicideData = searchUtils.populateDataWithMappings(resp[16], 'deaths');
-        searchUtils.mergeAgeAdjustedRates(suicideData.data.nested.table, resp[17].table);
-        searchUtils.applySuppressions(suicideData, 'deaths');
-
-        var heartDiseaseData = searchUtils.populateDataWithMappings(resp[18], 'deaths');
-        searchUtils.mergeAgeAdjustedRates(heartDiseaseData.data.nested.table, resp[19].table);
+        var heartDiseaseData = searchUtils.populateDataWithMappings(resp[4], 'deaths');
+        searchUtils.mergeAgeAdjustedRates(heartDiseaseData.data.nested.table, resp[5].table);
         searchUtils.applySuppressions(heartDiseaseData, 'deaths');
+
+        var pregnancyChildbirthPuerperiumData = searchUtils.populateDataWithMappings(resp[6], 'deaths');
+        searchUtils.mergeAgeAdjustedRates(pregnancyChildbirthPuerperiumData.data.nested.table, resp[7].table);
+        searchUtils.applySuppressions(pregnancyChildbirthPuerperiumData, 'deaths');
 
         var data = [
             {causeOfDeath: "Diseases of heart", data:heartDiseaseData.data.nested.table.year[0]},
-            {causeOfDeath: "Malignant neoplasms", data:malignantNeoplasmData.data.nested.table.year[0]},
-            {causeOfDeath: "Chronic lower respiratory diseases", data:chronicRespiratoryData.data.nested.table.year[0]},
-            {causeOfDeath: "Accidents (unintentional injuries)", data:accidentData.data.nested.table.year[0]},
             {causeOfDeath: "Cerebrovascular diseases", data:cerebrovascularData.data.nested.table.year[0]},
-            {causeOfDeath: "Alzheimer's disease", data:alzheimerData.data.nested.table.year[0]},
             {causeOfDeath: "Diabetes mellitus", data:diabetesMellitusData.data.nested.table.year[0]},
-            {causeOfDeath: "Influenza and pneumonia", data:influenzaData.data.nested.table.year[0]},
-            {causeOfDeath: "Nephritis, nephrotic syndrome and nephrosis", data:nephritisData.data.nested.table.year[0]},
-            {causeOfDeath: "Intentional self-harm (suicide)", data:suicideData.data.nested.table.year[0]}
+            {causeOfDeath: "Intentional self-harm (suicide)", data:pregnancyChildbirthPuerperiumData.data.nested.table.year[0]}
         ];
 
         deferred.resolve(data);
@@ -388,6 +325,54 @@ function getHivDataForFactSheet(factSheetQueryJSON) {
     return deferred.promise;
 }
 
+function getNatalityDataForFactSheet(factSheetQueryJSON, sex) {
+    var deferred = Q.defer();
+    if(sex != 'male') {
+        var prepregnancyHypertensionESQuery = factSheetQueryJSON.natality["prepregnancy_hypertension"];
+        var gestationalHypertensionESQuery = factSheetQueryJSON.natality["gestational_hypertension"];
+        var prepregnancyDiabetesESQuery = factSheetQueryJSON.natality["prepregnancy_diabetes"];
+        var gestationalDiabetesESQuery = factSheetQueryJSON.natality["gestational_diabetes"];
+        var eclampsiaESQuery = factSheetQueryJSON.natality["eclampsia"];
+        var es = new elasticSearch();
+        var promises = [
+            es.executeMultipleESQueries(prepregnancyHypertensionESQuery, 'owh_natality', 'natality'),
+            es.executeMultipleESQueries(gestationalHypertensionESQuery, 'owh_natality', 'natality'),
+            es.executeMultipleESQueries(prepregnancyDiabetesESQuery, 'owh_natality', 'natality'),
+            es.executeMultipleESQueries(gestationalDiabetesESQuery, 'owh_natality', 'natality'),
+            es.executeMultipleESQueries(eclampsiaESQuery, 'owh_natality', 'natality'),
+        ];
+
+        Q.all(promises).then(function (resp) {
+            var prepregnancyHypertensionData = searchUtils.populateDataWithMappings(resp[0], 'natality');
+            var gestationalHypertensionData = searchUtils.populateDataWithMappings(resp[1], 'natality');
+            var prepregnancyDiabetesData = searchUtils.populateDataWithMappings(resp[2], 'natality');
+            var gestationalDiabetesData = searchUtils.populateDataWithMappings(resp[3], 'natality');
+            var eclampsiaData = searchUtils.populateDataWithMappings(resp[4], 'natality');
+
+            var data = [
+                {cause:"Prepregnancy Hypertension", data: formatNatalityResponseData(prepregnancyHypertensionData)},
+                {cause:"Gestational Hypertension", data: formatNatalityResponseData(gestationalHypertensionData)},
+                {cause:"Prepregnancy Diabetes", data: formatNatalityResponseData(prepregnancyDiabetesData)},
+                {cause:"Gestational Diabetes", data: formatNatalityResponseData(gestationalDiabetesData)},
+                {cause:"Eclampsia", data: formatNatalityResponseData(eclampsiaData)}
+            ];
+            deferred.resolve(data);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    } else {
+        deferred.resolve([]);
+    }
+    return deferred.promise;
+}
+function formatNatalityResponseData(response) {
+    if(response.data.nested.table.current_year && response.data.nested.table.current_year[0] &&
+        response.data.nested.table.current_year[0].natality) {
+        return response.data.nested.table.current_year[0].natality;
+    }
+    return '';
+}
 function getCancerDataForFactSheet(factSheetQueryJSON, sex) {
     var breastCancerESQuery = factSheetQueryJSON.cancer["breast"][0];
     var breastCancerPopulationQuery = factSheetQueryJSON.cancer["breast"][1];
@@ -524,9 +509,12 @@ function prepareCancerData(pop, totalPop, countKey) {
 function prepareBRFSSData(brfssResp) {
     var brfssData = [
         {question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' },
-        {question: 'Adults who are current smokers', data: 'Not applicable'},
-        {question: 'Women who are heavy drinkers (having more than 7 drinks per week)', data: 'Not applicable'},
-        {question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'}
+        {question: 'Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?', data: 'Not applicable'},
+        {question: 'Do you have any kind of health care coverage?', data: 'Not applicable'},
+        {question: 'About how long has it been since you last visited a doctor for a routine checkup?', data: 'Not applicable'},
+        {question: 'Ever told you had a heart attack (myocardial infarction)?', data: 'Not applicable'},
+        {question: 'Ever told you had a stroke?', data: 'Not applicable'},
+        {question: 'Have you ever been told by a doctor that you have diabetes?', data: 'Not applicable'}
     ];
 
     brfssResp.table.question.forEach(function(eachRecord) {
@@ -535,23 +523,31 @@ function prepareBRFSSData(brfssResp) {
                 if(eachRecord["obese (bmi 30.0 - 99.8)"] && eachRecord["obese (bmi 30.0 - 99.8)"].brfss)
                     brfssData[0].data = eachRecord["obese (bmi 30.0 - 99.8)"].brfss.mean;
                 break;
-            case "_rfsmok3":
+            case "medcost":
                 if(eachRecord.yes && eachRecord.yes.brfss) brfssData[1].data = eachRecord.yes.brfss.mean;
                 break;
-            case "_rfdrhv5":
-                if(eachRecord["meet criteria for heavy drinking"] && eachRecord["meet criteria for heavy drinking"].brfss)
-                    brfssData[2].data = eachRecord["meet criteria for heavy drinking"].brfss.mean;
+            case "hlthpln1":
+                if(eachRecord.yes && eachRecord.yes.brfss) brfssData[2].data = eachRecord.yes.brfss.mean;
                 break;
-            case "_paindx1":
-                if(eachRecord.yes && eachRecord.yes.brfss) brfssData[3].data = eachRecord.yes.brfss.mean;
+            case "checkup1":
+                if(eachRecord["within the past 5 years"] && eachRecord["within the past 5 years"].brfss)
+                    brfssData[0].data = eachRecord["within the past 5 years"].brfss.mean;
+                break;
+            case "cvdinfr4":
+                if(eachRecord.yes && eachRecord.yes.brfss) brfssData[4].data = eachRecord.yes.brfss.mean;
+                break;
+            case "cvdstrk3":
+                if(eachRecord.yes && eachRecord.yes.brfss) brfssData[5].data = eachRecord.yes.brfss.mean;
+                break;
+            case "diabete3":
+                if(eachRecord.yes && eachRecord.yes.brfss) brfssData[6].data = eachRecord.yes.brfss.mean;
                 break;
         }
     });
     return brfssData;
 }
 
-function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-                                       raceData, hispanicData, ageGroupData) {
+function prepareFactSheetForPopulation(genderData, ageGroupData) {
     var factSheet = {};
     factSheet.gender = genderData.data.simple.group_table_sex;
 
@@ -559,47 +555,27 @@ function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
     factSheet.gender.forEach(function (data) {
         factSheet.totalGenderPop += data.bridge_race;
     });
-    var race = nonHispanicRaceData.data.simple.group_table_race;
-    race = race.concat(raceData.data.simple.group_table_race, hispanicData.data.simple.group_table_ethnicity);
 
     ageGroupData = ageGroupData.data.simple.group_table_agegroup;
     prepareAgeGroups(factSheet, ageGroupData, "ageGroups");
-    factSheet.race = race;
     return factSheet;
 }
 
 function prepareAgeGroups(factSheet, ageGroupData, factSheetAttr) {
 
     factSheet[factSheetAttr] = [];
-    var ageGroups15to44 = ['15-19 years', '20-24 years', '25-29 years', '30-34 years',
+    var ageGroups20to44 = ['20-24 years', '25-29 years', '30-34 years',
         '35-39 years', '40-44 years'];
 
-    var ageGroups45to64 = ['45-49 years', '50-54 years', '55-59 years', '60-64 years'];
-    var ageGroups65to84 = ['65-69 years', '70-74 years', '75-79 years', '80-84 years'];
-
-    var count15to44 = {"15-44 years" : [{ name:'15-19 years' }, { name:'20-44 years' }]};
-    var count20to44 = 0;
-    var count45to64 = 0;
-    var count65to84 = 0;
+    var count20to44 = 0, count15to20 = 0;
     ageGroupData.forEach(function (data) {
-        if (ageGroups15to44.indexOf(data.name) !== -1) {
-            if (data.name === '15-19 years') {
-                count15to44["15-44 years"][0].bridge_race = data.bridge_race;
-            } else {
-                count20to44 += data.bridge_race;
-            }
-        } else if(ageGroups45to64.indexOf(data.name) !== -1) {
-            count45to64 += data.bridge_race;
-        } else if (ageGroups65to84.indexOf(data.name) !== -1) {
-            count65to84 += data.bridge_race;
+        if (ageGroups20to44.indexOf(data.name)>=0) {
+            count20to44 += data.bridge_race;
         } else {
-            factSheet[factSheetAttr].push(data);
+            count15to20 = data.bridge_race;
         }
     });
 
-    count15to44["15-44 years"][1].bridge_race = count20to44;
-    factSheet[factSheetAttr].splice(1, 0, count15to44);
-    factSheet[factSheetAttr].splice(2, 0, {name:'45-64 years', bridge_race: count45to64});
-    factSheet[factSheetAttr].splice(3, 0, {name:'65-84 years', bridge_race: count65to84});
+    factSheet[factSheetAttr].push({name: "15-19 years", bridge_race: count15to20}, {name: "20-44 years",bridge_race: count20to44})
 }
-module.exports = WomenHealthFactSheet;
+module.exports = WomenOfReproductiveAgeHealthFactSheet;

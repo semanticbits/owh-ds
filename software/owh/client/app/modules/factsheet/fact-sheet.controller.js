@@ -25,6 +25,7 @@
         fsc.fsTypes = {
             state_health: "State Health",
             womens_health: "Women's and Girls' Health",
+            women_of_reproductive_age_health: "Women Of Reproductive Age Health",
             minority_health: 'Minority Health'
         };
         fsc.states = {
@@ -216,7 +217,7 @@
                                 if(fsc.fsType == fsc.fsTypes.state_health) prepareStateHealthPopulationTable();
                                 else if(fsc.fsType == fsc.fsTypes.womens_health) {
                                     womensHealthCallback(res.resultData.fsType, res.resultData.state);
-                                }
+                                } else if(fsc.fsType == fsc.fsTypes.state_health) prepareWomensOfReproductiveAgeHealthPopulationTable();
                                 else prepareMinorityHealthPopulationTable();
                                 deffered.resolve(res);
                             });
@@ -956,6 +957,17 @@
                 tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
                 tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i));
                 tableRow.push(getPopValue($rootScope.mensFactSheet.ageGroups, i));
+                fsc.populationTableEntries.push(tableRow);
+            }
+        }
+        function prepareWomensOfReproductiveAgeHealthPopulationTable() {
+            fsc.populationTableEntries = [];
+            var entriesTitles = ["15-19", "20-44"];
+            for(var i=0; i<entriesTitles.length-1;i++) {
+                var tableRow = [];
+                tableRow.push(entriesTitles[i]);
+                tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
+                tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i));
                 fsc.populationTableEntries.push(tableRow);
             }
         }
