@@ -52,9 +52,12 @@ WomenOfReproductiveAgeHealthFactSheet.prototype.prepareFactSheet = function (sta
             return getCancerDataForFactSheet(factSheetQueryJSON, sex)
         }).then(function (cancerData) {
             factsheet.cancerData = cancerData;
-            return getNatalityDataForFactSheet(factSheetQueryJSON, sex);
+            return getMaternalRiskFactorsDataForFactSheet(factSheetQueryJSON, sex);
         }).then(function (natalityData) {
             factsheet.natality = natalityData;
+            return getDeliveryFactorsDataForFactSheet(factSheetQueryJSON, sex);
+        }).then(function (deliveryFactorsData) {
+            factsheet.deliveryFactorsData = deliveryFactorsData;
             factsheet.state = state;
             factsheet.fsType = fsType;
             deferred.resolve(factsheet);
@@ -325,14 +328,14 @@ function getHivDataForFactSheet(factSheetQueryJSON) {
     return deferred.promise;
 }
 
-function getNatalityDataForFactSheet(factSheetQueryJSON, sex) {
+function getMaternalRiskFactorsDataForFactSheet(factSheetQueryJSON, sex) {
     var deferred = Q.defer();
     if(sex != 'male') {
-        var prepregnancyHypertensionESQuery = factSheetQueryJSON.natality["prepregnancy_hypertension"];
-        var gestationalHypertensionESQuery = factSheetQueryJSON.natality["gestational_hypertension"];
-        var prepregnancyDiabetesESQuery = factSheetQueryJSON.natality["prepregnancy_diabetes"];
-        var gestationalDiabetesESQuery = factSheetQueryJSON.natality["gestational_diabetes"];
-        var eclampsiaESQuery = factSheetQueryJSON.natality["eclampsia"];
+        var prepregnancyHypertensionESQuery = factSheetQueryJSON.maternalRiskFactors["prepregnancy_hypertension"];
+        var gestationalHypertensionESQuery = factSheetQueryJSON.maternalRiskFactors["gestational_hypertension"];
+        var prepregnancyDiabetesESQuery = factSheetQueryJSON.maternalRiskFactors["prepregnancy_diabetes"];
+        var gestationalDiabetesESQuery = factSheetQueryJSON.maternalRiskFactors["gestational_diabetes"];
+        var eclampsiaESQuery = factSheetQueryJSON.maternalRiskFactors["eclampsia"];
         var es = new elasticSearch();
         var promises = [
             es.executeMultipleESQueries(prepregnancyHypertensionESQuery, 'owh_natality', 'natality'),
@@ -366,10 +369,64 @@ function getNatalityDataForFactSheet(factSheetQueryJSON, sex) {
     }
     return deferred.promise;
 }
+function getDeliveryFactorsDataForFactSheet(factSheetQueryJSON, sex) {
+    var deferred = Q.defer();
+    if(sex != 'male') {
+        var deliveryMethodESQuery = factSheetQueryJSON.deliveryFactors["delivery_method"];
+        var prenatalCareESQuery = factSheetQueryJSON.deliveryFactors["prenatal_care"];
+        var medicalAttendantESQuery = factSheetQueryJSON.deliveryFactors["medical_attendant"];
+        var es = new elasticSearch();
+        var promises = [
+            es.executeMultipleESQueries(deliveryMethodESQuery, 'owh_natality', 'natality'),
+            es.executeMultipleESQueries(prenatalCareESQuery, 'owh_natality', 'natality'),
+            es.executeMultipleESQueries(medicalAttendantESQuery, 'owh_natality', 'natality'),
+        ];
+
+        Q.all(promises).then(function (resp) {
+            var deliveryMethodData = searchUtils.populateDataWithMappings(resp[0], 'natality');
+            var prenatalCareData = searchUtils.populateDataWithMappings(resp[1], 'natality');
+            var medicalAttendantData = searchUtils.populateDataWithMappings(resp[2], 'natality');
+
+            var data = [
+                {cause:"Delivery method", data: formatDeliveryFactorsResponseData(deliveryMethodData, 'delivery_method')},
+                {cause:"Prenatal care", data: formatDeliveryPrenatalCareResponseData(prenatalCareData, 'prenatal_care')},
+                {cause:"Medical attendant", data: formatDeliveryFactorsResponseData(medicalAttendantData, 'medical_attendant')}
+            ];
+            deferred.resolve(data);
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    } else {
+        deferred.resolve([]);
+    }
+    return deferred.promise;
+}
 function formatNatalityResponseData(response) {
     if(response.data.nested.table.current_year && response.data.nested.table.current_year[0] &&
         response.data.nested.table.current_year[0].natality) {
         return response.data.nested.table.current_year[0].natality;
+    }
+    return '';
+}
+function formatDeliveryFactorsResponseData(response, type) {
+    if(response.data.nested.table[type] && response.data.nested.table[type]) {
+        return response.data.nested.table[type];
+    }
+    return '';
+}function formatDeliveryPrenatalCareResponseData(response, type) {
+    var deliveryPrenatalCareMonths = ['2nd month','3rd month','4th month','1st month','5th month','6th month','7th month','8th month','9th month','10th month'];
+    var deliveryPrenatalCareResponse = [], allMonthsCount = 0;
+    if(response.data.nested.table[type] && response.data.nested.table[type]) {
+        response.data.nested.table[type].forEach(function(eachRecord) {
+            if(deliveryPrenatalCareMonths.indexOf(eachRecord.name)>=0) {
+                allMonthsCount += eachRecord.natality;
+            } else {
+                deliveryPrenatalCareResponse.push(eachRecord);
+            }
+        });
+        deliveryPrenatalCareResponse.push({name: 'All Months Care', natality: allMonthsCount})
+        return deliveryPrenatalCareResponse;
     }
     return '';
 }

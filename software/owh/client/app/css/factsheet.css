@@ -133,6 +133,15 @@
 .womens-health-factsheet table.natality-table td {
     width: 23%;
 }
+.womens-health-factsheet table.delivery-factors-table td:nth-child(1) {
+    width: 15%;
+}
+.womens-health-factsheet table.delivery-factors-table td:nth-child(2) {
+    width: 15%;
+}
+.womens-health-factsheet table.delivery-factors-table td {
+    width: 23%;
+}
 .womens-health-factsheet table.tb-table td:nth-child(1) {
     width: 30%;
 }

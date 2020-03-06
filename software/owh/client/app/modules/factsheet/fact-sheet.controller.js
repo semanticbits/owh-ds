@@ -227,6 +227,8 @@
                         });
                     } else if(fsc.fsType == fsc.fsTypes.womens_health) {
                         womensHealthCallback(res.resultData.fsType, res.resultData.state);
+                    } else if(fsc.fsType == fsc.fsTypes.women_of_reproductive_age_health) {
+                        prepareWomensOfReproductiveAgeHealthPopulationTable();
                     } else if(fsc.fsType == fsc.fsTypes.state_health) prepareStateHealthPopulationTable();
                     else prepareMinorityHealthPopulationTable();
                 }
@@ -965,6 +967,7 @@
         }
         function prepareWomensOfReproductiveAgeHealthPopulationTable() {
             fsc.populationTableEntries = [];
+            fsc.deliveryFactorsEntries = [];
             var entriesTitles = ["15-19", "20-44"];
             for(var i=0; i<entriesTitles.length; i++) {
                 var tableRow = [];
@@ -972,6 +975,19 @@
                 tableRow.push(getPopValue(fsc.factSheet.ageGroups, i, fsc.fsType));
                 tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i, fsc.fsType));
                 fsc.populationTableEntries.push(tableRow);
+            }
+            for(var i=0; i<fsc.factSheet.deliveryFactorsData.length; i++) {
+                var deliveryFactor = fsc.factSheet.deliveryFactorsData[i];
+                for(var j=0; j<deliveryFactor.data.length; j++) {
+                    var rowEntry = [];
+                    if(j==0) {
+                        rowEntry.push({rowSpan: deliveryFactor.data.length, value: deliveryFactor.cause});
+                    }
+                    rowEntry.push({value: deliveryFactor.data[j].name});
+                    rowEntry.push({value:$filter('number')(deliveryFactor.data[j].natality)});
+                    rowEntry.push({value:$filter('number')($rootScope.nationalFactSheet.deliveryFactorsData[i].data[j].natality)});
+                    fsc.deliveryFactorsEntries.push(rowEntry);
+                }
             }
         }
 

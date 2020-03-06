@@ -13562,7 +13562,7 @@
         }
       ]
     },
-    "natality": {
+    "maternalRiskFactors": {
       "prepregnancy_hypertension": {
         "size": 0,
         "aggregations": {
@@ -13644,32 +13644,32 @@
                       "should": [
                         {
                           "term": {
-                            "age_5_interval": "15-19 years"
+                            "mother_age_5year_interval": "15-19 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "20-24 years"
+                            "mother_age_5year_interval": "20-24 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "25-29 years"
+                            "mother_age_5year_interval": "25-29 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "30-34 years"
+                            "mother_age_5year_interval": "30-34 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "35-39 years"
+                            "mother_age_5year_interval": "35-39 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "40-44 years"
+                            "mother_age_5year_interval": "40-44 years"
                           }
                         }
                       ]
@@ -13762,32 +13762,32 @@
                       "should": [
                         {
                           "term": {
-                            "age_5_interval": "15-19 years"
+                            "mother_age_5year_interval": "15-19 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "20-24 years"
+                            "mother_age_5year_interval": "20-24 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "25-29 years"
+                            "mother_age_5year_interval": "25-29 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "30-34 years"
+                            "mother_age_5year_interval": "30-34 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "35-39 years"
+                            "mother_age_5year_interval": "35-39 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "40-44 years"
+                            "mother_age_5year_interval": "40-44 years"
                           }
                         }
                       ]
@@ -13880,32 +13880,32 @@
                       "should": [
                         {
                           "term": {
-                            "age_5_interval": "15-19 years"
+                            "mother_age_5year_interval": "15-19 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "20-24 years"
+                            "mother_age_5year_interval": "20-24 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "25-29 years"
+                            "mother_age_5year_interval": "25-29 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "30-34 years"
+                            "mother_age_5year_interval": "30-34 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "35-39 years"
+                            "mother_age_5year_interval": "35-39 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "40-44 years"
+                            "mother_age_5year_interval": "40-44 years"
                           }
                         }
                       ]
@@ -13998,32 +13998,32 @@
                       "should": [
                         {
                           "term": {
-                            "age_5_interval": "15-19 years"
+                            "mother_age_5year_interval": "15-19 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "20-24 years"
+                            "mother_age_5year_interval": "20-24 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "25-29 years"
+                            "mother_age_5year_interval": "25-29 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "30-34 years"
+                            "mother_age_5year_interval": "30-34 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "35-39 years"
+                            "mother_age_5year_interval": "35-39 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "40-44 years"
+                            "mother_age_5year_interval": "40-44 years"
                           }
                         }
                       ]
@@ -14116,32 +14116,355 @@
                       "should": [
                         {
                           "term": {
-                            "age_5_interval": "15-19 years"
+                            "mother_age_5year_interval": "15-19 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "20-24 years"
+                            "mother_age_5year_interval": "20-24 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "25-29 years"
+                            "mother_age_5year_interval": "25-29 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "30-34 years"
+                            "mother_age_5year_interval": "30-34 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "35-39 years"
+                            "mother_age_5year_interval": "35-39 years"
                           }
                         },
                         {
                           "term": {
-                            "age_5_interval": "40-44 years"
+                            "mother_age_5year_interval": "40-44 years"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "deliveryFactors": {
+      "delivery_method": {
+        "size": 0,
+        "aggregations": {
+          "group_table_delivery_method": {
+            "terms": {
+              "field": "delivery_method",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2016"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "15-19 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "20-24 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "25-29 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "30-34 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "35-39 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "40-44 years"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "prenatal_care": {
+        "size": 0,
+        "aggregations": {
+          "group_table_prenatal_care": {
+            "terms": {
+              "field": "prenatal_care",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2016"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "15-19 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "20-24 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "25-29 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "30-34 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "35-39 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "40-44 years"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "medical_attendant": {
+        "size": 0,
+        "aggregations": {
+          "group_table_medical_attendant": {
+            "terms": {
+              "field": "medical_attendant",
+              "size": 0
+            },
+            "aggregations": {
+              "group_count_pop": {
+                "sum": {
+                  "field": "pop"
+                }
+              }
+            }
+          },
+          "group_count_pop": {
+            "sum": {
+              "field": "pop"
+            }
+          }
+        },
+        "query": {
+          "filtered": {
+            "query": {
+              "bool": {
+                "must": []
+              }
+            },
+            "filter": {
+              "bool": {
+                "must": [
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "sex": "Female"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "current_year": "2016"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "state": "$state$"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "15-19 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "20-24 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "25-29 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "30-34 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "35-39 years"
+                          }
+                        },
+                        {
+                          "term": {
+                            "mother_age_5year_interval": "40-44 years"
                           }
                         }
                       ]
