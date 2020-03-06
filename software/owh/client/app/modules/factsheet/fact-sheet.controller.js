@@ -956,7 +956,7 @@
         function prepareWomensHealthPopulationTable() {
             fsc.populationTableEntries = [];
             var entriesTitles = ["10-14", "15-19", "20-44", "45-64", "65-84", "85+"];
-            for(var i=0; i<entriesTitles.length-1;i++) {
+            for(var i=0; i<entriesTitles.length;i++) {
                 var tableRow = [];
                 tableRow.push(entriesTitles[i]);
                 tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
@@ -1015,7 +1015,7 @@
             } else if (index==2) {
                 popValue = (fsType && fsType == fsc.fsTypes.women_of_reproductive_age_health) ?
                     $filter('number')(ageGroups[1].bridge_race) :
-                    $filter('number')(ageGroups[1]["15-44 years"][0].bridge_race);
+                    $filter('number')(ageGroups[1]["15-44 years"][1].bridge_race);
             } else {
                 popValue = $filter('number')(ageGroups[(index==0)?index:index-1].bridge_race);
             }
