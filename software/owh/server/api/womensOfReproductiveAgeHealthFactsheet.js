@@ -129,7 +129,7 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {[1];
             {causeOfDeath: "Diseases of heart", data:heartDiseaseData.data.nested.table.year[0]},
             {causeOfDeath: "Cerebrovascular diseases", data:cerebrovascularData.data.nested.table.year[0]},
             {causeOfDeath: "Diabetes mellitus", data:diabetesMellitusData.data.nested.table.year[0]},
-            {causeOfDeath: "Intentional self-harm (suicide)", data:pregnancyChildbirthPuerperiumData.data.nested.table.year[0]}
+            {causeOfDeath: "Pregnancy, childbirth and the puerperium", data:pregnancyChildbirthPuerperiumData.data.nested.table.year[0]}
         ];
 
         deferred.resolve(data);
