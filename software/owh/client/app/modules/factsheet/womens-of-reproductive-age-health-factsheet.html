@@ -115,7 +115,7 @@
         <br/>
         <!-- Maternal Risk Factors -->
         <div class="natality-factsheet">
-            <div class="table-heading"><h5><img src="../../images/icons/natality-icon.svg"/>Maternal Risk Factors</h5></div>
+            <div class="table-heading"><h5><img src="../../images/icons/natality-icon.svg"/>Pregnancy Risk Factors</h5></div>
             <table class="natality-table">
                 <thead>
                 <tr>
@@ -158,8 +158,8 @@
                 </tr>
                 </tbody>
             </table>
-            <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only</i>
-            <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
+            <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.reproductive.natality.footnote' }}"></i>
+            <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
         </div>
 
         <!-- BRFSS -->

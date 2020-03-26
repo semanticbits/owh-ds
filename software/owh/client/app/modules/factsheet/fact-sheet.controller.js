@@ -158,6 +158,7 @@
         fsc.exportFactSheet = exportFactSheet;
         fsc.getStateName = getStateName;
         fsc.getMeanDisplayValue = getMeanDisplayValue;
+        fsc.findByKey = findByKey;
         fsc.calculateRate = calculateRate;
         fsc.isNumeric = isNumeric;
         fsc.getCancerCountDisplayVal = getCancerCountDisplayVal;
@@ -692,7 +693,7 @@
             });
 
             allTablesData.bridgeRaceTable1 = {
-                headerData: ['Racial distributions of minority residents', 'Total', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic'],
+                headerData: ['Racial distributions of minority residents', 'Total', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'White', 'Hispanic'],
                 bodyData: [bridgeRaceTableOneStateData, bridgeRaceTableOneNationalData]
             };
             allTablesData.bridgeRaceTable1.bodyData = prepareTableBody(allTablesData.bridgeRaceTable1.bodyData);
@@ -2016,6 +2017,11 @@
             }
             return false;
         }
+        function findByKey(array, key, value) { 
+            return array.filter(function(item) { 
+                return item[key] === value; 
+            })[0];
+         }
         function calculateRate(count, totalPopulation, checkReliability) {
             if(count === undefined) {
                 return 'Not available';

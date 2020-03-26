@@ -26,6 +26,7 @@
                         <th>American Indian or Alaska Native</th>
                         <th>Asian or Pacific Islander</th>
                         <th>Black or African American</th>
+                        <th>White</th>
                         <th>Hispanic</th>
                     </tr>
                     </thead>
@@ -40,7 +41,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <br/>
+                <!-- <br/>
                 <table class="bridge-race-table2" style="background-color: white;">
                     <thead>
                     <tr>
@@ -73,7 +74,7 @@
                         <td>{{nationalFactSheet.ageGroups[4].bridge_race | number }}</td>
                     </tr>
                     </tbody>
-                </table>
+                </table> -->
                 <i class="bridge-race-info" translate="{{ 'fs.minority.health.footnote'}}"></i>
             </div>
         </div>
@@ -119,27 +120,23 @@
                 <thead>
                 <tr>
                     <th>State/National</th>
-                    <th>Deaths</th>
-                    <th>Births</th>
-                    <th>Death Rates</th>
+                    <th ng-repeat="(key, eachRaceValue) in fsc.factSheet.infantMortalityData" ng-bind="key"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>State</td>
-                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData.infant_mortality)"
-                        ng-bind="fsc.factSheet.infantMortalityData.infant_mortality | number"></td>
-                    <td ng-bind="fsc.factSheet.infantMortalityData.births | number"></td>
-                    <td ng-if="fsc.isNumeric(fsc.factSheet.infantMortalityData.deathRate)"
-                        ng-bind="fsc.factSheet.infantMortalityData.deathRate | number:1"></td>
+                    <td ng-repeat="(key, eachRaceValue) in fsc.factSheet.infantMortalityData">
+                        <span ng-if="eachRaceValue.deathRate === 'Suppressed'" ng-bind="'Suppressed'"></span>
+                        <span ng-if="fsc.isNumeric(eachRaceValue.deathRate)" ng-bind="eachRaceValue.deathRate | number:1"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td>National</td>
-                    <td ng-if="fsc.isNumeric(nationalFactSheet.infantMortalityData.infant_mortality)"
-                        ng-bind="nationalFactSheet.infantMortalityData.infant_mortality | number"></td>
-                    <td ng-bind="nationalFactSheet.infantMortalityData.births | number"></td>
-                    <td ng-if="fsc.isNumeric(nationalFactSheet.infantMortalityData.deathRate)"
-                        ng-bind="nationalFactSheet.infantMortalityData.deathRate | number:1"></td>
+                    <td ng-repeat="(key, eachRaceValue) in nationalFactSheet.infantMortalityData">
+                        <span ng-if="eachRaceValue.deathRate === 'Suppressed'" ng-bind="'Suppressed'"></span>
+                        <span ng-if="fsc.isNumeric(eachRaceValue.deathRate)" ng-bind="eachRaceValue.deathRate | number:1"></span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -226,68 +223,76 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>State</th>
-                    <th>National</th>
+                    <th>State/National</th>
+                    <th ng-repeat="eachRecord in fsc.factSheet.natality['birthRateData']" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
                 </tr>
 
                 </thead>
                 <tbody>
-                <tr class="solidBorder">
-                    <td>Births</td>
-                    <td>
-                        {{fsc.factSheet.natality.birthRateData.natality=='suppressed'?'Suppressed': fsc.factSheet.natality.birthRateData.natality | number}}
-                    </td>
-                    <td>
-                        {{nationalFactSheet.natality.birthRateData.natality=='suppressed'?'Suppressed': nationalFactSheet.natality.birthRateData.natality | number}}
+                <tr>
+                    <td rowspan="2">Birth rates</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in fsc.factSheet.natality.birthRateData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, eachRaceValue.pop)">
                     </td>
                 </tr>
                 <tr>
-                    <td>Total minority population</td>
-                    <td>
-                        {{fsc.factSheet.natality.birthRateData.pop=='suppressed'?'Suppressed': fsc.factSheet.natality.birthRateData.pop | number}}
-                    </td>
-                    <td>
-                        {{nationalFactSheet.natality.birthRateData.pop=='suppressed'?'Suppressed': nationalFactSheet.natality.birthRateData.pop | number}}
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.natality.birthRateData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, eachRaceValue.pop)">
                     </td>
                 </tr>
                 <tr>
-                    <td>Birth rates</td>
-                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.birthRateData.natality, fsc.factSheet.natality.birthRateData.pop)"></td>
-                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.birthRateData.natality, nationalFactSheet.natality.birthRateData.pop)"></td>
-                </tr>
-                <tr>
-                    <td>Female minority population (Ages 15 to 44)</td>
-                    <td>
-                        {{fsc.factSheet.natality.fertilityRatesData.pop=='suppressed'?'Suppressed': fsc.factSheet.natality.fertilityRatesData.pop | number}}
-                    </td>
-                    <td>
-                        {{nationalFactSheet.natality.fertilityRatesData.pop=='suppressed'?'Suppressed': nationalFactSheet.natality.fertilityRatesData.pop | number}}
+                    <td rowspan="2">Fertility rates</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in fsc.factSheet.natality.fertilityRatesData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, eachRaceValue.pop)">
                     </td>
                 </tr>
                 <tr>
-                    <td>Fertility rates</td>
-                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.fertilityRatesData.natality, fsc.factSheet.natality.fertilityRatesData.pop)"></td>
-                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.fertilityRatesData.natality, nationalFactSheet.natality.fertilityRatesData.pop)"></td>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.natality.fertilityRatesData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, eachRaceValue.pop)">
+                    </td>
                 </tr>
                 <tr>
-                    <td>Vaginal rates</td>
-                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.vaginalData.natality, fsc.factSheet.natality.totalBirthPopulation.natality)"></td>
-                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.vaginalData.natality, nationalFactSheet.natality.totalBirthPopulation.natality)"></td>
+                    <td rowspan="2">Vaginal rates</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in fsc.factSheet.natality.vaginalData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(fsc.factSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
                 </tr>
                 <tr>
-                    <td>Cesarean rates</td>
-                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.cesareanData.natality, fsc.factSheet.natality.totalBirthPopulation.natality)"></td>
-                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.cesareanData.natality, nationalFactSheet.natality.totalBirthPopulation.natality)"></td>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.natality.vaginalData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(nationalFactSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
                 </tr>
                 <tr>
-                    <td>Low birth weight (<2500 gms)</td>
-                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.lowBirthWeightData.natality, fsc.factSheet.natality.totalBirthPopulation.natality)"></td>
-                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.lowBirthWeightData.natality, nationalFactSheet.natality.totalBirthPopulation.natality)"></td>
+                    <td rowspan="2">Cesarean rates</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in fsc.factSheet.natality.cesareanData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(fsc.factSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
                 </tr>
                 <tr>
-                    <td>Twin birth rate</td>
-                    <td ng-bind="fsc.calculateRate(fsc.factSheet.natality.twinBirthData.natality, fsc.factSheet.natality.totalBirthPopulation.natality)"></td>
-                    <td ng-bind="fsc.calculateRate(nationalFactSheet.natality.twinBirthData.natality, nationalFactSheet.natality.totalBirthPopulation.natality)"></td>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.natality.cesareanData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(nationalFactSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Low birth weight (<2500 gms)</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in fsc.factSheet.natality.lowBirthWeightData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(fsc.factSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.natality.lowBirthWeightData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(nationalFactSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
                 </tr>
                 </tbody>
             </table>

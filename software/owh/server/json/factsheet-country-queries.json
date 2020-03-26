@@ -17122,6 +17122,11 @@
                           "term": {
                             "race": "Black"
                           }
+                        },
+                        {
+                          "term": {
+                            "race": "White"
+                          }
                         }
                       ]
                     }
@@ -17359,7 +17364,8 @@
             "value": [
               "American Indian or Alaska Native",
               "Asian or Pacific Islander",
-              "Black or African American"
+              "Black or African American",
+              "White"
             ],
             "primary": false
           },
@@ -17369,6 +17375,43 @@
             "value": [
               "Non-Hispanic Black",
               "Non-Hispanic other races"
+            ],
+            "primary": false
+          },
+          "year_of_death": {
+            "key": "year_of_death",
+            "queryKey": "year_of_death",
+            "value": [
+              "2016"
+            ],
+            "primary": false
+          }
+        },
+        "aggregations": {
+          "simple": [],
+          "nested": {
+            "table": [
+              {
+                "key": "race",
+                "queryKey": "race",
+                "size": 0
+              }
+            ]
+          }
+        }
+      },
+      "hispanicPopulation": {
+        "searchFor": "infant_mortality",
+        "query": {
+          "hispanic_origin": {
+            "key": "hispanic_origin",
+            "queryKey": "hispanic_origin",
+            "value": [
+              "Central or South American",
+              "Cuban",
+              "Mexican",
+              "Other and Unknown Hispanic",
+              "Puerto Rican"
             ],
             "primary": false
           },
@@ -24180,6 +24223,173 @@
         {
           "size": 0,
           "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Non-Hispanic"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race": "American Indian"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Asian or Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Black"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "White"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "ethnicity_group": "Non-Hispanic"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race": "American Indian"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Asian or Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Black"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "White"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
             "group_table_year": {
               "terms": {
                 "field": "current_year",
@@ -24214,17 +24424,52 @@
                         "should": [
                           {
                             "term": {
-                              "race": "American Indian"
+                              "hispanic_origin": "Central American"
                             }
                           },
                           {
                             "term": {
-                              "race": "Asian or Pacific Islander"
+                              "hispanic_origin": "Central and South American"
                             }
                           },
                           {
                             "term": {
-                              "race": "Black"
+                              "hispanic_origin": "Cuban"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Dominican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Latin American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Mexican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Other Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Puerto Rican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]
@@ -24279,17 +24524,7 @@
                         "should": [
                           {
                             "term": {
-                              "race": "American Indian"
-                            }
-                          },
-                          {
-                            "term": {
-                              "race": "Asian or Pacific Islander"
-                            }
-                          },
-                          {
-                            "term": {
-                              "race": "Black"
+                              "ethnicity_group": "Hispanic"
                             }
                           }
                         ]
@@ -24317,6 +24552,350 @@
         {
           "size": 0,
           "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Non-Hispanic"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race": "American Indian"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Asian or Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Black"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "White"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "ethnicity_group": "Non-Hispanic"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race": "American Indian"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Asian or Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Black"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "White"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "age": "15"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "16"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "17"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "18"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "19"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "20"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "21"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "22"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "23"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "24"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "25"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "26"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "27"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "28"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "29"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "30"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "31"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "32"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "33"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "34"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "35"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "36"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "37"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "38"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "37"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "38"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "39"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "40"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "41"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "42"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "43"
+                            }
+                          },
+                          {
+                            "term": {
+                              "age": "44"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "sex": "Female"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "size": 0,
+          "aggregations": {
             "group_table_year": {
               "terms": {
                 "field": "current_year",
@@ -24351,17 +24930,52 @@
                         "should": [
                           {
                             "term": {
-                              "race": "American Indian"
+                              "hispanic_origin": "Central American"
                             }
                           },
                           {
                             "term": {
-                              "race": "Asian or Pacific Islander"
+                              "hispanic_origin": "Central and South American"
                             }
                           },
                           {
                             "term": {
-                              "race": "Black"
+                              "hispanic_origin": "Cuban"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Dominican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Latin American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Mexican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Other Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Puerto Rican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]
@@ -24416,17 +25030,7 @@
                         "should": [
                           {
                             "term": {
-                              "race": "American Indian"
-                            }
-                          },
-                          {
-                            "term": {
-                              "race": "Asian or Pacific Islander"
-                            }
-                          },
-                          {
-                            "term": {
-                              "race": "Black"
+                              "ethnicity_group": "Hispanic"
                             }
                           }
                         ]
@@ -24627,405 +25231,1069 @@
           }
         }
       ],
-      "vaginal": {
-        "size": 0,
-        "aggregations": {
-          "group_table_year": {
-            "terms": {
-              "field": "current_year",
-              "size": 0
-            },
-            "aggregations": {
-              "group_count_pop": {
-                "sum": {
-                  "field": "pop"
+      "vaginal": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
                 }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
               }
             }
           },
-          "group_count_pop": {
-            "sum": {
-              "field": "pop"
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Non-Hispanic"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race": "American Indian"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Asian or Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Black"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "White"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "delivery_method": "Vaginal"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
             }
           }
         },
-        "query": {
-          "filtered": {
-            "query": {
-              "bool": {
-                "must": []
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
               }
             },
-            "filter": {
-              "bool": {
-                "must": [
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "race": "American Indian"
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Central American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Central and South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Cuban"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Dominican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Latin American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Mexican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Other Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Puerto Rican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Spaniard"
+                            }
                           }
-                        },
-                        {
-                          "term": {
-                            "race": "Asian or Pacific Islander"
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "delivery_method": "Vaginal"
+                            }
                           }
-                        },
-                        {
-                          "term": {
-                            "race": "Black"
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
                           }
-                        }
-                      ]
+                        ]
+                      }
                     }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "delivery_method": "Vaginal"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "current_year": "2016"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                  ]
+                }
               }
             }
           }
         }
-      },
-      "cesarean": {
-        "size": 0,
-        "aggregations": {
-          "group_table_year": {
-            "terms": {
-              "field": "current_year",
-              "size": 0
-            },
-            "aggregations": {
-              "group_count_pop": {
-                "sum": {
-                  "field": "pop"
+      ],
+      "cesarean": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
                 }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
               }
             }
           },
-          "group_count_pop": {
-            "sum": {
-              "field": "pop"
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Non-Hispanic"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race": "American Indian"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Asian or Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Black"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "White"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "delivery_method": "Cesarean"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
             }
           }
         },
-        "query": {
-          "filtered": {
-            "query": {
-              "bool": {
-                "must": []
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
               }
             },
-            "filter": {
-              "bool": {
-                "must": [
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "race": "American Indian"
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Central American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Central and South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Cuban"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Dominican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Latin American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Mexican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Other Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Puerto Rican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Spaniard"
+                            }
                           }
-                        },
-                        {
-                          "term": {
-                            "race": "Asian or Pacific Islander"
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "delivery_method": "Cesarean"
+                            }
                           }
-                        },
-                        {
-                          "term": {
-                            "race": "Black"
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
                           }
-                        }
-                      ]
+                        ]
+                      }
                     }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "delivery_method": "Cesarean"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "current_year": "2016"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                  ]
+                }
               }
             }
           }
         }
-      },
-      "lowBirthWeight": {
-        "size": 0,
-        "aggregations": {
-          "group_table_year": {
-            "terms": {
-              "field": "current_year",
-              "size": 0
-            },
-            "aggregations": {
-              "group_count_pop": {
-                "sum": {
-                  "field": "pop"
+      ],
+      "lowBirthWeight": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
                 }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
               }
             }
           },
-          "group_count_pop": {
-            "sum": {
-              "field": "pop"
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Non-Hispanic"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race": "American Indian"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Asian or Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Black"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "White"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "birth_weight_r4": "1499 grams or less"
+                            }
+                          },
+                          {
+                            "term": {
+                              "birth_weight_r4": "1500 - 2499 grams"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
             }
           }
         },
-        "query": {
-          "filtered": {
-            "query": {
-              "bool": {
-                "must": []
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
               }
             },
-            "filter": {
-              "bool": {
-                "must": [
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "race": "American Indian"
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Central American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Central and South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Cuban"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Dominican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Latin American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Mexican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Other Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Puerto Rican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Spaniard"
+                            }
                           }
-                        },
-                        {
-                          "term": {
-                            "race": "Asian or Pacific Islander"
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "birth_weight_r4": "1499 grams or less"
+                            }
+                          },
+                          {
+                            "term": {
+                              "birth_weight_r4": "1500 - 2499 grams"
+                            }
                           }
-                        },
-                        {
-                          "term": {
-                            "race": "Black"
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
                           }
-                        }
-                      ]
+                        ]
+                      }
                     }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "birth_weight_r4": "1499 grams or less"
-                          }
-                        },
-                        {
-                          "term": {
-                            "birth_weight_r4": "1500 - 2499 grams"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "current_year": "2016"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                  ]
+                }
               }
             }
           }
         }
-      },
-      "twinBirth": {
-        "size": 0,
-        "aggregations": {
-          "group_table_year": {
-            "terms": {
-              "field": "current_year",
-              "size": 0
-            },
-            "aggregations": {
-              "group_count_pop": {
-                "sum": {
-                  "field": "pop"
+      ],
+      "twinBirth": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
                 }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
               }
             }
           },
-          "group_count_pop": {
-            "sum": {
-              "field": "pop"
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Non-Hispanic"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race": "American Indian"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Asian or Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Black"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "White"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "birth_plurality": "Twin"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
             }
           }
         },
-        "query": {
-          "filtered": {
-            "query": {
-              "bool": {
-                "must": []
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
               }
             },
-            "filter": {
-              "bool": {
-                "must": [
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "race": "American Indian"
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Central American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Central and South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Cuban"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Dominican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Latin American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Mexican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Other Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Puerto Rican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Spaniard"
+                            }
                           }
-                        },
-                        {
-                          "term": {
-                            "race": "Asian or Pacific Islander"
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "birth_plurality": "Twin"
+                            }
                           }
-                        },
-                        {
-                          "term": {
-                            "race": "Black"
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
                           }
-                        }
-                      ]
+                        ]
+                      }
                     }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "birth_plurality": "Twin"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "current_year": "2016"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                  ]
+                }
               }
             }
           }
         }
-      },
-      "totalBirthsByYear": {
-        "size": 0,
-        "aggregations": {
-          "group_table_year": {
-            "terms": {
-              "field": "current_year",
-              "size": 0
-            },
-            "aggregations": {
-              "group_count_pop": {
-                "sum": {
-                  "field": "pop"
+      ],
+      "totalBirthsByYear": [
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
                 }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
               }
             }
           },
-          "group_count_pop": {
-            "sum": {
-              "field": "pop"
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Non-Hispanic"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "race": "American Indian"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Asian or Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "Black"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race": "White"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
             }
           }
         },
-        "query": {
-          "filtered": {
-            "query": {
-              "bool": {
-                "must": []
+        {
+          "size": 0,
+          "aggregations": {
+            "group_table_year": {
+              "terms": {
+                "field": "current_year",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
               }
             },
-            "filter": {
-              "bool": {
-                "must": [
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "race": "American Indian"
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          },
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "must": []
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "hispanic_origin": "Central American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Central and South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Cuban"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Dominican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Latin American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Mexican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Other Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Puerto Rican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Spaniard"
+                            }
                           }
-                        },
-                        {
-                          "term": {
-                            "race": "Asian or Pacific Islander"
+                        ]
+                      }
+                    },
+                    {
+                      "bool": {
+                        "should": [
+                          {
+                            "term": {
+                              "current_year": "2016"
+                            }
                           }
-                        },
-                        {
-                          "term": {
-                            "race": "Black"
-                          }
-                        }
-                      ]
+                        ]
+                      }
                     }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "current_year": "2016"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                  ]
+                }
               }
             }
           }
         }
-      }
+      ]
     },
     "cancer": {
       "mortality-incidence": {

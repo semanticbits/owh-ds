@@ -110,15 +110,15 @@ ElasticClient.prototype.executeMultipleESQueries = function(query, index, type){
 };
 
 ElasticClient.prototype.mergeWithCensusData = function(data, censusData, censusTotalData, countKey){
-    mergeCensusRecursively(data.data.nested.table, censusData.data.nested.table, countKey);
+    this.mergeCensusRecursively(data.data.nested.table, censusData.data.nested.table, countKey);
     if(censusTotalData)
-        mergeCensusRecursively(data.data.nested.tableCounts, censusTotalData.data.nested.tableCounts, countKey);
-    mergeCensusRecursively(data.data.nested.charts, censusData.data.nested.charts, countKey);
-    mergeCensusRecursively(data.data.nested.maps, censusData.data.nested.maps, countKey);
+        this.mergeCensusRecursively(data.data.nested.tableCounts, censusTotalData.data.nested.tableCounts, countKey);
+    this.mergeCensusRecursively(data.data.nested.charts, censusData.data.nested.charts, countKey);
+    this.mergeCensusRecursively(data.data.nested.maps, censusData.data.nested.maps, countKey);
 };
 
 
-function mergeCensusRecursively(mort, census, countKey) {
+ElasticClient.prototype.mergeCensusRecursively =  function(mort, census, countKey) {
     // sort arrays by name, before merging, so that the values for the matching
     var sortFn = function (a, b){
         if (a.name > b.name) { return 1; }
@@ -151,10 +151,10 @@ function mergeCensusRecursively(mort, census, countKey) {
     if(census) {
         for (var prop in mort) {
             if(!mort.hasOwnProperty(prop)) continue;
-            mergeCensusRecursively(mort[prop], census[prop], countKey);
+            this.mergeCensusRecursively(mort[prop], census[prop], countKey);
         }
     }
-}
+};
 
 
 ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSelectedFilterOptions){
@@ -193,7 +193,7 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
             data.data.nested.maps = mapData.data.nested.maps;
             data.data.nested.tableCounts = dataCounts.data.nested.tableCounts;
             self.mergeWithCensusData(data, respArray[2], respArray[3], 'pop');
-            mergeCensusRecursively(data.data.nested.maps, respArray[5].data.nested.maps, 'pop');
+            this.mergeCensusRecursively(data.data.nested.maps, respArray[5].data.nested.maps, 'pop');
             data.data.simple.grandTotals = {ageAdjustedRate : 'Not available', standardPop: 'Not available'};
             if(query.wonderQuery) {
                 respArray[6].table && searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[6].table);
@@ -318,7 +318,7 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected,
             self.mergeWithCensusData(data, resp[2], resp[3], 'pop');
             var mapData = searchUtils.populateDataWithMappings(resp[4], 'natality', undefined, allSelectedFilterOptions, query[4]);
             data.data.nested.maps = mapData.data.nested.maps;
-            mergeCensusRecursively(data.data.nested.maps, resp[5].data.nested.maps, 'pop');
+            this.mergeCensusRecursively(data.data.nested.maps, resp[5].data.nested.maps, 'pop');
             //apply supression on whole data if state selected
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'natality');
