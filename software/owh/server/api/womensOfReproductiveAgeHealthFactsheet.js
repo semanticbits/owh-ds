@@ -40,18 +40,6 @@ WomenOfReproductiveAgeHealthFactSheet.prototype.prepareFactSheet = function (sta
             return getBrfsDataForFactSheet(factSheetQueryJSON);
         }).then(function (brfsData) {
             factsheet.brfss = brfsData;
-            return getYrbsDataForFactSheet(factSheetQueryJSON);
-        }).then(function (yrbsData) {
-            factsheet.yrbs = yrbsData;
-            return getSTDDataForFactSheet(factSheetQueryJSON);
-        }).then(function (stdData) {
-            factsheet.stdData = stdData;
-            return getHivDataForFactSheet(factSheetQueryJSON);
-        }).then(function (hivData) {
-            factsheet.hivAIDSData = hivData;
-            return getCancerDataForFactSheet(factSheetQueryJSON, sex)
-        }).then(function (cancerData) {
-            factsheet.cancerData = cancerData;
             return getMaternalRiskFactorsDataForFactSheet(factSheetQueryJSON, sex);
         }).then(function (natalityData) {
             factsheet.natality = natalityData;
@@ -568,10 +556,7 @@ function prepareBRFSSData(brfssResp) {
         {question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' },
         {question: 'Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?', data: 'Not applicable'},
         {question: 'Do you have any kind of health care coverage?', data: 'Not applicable'},
-        {question: 'About how long has it been since you last visited a doctor for a routine checkup?', data: 'Not applicable'},
-        {question: 'Ever told you had a heart attack (myocardial infarction)?', data: 'Not applicable'},
-        {question: 'Ever told you had a stroke?', data: 'Not applicable'},
-        {question: 'Have you ever been told by a doctor that you have diabetes?', data: 'Not applicable'}
+        {question: 'About how long has it been since you last visited a doctor for a routine checkup?', data: 'Not applicable'}
     ];
 
     brfssResp.table.question.forEach(function(eachRecord) {
@@ -589,15 +574,6 @@ function prepareBRFSSData(brfssResp) {
             case "checkup1":
                 if(eachRecord["within the past 5 years"] && eachRecord["within the past 5 years"].brfss)
                     brfssData[0].data = eachRecord["within the past 5 years"].brfss.mean;
-                break;
-            case "cvdinfr4":
-                if(eachRecord.yes && eachRecord.yes.brfss) brfssData[4].data = eachRecord.yes.brfss.mean;
-                break;
-            case "cvdstrk3":
-                if(eachRecord.yes && eachRecord.yes.brfss) brfssData[5].data = eachRecord.yes.brfss.mean;
-                break;
-            case "diabete3":
-                if(eachRecord.yes && eachRecord.yes.brfss) brfssData[6].data = eachRecord.yes.brfss.mean;
                 break;
         }
     });
