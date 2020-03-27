@@ -184,16 +184,16 @@
     width: 10%;
 }
 .minority-health-factsheet table.detail-mortality-table td:nth-child(1) {
-    width: 40%;
-}
-.minority-health-factsheet table.detail-mortality-table td {
     width: 15%;
 }
+.minority-health-factsheet table.detail-mortality-table td {
+    width: 10%;
+}
 .minority-health-factsheet table.infant-mortality-table td:nth-child(1) {
-    width: 40%;
+    width: 20%;
 }
 .minority-health-factsheet table.infant-mortality-table td {
-    width: 24%;
+    width: 15%;
 }
 .minority-health-factsheet table.prams-table-1 td:nth-child(1) {
     width: 40%;

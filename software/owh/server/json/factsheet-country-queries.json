@@ -17580,9 +17580,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -17636,6 +17636,11 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             }
                           ]
@@ -17768,9 +17773,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -17883,6 +17888,11 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             }
                           ]
@@ -18097,9 +18107,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -18272,6 +18282,11 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             }
                           ]
@@ -18545,9 +18560,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -18590,6 +18605,11 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             }
                           ]
@@ -18733,9 +18753,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -18778,6 +18798,11 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             }
                           ]
@@ -18921,9 +18946,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -18966,6 +18991,11 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             }
                           ]
@@ -19109,9 +19139,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -19154,6 +19184,11 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             }
                           ]
@@ -19297,9 +19332,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -19362,6 +19397,11 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             }
                           ]
@@ -19525,9 +19565,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -19580,6 +19620,11 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             }
                           ]
@@ -19733,9 +19778,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -19808,6 +19853,11 @@
                             {
                               "term": {
                                 "race": "Black"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             }
                           ]
@@ -19989,7 +20039,8 @@
                 "value": [
                   "American Indian",
                   "Asian or Pacific Islander",
-                  "Black"
+                  "Black",
+                  "White"
                 ],
                 "primary": false
               },
@@ -20023,8 +20074,8 @@
               "nested": {
                 "table": [
                   {
-                    "key": "year",
-                    "queryKey": "current_year",
+                    "key": "race",
+                    "queryKey": "race",
                     "size": 0
                   }
                 ]
@@ -20083,7 +20134,8 @@
                 "value": [
                   "American Indian",
                   "Asian or Pacific Islander",
-                  "Black"
+                  "Black",
+                  "White"
                 ],
                 "primary": false
               },
@@ -20131,8 +20183,8 @@
               "nested": {
                 "table": [
                   {
-                    "key": "year",
-                    "queryKey": "current_year",
+                    "key": "race",
+                    "queryKey": "race",
                     "size": 0
                   }
                 ]
@@ -20205,7 +20257,8 @@
                 "value": [
                   "American Indian",
                   "Asian or Pacific Islander",
-                  "Black"
+                  "Black",
+                  "White"
                 ],
                 "primary": false
               },
@@ -20265,8 +20318,8 @@
               "nested": {
                 "table": [
                   {
-                    "key": "year",
-                    "queryKey": "current_year",
+                    "key": "race",
+                    "queryKey": "race",
                     "size": 0
                   }
                 ]
@@ -20351,7 +20404,8 @@
                 "value": [
                   "American Indian",
                   "Asian or Pacific Islander",
-                  "Black"
+                  "Black",
+                  "White"
                 ],
                 "primary": false
               },
@@ -20385,8 +20439,8 @@
               "nested": {
                 "table": [
                   {
-                    "key": "year",
-                    "queryKey": "current_year",
+                    "key": "race",
+                    "queryKey": "race",
                     "size": 0
                   }
                 ]
@@ -20445,7 +20499,8 @@
                 "value": [
                   "American Indian",
                   "Asian or Pacific Islander",
-                  "Black"
+                  "Black",
+                  "White"
                 ],
                 "primary": false
               },
@@ -20479,8 +20534,8 @@
               "nested": {
                 "table": [
                   {
-                    "key": "year",
-                    "queryKey": "current_year",
+                    "key": "race",
+                    "queryKey": "race",
                     "size": 0
                   }
                 ]
@@ -20539,7 +20594,8 @@
                 "value": [
                   "American Indian",
                   "Asian or Pacific Islander",
-                  "Black"
+                  "Black",
+                  "White"
                 ],
                 "primary": false
               },
@@ -20573,8 +20629,8 @@
               "nested": {
                 "table": [
                   {
-                    "key": "year",
-                    "queryKey": "current_year",
+                    "key": "race",
+                    "queryKey": "race",
                     "size": 0
                   }
                 ]
@@ -20633,7 +20689,8 @@
                 "value": [
                   "American Indian",
                   "Asian or Pacific Islander",
-                  "Black"
+                  "Black",
+                  "White"
                 ],
                 "primary": false
               },
@@ -20667,8 +20724,8 @@
               "nested": {
                 "table": [
                   {
-                    "key": "year",
-                    "queryKey": "current_year",
+                    "key": "race",
+                    "queryKey": "race",
                     "size": 0
                   }
                 ]
@@ -20727,7 +20784,8 @@
                 "value": [
                   "American Indian",
                   "Asian or Pacific Islander",
-                  "Black"
+                  "Black",
+                  "White"
                 ],
                 "primary": false
               },
@@ -20765,8 +20823,8 @@
               "nested": {
                 "table": [
                   {
-                    "key": "year",
-                    "queryKey": "current_year",
+                    "key": "race",
+                    "queryKey": "race",
                     "size": 0
                   }
                 ],
@@ -20839,7 +20897,8 @@
                 "value": [
                   "American Indian",
                   "Asian or Pacific Islander",
-                  "Black"
+                  "Black",
+                  "White"
                 ],
                 "primary": false
               },
@@ -20876,8 +20935,8 @@
               "nested": {
                 "table": [
                   {
-                    "key": "year",
-                    "queryKey": "current_year",
+                    "key": "race",
+                    "queryKey": "race",
                     "size": 0
                   }
                 ]
@@ -20939,7 +20998,8 @@
                 "value": [
                   "American Indian",
                   "Asian or Pacific Islander",
-                  "Black"
+                  "Black",
+                  "White"
                 ],
                 "primary": false
               },
@@ -20979,8 +21039,8 @@
               "nested": {
                 "table": [
                   {
-                    "key": "year",
-                    "queryKey": "current_year",
+                    "key": "race",
+                    "queryKey": "race",
                     "size": 0
                   }
                 ]
@@ -23120,9 +23180,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -23148,6 +23208,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -23200,9 +23265,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -23235,6 +23300,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -23392,9 +23462,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -23420,6 +23490,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -23472,9 +23547,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -23507,6 +23582,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -23664,9 +23744,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -23692,6 +23772,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -23744,9 +23829,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -23779,6 +23864,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -23936,9 +24026,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -23964,6 +24054,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -24016,9 +24111,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -24051,6 +24146,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -24208,9 +24308,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -24236,6 +24336,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -24288,9 +24393,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -24323,6 +24428,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -24502,9 +24612,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -24530,6 +24640,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -24582,9 +24697,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -24617,6 +24732,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -24796,9 +24916,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 }
               }
@@ -24824,6 +24944,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {
@@ -24876,9 +25001,9 @@
           {
             "size": 0,
             "aggregations": {
-              "group_table_year": {
+              "group_table_race": {
                 "terms": {
-                  "field": "current_year",
+                  "field": "race",
                   "size": 0
                 },
                 "aggregations": {
@@ -24911,6 +25036,11 @@
                             {
                               "term": {
                                 "race": "Asian or Pacific Islander"
+                              }
+                            },
+                            {
+                              "term": {
+                                "race": "White"
                               }
                             },
                             {

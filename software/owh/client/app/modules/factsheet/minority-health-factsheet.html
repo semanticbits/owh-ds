@@ -84,27 +84,23 @@
             <table class="detail-mortality-table">
                 <thead>
                 <tr>
-                    <th rowspan="2">Cause of Death</th>
-                    <th colspan="2" scope="colgroup">Number of Deaths</th>
-                    <th colspan="2" scope="colgroup">Age-Adjusted Death Rate (per 100,000)</th>
-                </tr>
-                <tr>
-                    <th scope="col">State</th>
-                    <th scope="col">National</th>
-                    <th scope="col">State</th>
-                    <th scope="col">National</th>
+                    <th>Cause of Death</th>
+                    <th>State/National</th>
+                    <th ng-repeat="eachRecord in fsc.factSheet.detailMortalityData[0].data" ng-if="eachRecord.name != 'Unknown'"
+                        ng-bind="eachRecord.name"></th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
-                    <td ng-bind="eachRecord.causeOfDeath"> </td>
-                    <td ng-bind="eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : ( eachRecord.data.deaths | number )"></td>
-                    <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.deaths === 'suppressed' ? 'Suppressed' :
-                     ( nationalFactSheet.detailMortalityData[$index].data.deaths | number )"></td>
-                    <td ng-bind="eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate :'Not Available'"></td>
-                    <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.ageAdjustedRate ?
-                     nationalFactSheet.detailMortalityData[$index].data.ageAdjustedRate :'Not Available'"></td>
-                </tr>
+                <tbody ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
+                    <tr>
+                        <td ng-bind="eachRecord.causeOfDeath" rowspan="2"></td>
+                        <td>State</td>
+                        <td ng-repeat="eachRaceData in eachRecord.data" ng-bind="fsc.calculateRate(eachRaceData.deaths, eachRaceData.standardPop)"></td>
+                    </tr>
+                    <tr>
+                        <td>National</td>
+                        <td ng-repeat="eachRaceData in nationalFactSheet.detailMortalityData[$index].data"
+                            ng-bind="fsc.calculateRate(eachRaceData.deaths, eachRaceData.standardPop)"></td>
+                    </tr>
                 </tbody>
             </table>
             <i class="mortality-info" translate="{{ 'fs.minority.health.mortality.footnote' }}"></i>
@@ -400,40 +396,30 @@
         <div class="cancer-factsheet">
             <h5>
                 <img src="../../images/icons/cancer-incidence-icon.svg"/>
-                Cancer Statistics <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div>
+                Cancer Incidence Rates <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div>
             </h5>
             <table class="cancer-table">
                 <thead>
                 <tr>
                     <th>Cancer Site</th>
                     <th>State/National</th>
-                    <th>Population</th>
-                    <th>Count</th>
-                    <th>Incidence Crude Rates (per 100,000)</th>
-                    <th>Deaths</th>
-                    <th>Mortality Crude Rates (per 100,000)</th>
+                    <th ng-repeat="eachRecord in fsc.factSheet.cancerData[0].incidence" ng-if="eachRecord.name != 'Unknown'"
+                        ng-bind="eachRecord.name"></th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.cancerData">
-                <tr>
-                    <td ng-bind="eachRecord.site" rowspan="2"></td>
-                    <td>State</td>
-                    <td ng-bind="eachRecord.incidence.pop === 'suppressed' ? 'Suppressed' : ( eachRecord.incidence.pop | number )"></td>
-                    <td ng-bind="fsc.getCancerCountDisplayVal(eachRecord.incidence.cancer_incidence)"></td>
-                    <td ng-if="fsc.state != 'KS'" ng-bind="fsc.calculateRate(eachRecord.incidence.cancer_incidence, eachRecord.incidence.pop, true)"></td>
-                    <td ng-if="fsc.state == 'KS'">Not available</td>
-                    <td ng-bind="eachRecord.mortality.cancer_mortality === 'suppressed' ? 'Suppressed' : ( eachRecord.mortality.cancer_mortality | number )"></td>
-                    <td ng-bind="fsc.calculateRate(eachRecord.mortality.cancer_mortality, eachRecord.mortality.pop, true)"></td>
-                </tr>
-                <tr>
-                    <td>National</td>
-                    <td ng-bind="nationalFactSheet.cancerData[$index].incidence.pop === 'suppressed' ? 'Suppressed' : ( nationalFactSheet.cancerData[$index].incidence.pop | number )"></td>
-                    <td ng-bind="fsc.getCancerCountDisplayVal(nationalFactSheet.cancerData[$index].incidence.cancer_incidence)"></td>
-                    <td ng-if="fsc.state != 'KS'" ng-bind="fsc.calculateRate(nationalFactSheet.cancerData[$index].incidence.cancer_incidence, nationalFactSheet.cancerData[$index].incidence.pop, true)"></td>
-                    <td ng-if="fsc.state == 'KS'">Not available</td>
-                    <td ng-bind="nationalFactSheet.cancerData[$index].mortality.cancer_mortality === 'suppressed' ? 'Suppressed' : ( nationalFactSheet.cancerData[$index].mortality.cancer_mortality | number )"></td>
-                    <td ng-bind="fsc.calculateRate(nationalFactSheet.cancerData[$index].mortality.cancer_mortality, nationalFactSheet.cancerData[$index].mortality.pop, true)"></td>
-                </tr>
+                    <tr>
+                        <td ng-bind="eachRecord.site" rowspan="2"></td>
+                        <td>State</td>
+                        <td ng-if="fsc.state != 'KS'" ng-repeat="eachRaceValue in eachRecord.incidence"
+                            ng-bind="fsc.calculateRate(eachRaceValue.cancer_incidence, eachRaceValue.pop, true)"></td>
+                    </tr>
+                    <tr>
+                        <td>National</td>
+                        <td ng-if="fsc.state != 'KS'" ng-repeat="eachRaceValue in nationalFactSheet.cancerData[$index].incidence"
+                            ng-bind="fsc.calculateRate(eachRaceValue.cancer_incidence, eachRaceValue.pop, true)"></td>
+                    </tr>
+
                 </tbody>
             </table>
             <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only</i>

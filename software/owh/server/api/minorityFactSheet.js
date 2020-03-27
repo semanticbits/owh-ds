@@ -605,11 +605,11 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
             var heartDiseaseData = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
 
             return [
-                {causeOfDeath:"Diseases of heart", data:heartDiseaseData.data.nested.table.year[0]},
-                {causeOfDeath:"Malignant neoplasms", data:malignantNeoplasmData.data.nested.table.year[0]},
-                {causeOfDeath: "Chronic lower respiratory disease", data:chronicRespiratoryData.data.nested.table.year[0]},
-                {causeOfDeath: "Accidents (unintentional injuries)", data:accidentData.data.nested.table.year[0]},
-                {causeOfDeath: "Cerebrovascular diseases", data:cerebroVascularData.data.nested.table.year[0]}
+                {causeOfDeath:"Diseases of heart", data:heartDiseaseData.data.nested.table.race},
+                {causeOfDeath:"Malignant neoplasms", data:malignantNeoplasmData.data.nested.table.race},
+                {causeOfDeath: "Chronic lower respiratory disease", data:chronicRespiratoryData.data.nested.table.race},
+                {causeOfDeath: "Accidents (unintentional injuries)", data:accidentData.data.nested.table.race},
+                {causeOfDeath: "Cerebrovascular diseases", data:cerebroVascularData.data.nested.table.race}
             ];
         }).then(function (set1Data) {
             var executeSet2Queries = function () {
@@ -651,11 +651,11 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
 
                     var nephritisData = prepareDetailMortalityData(resp[16], resp[17], resp[18], resp[19]);
                     var data = set1Data.concat([
-                        {causeOfDeath: "Alzheimer's disease", data:alzheimerData.data.nested.table.year[0]},
-                        {causeOfDeath: "Diabetes mellitus", data:diabetesMellitusData.data.nested.table.year[0]},
-                        {causeOfDeath: "Influenza and pneumonia", data:influenzaData.data.nested.table.year[0]},
-                        {causeOfDeath: "Nephritis, nephrotic syndrome and nephrosis", data:nephritisData.data.nested.table.year[0]},
-                        {causeOfDeath: "Intentional self-harm (suicide)", data:suicideData.data.nested.table.year[0]}
+                        {causeOfDeath: "Alzheimer's disease", data:alzheimerData.data.nested.table.race},
+                        {causeOfDeath: "Diabetes mellitus", data:diabetesMellitusData.data.nested.table.race},
+                        {causeOfDeath: "Influenza and pneumonia", data:influenzaData.data.nested.table.race},
+                        {causeOfDeath: "Nephritis, nephrotic syndrome and nephrosis", data:nephritisData.data.nested.table.race},
+                        {causeOfDeath: "Intentional self-harm (suicide)", data:suicideData.data.nested.table.race}
                     ]);
                     defr.resolve(data);
                 });
@@ -672,8 +672,11 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
 
 function prepareDetailMortalityData(raceCountData, raceRateData, hispanicCountData, hispanicRateDate) {
 
+    var noDataAvailableObj = {name: 'Hispanic', deaths: 'suppressed', ageAdjustedRate: 'Not available', standardPop: 'Not available'};
+    var selectedRaces = { "options": [ "American Indian", "Asian or Pacific Islander", "Black", 'White', 'Hispanic' ]};
     //race counts & rates data
     var resultantData = searchUtils.populateDataWithMappings(raceCountData, 'deaths');
+    searchUtils.addMissingFilterOptions(selectedRaces, resultantData.data.nested.table.race, 'deaths');
     searchUtils.mergeAgeAdjustedRates(resultantData.data.nested.table, raceRateData.table);
     searchUtils.applySuppressions(resultantData, 'deaths');
 
@@ -681,6 +684,10 @@ function prepareDetailMortalityData(raceCountData, raceRateData, hispanicCountDa
     var hispanicData = searchUtils.populateDataWithMappings(hispanicCountData, 'deaths');
     searchUtils.mergeAgeAdjustedRates(hispanicData.data.nested.table, hispanicRateDate.table);
     searchUtils.applySuppressions(hispanicData, 'deaths');
+    var hispanic = hispanicData.data.nested.table.year[0] || noDataAvailableObj;
+    hispanic.name = 'Hispanic';
+    resultantData.data.nested.table.race[3] = hispanic;
+    resultantData.data.nested.table.race = sortArrayByPropertyAndSortOrder(resultantData.data.nested.table.race, 'name', selectedRaces.options);
     return resultantData;
 }
 
@@ -969,35 +976,35 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
                 var cancerIncidentProstateData = prepareCancerData(resp[40], resp[25], resp[41], resp[27], 'cancer_incidence');
                 searchUtils.applyCustomSuppressions(cancerIncidentProstateData.data.nested, rules, 'cancer_incidence');
 
-                // var sortOrder = ['American Indian/Alaska Native', 'Asian or Pacific Islander', 'Black', 'Hispanic'];
+                var sortOrder = ['American Indian/Alaska Native', 'Asian or Pacific Islander', 'Black', 'White', 'Hispanic'];
                 var cancerData = [
                     {
-                        mortality: cancerMortalityBreastData.data.nested.table.year[0],
-                        incidence: cancerIncidentBreastData.data.nested.table.year[0],
+                        mortality: sortArrayByPropertyAndSortOrder(cancerMortalityBreastData.data.nested.table.race, 'name', sortOrder),
+                        incidence: sortArrayByPropertyAndSortOrder(cancerIncidentBreastData.data.nested.table.race, 'name', sortOrder),
                         site: 'Breast'
                     }, {
-                        mortality: cancerMortalityCervixData.data.nested.table.year[0],
-                        incidence: cancerIncidentCervixData.data.nested.table.year[0],
+                        mortality: sortArrayByPropertyAndSortOrder(cancerMortalityCervixData.data.nested.table.race, 'name', sortOrder),
+                        incidence: sortArrayByPropertyAndSortOrder(cancerIncidentCervixData.data.nested.table.race, 'name', sortOrder),
                         site: 'Cervix Uteri†'
                     }, {
-                        mortality: cancerMortalityColonAndRectumData.data.nested.table.year[0],
-                        incidence: cancerIncidentColonAndRectumData.data.nested.table.year[0],
+                        mortality: sortArrayByPropertyAndSortOrder(cancerMortalityColonAndRectumData.data.nested.table.race, 'name', sortOrder),
+                        incidence: sortArrayByPropertyAndSortOrder(cancerIncidentColonAndRectumData.data.nested.table.race, 'name', sortOrder),
                         site: 'Colon and Rectum'
                     }, {
-                        mortality: cancerMortalityLungAndBronchusData.data.nested.table.year[0],
-                        incidence: cancerIncidentLungAndBronchusData.data.nested.table.year[0],
+                        mortality: sortArrayByPropertyAndSortOrder(cancerMortalityLungAndBronchusData.data.nested.table.race, 'name', sortOrder),
+                        incidence: sortArrayByPropertyAndSortOrder(cancerIncidentLungAndBronchusData.data.nested.table.race, 'name', sortOrder),
                         site: 'Lung and Bronchus'
                     }, {
-                        mortality: cancerMortalityMelanomaData.data.nested.table.year[0],
-                        incidence: cancerIncidentMelanomaData.data.nested.table.year[0],
+                        mortality: sortArrayByPropertyAndSortOrder(cancerMortalityMelanomaData.data.nested.table.race, 'name', sortOrder),
+                        incidence: sortArrayByPropertyAndSortOrder(cancerIncidentMelanomaData.data.nested.table.race, 'name', sortOrder),
                         site: 'Melanoma of the Skin'
                     }, {
-                        mortality: cancerMortalityOvaryData.data.nested.table.year[0],
-                        incidence: cancerIncidentOvaryData.data.nested.table.year[0],
+                        mortality: sortArrayByPropertyAndSortOrder(cancerMortalityOvaryData.data.nested.table.race, 'name', sortOrder),
+                        incidence: sortArrayByPropertyAndSortOrder(cancerIncidentOvaryData.data.nested.table.race, 'name', sortOrder),
                         site: 'Ovary†'
                     }, {
-                        mortality: cancerMortalityProstateData.data.nested.table.year[0],
-                        incidence: cancerIncidentProstateData.data.nested.table.year[0],
+                        mortality: sortArrayByPropertyAndSortOrder(cancerMortalityProstateData.data.nested.table.race, 'name', sortOrder),
+                        incidence: sortArrayByPropertyAndSortOrder(cancerIncidentProstateData.data.nested.table.race, 'name', sortOrder),
                         site: 'Prostate††'
                     }
                 ];
@@ -1021,24 +1028,24 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
 
 function prepareCancerData(pop, totalPop, hispanicPop, hispanicTotalPop, countKey) {
 
-    // var selectedRaces = { "options": [ "American Indian/Alaska Native", "Asian or Pacific Islander", "Black" ]};
+    var selectedRaces = { "options": [ "American Indian/Alaska Native", "Asian or Pacific Islander", "Black", "White" ]};
     var resultantData = searchUtils.populateDataWithMappings(pop, countKey);
-    // searchUtils.addMissingFilterOptions(selectedRaces, resultantData.data.nested.table.current_year, countKey);
+    searchUtils.addMissingFilterOptions(selectedRaces, resultantData.data.nested.table.race, countKey);
     var cancerPopulation = searchUtils.populateDataWithMappings(totalPop, 'cancer_population');
-    // searchUtils.addMissingFilterOptions(selectedRaces, cancerPopulation.data.nested.table.current_year, countKey);
+    searchUtils.addMissingFilterOptions(selectedRaces, resultantData.data.nested.table.race, countKey);
     var cancerPopulationIndex = searchUtils.createPopIndex(cancerPopulation.data.nested.table, 'cancer_population');
     searchUtils.attachPopulation(resultantData.data.nested.table, cancerPopulationIndex, '');
 
-    // var cancerHispanicData = searchUtils.populateDataWithMappings(hispanicPop, countKey);
-    // var cancerHispanicPopulation = searchUtils.populateDataWithMappings(hispanicTotalPop, 'cancer_population');
-    // var hispanicPopulationIndex = searchUtils.createPopIndex(cancerHispanicPopulation.data.nested.table, 'cancer_population');
-    // searchUtils.attachPopulation(cancerHispanicData.data.nested.table, hispanicPopulationIndex, '');
-    // var hispanicData = cancerHispanicData.data.nested.table.current_year[0] || {name:'Hispanic', pop:cancerHispanicPopulation.data.nested.table.current_year[0].cancer_population};
-    // if(hispanicData[countKey] === undefined) {
-    //     hispanicData[countKey] = 0;
-    // }
-    // hispanicData['name'] = 'Hispanic';
-    // resultantData.data.nested.table.current_year.push(hispanicData);
+    var cancerHispanicData = searchUtils.populateDataWithMappings(hispanicPop, countKey);
+    var cancerHispanicPopulation = searchUtils.populateDataWithMappings(hispanicTotalPop, 'cancer_population');
+    var hispanicPopulationIndex = searchUtils.createPopIndex(cancerHispanicPopulation.data.nested.table, 'cancer_population');
+    searchUtils.attachPopulation(cancerHispanicData.data.nested.table, hispanicPopulationIndex, '');
+    var hispanicData = cancerHispanicData.data.nested.table.year[0] || {name:'Hispanic', pop:cancerHispanicPopulation.data.nested.table.year[0].cancer_population};
+    if(hispanicData[countKey] === undefined) {
+        hispanicData[countKey] = 0;
+    }
+    hispanicData['name'] = 'Hispanic';
+    resultantData.data.nested.table.race.push(hispanicData);
     searchUtils.applySuppressions(resultantData, countKey, 16);
 
     return resultantData;
