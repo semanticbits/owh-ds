@@ -864,8 +864,8 @@
             var deathRateStateRow = [{text:"Death rate", rowSpan: 2}, 'State'];
             var deathRateNationalRow = ["", "National"];
             angular.forEach(fsc.factSheet.infantMortalityData, function(eachRecord, key){
-                deathRateStateRow.push(eachRecord.deathRate);
-                deathRateNationalRow.push($rootScope.nationalFactSheet.infantMortalityData[key].deathRate);
+                deathRateStateRow.push($filter('number')(eachRecord.deathRate, 1));
+                deathRateNationalRow.push($filter('number')($rootScope.nationalFactSheet.infantMortalityData[key].deathRate, 1));
             });
             infantMortalityData.push(deathRateStateRow);
             infantMortalityData.push(deathRateNationalRow);
@@ -877,7 +877,8 @@
             //PRAMS
             var pramsTableData = [];
             angular.forEach(fsc.factSheet.prams, function(eachRecord, index){
-                pramsTableData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.prams[index].data]);
+                pramsTableData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data),
+                    fsc.getMeanDisplayValue($rootScope.nationalFactSheet.prams[index].data)]);
             });
             allTablesData.pramsTable = {
                 headerData: ['Question', 'State', 'National'],
@@ -887,7 +888,8 @@
             //BRFSS
             var brfssData = [];
             angular.forEach(fsc.factSheet.brfss, function(eachRecord, index){
-                brfssData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.brfss[index].data]);
+                brfssData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data),
+                    fsc.getMeanDisplayValue($rootScope.nationalFactSheet.brfss[index].data)]);
             });
             allTablesData.brfss = {
                 headerData: ['Question', 'State', 'National'],
@@ -896,7 +898,8 @@
             //YRBS
             var yrbsData = [];
             angular.forEach(fsc.factSheet.yrbs, function(eachRecord, index){
-                yrbsData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.yrbs[index].data]);
+                yrbsData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data),
+                    fsc.getMeanDisplayValue($rootScope.nationalFactSheet.yrbs[index].data)]);
             });
             allTablesData.yrbs = {
                 headerData: ["Question", "State", "National"],
