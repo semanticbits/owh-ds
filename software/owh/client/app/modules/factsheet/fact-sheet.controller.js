@@ -2399,6 +2399,9 @@
                 else if (data === 'na') {
                     displayValue = 'No response';
                 }
+                else if (data === 'Not applicable') {
+                    displayValue = 'Not applicable';
+                }
                 else {
                     displayValue = data + "%";
                 }
