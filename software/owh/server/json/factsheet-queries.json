@@ -23929,22 +23929,52 @@
                         "should": [
                           {
                             "term": {
-                              "race": "American Indian"
+                              "hispanic_origin": "Central American"
                             }
                           },
                           {
                             "term": {
-                              "race": "Asian or Pacific Islander"
+                              "hispanic_origin": "Central and South American"
                             }
                           },
                           {
                             "term": {
-                              "race": "White"
+                              "hispanic_origin": "Cuban"
                             }
                           },
                           {
                             "term": {
-                              "race": "Black"
+                              "hispanic_origin": "Dominican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Latin American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Mexican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Other Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Puerto Rican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]
@@ -24846,7 +24876,52 @@
                         "should": [
                           {
                             "term": {
-                              "ethnicity_group": "Hispanic"
+                              "hispanic_origin": "Central American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Central and South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Cuban"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Dominican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Latin American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Mexican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Other Hispanic"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Puerto Rican"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "South American"
+                            }
+                          },
+                          {
+                            "term": {
+                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]

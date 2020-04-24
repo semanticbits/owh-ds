@@ -671,6 +671,122 @@
             return tableBody;
         }
 
+        function prepareMinorityNatalityData() {
+
+            var natalityHeaderData = ['', "State/National"];
+            angular.forEach(fsc.factSheet.natality.birthRateData, function(eachHeader) {
+                if(eachHeader.name != 'Unknown') {
+                    natalityHeaderData.push(eachHeader.name);
+                }
+            });
+
+
+            var natalityData = [];
+            //---BirthRates--
+            var stateRow = [{text:'Birth rates', rowSpan: 2}, 'State'];
+            var nationalRow = ["", "National"];
+            angular.forEach(fsc.factSheet.natality.birthRateData, function(data, index){
+                if(data.name !== 'Unknown') {
+                    stateRow.push(fsc.calculateRate(data.natality, data.pop));
+                    nationalRow.push(fsc.calculateRate($rootScope.nationalFactSheet.natality.birthRateData[index].natality,
+                        $rootScope.nationalFactSheet.natality.birthRateData[index].pop));
+                }
+            });
+            if (fsc.factSheet.natality.birthRateData.length === 0) {
+                for(var i=1; i < natalityHeaderData.length - 1; i++) {
+                    stateRow.push('Not available');
+                    nationalRow.push('Not available');
+                }
+            }
+            natalityData.push(stateRow);
+            natalityData.push(nationalRow);
+
+
+            //---BirthRates--
+            stateRow = [{text:'Fertility rates', rowSpan: 2}, 'State'];
+            nationalRow = ["", "National"];
+            angular.forEach(fsc.factSheet.natality.fertilityRatesData, function(data, index){
+                if(data.name !== 'Unknown') {
+                    stateRow.push(fsc.calculateRate(data.natality, data.pop));
+                    nationalRow.push(fsc.calculateRate($rootScope.nationalFactSheet.natality.fertilityRatesData[index].natality,
+                        $rootScope.nationalFactSheet.natality.fertilityRatesData[index].pop));
+                }
+            });
+            if (fsc.factSheet.natality.fertilityRatesData.length === 0) {
+                for(var i=1; i < natalityHeaderData.length - 1; i++) {
+                    stateRow.push('Not available');
+                    nationalRow.push('Not available');
+                }
+            }
+            natalityData.push(stateRow);
+            natalityData.push(nationalRow);
+
+
+            //---vaginalData--
+            stateRow = [{text:'Vaginal rates', rowSpan: 2}, 'State'];
+            nationalRow = ["", "National"];
+            angular.forEach(fsc.factSheet.natality.vaginalData, function(data, index){
+                if(data.name !== 'Unknown') {
+                    stateRow.push(fsc.calculateRate(data.natality, fsc.factSheet.natality.totalBirthPopulation[index].natality));
+                    nationalRow.push(fsc.calculateRate($rootScope.nationalFactSheet.natality.vaginalData[index].natality,
+                        $rootScope.nationalFactSheet.natality.totalBirthPopulation[index].natality));
+                }
+            });
+            if (fsc.factSheet.natality.vaginalData.length === 0) {
+                for(var i=1; i < natalityHeaderData.length - 1; i++) {
+                    stateRow.push('Not available');
+                    nationalRow.push('Not available');
+                }
+            }
+            natalityData.push(stateRow);
+            natalityData.push(nationalRow);
+
+
+            //---cesareanData--
+            stateRow = [{text:'Cesarean rates', rowSpan: 2}, 'State'];
+            nationalRow = ["", "National"];
+            angular.forEach(fsc.factSheet.natality.cesareanData, function(data, index){
+                if(data.name !== 'Unknown') {
+                    stateRow.push(fsc.calculateRate(data.natality, fsc.factSheet.natality.totalBirthPopulation[index].natality));
+                    nationalRow.push(fsc.calculateRate($rootScope.nationalFactSheet.natality.cesareanData[index].natality,
+                        $rootScope.nationalFactSheet.natality.totalBirthPopulation[index].natality));
+                }
+            });
+            if (fsc.factSheet.natality.cesareanData.length === 0) {
+                for(var i=1; i < natalityHeaderData.length - 1; i++) {
+                    stateRow.push('Not available');
+                    nationalRow.push('Not available');
+                }
+            }
+            natalityData.push(stateRow);
+            natalityData.push(nationalRow);
+
+            //---lowBirthWeightData--
+            stateRow = [{text:'Low birth weight (<2500 gms)', rowSpan: 2}, 'State'];
+            nationalRow = ["", "National"];
+            angular.forEach(fsc.factSheet.natality.lowBirthWeightData, function(data, index){
+                if(data.name !== 'Unknown') {
+                    stateRow.push(fsc.calculateRate(data.natality, fsc.factSheet.natality.totalBirthPopulation[index].natality));
+                    nationalRow.push(fsc.calculateRate($rootScope.nationalFactSheet.natality.lowBirthWeightData[index].natality,
+                        $rootScope.nationalFactSheet.natality.totalBirthPopulation[index].natality));
+                }
+            });
+            if (fsc.factSheet.natality.lowBirthWeightData.length === 0) {
+                for(var i=1; i < natalityHeaderData.length - 1; i++) {
+                    stateRow.push('Not available');
+                    nationalRow.push('Not available');
+                }
+            }
+            natalityData.push(stateRow);
+            natalityData.push(nationalRow);
+
+
+
+            return {
+                headerData:  natalityHeaderData,
+                bodyData: natalityData
+            };
+        }
         /**
          * To prepare all table data for PDF generation
          * @return all table data JSON
@@ -708,43 +824,61 @@
             allTablesData.bridgeRaceTable2.bodyData = prepareTableBody(allTablesData.bridgeRaceTable2.bodyData);
             allTablesData.bridgeRaceTable2.bodyData.unshift(prepareTableHeaders(allTablesData.bridgeRaceTable2.headerData));
 
-            // Detail Mortality table def
+            var detailedMortalityHeaderData = ['Cause of Death', "State/National"];
+            angular.forEach(fsc.factSheet.detailMortalityData[0].data, function(eachHeader) {
+                if(eachHeader.name != 'Unknown') {
+                    detailedMortalityHeaderData.push(eachHeader.name);
+                }
+            });
+
             var detailsMortalityData = [];
             angular.forEach(fsc.factSheet.detailMortalityData, function(eachRecord, index){
-                var deathCount = "", nationalDeathCount = "";
-                if(eachRecord.data.deaths){
-                    deathCount = eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : $filter('number')(eachRecord.data.deaths);
+                var stateRow = [{text:eachRecord.causeOfDeath, rowSpan: 2}, 'State'];
+                var nationalRow = ["", "National"];
+                angular.forEach(eachRecord.data, function(data, index){
+                    if(data.name !== 'Unknown') {
+                        stateRow.push(fsc.calculateRate(data.deaths, data.standardPop));
+                    }
+                });
+                angular.forEach($rootScope.nationalFactSheet.detailMortalityData[index].data, function(nationalData, j) {
+                    if(nationalData.name !== 'Unknown') {
+                        nationalRow.push(fsc.calculateRate(nationalData.deaths, nationalData.standardPop));
+                    }
+                });
+                if (eachRecord.data.length === 0) {
+                    for(var i=1; i < detailedMortalityHeaderData.length - 1; i++) {
+                        stateRow.push('Not available');
+                        nationalRow.push('Not available');
+                    }
                 }
-                if($rootScope.nationalFactSheet.detailMortalityData[index].data.deaths) {
-                    nationalDeathCount = $rootScope.nationalFactSheet.detailMortalityData[index].data.deaths === 'suppressed'
-                        ? 'Suppressed' : $filter('number')($rootScope.nationalFactSheet.detailMortalityData[index].data.deaths);
-                }
-
-                detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, nationalDeathCount,
-                    eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate : "Not available",
-                    $rootScope.nationalFactSheet.detailMortalityData[index].data.ageAdjustedRate ?
-                        $rootScope.nationalFactSheet.detailMortalityData[index].data.ageAdjustedRate : "Not available"
-                ]);
+                detailsMortalityData.push(stateRow);
+                detailsMortalityData.push(nationalRow);
             });
             allTablesData.detailMortality = {
-                headerData: [{header: 'Cause of Death'}, {header:'Number of Deaths', nestedHeaders: ['State','National']},
-                    {header:'Age-Adjusted Death Rate (per 100,000)',nestedHeaders: ['State', 'National']}],
+                headerData:  detailedMortalityHeaderData,
                 bodyData: detailsMortalityData
             };
 
-
             // //Infant Mortality
-            var infantMortalityData = [];
-            infantMortalityData.push(["State", $filter('number')(fsc.factSheet.infantMortalityData['infant_mortality']),
-                $filter('number')(fsc.factSheet.infantMortalityData['births']),
-                $filter('number')(fsc.factSheet.infantMortalityData['deathRate'])]);
-            infantMortalityData.push(["National", $filter('number')($rootScope.nationalFactSheet.infantMortalityData['infant_mortality']),
-                $filter('number')($rootScope.nationalFactSheet.infantMortalityData['births']),
-                $filter('number')($rootScope.nationalFactSheet.infantMortalityData['deathRate'])]);
 
-            //Infant Mortality
+            var infantMortalityHeaderData = ['Indicator', "State/National"];
+            angular.forEach(fsc.factSheet.infantMortalityData, function(eachHeader, key) {
+                if(eachHeader.name != 'Unknown') {
+                    infantMortalityHeaderData.push(key);
+                }
+            });
+
+            var infantMortalityData = [];
+            var deathRateStateRow = [{text:"Death rate", rowSpan: 2}, 'State'];
+            var deathRateNationalRow = ["", "National"];
+            angular.forEach(fsc.factSheet.infantMortalityData, function(eachRecord, key){
+                deathRateStateRow.push(eachRecord.deathRate);
+                deathRateNationalRow.push($rootScope.nationalFactSheet.infantMortalityData[key].deathRate);
+            });
+            infantMortalityData.push(deathRateStateRow);
+            infantMortalityData.push(deathRateNationalRow);
             allTablesData.infantMortality = {
-                headerData: ['State/National', 'Deaths', 'Births', 'Death Rates'],
+                headerData:  infantMortalityHeaderData,
                 bodyData: infantMortalityData
             };
 
@@ -777,37 +911,7 @@
                 bodyData: yrbsData
             };
             //Natality
-            allTablesData.natality = {
-                headerData: ["", "State", "National"],
-                bodyData: [
-                    ["Births", $filter('number')(fsc.factSheet.natality.birthRateData.natality),
-                        $filter('number')($rootScope.nationalFactSheet.natality.birthRateData.natality)],
-                    ["Total population", $filter('number')(fsc.factSheet.natality.birthRateData.pop),
-                        $filter('number')($rootScope.nationalFactSheet.natality.birthRateData.pop)],
-                    ["Birth rates (per 100,000)", fsc.calculateRate(fsc.factSheet.natality.birthRateData.natality, fsc.factSheet.natality.birthRateData.pop),
-                        fsc.calculateRate($rootScope.nationalFactSheet.natality.birthRateData.natality, $rootScope.nationalFactSheet.natality.birthRateData.pop)],
-                    ["Female  population (Ages 15 to 44)", $filter('number')(fsc.factSheet.natality.fertilityRatesData.pop),
-                        $filter('number')($rootScope.nationalFactSheet.natality.fertilityRatesData.pop)],
-                    ["Fertility rates (per 100,000)",
-                        fsc.calculateRate(fsc.factSheet.natality.fertilityRatesData.natality, fsc.factSheet.natality.fertilityRatesData.pop),
-                        fsc.calculateRate($rootScope.nationalFactSheet.natality.fertilityRatesData.natality,
-                            $rootScope.nationalFactSheet.natality.fertilityRatesData.pop)],
-                    ['Vaginal rates', fsc.calculateRate(fsc.factSheet.natality.vaginalData.natality, fsc.factSheet.natality.totalBirthPopulation.natality),
-                        fsc.calculateRate($rootScope.nationalFactSheet.natality.vaginalData.natality,
-                            $rootScope.nationalFactSheet.natality.totalBirthPopulation.natality)],
-                    ['Cesarean rates', fsc.calculateRate(fsc.factSheet.natality.cesareanData.natality, fsc.factSheet.natality.totalBirthPopulation.natality),
-                        fsc.calculateRate($rootScope.nationalFactSheet.natality.cesareanData.natality,
-                            $rootScope.nationalFactSheet.natality.totalBirthPopulation.natality)],
-                    ['Low birth weight (<2500 gms)',
-                        fsc.calculateRate(fsc.factSheet.natality.lowBirthWeightData.natality, fsc.factSheet.natality.totalBirthPopulation.natality),
-                        fsc.calculateRate($rootScope.nationalFactSheet.natality.lowBirthWeightData.natality,
-                            $rootScope.nationalFactSheet.natality.totalBirthPopulation.natality)],
-                    ['Twin birth rate',
-                        fsc.calculateRate(fsc.factSheet.natality.twinBirthData.natality, fsc.factSheet.natality.totalBirthPopulation.natality),
-                        fsc.calculateRate($rootScope.nationalFactSheet.natality.twinBirthData.natality,
-                            $rootScope.nationalFactSheet.natality.totalBirthPopulation.natality)]
-                ]
-            };
+            allTablesData.natality = prepareMinorityNatalityData();
 
             //Tuberculosis
             var tbHeaderData = [""];
@@ -906,7 +1010,44 @@
             };
 
             //Cancer
+
+            var cancerHeaderData = ['Cancer Site', "State/National"];
+            angular.forEach(fsc.factSheet.cancerData[0].incidence, function(eachHeader) {
+                if(eachHeader.name != 'Unknown') {
+                    cancerHeaderData.push(eachHeader.name);
+                }
+            });
+
             var cancerData = [];
+            angular.forEach(fsc.factSheet.cancerData, function(eachRecord, index){
+                var stateRow = [{text:eachRecord.site, rowSpan: 2}, 'State'];
+                var nationalRow = ["", "National"];
+                angular.forEach(eachRecord.incidence, function(data, index){
+                    if(data.name !== 'Unknown') {
+                        stateRow.push(fsc.calculateRate(data.cancer_incidence, data.pop, true));
+                    }
+                });
+                angular.forEach($rootScope.nationalFactSheet.cancerData[index].incidence, function(nationalData, j) {
+                    if(nationalData.name !== 'Unknown') {
+                        nationalRow.push(fsc.calculateRate(nationalData.cancer_incidence, nationalData.pop, true));
+                    }
+                });
+                if (eachRecord.incidence.length === 0) {
+                    for(var i=1; i < cancerHeaderData.length - 1; i++) {
+                        stateRow.push('Not available');
+                        nationalRow.push('Not available');
+                    }
+                }
+                cancerData.push(stateRow);
+                cancerData.push(nationalRow);
+            });
+            allTablesData.cancer = {
+                headerData:  cancerHeaderData,
+                bodyData: cancerData
+            };
+
+
+/*            var cancerData = [];
             angular.forEach(fsc.factSheet.cancerData, function(eachRecord, index) {
                 var stateRow = [{text:eachRecord.site, rowSpan: 2}, 'State'];
                 var nationalRow = ['', 'National'];
@@ -936,7 +1077,7 @@
             allTablesData.cancer = {
                 headerData:  ["Cancer Site", "State/National", "Population", "Count", "Incidence Crude Rates (per 100,000)", 'Deaths', 'Mortality Crude Rates (per 100,000)'],
                 bodyData: cancerData
-            };
+            };*/
             return allTablesData;
         }
 
@@ -1614,13 +1755,11 @@
             SearchService.SVGtoPNG(imageNamesForPDF).then(function(response){
                 var allTablesData = prepareMinorityTablesData();
 
-                var detailMortalityTableData = prepareTableBody(allTablesData.detailMortality.bodyData);
-                var detailMortalityHeaders = prepareNestedTableHeaders(allTablesData.detailMortality.headerData);
-                detailMortalityTableData.unshift(detailMortalityHeaders[1]);
-                detailMortalityTableData.unshift(detailMortalityHeaders[0]);
+                var detailMortalityTableData = allTablesData.detailMortality.bodyData;
+                detailMortalityTableData.unshift(prepareTableHeaders(allTablesData.detailMortality.headerData));
 
-                allTablesData.infantMortality.bodyData = prepareTableBody(allTablesData.infantMortality.bodyData);
-                allTablesData.infantMortality.bodyData.unshift(prepareTableHeaders(allTablesData.infantMortality.headerData));
+                var infantMortalityTableData = allTablesData.infantMortality.bodyData;
+                infantMortalityTableData.unshift(prepareTableHeaders(allTablesData.infantMortality.headerData));
 
                 allTablesData.brfss.bodyData = prepareTableBody(allTablesData.brfss.bodyData);
                 allTablesData.brfss.bodyData.unshift(prepareTableHeaders(allTablesData.brfss.headerData));
@@ -1631,8 +1770,8 @@
                 allTablesData.yrbs.bodyData = prepareTableBody(allTablesData.yrbs.bodyData);
                 allTablesData.yrbs.bodyData.unshift(prepareTableHeaders(allTablesData.yrbs.headerData));
 
-                allTablesData.natality.bodyData = prepareTableBody(allTablesData.natality.bodyData);
-                allTablesData.natality.bodyData.unshift(prepareTableHeaders(allTablesData.natality.headerData));
+                var natalityTableData = allTablesData.natality.bodyData;
+                natalityTableData.unshift(prepareTableHeaders(allTablesData.natality.headerData));
 
                 allTablesData.tb.bodyData = prepareTableBody(allTablesData.tb.bodyData);
                 allTablesData.tb.bodyData.unshift(prepareTableHeaders(allTablesData.tb.headerData));
@@ -1645,6 +1784,8 @@
 
                 var cancerTableData = allTablesData.cancer.bodyData;
                 cancerTableData.unshift(prepareTableHeaders(allTablesData.cancer.headerData));
+                // var cancerTableData = allTablesData.cancer.bodyData;
+                // cancerTableData.unshift(prepareTableHeaders(allTablesData.cancer.headerData));
 
                 var bridgeRaceTotalText = "Total minority state population: "+$filter('number')(fsc.factSheet.totalPop);
                 var lightHorizontalLines = {
@@ -1780,7 +1921,7 @@
                         style: 'table',
                         table: {
                             headerRows: 2,
-                            widths: $.map( detailMortalityTableData[0], function (d, i) {
+                            widths: $.map( allTablesData.detailMortality.headerData, function (d, i) {
                                 return i==0 ? 200 : '*';
                             } ),
                             body: detailMortalityTableData
@@ -1800,7 +1941,7 @@
                             widths: $.map( allTablesData.infantMortality.headerData, function (d, i) {
                                 return '*';
                             } ),
-                            body: allTablesData.infantMortality.bodyData
+                            body: infantMortalityTableData
                         },
                         layout: lightHorizontalLines
                     },
@@ -1853,7 +1994,7 @@
                             widths: $.map( allTablesData.natality.headerData, function (d, i) {
                                 return '*';
                             } ),
-                            body: allTablesData.natality.bodyData
+                            body: natalityTableData
                         },
                         layout: lightHorizontalLines
                     },

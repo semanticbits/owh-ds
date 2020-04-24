@@ -115,12 +115,14 @@
             <table class="infant-mortality-table">
                 <thead>
                 <tr>
+                    <th>Indicator</th>
                     <th>State/National</th>
                     <th ng-repeat="(key, eachRaceValue) in fsc.factSheet.infantMortalityData" ng-bind="key"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
+                    <td rowspan="2">Death rate</td>
                     <td>State</td>
                     <td ng-repeat="(key, eachRaceValue) in fsc.factSheet.infantMortalityData">
                         <span ng-if="eachRaceValue.deathRate === 'Suppressed'" ng-bind="'Suppressed'"></span>
