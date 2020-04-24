@@ -816,14 +816,6 @@
             allTablesData.bridgeRaceTable1.bodyData = prepareTableBody(allTablesData.bridgeRaceTable1.bodyData);
             allTablesData.bridgeRaceTable1.bodyData.unshift(prepareTableHeaders(allTablesData.bridgeRaceTable1.headerData));
 
-            allTablesData.bridgeRaceTable2 = {
-                headerData: ['Age distributions of minority residents', '10-14', '15-19', '20-44', '45-64', '65-84', '85+'],
-                bodyData: bridgeRaceTableTwoData
-            };
-
-            allTablesData.bridgeRaceTable2.bodyData = prepareTableBody(allTablesData.bridgeRaceTable2.bodyData);
-            allTablesData.bridgeRaceTable2.bodyData.unshift(prepareTableHeaders(allTablesData.bridgeRaceTable2.headerData));
-
             var detailedMortalityHeaderData = ['Cause of Death', "State/National"];
             angular.forEach(fsc.factSheet.detailMortalityData[0].data, function(eachHeader) {
                 if(eachHeader.name != 'Unknown') {
@@ -1046,38 +1038,6 @@
                 bodyData: cancerData
             };
 
-
-/*            var cancerData = [];
-            angular.forEach(fsc.factSheet.cancerData, function(eachRecord, index) {
-                var stateRow = [{text:eachRecord.site, rowSpan: 2}, 'State'];
-                var nationalRow = ['', 'National'];
-
-                var incidence = eachRecord.incidence;
-                stateRow.push(incidence.pop === 'suppressed' ? 'Suppressed' : $filter('number')(incidence.pop));
-                stateRow.push(fsc.getCancerCountDisplayVal(incidence.cancer_incidence));
-                stateRow.push(fsc.state === 'KS'? 'Not available' : fsc.calculateRate(incidence.cancer_incidence, incidence.pop, true));
-
-                var mortality = eachRecord.mortality;
-                stateRow.push(mortality.cancer_mortality === 'suppressed' ? 'Suppressed' : $filter('number')(mortality.cancer_mortality));
-                stateRow.push(fsc.calculateRate(mortality.cancer_mortality, mortality.pop, true));
-
-                //national
-                var nationalIncidence = $rootScope.nationalFactSheet.cancerData[index].incidence;
-                nationalRow.push(nationalIncidence.pop === 'suppressed' ? 'Suppressed' : $filter('number')(nationalIncidence.pop));
-                nationalRow.push(fsc.getCancerCountDisplayVal(nationalIncidence.cancer_incidence));
-                nationalRow.push(fsc.state === 'KS'? 'Not available' : fsc.calculateRate(nationalIncidence.cancer_incidence, nationalIncidence.pop, true));
-
-                var nationalMortality = $rootScope.nationalFactSheet.cancerData[index].mortality;
-                nationalRow.push(nationalMortality.cancer_mortality === 'suppressed' ? 'Suppressed' : $filter('number')(nationalMortality.cancer_mortality));
-                nationalRow.push(fsc.calculateRate(nationalMortality.cancer_mortality, nationalMortality.pop, true));
-
-                cancerData.push(stateRow);
-                cancerData.push(nationalRow);
-            });
-            allTablesData.cancer = {
-                headerData:  ["Cancer Site", "State/National", "Population", "Count", "Incidence Crude Rates (per 100,000)", 'Deaths', 'Mortality Crude Rates (per 100,000)'],
-                bodyData: cancerData
-            };*/
             return allTablesData;
         }
 
@@ -1784,8 +1744,6 @@
 
                 var cancerTableData = allTablesData.cancer.bodyData;
                 cancerTableData.unshift(prepareTableHeaders(allTablesData.cancer.headerData));
-                // var cancerTableData = allTablesData.cancer.bodyData;
-                // cancerTableData.unshift(prepareTableHeaders(allTablesData.cancer.headerData));
 
                 var bridgeRaceTotalText = "Total minority state population: "+$filter('number')(fsc.factSheet.totalPop);
                 var lightHorizontalLines = {
@@ -1903,24 +1861,12 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {
-                        style: 'table',
-                        table: {
-                            headerRows: 1,
-                            widths: $.map( allTablesData.bridgeRaceTable2.headerData, function (d, i) {
-                                return '*';
-                            } ),
-                            body: allTablesData.bridgeRaceTable2.bodyData
-                        },
-                        layout: lightHorizontalLines
-                    },
                     {text: $filter('translate')('fs.minority.health.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {
                         style: 'table',
                         table: {
-                            headerRows: 2,
                             widths: $.map( allTablesData.detailMortality.headerData, function (d, i) {
                                 return i==0 ? 200 : '*';
                             } ),

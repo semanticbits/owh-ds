@@ -686,7 +686,7 @@ function prepareDetailMortalityData(raceCountData, raceRateData, hispanicCountDa
     searchUtils.applySuppressions(hispanicData, 'deaths');
     var hispanic = hispanicData.data.nested.table.year[0] || noDataAvailableObj;
     hispanic.name = 'Hispanic';
-    resultantData.data.nested.table.race[3] = hispanic;
+    resultantData.data.nested.table.race[4] = hispanic;
     resultantData.data.nested.table.race = sortArrayByPropertyAndSortOrder(resultantData.data.nested.table.race, 'name', selectedRaces.options);
     return resultantData;
 }

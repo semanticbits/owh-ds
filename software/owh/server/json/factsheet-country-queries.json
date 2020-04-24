@@ -17927,7 +17927,6 @@
             }
           },
           {
-            "test":"tests",
             "size": 0,
             "aggregations": {
               "group_table_year": {
