@@ -96,7 +96,8 @@
                     </tr>
                 </tbody>
             </table>
-            <i class="mortality-info" translate="{{ 'fs.minority.health.mortality.footnote' }}"></i>
+            <i class="mortality-info" translate="{{ 'fs.minority.health.mortality.footnote' }}"></i><br>
+            <a ng-href="/description/deaths">Data Suppression</a>
             <i style="margin-top: 2px;" class="mortality-info" ng-bind="'fs.adge-adjusted.rates.def' | translate"></i>
         </div>
         <br/>
@@ -133,7 +134,7 @@
             <i translate="{{ 'fs.minority.infant.mortality.footnote' }}"></i>
         </div>
         <!-- Prenatal Care and Pregnancy Risk -->
-        <div class="prams-factsheet">
+<!--        <div class="prams-factsheet">
             <div class="table-heading"><h5><img src="../../images/icons/prams-icon.svg"/>Prenatal Care and Pregnancy Risk</h5></div>
             <table class="prams-table-1">
                 <thead>
@@ -155,7 +156,7 @@
             </table>
             <i translate="{{ 'fs.minority.prams.footnote' }}" ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">Sources: 2011, CDC PRAMS</i>
             <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
-        </div>
+        </div>-->
         <!-- BRFSS -->
         <br/>
         <div class="brfss-factsheet">
@@ -163,24 +164,33 @@
             <table class="brfss-table">
                 <thead>
                 <th>Question</th>
-                <th>State</th>
-                <th>National</th>
+                <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss" ng-bind="header"></th>
                 </thead>
-                <tr ng-repeat="eachRecord in fsc.factSheet.brfss" ng-class="{solidBorder: $index == 0}">
-                    <td ng-bind="eachRecord.question"></td>
+                <tbody ng-repeat="eachRecord in fsc.factSheet.brfss">
+                <tr ng-class="{solidBorder: $index == 0}">
+                    <td ng-bind="eachRecord.question" rowspan="2"></td>
+                    <td>State</td>
                     <td ng-if="eachRecord.data !='Not applicable'"
-                        ng-bind="fsc.getMeanDisplayValue(eachRecord.data)"></td>
-                    <td ng-if="eachRecord.data =='Not applicable'" ng-bind="eachRecord.data"></td>
-                    <td ng-if="nationalFactSheet.brfss[$index].data !='Not applicable'"
-                        ng-bind="fsc.getMeanDisplayValue(nationalFactSheet.brfss[$index].data)"></td>
-                    <td ng-if="nationalFactSheet.brfss[$index].data =='Not applicable'" ng-bind="nationalFactSheet.brfss[$index].data"></td>
+                        ng-repeat="(key, eachRaceValue) in eachRecord.data"
+                        ng-bind="fsc.getMeanDisplayValue(eachRaceValue.brfss.mean)"></td>
+                    <td ng-if="eachRecord.data =='Not applicable'"  ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss"
+                        ng-bind="'Not applicable'"></td>
                 </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-if="nationalFactSheet.brfss[$index].data !='Not applicable'"
+                        ng-repeat="(key, eachRaceValue) in nationalFactSheet.brfss[$index].data"
+                        ng-bind="fsc.getMeanDisplayValue(eachRaceValue.brfss.mean)"></td>
+                    <td ng-if="nationalFactSheet.brfss[$index].data =='Not applicable'"  ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss"
+                        ng-bind="'Not applicable'"></td>
+                </tr>
+                </tbody>
             </table>
             <i translate="{{ 'fs.minority.brfss.footnote' }}"></i>
         </div>
         <br/>
         <!-- YRBS -->
-        <div class="yrbs-factsheet">
+        <!--<div class="yrbs-factsheet">
             <div class="table-heading"><h5><img src="../../images/icons/yrbss-icon.svg"/>Teen Health</h5></div>
             <table class="yrbs-table">
                 <thead>
@@ -200,7 +210,7 @@
             </table>
             <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.minority.yrbs.footnote' }}"></i>
             <i ng-show="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['YRBS'].message}}</i>
-        </div>
+        </div>-->
     </div>
     <div class="factsheet-part2">
         <!-- Natality -->

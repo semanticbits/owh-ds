@@ -50,18 +50,18 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             return getNatalityDataForFactSeet(factSheetQueryJSON);
         }).then(function (natalityData) {
             factsheet.natality = natalityData;
-            return getCancerDataForFactSheet(factSheetQueryJSON)
+            return getCancerDataForFactSheet(factSheetQueryJSON);
         }).then(function (cancerData) {
             factsheet.cancerData = cancerData;
-            return getYRBSDataForFactSheet(factSheetQueryJSON)
-        }).then(function (yrbsData) {
-            factsheet.yrbs = yrbsData;
-            return getBRFSDataForFactSheet(factSheetQueryJSON)
+        //     return getYRBSDataForFactSheet(factSheetQueryJSON)
+        // }).then(function (yrbsData) {
+        //     factsheet.yrbs = yrbsData;
+            return getBRFSDataForFactSheet(factSheetQueryJSON);
         }).then(function (brfssData) {
             factsheet.brfss = brfssData;
-            return getPRAMSDataForFactSheet(factSheetQueryJSON);
-        }).then(function (pramsData) {
-            factsheet.prams = pramsData;
+        //     return getPRAMSDataForFactSheet(factSheetQueryJSON);
+        // }).then(function (pramsData) {
+        //     factsheet.prams = pramsData;
             factsheet.state = state;
             factsheet.fsType = fsType;
             deferred.resolve(factsheet);
@@ -107,18 +107,20 @@ function prepareBRFSSData(data){
         { question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable' }
     ];
     data.table.question.forEach(function(eachRecord) {
+        var property = 'name';
+        var sortOrder = ['AI/AN', 'Asian', 'Black', 'NHOPI', 'Multiracial non-Hispanic', 'Other Race', 'Hispanic'];
         switch(eachRecord.name){
             case "_bmi5cat":
-                if(eachRecord["obese (bmi 30.0 - 99.8)"]) brfssData[0].data = processBrfssValue(eachRecord["obese (bmi 30.0 - 99.8)"].year);
+                if(eachRecord["obese (bmi 30.0 - 99.8)"]) brfssData[0].data = sortArrayByPropertyAndSortOrder(eachRecord["obese (bmi 30.0 - 99.8)"].race, property, sortOrder);
                 break;
             case "_rfsmok3":
-                if(eachRecord.yes) brfssData[1].data = processBrfssValue(eachRecord.yes.year);
+                if(eachRecord.yes) brfssData[1].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
                 break;
             case "_rfdrhv5":
-                if(eachRecord["meet criteria for heavy drinking"]) brfssData[2].data = processBrfssValue(eachRecord["meet criteria for heavy drinking"].year);
+                if(eachRecord["meet criteria for heavy drinking"]) brfssData[2].data = sortArrayByPropertyAndSortOrder(eachRecord["meet criteria for heavy drinking"].race, property, sortOrder);
                 break;
             case "_paindx1":
-                if(eachRecord.yes) brfssData[3].data = processBrfssValue(eachRecord.yes.year);
+                if(eachRecord.yes) brfssData[3].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
                 break;
         }
     });

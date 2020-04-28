@@ -141,7 +141,9 @@
         fsc.minorityFactSheet = {tableHeaders: {
                 population: ['Total', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'White', 'Hispanic'],
                 detailedMortality: ['State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'White', 'Hispanic'],
-                infantMortality: ['State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'White', 'Hispanic'],
+                infantMortality: ['State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
+                brfss: ['State/National', 'American Indian or Alaskan Native, non-Hispanic', 'Asian, non-Hispanic', 'Black, non-Hispanic',
+                    'Native Hawaiian or other Pacific Islander, non-Hispanic', 'Multiracial non-Hispanic', 'Other, non-Hispanic', 'Hispanic'],
                 natality: ['State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'White', 'Hispanic'],
                 tuberculosis: ['Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American', 'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino'],
                 std: ['State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American', 'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino'],
@@ -1830,19 +1832,19 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.infant.mortality.footnote'), style: 'info'},
-                    {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
-                    {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
-                    {
-                        style: 'table',
-                        table: {
-                            widths: $.map( allTablesData.pramsTable.headerData, function (d, i) {
-                                return '*';
-                            }),
-                            body: allTablesData.pramsTable.bodyData
-                        },
-                        layout: lightHorizontalLines
-                    },
-                    {text: PRAMSSource, style: 'info'},
+                    // {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                    // {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
+                    // {
+                    //     style: 'table',
+                    //     table: {
+                    //         widths: $.map( allTablesData.pramsTable.headerData, function (d, i) {
+                    //             return '*';
+                    //         }),
+                    //         body: allTablesData.pramsTable.bodyData
+                    //     },
+                    //     layout: lightHorizontalLines
+                    // },
+                    // {text: PRAMSSource, style: 'info'},
                     {image: fsc.imageDataURLs.brfs, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Behavioral Risk Factors', style: 'heading'},
                     {
@@ -1856,19 +1858,19 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.brfss.footnote'), style: 'info'},
-                    {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'Teen Health', style: 'heading'},
-                    {
-                        style: 'table',
-                        table: {
-                            widths: $.map( allTablesData.yrbs.headerData, function (d, i) {
-                                return '*';
-                            } ),
-                            body: allTablesData.yrbs.bodyData
-                        },
-                        layout: lightHorizontalLines
-                    },
-                    {text: YRBSSource, style: 'info'},
+                    // {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
+                    // {text: 'Teen Health', style: 'heading'},
+                    // {
+                    //     style: 'table',
+                    //     table: {
+                    //         widths: $.map( allTablesData.yrbs.headerData, function (d, i) {
+                    //             return '*';
+                    //         } ),
+                    //         body: allTablesData.yrbs.bodyData
+                    //     },
+                    //     layout: lightHorizontalLines
+                    // },
+                    // {text: YRBSSource, style: 'info'},
                     {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: ['Births ',
                     {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},

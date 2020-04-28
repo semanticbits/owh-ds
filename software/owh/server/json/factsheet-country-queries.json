@@ -25307,6 +25307,12 @@
             ],
             "primary": false
           },
+          "sitecode": {
+            "key": "state",
+            "queryKey": "sitecode",
+            "value": "",
+            "primary": false
+          },
           "question.path": {
             "key": "question",
             "queryKey": "question.key",
@@ -25329,8 +25335,8 @@
                 "size": 0
               },
               {
-                "key": "year",
-                "queryKey": "year",
+                "key": "race",
+                "queryKey": "race",
                 "size": 0
               }
             ]
