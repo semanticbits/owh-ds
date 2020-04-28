@@ -22,12 +22,7 @@
                     <thead>
                     <tr>
                         <th>Racial distributions of residents</th>
-                        <th>Total</th>
-                        <th>American Indian or Alaska Native</th>
-                        <th>Asian or Pacific Islander</th>
-                        <th>Black or African American</th>
-                        <th>White</th>
-                        <th>Hispanic</th>
+                        <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.population" ng-bind="header"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -85,9 +80,7 @@
                 <thead>
                 <tr>
                     <th>Cause of Death</th>
-                    <th>State/National</th>
-                    <th ng-repeat="eachRecord in fsc.factSheet.detailMortalityData[0].data" ng-if="eachRecord.name != 'Unknown'"
-                        ng-bind="eachRecord.name"></th>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.detailedMortality" ng-bind="header"></th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
@@ -116,8 +109,7 @@
                 <thead>
                 <tr>
                     <th>Indicator</th>
-                    <th>State/National</th>
-                    <th ng-repeat="(key, eachRaceValue) in fsc.factSheet.infantMortalityData" ng-bind="key"></th>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.infantMortality" ng-bind="header"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -221,8 +213,7 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>State/National</th>
-                    <th ng-repeat="eachRecord in fsc.factSheet.natality['birthRateData']" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.natality" ng-bind="header"></th>
                 </tr>
 
                 </thead>
@@ -308,17 +299,17 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.tuberculosis" ng-bind="header"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>State</td>
-                    <td ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'">{{eachRecord.cases}}({{eachRecord.rates}})</td>
+                    <td ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'">{{eachRecord.rates}}</td>
                 </tr>
                 <tr>
                     <td>National</td>
-                    <td ng-repeat="eachRecord in nationalFactSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'">{{eachRecord.cases}}({{eachRecord.rates}})</td>
+                    <td ng-repeat="eachRecord in nationalFactSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'">{{eachRecord.rates}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -336,8 +327,7 @@
                 <thead>
                 <tr>
                     <th>Disease</th>
-                    <th>State/National</th>
-                    <th ng-repeat="eachRecord in fsc.factSheet.stdData[0].data" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.std" ng-bind="header"></th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.stdData">
@@ -346,13 +336,13 @@
                     <td>State</td>
                     <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">
                         <span ng-if="fsc.isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
-                        <span ng-if="(!fsc.isValueInvalidDisplay(eachRaceValue.cases)) && (eachRaceValue.name != 'Unknown')">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
+                        <span ng-if="(!fsc.isValueInvalidDisplay(eachRaceValue.cases)) && (eachRaceValue.name != 'Unknown')">{{eachRaceValue.rates}}</span>
                 </tr>
                 <tr>
                     <td>National</td>
                     <td ng-repeat="eachRaceValue in nationalFactSheet.stdData[$index].data" ng-if="eachRaceValue.name != 'Unknown'">
                         <span ng-if="isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
-                        <span ng-if="!isValueInvalidDisplay(eachRaceValue.cases)">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
+                        <span ng-if="!isValueInvalidDisplay(eachRaceValue.cases)">{{eachRaceValue.rates}}</span>
                     </td>
                 </tr>
                 </tbody>
@@ -369,8 +359,7 @@
                 <thead>
                 <tr>
                     <th>Indicator</th>
-                    <th>State/National</th>
-                    <th ng-repeat="eachRecord in fsc.factSheet.hivAIDSData[0].data" ng-if="eachRecord.name != 'Unknown'" ng-bind="eachRecord.name"></th>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.hiv" ng-bind="header"></th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.hivAIDSData">
@@ -379,14 +368,14 @@
                     <td>State</td>
                     <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">
                         <span ng-if="fsc.isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
-                        <span ng-if="(!fsc.isValueInvalidDisplay(eachRaceValue.cases)) && (eachRaceValue.name != 'Unknown')">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
+                        <span ng-if="(!fsc.isValueInvalidDisplay(eachRaceValue.cases)) && (eachRaceValue.name != 'Unknown')">{{eachRaceValue.rates}}</span>
                     </td>
                 </tr>
                 <tr>
                     <td>National</td>
                     <td ng-repeat="eachRaceValue in nationalFactSheet.hivAIDSData[$index].data" ng-if="eachRaceValue.name != 'Unknown'">
                         <span ng-if="isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
-                        <span ng-if="!isValueInvalidDisplay(eachRaceValue.cases)">{{eachRaceValue.cases}} ({{eachRaceValue.rates}})</span>
+                        <span ng-if="!isValueInvalidDisplay(eachRaceValue.cases)">{{eachRaceValue.rates}}</span>
                     </td>
                 </tr>
                 </tbody>
@@ -404,9 +393,7 @@
                 <thead>
                 <tr>
                     <th>Cancer Site</th>
-                    <th>State/National</th>
-                    <th ng-repeat="eachRecord in fsc.factSheet.cancerData[0].incidence" ng-if="eachRecord.name != 'Unknown'"
-                        ng-bind="eachRecord.name"></th>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.cancer" ng-bind="header"></th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.cancerData">

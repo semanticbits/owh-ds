@@ -347,7 +347,7 @@ function getTBDataForFactSheets(factSheetQueryJSON) {
         Q.all(promises).then(function (resp) {
             var tbData = searchUtils.populateDataWithMappings(resp[0], 'tb' , 'cases');
             es.mergeWithCensusData(tbData, resp[1], undefined, 'pop');
-            var data = prepareDiseaseData(tbData, 'tb', {name: "Total Cases (Rates)",
+            var data = prepareDiseaseData(tbData, 'tb', {name: "Rates",
                 pop: resp[2].aggregations.total_pop.value, tb: resp[0].aggregations.group_count_cases.value});
             var totalPop = resp[2].aggregations.total_pop.value;
             deferred.resolve({data:data, population: totalPop});
@@ -409,13 +409,13 @@ function getSTDDataForFactSheets(factSheetQueryJSON) {
             es.mergeWithCensusData(stdEarlySyphilisData, resp[10], undefined, 'pop');
             searchUtils.applySuppressions(stdEarlySyphilisData, 'std', 4);
 
-            var stdData = [{disease:"Chlamydia", data:prepareDiseaseData(stdChlamydiaData, 'std', {name: "Total Cases (Rates)",
+            var stdData = [{disease:"Chlamydia", data:prepareDiseaseData(stdChlamydiaData, 'std', {name: "Rates",
                     pop: resp[2].aggregations.total_pop.value, std: resp[0].aggregations.group_count_cases.value})},
-                {disease:"Gonorrhea", data:prepareDiseaseData(stdGonorrheaData, 'std', {name: "Total Cases (Rates)",
+                {disease:"Gonorrhea", data:prepareDiseaseData(stdGonorrheaData, 'std', {name: "Rates",
                         pop: resp[5].aggregations.total_pop.value, std: resp[3].aggregations.group_count_cases.value})},
-                {disease:"Primary and Secondary Syphilis", data:prepareDiseaseData(stdPrimarySyphilisData, 'std', {name: "Total Cases (Rates)",
+                {disease:"Primary and Secondary Syphilis", data:prepareDiseaseData(stdPrimarySyphilisData, 'std', {name: "Rates",
                         pop: resp[8].aggregations.total_pop.value, std: resp[6].aggregations.group_count_cases.value})},
-                {disease:"Early Latent Syphilis", data:prepareDiseaseData(stdEarlySyphilisData, 'std', {name: "Total Cases (Rates)",
+                {disease:"Early Latent Syphilis", data:prepareDiseaseData(stdEarlySyphilisData, 'std', {name: "Rates",
                         pop: resp[11].aggregations.total_pop.value, std: resp[9].aggregations.group_count_cases.value})}];
 
             deferred.resolve(stdData);
@@ -494,17 +494,17 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
             es.mergeWithCensusData(hivPrevalenceData, resp[16], undefined, 'pop');
             searchUtils.applySuppressions(hivPrevalenceData, 'aids', 0);
 
-            var hivData = [{disease:"AIDS Diagnoses", data:prepareDiseaseData(aidsDiagnosesData, 'aids', {name: "Total Cases (Rates)",
+            var hivData = [{disease:"AIDS Diagnoses", data:prepareDiseaseData(aidsDiagnosesData, 'aids', {name: "Rates",
                     pop: resp[2].aggregations.total_pop.value, aids: resp[0].aggregations.group_count_cases.value})},
-                {disease:"AIDS Deaths", data:prepareDiseaseData(aidsDeathsData, 'aids', {name: "Total Cases (Rates)",
+                {disease:"AIDS Deaths", data:prepareDiseaseData(aidsDeathsData, 'aids', {name: "Rates",
                         pop: resp[5].aggregations.total_pop.value, aids: resp[3].aggregations.group_count_cases.value})},
-                {disease:"AIDS Prevalence", data:prepareDiseaseData(aidsPrevalenceData, 'aids', {name: "Total Cases (Rates)",
+                {disease:"AIDS Prevalence", data:prepareDiseaseData(aidsPrevalenceData, 'aids', {name: "Rates",
                         pop: resp[8].aggregations.total_pop.value, aids: resp[6].aggregations.group_count_cases.value})},
-                {disease:"HIV Diagnoses", data:prepareDiseaseData(hivDiagnosesData, 'aids', {name: "Total Cases (Rates)",
+                {disease:"HIV Diagnoses", data:prepareDiseaseData(hivDiagnosesData, 'aids', {name: "Rates",
                         pop: resp[11].aggregations.total_pop.value, aids: resp[9].aggregations.group_count_cases.value})},
-                {disease:"HIV Deaths", data:prepareDiseaseData(hivDeathsData, 'aids', {name: "Total Cases (Rates)",
+                {disease:"HIV Deaths", data:prepareDiseaseData(hivDeathsData, 'aids', {name: "Rates",
                         pop: resp[14].aggregations.total_pop.value, aids: resp[12].aggregations.group_count_cases.value})},
-                {disease:"HIV Prevalence", data:prepareDiseaseData(hivPrevalenceData, 'aids', {name: "Total Cases (Rates)",
+                {disease:"HIV Prevalence", data:prepareDiseaseData(hivPrevalenceData, 'aids', {name: "Rates",
                         pop: resp[17].aggregations.total_pop.value, aids: resp[15].aggregations.group_count_cases.value})}];
 
             deferred.resolve(hivData);
