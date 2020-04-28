@@ -172,10 +172,13 @@
 /* --------------------------- */
 
 .minority-health-factsheet table.bridge-race-table1 td:nth-child(1) {
-    width: 40%;
+    width: 15%;
+}
+.minority-health-factsheet table.bridge-race-table1 td:nth-child(2) {
+    width: 15%;
 }
 .minority-health-factsheet table.bridge-race-table1 td {
-    width: 15%;
+    width: 10%;
 }
 .minority-health-factsheet table.bridge-race-table2 td:nth-child(1) {
     width: 34%;
@@ -190,10 +193,10 @@
     width: 10%;
 }
 .minority-health-factsheet table.infant-mortality-table td:nth-child(1) {
-    width: 20%;
+    width: 15%;
 }
 .minority-health-factsheet table.infant-mortality-table td {
-    width: 15%;
+    width: 10%;
 }
 .minority-health-factsheet table.prams-table-1 td:nth-child(1) {
     width: 40%;
