@@ -173,9 +173,9 @@
                         <td ng-if="eachRecord.data !='Not applicable'"
                             ng-repeat="(key, eachRaceValue) in eachRecord.data track by key"
                             ng-bind="fsc.getMeanDisplayValue(eachRaceValue.brfss.mean)"></td>
-                        <td ng-if="eachRecord.data =='Not applicable'"
+                        <td ng-if="eachRecord.data =='Not applicable' && header!='State/National'"
                             ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss track by header"
-                            ng-if="header!='State/National'" ng-bind="'Not applicable'"></td>
+                            ng-bind="'Not applicable'"></td>
                     </tr>
                     <tr ng-if="nationalFactSheet.brfss[$index].data!='Not applicable'">
                         <td>National</td>
