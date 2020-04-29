@@ -167,23 +167,26 @@
                 <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss" ng-bind="header"></th>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.brfss">
-                <tr ng-class="{solidBorder: $index == 0}">
-                    <td ng-bind="eachRecord.question" rowspan="2"></td>
-                    <td>State</td>
-                    <td ng-if="eachRecord.data !='Not applicable'"
-                        ng-repeat="(key, eachRaceValue) in eachRecord.data"
-                        ng-bind="fsc.getMeanDisplayValue(eachRaceValue.brfss.mean)"></td>
-                    <td ng-if="eachRecord.data =='Not applicable'"  ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss"
-                        ng-bind="'Not applicable'"></td>
-                </tr>
-                <tr>
-                    <td>National</td>
-                    <td ng-if="nationalFactSheet.brfss[$index].data !='Not applicable'"
-                        ng-repeat="(key, eachRaceValue) in nationalFactSheet.brfss[$index].data"
-                        ng-bind="fsc.getMeanDisplayValue(eachRaceValue.brfss.mean)"></td>
-                    <td ng-if="nationalFactSheet.brfss[$index].data =='Not applicable'"  ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss"
-                        ng-bind="'Not applicable'"></td>
-                </tr>
+                    <tr ng-class="{solidBorder: $index == 0}">
+                        <td ng-bind="eachRecord.question" rowspan="2"></td>
+                        <td>State</td>
+                        <td ng-if="eachRecord.data !='Not applicable'"
+                            ng-repeat="(key, eachRaceValue) in eachRecord.data track by key"
+                            ng-bind="fsc.getMeanDisplayValue(eachRaceValue.brfss.mean)"></td>
+                        <td ng-if="eachRecord.data =='Not applicable'"
+                            ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss track by header"
+                            ng-if="header!='State/National'" ng-bind="'Not applicable'"></td>
+                    </tr>
+                    <tr ng-if="nationalFactSheet.brfss[$index].data!='Not applicable'">
+                        <td>National</td>
+                        <td ng-repeat="(key, eachRaceValue) in nationalFactSheet.brfss[$index].data track by key"
+                        >{{fsc.getMeanDisplayValue(eachRaceValue.brfss.mean)}}</td>
+                    </tr>
+                    <tr ng-if="nationalFactSheet.brfss[$index].data=='Not applicable'">
+                        <td>National</td>
+                        <td ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss track by header"
+                            ng-if="header!='State/National'">Not applicable</td>
+                    </tr>
                 </tbody>
             </table>
             <i translate="{{ 'fs.minority.brfss.footnote' }}"></i>
