@@ -103,24 +103,19 @@ function prepareBRFSSData(data){
     var brfssData = [
         { question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' },
         { question: 'Adults who are current smokers', data: 'Not applicable' },
-        { question: 'Are heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)', data: 'Not applicable' },
-        { question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable' }
+        { question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable' },
+        { question: 'Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)', data: 'Not applicable' },
+        { question: 'I do have health care coverage', data: 'Not applicable' },
     ];
-    data.table.question.forEach(function(eachRecord) {
+    data.table.question.forEach(function(eachRecord, index) {
         var property = 'name';
         var sortOrder = ['AI/AN', 'Asian', 'Black', 'NHOPI', 'Multiracial non-Hispanic', 'Other Race', 'Hispanic'];
         switch(eachRecord.name){
             case "_bmi5cat":
-                if(eachRecord["obese (bmi 30.0 - 99.8)"]) brfssData[0].data = sortArrayByPropertyAndSortOrder(eachRecord["obese (bmi 30.0 - 99.8)"].race, property, sortOrder);
+                if(eachRecord["obese (bmi 30.0 - 99.8)"]) brfssData[index].data = sortArrayByPropertyAndSortOrder(eachRecord["obese (bmi 30.0 - 99.8)"].race, property, sortOrder);
                 break;
-            case "_rfsmok3":
-                if(eachRecord.yes) brfssData[1].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
-                break;
-            case "_rfdrhv5":
-                if(eachRecord["meet criteria for heavy drinking"]) brfssData[2].data = sortArrayByPropertyAndSortOrder(eachRecord["meet criteria for heavy drinking"].race, property, sortOrder);
-                break;
-            case "_paindx1":
-                if(eachRecord.yes) brfssData[3].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
+            default:
+                if(eachRecord.yes) brfssData[index].data = sortArrayByPropertyAndSortOrder(eachRecord.yes.race, property, sortOrder);
                 break;
         }
     });
@@ -165,7 +160,7 @@ function processYrbsValue(data) {
  */
 function prepareDiseaseData(data, countKey, totalRecord) {
     var sortOrder = ['American Indian or Alaska Native', 'Asian', 'Black or African American',
-    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'Unknown'];
+    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'White', 'Hispanic or Latino', 'Unknown'];
     var diseaseData = sortArrayByPropertyAndSortOrder(data.data.nested.table.race, 'name', sortOrder);
     diseaseData.forEach(function(record, index){
         updateDiseaseRecord(record, countKey);
@@ -444,8 +439,6 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
         var aidsPrevalencePopQuery = factSheetQueryJSON.aids["AIDS Prevalence"][1];
         var hivDiagnosesESQuery = factSheetQueryJSON.aids["HIV Diagnoses"][0];
         var hivDiagnosesPopQuery = factSheetQueryJSON.aids["HIV Diagnoses"][1];
-        var hivDeathsESQuery = factSheetQueryJSON.aids["HIV Deaths"][0];
-        var hivDeathsPopQuery = factSheetQueryJSON.aids["HIV Deaths"][1];
         var hivPrevalenceESQuery = factSheetQueryJSON.aids["HIV Prevalence"][0];
         var hivPrevalencePopQuery = factSheetQueryJSON.aids["HIV Prevalence"][1];
         var es = new elasticSearch();
@@ -462,9 +455,6 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
             es.executeESQuery('owh_aids', 'aids', hivDiagnosesESQuery),
             es.aggregateCensusDataQuery(hivDiagnosesPopQuery, 'owh_aids', "aids", 'pop'),
             es.executeESQuery('owh_aids', 'aids', hivDiagnosesPopQuery),
-            es.executeESQuery('owh_aids', 'aids', hivDeathsESQuery),
-            es.aggregateCensusDataQuery(hivDeathsPopQuery, 'owh_aids', "aids", 'pop'),
-            es.executeESQuery('owh_aids', 'aids', hivDeathsPopQuery),
             es.executeESQuery('owh_aids', 'aids', hivPrevalenceESQuery),
             es.aggregateCensusDataQuery(hivPrevalencePopQuery, 'owh_aids', "aids", 'pop'),
             es.executeESQuery('owh_aids', 'aids', hivPrevalencePopQuery)
@@ -487,13 +477,9 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
             var hivDiagnosesData = searchUtils.populateDataWithMappings(resp[9], 'aids' , 'cases');
             es.mergeWithCensusData(hivDiagnosesData, resp[10], undefined, 'pop');
             searchUtils.applySuppressions(hivDiagnosesData, 'aids', 0);
-            //HIV Deaths
-            var hivDeathsData = searchUtils.populateDataWithMappings(resp[12], 'aids' , 'cases');
-            es.mergeWithCensusData(hivDeathsData, resp[13], undefined, 'pop');
-            searchUtils.applySuppressions(hivDeathsData, 'aids', 0);
             //HIV Prevalence
-            var hivPrevalenceData = searchUtils.populateDataWithMappings(resp[15], 'aids' , 'cases');
-            es.mergeWithCensusData(hivPrevalenceData, resp[16], undefined, 'pop');
+            var hivPrevalenceData = searchUtils.populateDataWithMappings(resp[12], 'aids' , 'cases');
+            es.mergeWithCensusData(hivPrevalenceData, resp[13], undefined, 'pop');
             searchUtils.applySuppressions(hivPrevalenceData, 'aids', 0);
 
             var hivData = [{disease:"AIDS Diagnoses", data:prepareDiseaseData(aidsDiagnosesData, 'aids', {name: "Rates",
@@ -504,10 +490,8 @@ function getAIDSDataForFactSheets(factSheetQueryJSON) {
                         pop: resp[8].aggregations.total_pop.value, aids: resp[6].aggregations.group_count_cases.value})},
                 {disease:"HIV Diagnoses", data:prepareDiseaseData(hivDiagnosesData, 'aids', {name: "Rates",
                         pop: resp[11].aggregations.total_pop.value, aids: resp[9].aggregations.group_count_cases.value})},
-                {disease:"HIV Deaths", data:prepareDiseaseData(hivDeathsData, 'aids', {name: "Rates",
-                        pop: resp[14].aggregations.total_pop.value, aids: resp[12].aggregations.group_count_cases.value})},
                 {disease:"HIV Prevalence", data:prepareDiseaseData(hivPrevalenceData, 'aids', {name: "Rates",
-                        pop: resp[17].aggregations.total_pop.value, aids: resp[15].aggregations.group_count_cases.value})}];
+                        pop: resp[14].aggregations.total_pop.value, aids: resp[12].aggregations.group_count_cases.value})}];
 
             deferred.resolve(hivData);
         }, function (err) {

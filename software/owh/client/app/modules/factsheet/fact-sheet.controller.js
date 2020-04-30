@@ -145,9 +145,12 @@
                 brfss: ['State/National', 'American Indian or Alaskan Native, non-Hispanic', 'Asian, non-Hispanic', 'Black, non-Hispanic',
                     'Native Hawaiian or other Pacific Islander, non-Hispanic', 'Multiracial non-Hispanic', 'Other, non-Hispanic', 'Hispanic'],
                 natality: ['State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'White', 'Hispanic'],
-                tuberculosis: ['Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American', 'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino'],
-                std: ['State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American', 'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino'],
-                hiv: ['State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American', 'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino'],
+                tuberculosis: ['Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
+                    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'White', 'Hispanic or Latino'],
+                std: ['State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
+                    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'White', 'Hispanic or Latino'],
+                hiv: ['State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
+                    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'White', 'Hispanic or Latino'],
                 cancer: ['State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black', 'White', 'Hispanic']
             }};
         fsc.imageDataURLs = {
@@ -886,37 +889,70 @@
                 bodyData: infantMortalityData
             };
 
-            //PRAMS
-            var pramsTableData = [];
-            angular.forEach(fsc.factSheet.prams, function(eachRecord, index){
-                pramsTableData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data),
-                    fsc.getMeanDisplayValue($rootScope.nationalFactSheet.prams[index].data)]);
-            });
-            allTablesData.pramsTable = {
-                headerData: ['Question', 'State', 'National'],
-                bodyData: pramsTableData
-            };
+            // //PRAMS
+            // var pramsTableData = [];
+            // angular.forEach(fsc.factSheet.prams, function(eachRecord, index){
+            //     pramsTableData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data),
+            //         fsc.getMeanDisplayValue($rootScope.nationalFactSheet.prams[index].data)]);
+            // });
+            // allTablesData.pramsTable = {
+            //     headerData: ['Question', 'State', 'National'],
+            //     bodyData: pramsTableData
+            // };
 
             //BRFSS
+            var brfssHeaderData = ['Question'];
+            angular.forEach(fsc.minorityFactSheet.tableHeaders.brfss, function(eachHeader) {
+                if(eachHeader.name != 'Unknown') {
+                    brfssHeaderData.push(eachHeader);
+                }
+            });
+
             var brfssData = [];
             angular.forEach(fsc.factSheet.brfss, function(eachRecord, index){
-                brfssData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data),
-                    fsc.getMeanDisplayValue($rootScope.nationalFactSheet.brfss[index].data)]);
+                var stateRow = [{text:eachRecord.question, rowSpan: 2}, 'State'];
+                var nationalRow = ["", "National"];
+
+                if(eachRecord.data!='Not applicable') {
+                    angular.forEach(eachRecord.data, function(data, index){
+                        if(data.name !== 'Unknown') {
+                            stateRow.push(fsc.getMeanDisplayValue(data.brfss.mean));
+                        }
+                    });
+                } else {
+                    for(var i=0; i < fsc.minorityFactSheet.tableHeaders.brfss.length ; i++) {
+                        stateRow.push('Not available');
+                    }
+                }
+                if($rootScope.nationalFactSheet.brfss[index].data!='Not applicable') {
+                    angular.forEach($rootScope.nationalFactSheet.brfss[index].data, function(nationalData, j) {
+                        if(nationalData.name !== 'Unknown') {
+                            nationalRow.push(fsc.getMeanDisplayValue(nationalData.brfss.mean));
+                        }
+                    });
+                } else {
+                    for(var i=0; i < fsc.minorityFactSheet.tableHeaders.brfss.length ; i++) {
+                        nationalRow.push('Not available');
+                    }
+                }
+                brfssData.push(stateRow);
+                brfssData.push(nationalRow);
             });
             allTablesData.brfss = {
-                headerData: ['Question', 'State', 'National'],
+                headerData:  brfssHeaderData,
                 bodyData: brfssData
             };
+
             //YRBS
-            var yrbsData = [];
-            angular.forEach(fsc.factSheet.yrbs, function(eachRecord, index){
-                yrbsData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data),
-                    fsc.getMeanDisplayValue($rootScope.nationalFactSheet.yrbs[index].data)]);
-            });
-            allTablesData.yrbs = {
-                headerData: ["Question", "State", "National"],
-                bodyData: yrbsData
-            };
+            // var yrbsData = [];
+            // angular.forEach(fsc.factSheet.yrbs, function(eachRecord, index){
+            //     yrbsData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data),
+            //         fsc.getMeanDisplayValue($rootScope.nationalFactSheet.yrbs[index].data)]);
+            // });
+            // allTablesData.yrbs = {
+            //     headerData: ["Question", "State", "National"],
+            //     bodyData: yrbsData
+            // };
             //Natality
             allTablesData.natality = prepareMinorityNatalityData();
 
@@ -932,8 +968,8 @@
             var nationalData = ['National'];
             angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord, index) {
                 if(eachRecord.name !== 'Unknown') {
-                    stateData.push(eachRecord.cases+"("+eachRecord.rates+")");
-                    nationalData.push($rootScope.nationalFactSheet.tuberculosis[index].cases+"("+$rootScope.nationalFactSheet.tuberculosis[index].rates+")");
+                    stateData.push(eachRecord.rates);
+                    nationalData.push($rootScope.nationalFactSheet.tuberculosis[index].rates);
                 }
             });
             allTablesData.tb = {
@@ -955,13 +991,13 @@
                 var nationalRow = ["", "National"];
                 angular.forEach(eachRecord.data, function(data, index){
                     if(data.name !== 'Unknown') {
-                        stateRow.push(data.cases + ' ' + (data.rates =='Suppressed' ? '': '('+ data.rates +')'));
+                        stateRow.push((data.rates =='Suppressed' ? '': data.rates));
                     }
                 });
                 angular.forEach($rootScope.nationalFactSheet.stdData[index].data, function(nationalData, j) {
                     if(nationalData.name !== 'Unknown') {
-                        nationalRow.push(nationalData.cases + ' ' + (nationalData.rates == 'Suppressed' ? '' :
-                            '(' + nationalData.rates + ')'));
+                        nationalRow.push((nationalData.rates == 'Suppressed' ? '' :
+                            nationalData.rates));
                     }
                 });
                 if (eachRecord.data.length === 0) {
@@ -991,14 +1027,14 @@
                 var nationalRow = ['', 'National'];
                 angular.forEach(eachRecord.data, function(data){
                     if(data.name !== 'Unknown') {
-                        stateRow.push(data.cases + ' ' + (data.rates =='Suppressed' ? '': '('+ data.rates +')'));
+                        stateRow.push((data.rates =='Suppressed' ? '': data.rates));
                     }
                 });
 
                 angular.forEach($rootScope.nationalFactSheet.hivAIDSData[index].data, function(nationalData, j) {
                     if(nationalData.name !== 'Unknown') {
-                        nationalRow.push(nationalData.cases + ' ' + (nationalData.rates == 'Suppressed' ? '' :
-                            '(' + nationalData.rates + ')'));
+                        nationalRow.push((nationalData.rates == 'Suppressed' ? '' :
+                            nationalData.rates));
                     }
                 });
 
@@ -1661,14 +1697,14 @@
                 var infantMortalityTableData = allTablesData.infantMortality.bodyData;
                 infantMortalityTableData.unshift(prepareTableHeaders(allTablesData.infantMortality.headerData));
 
-                allTablesData.brfss.bodyData = prepareTableBody(allTablesData.brfss.bodyData);
-                allTablesData.brfss.bodyData.unshift(prepareTableHeaders(allTablesData.brfss.headerData));
+                var brfssTableData = allTablesData.brfss.bodyData;
+                brfssTableData.unshift(prepareTableHeaders(allTablesData.brfss.headerData));
 
-                allTablesData.pramsTable.bodyData = prepareTableBody(allTablesData.pramsTable.bodyData);
-                allTablesData.pramsTable.bodyData.unshift(prepareTableHeaders(allTablesData.pramsTable.headerData));
-
-                allTablesData.yrbs.bodyData = prepareTableBody(allTablesData.yrbs.bodyData);
-                allTablesData.yrbs.bodyData.unshift(prepareTableHeaders(allTablesData.yrbs.headerData));
+                // allTablesData.pramsTable.bodyData = prepareTableBody(allTablesData.pramsTable.bodyData);
+                // allTablesData.pramsTable.bodyData.unshift(prepareTableHeaders(allTablesData.pramsTable.headerData));
+                //
+                // allTablesData.yrbs.bodyData = prepareTableBody(allTablesData.yrbs.bodyData);
+                // allTablesData.yrbs.bodyData.unshift(prepareTableHeaders(allTablesData.yrbs.headerData));
 
                 var natalityTableData = allTablesData.natality.bodyData;
                 natalityTableData.unshift(prepareTableHeaders(allTablesData.natality.headerData));
@@ -1803,7 +1839,8 @@
                     },
                     {text: $filter('translate')('fs.minority.health.footnote'), style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'Mortality',  style: 'heading'},
+                    {text: ['Mortality ',
+                            {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}],  style: 'heading'},
                     {
                         style: 'table',
                         table: {
@@ -1816,7 +1853,6 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.health.mortality.footnote'), style: 'info'},
-                    {text: $filter('translate')('fs.adge-adjusted.rates.def'), style: 'info'},
                     {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Infant Mortality ',
                     {text:$filter('translate')('fs.rates.per.thousand'), bold:false}], style: 'heading'},
@@ -1853,7 +1889,7 @@
                             widths: $.map( allTablesData.brfss.headerData, function (d, i) {
                                 return '*';
                             }),
-                            body: allTablesData.brfss.bodyData
+                            body: brfssTableData
                         },
                         layout: lightHorizontalLines
                     },

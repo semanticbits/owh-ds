@@ -14327,6 +14327,11 @@
                           "term": {
                             "race_ethnicity": "Unknown"
                           }
+                        },
+                        {
+                          "term": {
+                            "race_ethnicity": "White"
+                          }
                         }
 
                       ]
@@ -14461,6 +14466,11 @@
                         {
                           "term": {
                             "race_ethnicity": "Unknown"
+                          }
+                        },
+                        {
+                          "term": {
+                            "race_ethnicity": "White"
                           }
                         }
                       ]
@@ -14599,6 +14609,11 @@
                             "term": {
                               "race_ethnicity": "Unknown"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -14732,6 +14747,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Unknown"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -14869,6 +14889,11 @@
                             "term": {
                               "race_ethnicity": "Unknown"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -15002,6 +15027,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Unknown"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -15139,6 +15169,11 @@
                             "term": {
                               "race_ethnicity": "Unknown"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -15272,6 +15307,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Unknown"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -15409,6 +15449,11 @@
                             "term": {
                               "race_ethnicity": "Unknown"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -15542,6 +15587,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Unknown"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -15679,6 +15729,11 @@
                             "term": {
                               "race_ethnicity": "Unknown"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -15813,6 +15868,11 @@
                             "term": {
                               "race_ethnicity": "Unknown"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -15945,6 +16005,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -16085,6 +16150,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -16228,6 +16298,11 @@
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -16367,6 +16442,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -16510,6 +16590,11 @@
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -16649,6 +16734,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -16792,6 +16882,11 @@
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -16931,6 +17026,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -17074,6 +17174,11 @@
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -17213,6 +17318,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -17356,6 +17466,11 @@
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
                             }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
+                            }
                           }
                         ]
                       }
@@ -17495,6 +17610,11 @@
                           {
                             "term": {
                               "race_ethnicity": "Native Hawaiian or Other Pacific Islander"
+                            }
+                          },
+                          {
+                            "term": {
+                              "race_ethnicity": "White"
                             }
                           }
                         ]
@@ -25303,7 +25423,7 @@
             "key": "year",
             "queryKey": "year",
             "value": [
-              "2016"
+              "2017"
             ],
             "primary": false
           },
@@ -25319,8 +25439,9 @@
             "value": [
               "_bmi5cat",
               "_rfsmok3",
-              "_rfdrhv5",
-              "_paindx1"
+              "_paindx1",
+              "_rfhype5",
+              "hlthpln1"
             ],
             "primary": false
           }

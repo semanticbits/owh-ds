@@ -205,10 +205,10 @@
     width: 30%;
 }
 .minority-health-factsheet table.brfss-table td:nth-child(1) {
-    width: 40%;
+    width: 24%;
 }
 .minority-health-factsheet table.brfss-table td {
-    width: 30%;
+    width: 10%;
 }
 .minority-health-factsheet table.yrbs-table td:nth-child(1) {
     width: 40%;

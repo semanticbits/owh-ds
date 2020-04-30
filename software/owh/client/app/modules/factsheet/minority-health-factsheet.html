@@ -75,7 +75,8 @@
         </div>
         <!--  Detail Mortality - Cause of Death -->
         <div class="detail-mortality-factsheet">
-            <h5 class="mortality-heading"><img src="../../images/icons/detailed-mortality-icon.svg"/>Mortality</h5>
+            <h5 class="mortality-heading"><img src="../../images/icons/detailed-mortality-icon.svg"/>Mortality
+                <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div></h5>
             <table class="detail-mortality-table">
                 <thead>
                 <tr>
@@ -97,8 +98,7 @@
                 </tbody>
             </table>
             <i class="mortality-info" translate="{{ 'fs.minority.health.mortality.footnote' }}"></i><br>
-            <a ng-href="/description/deaths">Data Suppression</a>
-            <i style="margin-top: 2px;" class="mortality-info" ng-bind="'fs.adge-adjusted.rates.def' | translate"></i>
+            <i>Click here for Documentation of <a ng-href="/description/deaths">Data Suppression</a></i>
         </div>
         <br/>
         <!-- Infant mortality total deaths, births and rates for 2014 for selected state -->
@@ -167,15 +167,17 @@
                 <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss" ng-bind="header"></th>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.brfss">
-                    <tr ng-class="{solidBorder: $index == 0}">
+                    <tr ng-class="{solidBorder: $index == 0}" ng-if="eachRecord.data !='Not applicable'">
                         <td ng-bind="eachRecord.question" rowspan="2"></td>
                         <td>State</td>
-                        <td ng-if="eachRecord.data !='Not applicable'"
-                            ng-repeat="(key, eachRaceValue) in eachRecord.data track by key"
+                        <td ng-repeat="(key, eachRaceValue) in eachRecord.data track by key"
                             ng-bind="fsc.getMeanDisplayValue(eachRaceValue.brfss.mean)"></td>
-                        <td ng-if="eachRecord.data =='Not applicable' && header!='State/National'"
-                            ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss track by header"
-                            ng-bind="'Not applicable'"></td>
+                    </tr>
+                    <tr ng-class="{solidBorder: $index == 0}" ng-if="eachRecord.data =='Not applicable'">
+                        <td ng-bind="eachRecord.question" rowspan="2"></td>
+                        <td>State</td>
+                        <td ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss track by header"
+                            ng-if="header!='State/National'" ng-bind="'Not applicable'"></td>
                     </tr>
                     <tr ng-if="nationalFactSheet.brfss[$index].data!='Not applicable'">
                         <td>National</td>
@@ -405,7 +407,7 @@
             <table class="cancer-table">
                 <thead>
                 <tr>
-                    <th>Cancer Site</th>
+                    <th>Cancer Type</th>
                     <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.cancer" ng-bind="header"></th>
                 </tr>
                 </thead>
