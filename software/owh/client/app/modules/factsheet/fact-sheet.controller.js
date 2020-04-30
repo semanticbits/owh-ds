@@ -139,19 +139,20 @@
             {id:"WY", text:"Wyoming"}
         ];
         fsc.minorityFactSheet = {tableHeaders: {
-                population: ['Total', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'White', 'Hispanic'],
-                detailedMortality: ['State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'White', 'Hispanic'],
-                infantMortality: ['State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
-                brfss: ['State/National', 'American Indian or Alaskan Native, non-Hispanic', 'Asian, non-Hispanic', 'Black, non-Hispanic',
+                population: ['Racial distributions of residents', 'Total', 'American Indian or Alaska Native',
+                    'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
+                detailedMortality: ['Cause of Death', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
+                infantMortality: ['Indicator', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
+                brfss: ['Question', 'State/National', 'American Indian or Alaskan Native, non-Hispanic', 'Asian, non-Hispanic', 'Black, non-Hispanic',
                     'Native Hawaiian or other Pacific Islander, non-Hispanic', 'Multiracial non-Hispanic', 'Other, non-Hispanic', 'Hispanic'],
-                natality: ['State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'White', 'Hispanic'],
-                tuberculosis: ['Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
-                    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'White', 'Hispanic or Latino'],
-                std: ['State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
-                    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'White', 'Hispanic or Latino'],
-                hiv: ['State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
-                    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'White', 'Hispanic or Latino'],
-                cancer: ['State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black', 'White', 'Hispanic']
+                natality: ['', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
+                tuberculosis: ['', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
+                    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'White'],
+                std: ['Disease', 'State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
+                    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'White'],
+                hiv: ['Indicator', 'State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
+                    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'White'],
+                cancer: ['Cancer Type', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black', 'Hispanic', 'White']
             }};
         fsc.imageDataURLs = {
             bridgeRace: "data:image/png;base64,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",
@@ -825,18 +826,18 @@
             });
 
             allTablesData.bridgeRaceTable1 = {
-                headerData: ['Racial distributions of minority residents', 'Total', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'White', 'Hispanic'],
+                headerData: fsc.minorityFactSheet.tableHeaders.population,
                 bodyData: [bridgeRaceTableOneStateData, bridgeRaceTableOneNationalData]
             };
             allTablesData.bridgeRaceTable1.bodyData = prepareTableBody(allTablesData.bridgeRaceTable1.bodyData);
             allTablesData.bridgeRaceTable1.bodyData.unshift(prepareTableHeaders(allTablesData.bridgeRaceTable1.headerData));
 
-            var detailedMortalityHeaderData = ['Cause of Death', "State/National"];
-            angular.forEach(fsc.factSheet.detailMortalityData[0].data, function(eachHeader) {
-                if(eachHeader.name != 'Unknown') {
-                    detailedMortalityHeaderData.push(eachHeader.name);
-                }
-            });
+            // var detailedMortalityHeaderData = ['Cause of Death', "State/National"];
+            // angular.forEach(fsc.factSheet.detailMortalityData[0].data, function(eachHeader) {
+            //     if(eachHeader.name != 'Unknown') {
+            //         detailedMortalityHeaderData.push(eachHeader.name);
+            //     }
+            // });
 
             var detailsMortalityData = [];
             angular.forEach(fsc.factSheet.detailMortalityData, function(eachRecord, index){
@@ -853,7 +854,7 @@
                     }
                 });
                 if (eachRecord.data.length === 0) {
-                    for(var i=1; i < detailedMortalityHeaderData.length - 1; i++) {
+                    for(var i=1; i < fsc.minorityFactSheet.tableHeaders.detailedMortality.length - 2; i++) {
                         stateRow.push('Not available');
                         nationalRow.push('Not available');
                     }
@@ -862,18 +863,18 @@
                 detailsMortalityData.push(nationalRow);
             });
             allTablesData.detailMortality = {
-                headerData:  detailedMortalityHeaderData,
+                headerData:  fsc.minorityFactSheet.tableHeaders.detailedMortality,
                 bodyData: detailsMortalityData
             };
 
             // //Infant Mortality
 
-            var infantMortalityHeaderData = ['Indicator', "State/National"];
-            angular.forEach(fsc.factSheet.infantMortalityData, function(eachHeader, key) {
-                if(eachHeader.name != 'Unknown') {
-                    infantMortalityHeaderData.push(key);
-                }
-            });
+            // var infantMortalityHeaderData = ['Indicator', "State/National"];
+            // angular.forEach(fsc.factSheet.infantMortalityData, function(eachHeader, key) {
+            //     if(eachHeader.name != 'Unknown') {
+            //         infantMortalityHeaderData.push(key);
+            //     }
+            // });
 
             var infantMortalityData = [];
             var deathRateStateRow = [{text:"Death rate", rowSpan: 2}, 'State'];
@@ -885,7 +886,7 @@
             infantMortalityData.push(deathRateStateRow);
             infantMortalityData.push(deathRateNationalRow);
             allTablesData.infantMortality = {
-                headerData:  infantMortalityHeaderData,
+                headerData:  fsc.minorityFactSheet.tableHeaders.infantMortality,
                 bodyData: infantMortalityData
             };
 
@@ -901,12 +902,12 @@
             // };
 
             //BRFSS
-            var brfssHeaderData = ['Question'];
-            angular.forEach(fsc.minorityFactSheet.tableHeaders.brfss, function(eachHeader) {
-                if(eachHeader.name != 'Unknown') {
-                    brfssHeaderData.push(eachHeader);
-                }
-            });
+            // var brfssHeaderData = ['Question'];
+            // angular.forEach(fsc.minorityFactSheet.tableHeaders.brfss, function(eachHeader) {
+            //     if(eachHeader.name != 'Unknown') {
+            //         brfssHeaderData.push(eachHeader);
+            //     }
+            // });
 
             var brfssData = [];
             angular.forEach(fsc.factSheet.brfss, function(eachRecord, index){
@@ -920,7 +921,7 @@
                         }
                     });
                 } else {
-                    for(var i=0; i < fsc.minorityFactSheet.tableHeaders.brfss.length ; i++) {
+                    for(var i=0; i < fsc.minorityFactSheet.tableHeaders.brfss.length-2; i++) {
                         stateRow.push('Not available');
                     }
                 }
@@ -931,7 +932,7 @@
                         }
                     });
                 } else {
-                    for(var i=0; i < fsc.minorityFactSheet.tableHeaders.brfss.length ; i++) {
+                    for(var i=0; i < fsc.minorityFactSheet.tableHeaders.brfss.length-2; i++) {
                         nationalRow.push('Not available');
                     }
                 }
@@ -939,7 +940,7 @@
                 brfssData.push(nationalRow);
             });
             allTablesData.brfss = {
-                headerData:  brfssHeaderData,
+                headerData:  fsc.minorityFactSheet.tableHeaders.brfss,
                 bodyData: brfssData
             };
 
@@ -957,13 +958,13 @@
             allTablesData.natality = prepareMinorityNatalityData();
 
             //Tuberculosis
-            var tbHeaderData = [""];
-            var tbData = [];
-            angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord, index) {
-                if(eachRecord.name !== 'Unknown') {
-                    tbHeaderData.push(eachRecord.name);
-                }
-            });
+            // var tbHeaderData = [""];
+            // var tbData = [];
+            // angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord, index) {
+            //     if(eachRecord.name !== 'Unknown') {
+            //         tbHeaderData.push(eachRecord.name);
+            //     }
+            // });
             var stateData = ['State'];
             var nationalData = ['National'];
             angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord, index) {
@@ -973,17 +974,17 @@
                 }
             });
             allTablesData.tb = {
-                headerData:  tbHeaderData,
+                headerData:  fsc.minorityFactSheet.tableHeaders.tb,
                 bodyData: [stateData, nationalData]
             };
 
             //STD
-            var stdHeaderData = ['Disease', "State/National"];
-            angular.forEach(fsc.factSheet.stdData[0].data, function(eachHeader) {
-                if(eachHeader.name != 'Unknown') {
-                    stdHeaderData.push(eachHeader.name);
-                }
-            });
+            // var stdHeaderData = ['Disease', "State/National"];
+            // angular.forEach(fsc.factSheet.stdData[0].data, function(eachHeader) {
+            //     if(eachHeader.name != 'Unknown') {
+            //         stdHeaderData.push(eachHeader.name);
+            //     }
+            // });
 
             var stdData = [];
             angular.forEach(fsc.factSheet.stdData, function(eachRecord, index){
@@ -1001,7 +1002,7 @@
                     }
                 });
                 if (eachRecord.data.length === 0) {
-                    for(var i=1; i < stdHeaderData.length - 1; i++) {
+                    for(var i=1; i < fsc.minorityFactSheet.tableHeaders.std.length - 1; i++) {
                         stateRow.push('Not available');
                         nationalRow.push('Not available');
                     }
@@ -1010,18 +1011,18 @@
                 stdData.push(nationalRow);
             });
             allTablesData.std = {
-                headerData:  stdHeaderData,
+                headerData:  fsc.minorityFactSheet.tableHeaders.std,
                 bodyData: stdData
             };
 
             //HIV/AIDS
-            var hivHeaderData = ['Indicator', 'State/National'];
+            // var hivHeaderData = ['Indicator', 'State/National'];
+            // angular.forEach(fsc.factSheet.hivAIDSData[0].data, function(eachHeader, index){
+            //     if(eachHeader.name !== 'Unknown') {
+            //         hivHeaderData.push(eachHeader.name);
+            //     }
+            // });
             var hivData = [];
-            angular.forEach(fsc.factSheet.hivAIDSData[0].data, function(eachHeader, index){
-                if(eachHeader.name !== 'Unknown') {
-                    hivHeaderData.push(eachHeader.name);
-                }
-            });
             angular.forEach(fsc.factSheet.hivAIDSData, function(eachRecord, index) {
                 var stateRow = [{text:eachRecord.disease, rowSpan: 2}, 'State'];
                 var nationalRow = ['', 'National'];
@@ -1039,7 +1040,7 @@
                 });
 
                 if (eachRecord.data.length === 0) {
-                    for(var i=1; i < hivHeaderData.length - 1; i++) {
+                    for(var i=1; i < fsc.minorityFactSheet.tableHeaders.hiv.length - 1; i++) {
                         stateRow.push('Not available');
                         nationalRow.push('Not available');
                     }
@@ -1048,7 +1049,7 @@
                 hivData.push(nationalRow);
             });
             allTablesData.hiv = {
-                headerData:  hivHeaderData,
+                headerData:  fsc.minorityFactSheet.tableHeaders.hiv,
                 bodyData: hivData
             };
 

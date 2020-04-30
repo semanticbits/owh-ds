@@ -21,7 +21,6 @@
                 <table class="bridge-race-table1">
                     <thead>
                     <tr>
-                        <th>Racial distributions of residents</th>
                         <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.population" ng-bind="header"></th>
                     </tr>
                     </thead>
@@ -80,7 +79,6 @@
             <table class="detail-mortality-table">
                 <thead>
                 <tr>
-                    <th>Cause of Death</th>
                     <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.detailedMortality" ng-bind="header"></th>
                 </tr>
                 </thead>
@@ -97,7 +95,7 @@
                     </tr>
                 </tbody>
             </table>
-            <i class="mortality-info" translate="{{ 'fs.minority.health.mortality.footnote' }}"></i><br>
+            <i class="mortality-info" translate="{{ 'fs.minority.health.mortality.footnote' }}"></i>
             <i>Click here for Documentation of <a ng-href="/description/deaths">Data Suppression</a></i>
         </div>
         <br/>
@@ -109,7 +107,6 @@
             <table class="infant-mortality-table">
                 <thead>
                 <tr>
-                    <th>Indicator</th>
                     <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.infantMortality" ng-bind="header"></th>
                 </tr>
                 </thead>
@@ -163,7 +160,6 @@
             <div class="table-heading"><h5><img src="../../images/icons/brfss-icon.svg"/>Behavioral Risk Factors</h5></div>
             <table class="brfss-table">
                 <thead>
-                <th>Question</th>
                 <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss" ng-bind="header"></th>
                 </thead>
                 <tbody ng-repeat="eachRecord in fsc.factSheet.brfss">
@@ -177,7 +173,7 @@
                         <td ng-bind="eachRecord.question" rowspan="2"></td>
                         <td>State</td>
                         <td ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss track by header"
-                            ng-if="header!='State/National'" ng-bind="'Not applicable'"></td>
+                            ng-if="header!='State/National' && header!='Question'" ng-bind="'Not applicable'"></td>
                     </tr>
                     <tr ng-if="nationalFactSheet.brfss[$index].data!='Not applicable'">
                         <td>National</td>
@@ -187,7 +183,7 @@
                     <tr ng-if="nationalFactSheet.brfss[$index].data=='Not applicable'">
                         <td>National</td>
                         <td ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss track by header"
-                            ng-if="header!='State/National'">Not applicable</td>
+                            ng-if="header!='State/National' && header!='Question'">Not applicable</td>
                     </tr>
                 </tbody>
             </table>
@@ -227,7 +223,6 @@
             <table class="natality-table">
                 <thead>
                 <tr>
-                    <th></th>
                     <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.natality" ng-bind="header"></th>
                 </tr>
 
@@ -313,7 +308,6 @@
             <table class="tb-table">
                 <thead>
                 <tr>
-                    <th></th>
                     <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.tuberculosis" ng-bind="header"></th>
                 </tr>
                 </thead>
@@ -341,7 +335,6 @@
             <table class="std-table">
                 <thead>
                 <tr>
-                    <th>Disease</th>
                     <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.std" ng-bind="header"></th>
                 </tr>
                 </thead>
@@ -373,7 +366,6 @@
             <table class="hiv-table">
                 <thead>
                 <tr>
-                    <th>Indicator</th>
                     <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.hiv" ng-bind="header"></th>
                 </tr>
                 </thead>
@@ -407,7 +399,6 @@
             <table class="cancer-table">
                 <thead>
                 <tr>
-                    <th>Cancer Type</th>
                     <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.cancer" ng-bind="header"></th>
                 </tr>
                 </thead>

@@ -160,7 +160,7 @@ function processYrbsValue(data) {
  */
 function prepareDiseaseData(data, countKey, totalRecord) {
     var sortOrder = ['American Indian or Alaska Native', 'Asian', 'Black or African American',
-    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'White', 'Hispanic or Latino', 'Unknown'];
+    'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'Unknown', 'White'];
     var diseaseData = sortArrayByPropertyAndSortOrder(data.data.nested.table.race, 'name', sortOrder);
     diseaseData.forEach(function(record, index){
         updateDiseaseRecord(record, countKey);
@@ -204,6 +204,7 @@ function formatNumber (num) {
 function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
     try {
+        var sortOrder = ['American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'];
         var bridgeRaceQueryObj = factSheetQueryJSON.bridge_race;
         var es = new elasticSearch();
         var promises = [
@@ -219,6 +220,7 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
             var data =  prepareFactSheetForPopulation(nonHispanicRaceData, hispanicData, ageGroupData);
             data.totalPop = resp[0].aggregations.group_count_pop.value + resp[1].aggregations.group_count_pop.value;
             data.race.unshift({name: "Total", bridge_race: data.totalPop});
+            data.race = sortArrayByPropertyAndSortOrder(data.race, 'name', sortOrder);
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -295,6 +297,13 @@ function sortArrayByPropertyAndSortOrder(arr, property, sortOrder) {
     return results;
 }
 
+function sortObjectByOrder(object, sortOrder) {
+    var sortedObject = {};
+    for(var i=0; i<sortOrder.length;i++) {
+        sortedObject[sortOrder[i]] = object[sortOrder[i]];
+    }
+    return sortedObject;
+}
 /**
  * Prepare Infant mortality data for fact-sheet
  * @param factSheetQueryJSON
@@ -302,6 +311,7 @@ function sortArrayByPropertyAndSortOrder(arr, property, sortOrder) {
 function getFactSheetDataForInfants(factSheetQueryJSON) {
     var deferred = Q.defer();
     try {
+        var sortOrder = ['American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'];
         var promises = [
             new wonder('D69').invokeWONDER(factSheetQueryJSON.infant_mortality.racePopulation),
             new wonder('D69').invokeWONDER(factSheetQueryJSON.infant_mortality.hispanicPopulation)
@@ -320,7 +330,7 @@ function getFactSheetDataForInfants(factSheetQueryJSON) {
                     infantMortalityData[prop].deathRate = 'Unreliable';
                 }
             }
-            deferred.resolve(infantMortalityData);
+            deferred.resolve(sortObjectByOrder(infantMortalityData, sortOrder));
         }, function (err) {
             logger.error(err.message);
             deferred.reject(err);
@@ -659,7 +669,7 @@ function getDetailMortalityDataForFactSheet(factSheetQueryJSON) {
 function prepareDetailMortalityData(raceCountData, raceRateData, hispanicCountData, hispanicRateDate) {
 
     var noDataAvailableObj = {name: 'Hispanic', deaths: 'suppressed', ageAdjustedRate: 'Not available', standardPop: 'Not available'};
-    var selectedRaces = { "options": [ "American Indian", "Asian or Pacific Islander", "Black", 'White', 'Hispanic' ]};
+    var selectedRaces = { "options": [ "American Indian", "Asian or Pacific Islander", "Black", 'Hispanic', 'White' ]};
     //race counts & rates data
     var resultantData = searchUtils.populateDataWithMappings(raceCountData, 'deaths');
     searchUtils.addMissingFilterOptions(selectedRaces, resultantData.data.nested.table.race, 'deaths');
@@ -678,7 +688,7 @@ function prepareDetailMortalityData(raceCountData, raceRateData, hispanicCountDa
 }
 
 function getNatalityDataForFactSeet(factSheetQueryJSON) {
-    var sortOrder = ['American Indian', 'Asian or Pacific Islander', 'Black','White'];
+    var sortOrder = ['American Indian', 'Asian or Pacific Islander', 'Black','Hispanic', 'White'];
     var deferred = Q.defer();
     try {
         var birthRatesESQuery = factSheetQueryJSON.natality["birthRates"][0];
@@ -791,7 +801,6 @@ function getNatalityDataForFactSeet(factSheetQueryJSON) {
             searchUtils.applySuppressions(totalBirthPopHispanicData, 'natality');
             mergeHispanicData(totalBirthPopData, totalBirthPopHispanicData);
 
-            sortOrder.push('Hispanic');
             var natalityData = {
                 birthRateData:sortArrayByPropertyAndSortOrder(birthRatesData.data.nested.table.race, 'name', sortOrder),
                 fertilityRatesData:sortArrayByPropertyAndSortOrder(fertilityRatesData.data.nested.table.race, 'name', sortOrder),
@@ -962,7 +971,7 @@ function getCancerDataForFactSheet(factSheetQueryJSON) {
                 var cancerIncidentProstateData = prepareCancerData(resp[40], resp[25], resp[41], resp[27], 'cancer_incidence');
                 searchUtils.applyCustomSuppressions(cancerIncidentProstateData.data.nested, rules, 'cancer_incidence');
 
-                var sortOrder = ['American Indian/Alaska Native', 'Asian or Pacific Islander', 'Black', 'White', 'Hispanic'];
+                var sortOrder = ['American Indian/Alaska Native', 'Asian or Pacific Islander', 'Black', 'Hispanic', 'White'];
                 var cancerData = [
                     {
                         mortality: sortArrayByPropertyAndSortOrder(cancerMortalityBreastData.data.nested.table.race, 'name', sortOrder),
