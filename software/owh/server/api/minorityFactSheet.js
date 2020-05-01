@@ -204,7 +204,7 @@ function formatNumber (num) {
 function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
     try {
-        var sortOrder = ['American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'];
+        var sortOrder = ['American Indian', 'Asian or Pacific Islander', 'Black', 'Hispanic', 'White'];
         var bridgeRaceQueryObj = factSheetQueryJSON.bridge_race;
         var es = new elasticSearch();
         var promises = [
