@@ -140,7 +140,7 @@
         ];
         fsc.minorityFactSheet = {tableHeaders: {
                 population: ['Racial distributions of residents', 'Total', 'American Indian or Alaska Native',
-                    'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
+                    'Asian or Pacific Islander', 'Black or African American', 'Hispanic or Latino', 'White'],
                 detailedMortality: ['Cause of Death', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
                 infantMortality: ['Indicator', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
                 brfss: ['Question', 'State/National', 'American Indian or Alaskan Native, non-Hispanic', 'Asian, non-Hispanic', 'Black, non-Hispanic',

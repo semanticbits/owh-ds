@@ -14225,6 +14225,22 @@
                       "should": [
                         {
                           "term": {
+                            "delivery_method": "Vaginal"
+                          }
+                        },
+                        {
+                          "term": {
+                            "delivery_method": "Cesarean"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bool": {
+                      "should": [
+                        {
+                          "term": {
                             "mother_age_5year_interval": "15-19 years"
                           }
                         },

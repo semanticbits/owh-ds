@@ -154,8 +154,8 @@ function getPramsDataForFactSheet(factSheetQueryJSON, state, sex) {
         ];
         Q.all(promises).then(function (resp) {
             var pramsData = [
-                {"question": "In the 12 months before your baby was born  you were in a physical fight", data: processPramsResponse(resp[0], state)},
-                {"question": "Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?",
+                {"question": "In the 12 months before my baby was born I was in a physical fight", data: processPramsResponse(resp[0], state)},
+                {"question": "My baby was seen by a doctor, nurse or other health care provider in the first week after leaving the hospital",
                     data: processPramsResponse(resp[1], state)}
             ];
             deferred.resolve(pramsData);
@@ -374,11 +374,26 @@ function getDeliveryFactorsDataForFactSheet(factSheetQueryJSON, sex) {
             var deliveryMethodData = searchUtils.populateDataWithMappings(resp[0], 'natality');
             var prenatalCareData = searchUtils.populateDataWithMappings(resp[1], 'natality');
             var medicalAttendantData = searchUtils.populateDataWithMappings(resp[2], 'natality');
+            medicalAttendantData = formatDeliveryFactorsResponseData(medicalAttendantData, 'medical_attendant');
+            var doctors = ['Doctor of Medicine (MD)', 'Doctor of Osteopathy (DO)'], doctorsTotal=0;
+            var nurse = ['Certified Nurse Midwife (CNM)', 'Other'], nurseTotal=0;
+            var updatedMedicalAttendantData = [];
+            for(var i=0;i<medicalAttendantData.length;i++){
+                if(doctors.indexOf(medicalAttendantData[i].name)>=0) {
+                    doctorsTotal+=medicalAttendantData[i].natality;
+                } else if(nurse.indexOf(medicalAttendantData[i].name)>=0) {
+                    nurseTotal+=medicalAttendantData[i].natality;
+                } else {
+                    updatedMedicalAttendantData.push(medicalAttendantData[i]);
+                }
+            }
+            updatedMedicalAttendantData.unshift({name: 'Certified Nurse Midwife (CNM) OR Other', natality: nurseTotal});
+            updatedMedicalAttendantData.unshift({name: 'Doctor of Medicine (MD) OR Doctor of Osteopathy (DO)', natality: doctorsTotal});
 
             var data = [
                 {cause:"Delivery method", data: formatDeliveryFactorsResponseData(deliveryMethodData, 'delivery_method')},
                 {cause:"Prenatal care", data: formatDeliveryPrenatalCareResponseData(prenatalCareData, 'prenatal_care')},
-                {cause:"Medical attendant", data: formatDeliveryFactorsResponseData(medicalAttendantData, 'medical_attendant')}
+                {cause:"Medical attendant", data: updatedMedicalAttendantData}
             ];
             deferred.resolve(data);
         }, function (err) {
@@ -402,18 +417,19 @@ function formatDeliveryFactorsResponseData(response, type) {
         return response.data.nested.table[type];
     }
     return '';
-}function formatDeliveryPrenatalCareResponseData(response, type) {
+}
+function formatDeliveryPrenatalCareResponseData(response, type) {
     var deliveryPrenatalCareMonths = ['2nd month','3rd month','4th month','1st month','5th month','6th month','7th month','8th month','9th month','10th month'];
     var deliveryPrenatalCareResponse = [], allMonthsCount = 0;
     if(response.data.nested.table[type] && response.data.nested.table[type]) {
         response.data.nested.table[type].forEach(function(eachRecord) {
             if(deliveryPrenatalCareMonths.indexOf(eachRecord.name)>=0) {
                 allMonthsCount += eachRecord.natality;
-            } else {
+            } else if(eachRecord.name == 'No prenatal care'){
                 deliveryPrenatalCareResponse.push(eachRecord);
             }
         });
-        deliveryPrenatalCareResponse.push({name: 'All Months Care', natality: allMonthsCount})
+        deliveryPrenatalCareResponse.push({name: 'All Months Care', natality: allMonthsCount});
         return deliveryPrenatalCareResponse;
     }
     return '';
@@ -554,9 +570,9 @@ function prepareCancerData(pop, totalPop, countKey) {
 function prepareBRFSSData(brfssResp) {
     var brfssData = [
         {question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' },
-        {question: 'Was there a time in the past 12 months when you needed to see a doctor but could not because of cost?', data: 'Not applicable'},
-        {question: 'Do you have any kind of health care coverage?', data: 'Not applicable'},
-        {question: 'About how long has it been since you last visited a doctor for a routine checkup?', data: 'Not applicable'}
+        {question: 'In the past 12 months I needed to see a doctor but could not because of cost', data: 'Not applicable'},
+        {question: 'I do have health care coverage', data: 'Not applicable'},
+        {question: 'I visited a doctor for a routine checkup within the past year', data: 'Not applicable'}
     ];
 
     brfssResp.table.question.forEach(function(eachRecord) {
