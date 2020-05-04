@@ -734,72 +734,65 @@ function getNatalityDataForFactSeet(factSheetQueryJSON) {
         Q.all(promises).then(function (resp) {
             var birthRatesData = searchUtils.populateDataWithMappings(resp[0], 'natality');
             es.mergeWithCensusData(birthRatesData, resp[1], undefined, 'pop');
-            searchUtils.addMissingFilterOptions({ "options": sortOrder}, birthRatesData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(birthRatesData, 'natality');
 
             var birthRatesHispanicData = searchUtils.populateDataWithMappings(resp[2], 'natality');
             es.mergeWithCensusData(birthRatesHispanicData, resp[3], undefined, 'pop');
             searchUtils.applySuppressions(birthRatesHispanicData, 'natality');
             mergeHispanicData(birthRatesData, birthRatesHispanicData);
+            searchUtils.addMissingFilterOptions({ "options": sortOrder}, birthRatesData.data.nested.table.race, 'natality');
             //(birthRatesHispanicData.data.nested.table.year.length>0)?birthRatesHispanicData.data.nested.table.year[0].name = 'hispanic':'';
             //birthRatesData.data.nested.table.race.concat(birthRatesHispanicData.data.nested.table.year);
-            //searchUtils.addMissingFilterOptions({ "options": sortOrder}, birthRatesHispanicData.data.nested.table.race, 'natality');
 
             var fertilityRatesData = searchUtils.populateDataWithMappings(resp[4], 'natality');
             es.mergeWithCensusData(fertilityRatesData, resp[5], undefined, 'pop');
-            searchUtils.addMissingFilterOptions({ "options": sortOrder}, fertilityRatesData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(fertilityRatesData, 'natality');
 
             var fertilityRatesHispanicData = searchUtils.populateDataWithMappings(resp[6], 'natality');
             es.mergeWithCensusData(fertilityRatesHispanicData, resp[7], undefined, 'pop');
-            //searchUtils.addMissingFilterOptions({ "options": sortOrder}, fertilityRatesHispanicData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(fertilityRatesHispanicData, 'natality');
             mergeHispanicData(fertilityRatesData, fertilityRatesHispanicData);
+            searchUtils.addMissingFilterOptions({ "options": sortOrder}, fertilityRatesData.data.nested.table.race, 'natality');
 
             var vaginalData = searchUtils.populateDataWithMappings(resp[8], 'natality');
-            searchUtils.addMissingFilterOptions({ "options": sortOrder}, vaginalData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(vaginalData, 'natality');
 
             var vaginalHispanicData = searchUtils.populateDataWithMappings(resp[9], 'natality');
-            //searchUtils.addMissingFilterOptions({ "options": sortOrder}, vaginalHispanicData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(vaginalHispanicData, 'natality');
             mergeHispanicData(vaginalData, vaginalHispanicData);
+            searchUtils.addMissingFilterOptions({ "options": sortOrder}, vaginalData.data.nested.table.race, 'natality');
 
             var cesareanData = searchUtils.populateDataWithMappings(resp[10], 'natality');
-            searchUtils.addMissingFilterOptions({ "options": sortOrder}, cesareanData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(cesareanData, 'natality');
 
             var cesareanHispanicData = searchUtils.populateDataWithMappings(resp[11], 'natality');
-            //searchUtils.addMissingFilterOptions({ "options": sortOrder}, cesareanHispanicData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(cesareanHispanicData, 'natality');
             mergeHispanicData(cesareanData, cesareanHispanicData);
+            searchUtils.addMissingFilterOptions({ "options": sortOrder}, cesareanData.data.nested.table.race, 'natality');
 
             var lowBirthWeightData = searchUtils.populateDataWithMappings(resp[12], 'natality');
-            searchUtils.addMissingFilterOptions({ "options": sortOrder}, lowBirthWeightData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(lowBirthWeightData, 'natality');
 
             var lowBirthWeightHispanicData = searchUtils.populateDataWithMappings(resp[13], 'natality');
-            //searchUtils.addMissingFilterOptions({ "options": sortOrder}, lowBirthWeightHispanicData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(lowBirthWeightHispanicData, 'natality');
             mergeHispanicData(lowBirthWeightData, lowBirthWeightHispanicData);
+            searchUtils.addMissingFilterOptions({ "options": sortOrder}, lowBirthWeightData.data.nested.table.race, 'natality');
 
             var twinBirthData = searchUtils.populateDataWithMappings(resp[14], 'natality');
-            searchUtils.addMissingFilterOptions({ "options": sortOrder}, twinBirthData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(twinBirthData, 'natality');
 
             var twinBirthHispanicData = searchUtils.populateDataWithMappings(resp[15], 'natality');
-            //searchUtils.addMissingFilterOptions({ "options": sortOrder}, twinBirthHispanicData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(twinBirthHispanicData, 'natality');
             mergeHispanicData(twinBirthData, twinBirthHispanicData);
+            searchUtils.addMissingFilterOptions({ "options": sortOrder}, twinBirthData.data.nested.table.race, 'natality');
 
             var totalBirthPopData = searchUtils.populateDataWithMappings(resp[16], 'natality');
-            searchUtils.addMissingFilterOptions({ "options": sortOrder}, totalBirthPopData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(totalBirthPopData, 'natality');
 
             var totalBirthPopHispanicData = searchUtils.populateDataWithMappings(resp[17], 'natality');
-            //searchUtils.addMissingFilterOptions({ "options": sortOrder}, totalBirthPopHispanicData.data.nested.table.race, 'natality');
             searchUtils.applySuppressions(totalBirthPopHispanicData, 'natality');
             mergeHispanicData(totalBirthPopData, totalBirthPopHispanicData);
+            searchUtils.addMissingFilterOptions({ "options": sortOrder}, totalBirthPopData.data.nested.table.race, 'natality');
 
             var natalityData = {
                 birthRateData:sortArrayByPropertyAndSortOrder(birthRatesData.data.nested.table.race, 'name', sortOrder),
