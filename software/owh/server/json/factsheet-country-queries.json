@@ -14311,6 +14311,11 @@
                       "should": [
                         {
                           "term": {
+                            "race_ethnicity": "All races/ethnicities"
+                          }
+                        },
+                        {
+                          "term": {
                             "race_ethnicity": "American Indian or Alaska Native"
                           }
                         },
@@ -14449,6 +14454,11 @@
                   {
                     "bool": {
                       "should": [
+                        {
+                          "term": {
+                            "race_ethnicity": "All races/ethnicities"
+                          }
+                        },
                         {
                           "term": {
                             "race_ethnicity": "American Indian or Alaska Native"
@@ -14593,6 +14603,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -14730,6 +14745,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -14873,6 +14893,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -15010,6 +15035,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -15153,6 +15183,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -15290,6 +15325,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -15433,6 +15473,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -15570,6 +15615,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -15713,6 +15763,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -15850,6 +15905,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -15995,6 +16055,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -16138,6 +16203,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -16287,6 +16357,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -16430,6 +16505,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -16579,6 +16659,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -16722,6 +16807,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -16871,6 +16961,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -17014,6 +17109,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -17163,6 +17263,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -17306,6 +17411,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -17455,6 +17565,11 @@
                         "should": [
                           {
                             "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
+                          {
+                            "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
                             }
                           },
@@ -17598,6 +17713,11 @@
                     {
                       "bool": {
                         "should": [
+                          {
+                            "term": {
+                              "race_ethnicity": "All races/ethnicities"
+                            }
+                          },
                           {
                             "term": {
                               "race_ethnicity": "American Indian or Alaska Native"
@@ -21438,12 +21558,7 @@
                         "should": [
                           {
                             "term": {
-                              "hispanic_origin": "Central American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Central and South American"
+                              "hispanic_origin": "Central or South American"
                             }
                           },
                           {
@@ -21453,37 +21568,17 @@
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Dominican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Latin American"
-                            }
-                          },
-                          {
-                            "term": {
                               "hispanic_origin": "Mexican"
                             }
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Other Hispanic"
+                              "hispanic_origin": "Other and Unknown Hispanic"
                             }
                           },
                           {
                             "term": {
                               "hispanic_origin": "Puerto Rican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "South American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]
@@ -21944,12 +22039,7 @@
                         "should": [
                           {
                             "term": {
-                              "hispanic_origin": "Central American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Central and South American"
+                              "hispanic_origin": "Central or South American"
                             }
                           },
                           {
@@ -21959,37 +22049,17 @@
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Dominican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Latin American"
-                            }
-                          },
-                          {
-                            "term": {
                               "hispanic_origin": "Mexican"
                             }
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Other Hispanic"
+                              "hispanic_origin": "Other and Unknown Hispanic"
                             }
                           },
                           {
                             "term": {
                               "hispanic_origin": "Puerto Rican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "South American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]
@@ -22380,12 +22450,7 @@
                         "should": [
                           {
                             "term": {
-                              "hispanic_origin": "Central American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Central and South American"
+                              "hispanic_origin": "Central or South American"
                             }
                           },
                           {
@@ -22395,37 +22460,17 @@
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Dominican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Latin American"
-                            }
-                          },
-                          {
-                            "term": {
                               "hispanic_origin": "Mexican"
                             }
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Other Hispanic"
+                              "hispanic_origin": "Other and Unknown Hispanic"
                             }
                           },
                           {
                             "term": {
                               "hispanic_origin": "Puerto Rican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "South American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]
@@ -22595,12 +22640,7 @@
                         "should": [
                           {
                             "term": {
-                              "hispanic_origin": "Central American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Central and South American"
+                              "hispanic_origin": "Central or South American"
                             }
                           },
                           {
@@ -22610,37 +22650,17 @@
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Dominican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Latin American"
-                            }
-                          },
-                          {
-                            "term": {
                               "hispanic_origin": "Mexican"
                             }
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Other Hispanic"
+                              "hispanic_origin": "Other and Unknown Hispanic"
                             }
                           },
                           {
                             "term": {
                               "hispanic_origin": "Puerto Rican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "South American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]
@@ -22815,12 +22835,7 @@
                         "should": [
                           {
                             "term": {
-                              "hispanic_origin": "Central American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Central and South American"
+                              "hispanic_origin": "Central or South American"
                             }
                           },
                           {
@@ -22830,37 +22845,17 @@
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Dominican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Latin American"
-                            }
-                          },
-                          {
-                            "term": {
                               "hispanic_origin": "Mexican"
                             }
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Other Hispanic"
+                              "hispanic_origin": "Other and Unknown Hispanic"
                             }
                           },
                           {
                             "term": {
                               "hispanic_origin": "Puerto Rican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "South American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]
@@ -23035,12 +23030,7 @@
                         "should": [
                           {
                             "term": {
-                              "hispanic_origin": "Central American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Central and South American"
+                              "hispanic_origin": "Central or South American"
                             }
                           },
                           {
@@ -23050,37 +23040,17 @@
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Dominican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Latin American"
-                            }
-                          },
-                          {
-                            "term": {
                               "hispanic_origin": "Mexican"
                             }
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Other Hispanic"
+                              "hispanic_origin": "Other and Unknown Hispanic"
                             }
                           },
                           {
                             "term": {
                               "hispanic_origin": "Puerto Rican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "South American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]
@@ -23239,12 +23209,7 @@
                         "should": [
                           {
                             "term": {
-                              "hispanic_origin": "Central American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Central and South American"
+                              "hispanic_origin": "Central or South American"
                             }
                           },
                           {
@@ -23254,37 +23219,17 @@
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Dominican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Latin American"
-                            }
-                          },
-                          {
-                            "term": {
                               "hispanic_origin": "Mexican"
                             }
                           },
                           {
                             "term": {
-                              "hispanic_origin": "Other Hispanic"
+                              "hispanic_origin": "Other and Unknown Hispanic"
                             }
                           },
                           {
                             "term": {
                               "hispanic_origin": "Puerto Rican"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "South American"
-                            }
-                          },
-                          {
-                            "term": {
-                              "hispanic_origin": "Spaniard"
                             }
                           }
                         ]
