@@ -138,7 +138,7 @@ var searchRouter = function(app, rConfig) {
                             }
                             res.send(new result('OK', resData, "success"));
                         });
-                    } else if (fsType === "Women Of Reproductive Age Health") {
+                    } else if (fsType === "Women of Reproductive Age Health") {
                         var sex = req.sanitize(req.body.sex);
                         new womensOfReproductiveAgeHealthFactsheet().prepareFactSheet(state, fsType, sex).then(function(response) {
                             if(!config.disableQueryCache) {

@@ -25,7 +25,7 @@
         fsc.fsTypes = {
             state_health: "State Health",
             womens_health: "Women's and Girls' Health",
-            women_of_reproductive_age_health: "Women Of Reproductive Age Health",
+            women_of_reproductive_age_health: "Women of Reproductive Age Health",
             minority_health: 'Minority Health'
         };
         fsc.states = {
@@ -451,6 +451,7 @@
                         },
                         {text: $filter('translate')('fs.state.health.bridgerace.footnote1'), style: 'info'},
                         {text: $filter('translate')('fs.state.health.bridgerace.footnote2'), style: 'info'},
+                        {text: fsc.dataSuppressionTexts.bridgeRace, style: 'info'},
                         {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Mortality',  style: 'heading'},
                         {
@@ -468,6 +469,7 @@
                         {text: $filter('translate')('fs.state.health.mortality.footnote1'), style: 'info'},
                         {text: $filter('translate')('fs.state.health.mortality.footnote2'), style: 'info'},
                         {text: $filter('translate')('fs.state.health.mortality.footnote3'), style: 'info'},
+                        {text: fsc.dataSuppressionTexts.mortality, style: 'info'},
                         {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Infant Mortality: (All Causes, Not gender-specific)', style: 'heading'},
                         {
@@ -482,6 +484,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: $filter('translate')('fs.state.infant.mortality.footnote'), style: 'info'},
+                        {text: fsc.dataSuppressionTexts.infantMortality, style: 'info'},
                         {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                         {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
                         {
@@ -496,6 +499,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: PRAMSSource, style: 'info'},
+                        {text: fsc.dataSuppressionTexts.prams, style: 'info'},
                         {image: fsc.imageDataURLs.brfs, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Behavioral Risk Factors', style: 'heading'},
                         {
@@ -510,6 +514,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: $filter('translate')('fs.state.brfss.footnote'), style: 'info'},
+                        {text: fsc.dataSuppressionTexts.brfss, style: 'info'},
                         {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Teen Health', style: 'heading'},
                         {
@@ -523,7 +528,8 @@
                             layout: lightHorizontalLines
                         },
                         {text: YRBSSource, style: 'info'},
-                        {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                        {text: fsc.dataSuppressionTexts.yrbs, style: 'info'},
+                        {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Births', style: 'heading'},
                         {
                             style: 'table',
@@ -536,7 +542,8 @@
                             layout: lightHorizontalLines
                         },
                         {text: $filter('translate')('fs.state.birth.footnote'), style: 'info'},
-                        {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image'},
+                        {text: fsc.dataSuppressionTexts.natality, style: 'info'},
+                        {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                         {text: 'Tuberculosis', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.tuberculosis[0].pop)},
                         {
@@ -550,6 +557,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: $filter('translate')('fs.state.tuberculosis.footnote'), style: 'info'},
+                        {text: fsc.dataSuppressionTexts.tb, style: 'info'},
                         {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Sexually Transmitted Infections', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.stdData[0].data[0].pop)},
@@ -564,7 +572,8 @@
                             layout: lightHorizontalLines
                         },
                         {text: $filter('translate')('fs.state.std.footnote'), style: 'info'},
-                        {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                        {text: fsc.dataSuppressionTexts.std, style: 'info'},
+                        {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'HIV/AIDS', style: 'heading'},
                         {text: 'Population: '+$filter('number')(fsc.factSheet.hivAIDSData[0].data[0].pop)},
                         {
@@ -578,6 +587,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: $filter('translate')('fs.state.aids.footnote'), style: 'info'},
+                        {text: fsc.dataSuppressionTexts.aids, style: 'info'},
                         {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Cancer Statistics', style: 'heading'},
                         {
@@ -590,7 +600,8 @@
                             },
                             layout: lightHorizontalLines
                         },
-                        {text: CancerSource, style: 'info'}
+                        {text: CancerSource, style: 'info'},
+                        {text: fsc.dataSuppressionTexts.cancer_incidence, style: 'info'}
 
                     ];
                 var document = pdfMake.createPdf(pdfDefinition);
@@ -1292,15 +1303,15 @@
             };
 
             //PRAMS
-            var natalityTableData = [];
-            angular.forEach(fsc.factSheet.natality, function(eachRecord, index){
-                natalityTableData.push([eachRecord.cause, $filter('number')(eachRecord.data),
-                    $filter('number')($rootScope.nationalFactSheet.natality[index].data)]);
-            });
-            allTablesData.natalityTable = {
-                headerData: ['', 'State', 'National'],
-                bodyData: natalityTableData
-            };
+            // var natalityTableData = [];
+            // angular.forEach(fsc.factSheet.natality, function(eachRecord, index){
+            //     natalityTableData.push([eachRecord.cause, $filter('number')(eachRecord.data),
+            //         $filter('number')($rootScope.nationalFactSheet.natality[index].data)]);
+            // });
+            // allTablesData.natalityTable = {
+            //     headerData: ['', 'State', 'National'],
+            //     bodyData: natalityTableData
+            // };
 
             //BRFSS
             var brfssData = [];
@@ -2014,8 +2025,9 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: $filter('translate')('fs.women.health.footnote1'), style: 'info'},
-                    {text: $filter('translate')('fs.women.health.footnote2'), style: 'info'},
+                    {text: $filter('translate')('fs.women.reproductive.health.footnote1'), style: 'info'},
+                    {text: $filter('translate')('fs.women.reproductive.health.footnote2'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.bridgeRace, style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {
@@ -2029,9 +2041,9 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: $filter('translate')('fs.women.health.mortality.footnote1'), style: 'info'},
-                    {text: $filter('translate')('fs.women.health.mortality.footnote2'), style: 'info'},
-                    {text: $filter('translate')('fs.women.health.mortality.footnote3'), style: 'info'},
+                    {text: $filter('translate')('fs.women.reproductive.health.mortality.footnote1'), style: 'info'},
+                    {text: 'Age adjustment is a technique for "removing" the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures.', style: 'info'},
+                    {text: fsc.dataSuppressionTexts.mortality, style: 'info'},
                     {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
                     {
@@ -2045,7 +2057,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: PRAMSSource, style: 'info', pageBreak: 'after'} ,
+                    {text: PRAMSSource, style: 'info'} ,
+                    {text: fsc.dataSuppressionTexts.prams, style: 'info'},
                     {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Pregnancy Risk Factors', style: 'heading'},
                     {
@@ -2059,9 +2072,9 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: $filter('translate')('fs.women.natality.footnote'), style: 'info'},
-
-                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
+                    {text: $filter('translate')('fs.women.reproductive.natality.footnote'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.natality, style: 'info'},
+                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: 'Delivery Factors', style: 'heading'},
                     {
                         style: 'table',
@@ -2074,8 +2087,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: $filter('translate')('fs.women.natality.footnote'), style: 'info'},
-
+                    {text: $filter('translate')('fs.women.reproductive.natality.footnote'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.natality, style: 'info'},
                     {image: fsc.imageDataURLs.brfs, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Behavioral Risk Factors', style: 'heading'},
                     {
@@ -2089,7 +2102,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: $filter('translate')('fs.women.brfss.footnote'), style: 'info'}
+                    {text: $filter('translate')('fs.women.reproductive.brfss.footnote'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.brfss, style: 'info'}
                 ];
                 var document = pdfMake.createPdf(pdfDefinition);
                 document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
@@ -2109,8 +2123,8 @@
                 allTablesData.pramsTable.bodyData = prepareTableBody(allTablesData.pramsTable.bodyData);
                 allTablesData.pramsTable.bodyData.unshift(prepareTableHeaders(allTablesData.pramsTable.headerData));
 
-                allTablesData.natalityTable.bodyData = prepareTableBody(allTablesData.natalityTable.bodyData);
-                allTablesData.natalityTable.bodyData.unshift(prepareTableHeaders(allTablesData.natalityTable.headerData));
+                // allTablesData.natalityTable.bodyData = prepareTableBody(allTablesData.natalityTable.bodyData);
+                // allTablesData.natalityTable.bodyData.unshift(prepareTableHeaders(allTablesData.natalityTable.headerData));
 
                 allTablesData.brfss.bodyData = prepareTableBody(allTablesData.brfss.bodyData);
                 allTablesData.brfss.bodyData.unshift(prepareTableHeaders(allTablesData.brfss.headerData));
@@ -2227,6 +2241,7 @@
                     },
                     {text: $filter('translate')('fs.women.health.footnote1'), style: 'info'},
                     {text: $filter('translate')('fs.women.health.footnote2'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.bridgeRace, style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {
@@ -2241,8 +2256,9 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.women.health.mortality.footnote1'), style: 'info'},
-                    {text: $filter('translate')('fs.women.health.mortality.footnote2'), style: 'info'},
+                    {text: 'Age adjustment is a technique for "removing" the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures.', style: 'info'},
                     {text: $filter('translate')('fs.women.health.mortality.footnote3'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.mortality, style: 'info'},
                     {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
                     {
@@ -2256,22 +2272,23 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: PRAMSSource, style: 'info', pageBreak: 'after'},
-                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'Maternal Risk Factors', style: 'heading'},
-                    {
-                        style: 'table',
-                        table: {
-                            headerRows: 1,
-                            widths: $.map( allTablesData.natalityTable.headerData, function (d, i) {
-                                return '*';
-                            } ),
-                            body: allTablesData.natalityTable.bodyData
-                        },
-                        layout: lightHorizontalLines
-                    },
-                    {text: $filter('translate')('fs.women.natality.footnote'), style: 'info'},
-                    {image: fsc.imageDataURLs.brfs, width: 50, height: 50, style: 'dataset-image'},
+                    {text: PRAMSSource, style: 'info'},
+                    {text: fsc.dataSuppressionTexts.prams, style: 'info'},
+                    // {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
+                    // {text: 'Maternal Risk Factors', style: 'heading'},
+                    // {
+                    //     style: 'table',
+                    //     table: {
+                    //         headerRows: 1,
+                    //         widths: $.map( allTablesData.natalityTable.headerData, function (d, i) {
+                    //             return '*';
+                    //         } ),
+                    //         body: allTablesData.natalityTable.bodyData
+                    //     },
+                    //     layout: lightHorizontalLines
+                    // },
+                    // {text: $filter('translate')('fs.women.natality.footnote'), style: 'info'},
+                    {image: fsc.imageDataURLs.brfs, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: 'Behavioral Risk Factors', style: 'heading'},
                     {
                         style: 'table',
@@ -2285,6 +2302,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.women.brfss.footnote'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.brfss, style: 'info'},
                     {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Teen Health', style: 'heading'},
                     {
@@ -2299,6 +2317,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: YRBSSource, style: 'info'},
+                    {text: fsc.dataSuppressionTexts.yrbs, style: 'info'},
                     {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Sexually Transmitted Infections', style: 'heading'},
                     {
@@ -2311,7 +2330,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: $filter('translate')('fs.women.std.footnote'), style: 'info', pageBreak: 'after'},
+                    {text: $filter('translate')('fs.women.std.footnote'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.std, style: 'info'},
                     {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'HIV/AIDS', style: 'heading'},
                     {
@@ -2325,7 +2345,8 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.women.aids.footnote'), style: 'info'},
-                    {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image'},
+                    {text: fsc.dataSuppressionTexts.aids, style: 'info'},
+                    {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: 'Cancer Statistics', style: 'heading'},
                     {
                         style: 'table',
@@ -2337,7 +2358,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: CancerSource, style: 'info'}
+                    {text: CancerSource, style: 'info'},
+                    {text: fsc.dataSuppressionTexts.cancer_incidence, style: 'info'}
 
                 ];
                 var document = pdfMake.createPdf(pdfDefinition);

@@ -126,32 +126,32 @@
         </div>
         <br/>
         <!--Maternal Risk Factors-->
-        <div class="natality-factsheet">
-            <div class="table-heading"><h5><img src="../../images/icons/natality-icon.svg"/>Maternal Risk Factors</h5></div>
-            <table class="natality-table">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>State</th>
-                    <th>National</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="eachRecord in fsc.factSheet.natality" ng-class="{solidBorder: $index == 0}">
-                    <td ng-bind="eachRecord.cause"></td>
-                    <td ng-if="eachRecord.data =='Not applicable'" ng-bind="'Not applicable'"></td>
-                    <td ng-if="eachRecord.data !='Not applicable'" ng-bind="eachRecord.data | number "></td>
-                    <td ng-if="nationalFactSheet.natality[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>
-                    <td ng-if="nationalFactSheet.natality[$index].data !='Not applicable'" ng-bind="nationalFactSheet.natality[$index].data | number "></td>
-                </tr>
-                </tbody>
-            </table>
-            <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.natality.footnote' }}"></i>
-            <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
-            <i>Click here for <a ng-href="/description/natality" target="_blank">data suppression</a> rules</i>
-        </div>
+<!--        <div class="natality-factsheet">-->
+<!--            <div class="table-heading"><h5><img src="../../images/icons/natality-icon.svg"/>Maternal Risk Factors</h5></div>-->
+<!--            <table class="natality-table">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th></th>-->
+<!--                    <th>State</th>-->
+<!--                    <th>National</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr ng-repeat="eachRecord in fsc.factSheet.natality" ng-class="{solidBorder: $index == 0}">-->
+<!--                    <td ng-bind="eachRecord.cause"></td>-->
+<!--                    <td ng-if="eachRecord.data =='Not applicable'" ng-bind="'Not applicable'"></td>-->
+<!--                    <td ng-if="eachRecord.data !='Not applicable'" ng-bind="eachRecord.data | number "></td>-->
+<!--                    <td ng-if="nationalFactSheet.natality[$index].data =='Not applicable'" ng-bind="'Not applicable'"></td>-->
+<!--                    <td ng-if="nationalFactSheet.natality[$index].data !='Not applicable'" ng-bind="nationalFactSheet.natality[$index].data | number "></td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--            <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.natality.footnote' }}"></i>-->
+<!--            <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>-->
+<!--            <i>Click here for <a ng-href="/description/natality" target="_blank">data suppression</a> rules</i>-->
+<!--        </div>-->
         <!-- BRFSS -->
-        <br/>
+<!--        <br/>-->
         <div class="brfss-factsheet">
             <div class="table-heading"><h5><img src="../../images/icons/brfss-icon.svg"/>Behavioral Risk Factors</h5></div>
             <table class="brfss-table">

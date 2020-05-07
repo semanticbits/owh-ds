@@ -375,18 +375,16 @@ function getDeliveryFactorsDataForFactSheet(factSheetQueryJSON, sex) {
             var medicalAttendantData = searchUtils.populateDataWithMappings(resp[2], 'natality');
             medicalAttendantData = formatDeliveryFactorsResponseData(medicalAttendantData, 'medical_attendant');
             var doctors = ['Doctor of Medicine (MD)', 'Doctor of Osteopathy (DO)'], doctorsTotal=0;
-            var nurse = ['Certified Nurse Midwife (CNM)', 'Other'], nurseTotal=0;
+            var nurse = ['Certified Nurse Midwife (CNM)', 'Other Midwife'], nurseTotal=0;
             var updatedMedicalAttendantData = [];
             for(var i=0;i<medicalAttendantData.length;i++){
                 if(doctors.indexOf(medicalAttendantData[i].name)>=0) {
                     doctorsTotal+=medicalAttendantData[i].natality;
                 } else if(nurse.indexOf(medicalAttendantData[i].name)>=0) {
                     nurseTotal+=medicalAttendantData[i].natality;
-                } else {
-                    updatedMedicalAttendantData.push(medicalAttendantData[i]);
                 }
             }
-            updatedMedicalAttendantData.unshift({name: 'Certified Nurse Midwife (CNM) OR Other', natality: nurseTotal});
+            updatedMedicalAttendantData.unshift({name: 'Certified Nurse Midwife (CNM) OR Other Midwife', natality: nurseTotal});
             updatedMedicalAttendantData.unshift({name: 'Doctor of Medicine (MD) OR Doctor of Osteopathy (DO)', natality: doctorsTotal});
 
             var data = [
