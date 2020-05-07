@@ -52,6 +52,7 @@
                 <i class="bridge-race-info">
                     {{'fs.women.reproductive.health.footnote1'| translate}}<br> {{'fs.women.reproductive.health.footnote2'| translate}}<br>
                 </i>
+                <i>Click here for <a ng-href="/description/bridge_race" target="_blank">data suppression</a> rules</i>
             </div>
         </div>
         <!--  Detail Mortality - Cause of Death -->
@@ -86,6 +87,7 @@
             <i class="mortality-info footer-notes primary" translate="{{ 'fs.women.reproductive.health.mortality.footnote1' }}"></i>
             <i class="mortality-info footer-notes" translate="{{ 'fs.women.reproductive.health.mortality.footnote2' }}"></i>
             <i class="mortality-info footer-notes" translate="{{ 'fs.women.reproductive.health.mortality.footnote3' }}"></i>
+            <i>Click here for <a ng-href="/description/deaths" target="_blank">data suppression</a> rules</i>
         </div>
         <br/>
         <!-- Prenatal Care and Pregnancy Risk -->
@@ -111,6 +113,7 @@
             </table>
             <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.reproductive.prams.footnote' }}"></i>
             <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
+            <i>Click here for <a ng-href="/description/prams" target="_blank">data suppression</a> rules</i>
         </div>
         <br/>
         <!-- Maternal Risk Factors -->
@@ -136,6 +139,7 @@
             </table>
             <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.reproductive.natality.footnote' }}"></i>
             <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
+            <i>Click here for <a ng-href="/description/natality" target="_blank">data suppression</a> rules</i>
         </div>
 
         <!--   Delivery Factors     -->
@@ -160,6 +164,7 @@
             </table>
             <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.reproductive.natality.footnote' }}"></i>
             <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
+            <i>Click here for <a ng-href="/description/natality" target="_blank">data suppression</a> rules</i>
         </div>
 
         <!-- BRFSS -->
@@ -182,6 +187,7 @@
                 </tbody>
             </table>
             <i translate="{{ 'fs.women.reproductive.brfss.footnote' }}"></i>
+            <i>Click here for <a ng-href="/description/brfss" target="_blank">data suppression</a> rules</i>
         </div>
         <br/>
     </div>

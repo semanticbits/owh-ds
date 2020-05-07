@@ -143,14 +143,14 @@
                     'Asian or Pacific Islander', 'Black or African American', 'Hispanic or Latino', 'White'],
                 detailedMortality: ['Cause of Death', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
                 infantMortality: ['Indicator', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
-                brfss: ['Question', 'State/National', 'American Indian or Alaskan Native, non-Hispanic', 'Asian, non-Hispanic', 'Black, non-Hispanic',
+                brfss: ['Question', 'American Indian or Alaskan Native, non-Hispanic', 'Asian, non-Hispanic', 'Black, non-Hispanic',
                     'Native Hawaiian or other Pacific Islander, non-Hispanic', 'Multiracial non-Hispanic', 'Other, non-Hispanic', 'Hispanic'],
                 natality: ['', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
-                tuberculosis: ['', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
+                tuberculosis: ['', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
                     'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'White'],
-                std: ['Disease', 'State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
+                std: ['Disease', 'State/National', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
                     'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'White'],
-                hiv: ['Indicator', 'State/National', 'Rates', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
+                hiv: ['Indicator', 'State/National', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
                     'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'White'],
                 cancer: ['Cancer Type', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black', 'Hispanic', 'White']
             }};
@@ -167,6 +167,7 @@
             hiv: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAAA8AXHiAAAACXBIWXMAABJ0AAASdAHeZh94AAAgAElEQVR4nO2dd3hUVfrHv++5dzLphIQ0CC2EEmYSqigivQgq6qohCSira8Vd3Z8r6i4lDCSwa1ldXd1dXHFdFRKIDVGxAAIiRUBIJ/SeQnrPzL3n/f0RUBbSCwl4P8/DH8w95T0z35z6nvcCBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBtc41N4GXOD+wTavSofoSyZ5LmG/7Xh722PQMjqEsCKtsb8Xgv7Mkl0AQFHELpaOmatSbEfb2zaD5tHuwooMi4sg5jWDRwVj5OSBqCivxicrtmtlxZU5Jaqj37q9tor2ttGg6ajtbYAi8Md+1iB+6E/TiM7L3MfXQ3352Y+6uWnKLAD/blcDDZqFaG8DmGHtFRrwk6gAIDg0AKoqJAi9288yg5bQ7j0WEZ0+mHymNzN+Elf2qUJomhTMnNyYMiIGxXVTNMQJhfqyrm/UPN3/krjjD5VtabdB/bS7sKSuLz2anrUi4fXNGDGxP/KzS7D23Z1SUcUpu8PxWUP5Iyw2JyemDTChf48QPzqemXOjWl5xPcDTAOIr0QaDy2n3yTvAFGmNe1IIeoElOwEAEbGAfuvKlEXrG8o9w7J4vCCx6eH5UzH4xj749N2d+Gr1XugKBSUmLTjTGAsiBsV1U3QaTCwrNejbEtNs9pa26pdOu8+xAOLVqQtfLTNpnYl4HCuYzswOyWJ2Y3IrVNPrVlc4AABSlwDALtWiqjH5o6xxT6qMo4D8jAkbnRTT2Wjr4snNbIzBeTpAj3U5kdbYlwh4mplHrE6L2V1f2keGLTeVaef2E4kB3n7u4tzZYhDh/fiUhfc1VE+0dfFkhvh6+Ni+mHDnYICBj1Zsk0fTs3VAG2DsozWfDtBjXY5C6lIAhYLoJYDrFf+bex91ULk2UnfoiefOFgPMb5pL9YcbVREpc7r28tHvnzsZPfv5oWd/Pzw0b5oQCimSxZzWaMsvlQ4prFUpfypkojgGxkRZ4qY3lH7lYVsJgz8BADD+9c5xW6OGQUE0ICDISyHxs3Y9vFzQuYu7BMi/ufYbdFBhAUBJpecbYDoO4ufHjbM1uHolgisA6Co1eqdekzIzM/msXl3p+OmzvJwS5OeUKQTUOwQb1E+HFdb6w09WEzAPoAGB+cqDDaXn88JSZOOFZdJFbHlJpfjbvLW8a+MBbPw4CX+d+5FOCmURqe+3xP5fOh1WWADQP01bDWAPMxbf3v95j/rSCilcAcBJE40UFpOuyNkA6MzR3IJ3X96Ij97ahrLiyh+lXZuyKuVPhS21/5dMhxaWDTZJxHMB+Lup1XPrS8vErgBQ2dm5UcKKsi59moHfM+itlfvn++oKBekmxW9V0rzr49Nj0lrB/F80HVpYABCfErOFweuYaG5Uf1vXutIRaobCxB1PNThxjwyLmwXwiwA+y+mizQGIE5MWnEncN++csVvfOnR4YQGAZPWPAJzZpC6uK835OVZFQ8KYERY7iZj/A8Iuk3CO2rzZprW2vQYddIO0NqIscctB/BBJDtdMokjV5DQQ3UiChhOROwA/yTCzzu8T8Y+AWBOfOj/n4jJmWpYOZpJbmTmLHHJU/EFbXjs155rnqhFWhMUWoAjlKIACAgUws+LsbJK9BwYIN09nqKqK8rIqZB3L1/JzS1SAdAI+k7pcnJAesy8iPLa3IrEdAHSBGxOTFx5r5yZd01wVwoqIWKMoGQefAzhOMSk0akooRk21oFsvH1y8uXmBksIK7N58EFs+S9Hzc0oFwG+x5PGCyJ9YjFmVNn9/OzTjF0W7CSti5MsuoqSsn0kque9nzM+qL51aUbmWdTl5+Li+uOeR0fDo5NKoOhwOHd988CPWx+9lsARDj4hPXvRhqzXCoE7aRVgzLXEjoNLHUpddAUAhscYuHQ8mptnKLk43bpxNDSxUPyGmW+57agKNmNC/WfUdScvCP2LWSYdDP0F2jKpPyAatwxVfFUZYbE6kiLUBPTr7P7pgGqKfGAcmvkchsfTStIF5ykuQfOv9z0xutqgAoI8lEE+9eJdQVNFTV3lVRMQapUWNMGiQK/4FWwMmjQLLJx5deIsYMKQ7eoT44dzZYso+Wdg1JWfTKxfSzbTEjWDCv6ffdz2NudXa4no9O7vCy8eNknYc60X5BZVpuZu2Nb0Upiir8hur34QFYX4TbrR2HXsgNXtzUYuNuwa54j0WEewAUHju51HP4dDAxIHR1tgXogcusQBMULHcP8hLTrpnSKvVff3EUFiv6wlBmD8rxObZ1PxRlrj/A2hFJ2+3X5lcnH4ndDXp3tClga1m4DXEFe+xBo55LMtUWHBHxr5TXaqrHGLr5ynY//1RMCMTwO0g+q3Fb8sMMMJmPjFOdO3p02p1EwE+/p7Y/lW6E1SRn5r77Y7G5WSKsFAPVVVXDRza3eXZV2dQ+IheYusXqWYm5Kae2/R9qxl5jXDFL1MkJs7Qo/vZJlVJ/O3rNXvvAFElMb0Unzb/xSjr0iAA9xHRs67uZg67vnerLy6CQwPQo68fnzpy7kEAf730+bhxNjUwV/SXihgM5iFEGAKOGwwo3gwGCQIRwcXNqSYDsd7aNl4LdMh9rFmDlx6/fuKAnrOeHN8m5a97bxe+TNgD1Sy6apV6DwgMYdBgAoYACAfgfD6pzkC6APaBaR8ED2fGrO7BvpyfW8JVFY5yB3FoYy9tAEz3hi4LcCgyjBieLMhMLM0MMoO5nIU4LhjH9NB+ZxMTZ1zVgm3361+Xcl/4i24OrapH157ebVZHyMCaaZFWLc9A1NxmJKAcQBKD3hYs95HAPqdSmXaxN6oNNpFhVb4/fSJvBiQXkRSLE9PqFtUjw5abyqqyJzCJiZJoiKBlQzQpfS5USMwAqOavm+j8/wHlQKY2c/CyTNb0T4jp035p2h4bbLKtvo+2oMP1WJGWJYOIaP8c222wXtezTerIPVOMxY+8DwatA8tVUqF96N//cGv0EjbYxIFwMQqSokkRUazLziQEe/X0Zt9+/sInxA/efXzh4uUK1dkE1cUE1axCq9ZQllOM0uwSlGWXIDcjC6d2HdO1KociVJEnNf0d3aS+UOOB0fHpcD2WAoUkJJjbzntFNdUshonkRwmpMQkAgEbdua6biIg1ippxIDpTUWKhy16KSZE9RvURfScORPeRvUk1m+r9IzZ7AG5d3OFv6fbTZ7pdV7KST+PY1kNdMtcl/YF0+bso65KXBZleqssRMcJiCxFCvZ2ACaSIXpCcz1IeYiH+sTp5/o8ta2Xj6XDCYtYdIIKjuu28WaSsGVWI0ahKHhm23FSIQtfEvX8svvwpU5QlbjodOPgXBoX69PKR4dEj0PumEGFyM7fITsVJQdDwngga3hPD7h8pklbtck79aN8fIfXHZ4TFRqxJWbjhQtppIa+ZvcxF81jQPDCrTt29dedgP0XqEpXpZ27UC8ofjAqPW63r2uwrcSG3wwlLI5mlQEH2qYI2qyPndM2eJkvU6ykabYmdKgS9XFydO0ABKHpQXBLr+GtC6oL3AODe0KWBumnZSpYY7xnkpV/38BgEj+0najsYbymu3m4Y+bsJCI8aITYs/MQzOy3r62hr7DPxqQtenhbyd6dOrsXfsqSRnuMHwmfmDTD5ef68laRLNT9xN/JX7YhUSMkAUKdfW2vR4Y420s9trgz3n3ivUIT39S04xqmP/duOIDPpNEDCZPEf7xPuP7nqntzRBZux+afxN9IaOweEeL+gzt7jpoeJQTcEA0z+57KK7rIGTPK3+o+tYkVsUp3EgNFPT6Exz04VPsG++J+wOW2Ak6sT+t1soaqiSjqXmT3F4vtdoLOTfTpA07vF3EHedw2DcmlPKQiuliBUJJ+Enl/eJ/WiE462osP1WAAgmbccSTkbXF5aJdw8nBvO0ER2bzkoSYhiljKKGL9h6DhgVQqjKHYXg3Ywy9NC0GsjJvTHrCfHK4pSMycbd8cg+nL1bnz23g9zAPFYl/6+PGnxHcKzm1er21gfwqRg9NzJcO3ihj0rtj0CZvg/Nh5uw3vVnYkAc28/VGVk+V4RG69EJU1hZtifOzNxpUPTxbYv01u9/JOHcnH2eIFgXT6S3UXvBMlDGXicgHWQHEzMiwVohVBIjXp8LC6ICqjZuZ8SMQydfT3gEdiJ7vznvVdcVBczdPZI9BzZB0QEc++G9VJ97JzOEDuvgGkdp8eaGRrbV6r4vWTtAQK5khDF336832PMLRbh0sJJ8AVYMhLf/E4qQpyx645Pz/u77zv/758AMHvAMh+7Sfs8sLvPCCezetm4pigCwaH+OHaqCMLUvjMJEoTxC29F4v3/Qc5r36DnG7OBOuZ3FcmnUJl+RiHmlVfCtjYRlg02kWmliQzqA5BDEfpXK5Ntpy9PyTTDsmQcET0lgdvA0EFIZMmvQDKXlVTtjH99Mx549ma0xtTluy9ScTQ9WwjCY3WtjN49MC8/0hqXUphXNpwlK7VNxCsr7DC3cIjOO5iDLS98hcr8MlSXVAGCoDipcPVxg2c3L/hbu6HnjX3g3btLveWYPZxxw5yx2Lj4M5RuOwiPMZfPSyvTz+Ls0nU6VLHNQ+ny3xYZ3khaXVgRlmUDDyryPZY89MJnulQQFRb3enGl59z1h5+sjrDYnAREFCjuKYIYDKAQjBcURX/9YgFGWmP/tHfr4Rd69vPHxF8NbpFdSTuOYs2/vmMiSliVsuCL+tIKyC3lJZUP7d16GMPH9f2fZ2eP5+Ng0hkMe/CmFtkjVAFnLxd4+HvA5GqGk6sTIIDSs8UoPlmAUzuP4od/bUFAeBBuemoSfEL86iyrz4RQ7PzHZhSt2/+zsCSj+kQeCtftR8mGNJBCR52qxd1vHnjUUWdBrUirLmHuH2zzckhTsntnl66/evBGJXRwdwCMnRsPYu3bOxjEn+uSdxLwOwABAA4R899UxeW/7yU/U35peTbYRGaY+jYz//rWWddhWvSIJvdczMDODRmI//tmKcFbi8o9p64//GR1fXlssInMcNN2VaHrIn87Vgy5KQRgRsru4/h4xXYId2fc9dZsqM6mphnTBOzl1Uhfm4SUxD2oKqrA1L/cje7X1x2Sdccb3yJ59W6o3h666uMm7GcLWZZVCwZYMD+vebovuZLhM1tVWFGW2L+YnNW58/8eqfheMqnd+HESPnpr24VaNzHjldBU/YuGz8CYoqyxLwA0N8TajaN/N5YCundulD0FuaX4eMX3+HHbEQiiDWV2012fZj5X2pi89w+2edk19S0JvpuoRqAA4G8JxPj5t6FTI21oKfYKO9Y9mYCynBLM+vAxqE61DzInth/Bl899CABbCHAwkM/AXkWnNasyFpy4IsZeRKsKa9agpRlDRvcZ8MAzUy575nDoePruf7Ou628npC58qCnlzh6wzMeu6keEQm6QpAwa2Rsjbw6lvmHd4GT+3y+6vLQKRzOy8cOmTPy47TAAgJg/7J8qZzT1IHdayGueXi4luQHhQebgcf3h2b0zul/Xq9abQW3JqZ1H8cUzH+DWVyIRNLz289PS7GKsilgOIjwWn7Jw+RU1sBZadY7FzP5uHrXfoDGZFHTycdULcsua/KvYFf01AB4OKScIiJFJu44+sm/7kd5EQGdfD+nl4ybsdk1WlTs4L7tYAQBBVEWM5Qy+iUHj0yzwQhqatJ3fyaUoipnMY569GV492s7boiEuLBR0e90nUGb38ytnSZ2uhE0N0dqT92NHM7K8Lg6tfYGKsmoUnCtTGLynKQVGh8XeyYyZxPyXxNSYLQC2APx8ZPjS6yExIj+3dGFhTilJ4u0A7IKRJoWy0+GkbE/c+8fiKGvccIB/UKAuBvBEU+oWQpnjb+kqvXp4t+t+38ldxyAUgQBrnaEroNlrHDOYZMmVsqs+WlVYOvPrpw6fe3vHNxm4cUroz5/rEvF/38ICqCahr2tsebMHLPOxs/4vABnmcnnR+Rbx6mTsBLAz2rrkUUl0fHVqzO21lZGQumBPlDXuPyB+fFbYkjdXpsSkNKbumaGxfaUuB/e/peUXOVpC8alCJMX/gP63hsHsWfd9ypLTNc4OkujwlbKtPlpVWKEp+n8Phqu/WvnqpumZ+0+h/+DuKCuqwPavM/RzWcUKgR9elVLbflbtOFT9VQC+kHxHXeEfGeQCcL2rHQLNAzhCsngV4ImNiSgjBUIBwKdv+0WMLMspwfrnPoCLtxtGPj6u3rTFZ2qEJRS9QwirVbt4G2yyX7J2JxM9vW/bkaMrX92Etf/difyc0kOSMDk+NabRUfIiw+LuYGAWE7+UkB6zq56kLoT6o/jFp87PYdASBo+PtMTaosNiH51piRtRX+BcFhQCAO11ZHPi+yP45LH3IR0St78ahYZccM4dyAYJUa73HXjqCplYL62+QWqDTSIFLwN4Odq61N9c5ih+5/jCRgWbBYDpw2yu7qVwZeblAB9wKZWLGsjiAqYG92ecy7TXqz3VRZCIYQaYGDPDl64+6227t7ZQRsQc4uRh1p3czHWe2xSdLEDB4VwETxjQiJY1jtLsYnz/tw048f0RBIQHYZJtOtx86w1mCM2u4eCX6TpL+W5dXrCzByzzqVb1scToCaI8VacNbXkjvE3PCi8NI1Qf0dal/hD8AVfzTeRCVVKHGYLufOd4TEOidCGqfygEgCp3NQKS3aOfGIdhY/oiafsRvPfKpsjAc2IrgH/UksWpIReYo99mYs+K7xAR7IvOvVp2Ta34VCEy16cgZfUeMBjDHhiFob8eCaE0PKgc25wJR0W1AsmXvSktYuTLLqKszOZgfS4BomaDiaGZoEUPiouNT1qwpEWG10HH8W4Q8k2hiFFT7hmKEGtXZwITdFmvD/r5q/JO4IaFBfCUgO6dtZumWuDi6oQbJoXCr5uXxqBRtaUm5mJ7mV1Ire6tr9A7BsHk4oQNiz5FWU7TF2OVRRVI+2gfPn7sfSTM/Df2rdyFXmP6IWrlwxj+m1GNEhVLRsqaPZIUSkpIj9l38bMIi81JLavcQKBnB9w+SNy1/D48vHkuZq/9HUKnD1JZ58XRlri7m2x4I+gg3g1MhKXTRk+z0B0PjERxfjnmzX4HAmI86gmL7Zx5wtkBQArRoLAYVFJ4rowqyqrh6m5GVaUD5cWVIPDJ2i1CGqSkohP58O5Tu0uKi5crbnslEl889yESZr6F/tPC0HN0CPwHBl52SK3bdZTllqDoZAFy084iJ/UMspJOQ+oSZk8XhEddB+vdQ+ER0LRtqJTEvTiXmSOI8YdLnymk2EAYOe2FCPS46DjIxdsVo/8wGcc2Z+pVxVWTALR6BJ4OIixioqW5B/af7nouq5gy9tb81kw4VF8urarcBU4KGtNjScGv2e3aQ3+d+yGHDu2hpuw6rldV2u2S6K3a0uus7lRIx+k9J+oUFgD4DgxEdPxDSF69B5nrU5G+tqbTUJ1NcPZyAWsSmkOHvaTyp2MhIsCrVxcMuH0wgsf2ReCg7hBq0weP4lOF2LV8i2SitxJSF2y6+FlExBpFHDr08MDbB1OPOs4YhSBmoE2ulXUQYQFS4zk5pwoTbQ+9bwYAErRJ69/vU6TWnUczwVUBgEbMsRKTF2ZGWpaMyD1T9HxuVvFQSM6AjmdWpy08Umv6tD9lRIcvPXTom/SQsBnD651uObk7Y/iDN2HYb25C8akC5B3KQWlWMSoLzp+rE+Di5QY3Pw94BHrCJ8S/xpuhBTgq7di4+FMJ5hy1UnvmMpv2pbvpzkqXTnWcGKR/uh8VhRUqAYktMqQOOtS9wihrXHcwTyVQgTaw3ycN3fOLCI/tr0gcAPBQQurCFa1tT7Ql7v+Y+JXb/haJbsPa5o5jc9CqHPji6TUyO+WsXRLGr05eUKtXaPSgpWc79/Lxu/ONmcqF7Yrq0ir8+O4OJK/ew0xYsTp5/iNtESm6w/RYAJCQuuAULrwDuhGR1k26cJEkG9VjNQfN03W5WlH57Hcvfe1314pfKy3tZVrFJruGL5/7SGanntV0qd+yJm1Rna7GuqbNKjya9817v/qH7h8WJBzl1cjNyAZLCQZeL6ns9ExbhR/vcLd0moI1YFxvgB4kovdTc7890JplTx9mc3WukH1ZykP20qrpuQeyKOj6YKjOplbxZm0OJVnFWP/MB3p26hkWwJ0JqTHf1Jc+7dzm46G+Y95hBztKzhTmV+SVn2bIeEF4OiE15u3DBevbLD5EhxoKm0q0JXYCEzYKllNXpS36qiVlRYx82UUtqbiFBd9NJEZIycFUy868yc2MroOCEDxhAHrdFAKnVvLHb4ij32Zi85/X67rdUcgaR8anLdzUcK72o0MNhU1hVrgtSGe6D8zQofRpbjkzw2zBktX5KK+IYmJXxd1Fdwnrpjj38Ye5ty+EmxPISa1Z3eUUw36mEDm7j+FE3OcwuZkx/IFRsN41pM0uVlTkleGHt7Yh8/NkCCG2OnRtZmKaLbtNKmtFrsoeK9Ky5DpFEZuZ2dVkNsFe5QATv7A6Jea5xpYRbV3qz5CLiOgRFiQ8Rvcnz7H94TqkB0g0vPS3ZxWhYOVOlGw9gM7BvrjtrxFw7eLeonZdTGVRBfav3IW0D3+UUpc6M8fqA/ovu1rCG12Vwpo1eGlKYE/v0DmLblM6ebvhi1W78cWqHwDBYxKSY75rKH+0dfFkFmo8mL09J1vIJ3IETL5NjhwJoOZaVdaydXDr7Ibpr0XB3a/+c736YAbyMrJwaGM6Mj5JkrpdAxNWKKQvqf2WU8flqhsKZw9Y5mPXdOv428Ph5eMGALg5YijWx+9mZtwIoB5hMUVZ42IYWGTu1lkGPHcLmXu07IzPNbw7usXehTMLPsSmxesw/fWZTZrcS02i4Egujm4+iMMb0mVpdokAQQPRh6woMauT5h1skYHtxFUnLFFlL4e7wlknCn76+UqKKsDMBNDZunMyRVni/gzguU43h8Hv4bEK1XExoak49w2Az32jkPXmZiREvcndR/QmtwBPePh7wN3PE0IR0Ow69GoHtCoN5QVlyDuYi/yD2bLgaD5JXScATERbiXmlxvKjxDRbvW7UERFrFOfME85KSbne2FcVX0muyqEwyhK3nAQennLPEHL1dMGWT5P14vyKcyZhD31nv63W8NiRYXExxLzY+57r0OW+Ua3fcsk49vi7bM8qKlZVUSI12Y2Z65zRE1EJwPvA2C8JSVLQ13WHnGSaYYm9kYh+RUTDAAwF809jN6lKLkvOJCnXa6ysTUyb1/qxCZrIVSmsaSGvmT1dipYopMyRUnqQoP2Q9Ov41Pm1hk+LCl88EVJs6HznMPg+MLr5rZYMWa1BuNR+nzDv3e+R/8FuVkj1cQzoU4L09G4k1F6CdBPpSrWErFYFqkCycGXyojMNbU5OC3nN3Mlc/Dgp4imWsjuI2NzTh80h/sLk5wnhrAI6oBWWofp4HlelnWGpSwFB64VO89rznUFXpbAu8Miw5aYsZJnW7bXV6UFaE2REZjj3C+gS9Jd7lMas+Ooib+V2lGzMQPCKB2v95sr3ncCZRR+DiMfFp8RsaXZFAKItcdOh0j9Zl91cBnbjTpMGkvsNIRDude+byWoHSrceRH78Tk3PLyNI+WR82sJ/tsfLPa+6OdbFvLn3UQeAeq+MM2tPQ1F8A+ZOFS0RFQAo7s7Q8koh7Q4I8+W9luJy/shHUrM3tcaNs6mBecoyBj/jHOwnu9w/Gq5hQY3qAITZhE6TLfAY00/N/ee3KNmU/kZUWJxHQgqeb649zaXjOPq1AfeFv+gGhZ7wnGIVJr/mbSf8BAPle0/AHOxbq6jOJ6lBNC/2uw02EZCv/IcJz3hHjkD3FyOFa1hQk8sRZhMCfj8FnuNDwaA/R4ctGdsce1rCNS0su155N+vs6X3n0IYTN0DxVymo2H+iZuJfV33HagIaa1I26orZpWRaxItg3Ov/5BR0mXVjozZq64QA/zkToXo6S0AsaH5BzeOaFhYJuknt4qGZmuiV+T8wUPDBbuT8YyM63WyF29BedSatSDsLUsWhhrYKaiPKGjuOif7QZfYodJo4sPn2XgQ5q+g0NUxh5kkRg+K6NZyj9bimhQUSN7kM7FrrPLLqSC4cDfipV2acxannViPv3e/hdccQ+D8+qc7ljl5UgbLthyRrshmBzZhIEf907uOve981vMm5y5NO4mzsWrC83BnUZUDN7WnS9H5Nt6v5XNWT94YgIg+qI9RQ7hsboRVVICj2Ljh1+zlyjF5cgbIdR1C67SAqkk9B9fFA4Nxp8Bjdv941dOHaH8G6dJBdf6OpdkZblo5inQd4zxhRZ0S++qhKOY2y3ccgy+1QLvG1V71cAQAKlCsafOKaFhaYGXXcsvH9zWicWboOx+f8F06BXhAeZmj55dAKygAGTAGd4DNrJDrfObTOyfoFqo/kovDjvRKS/xZ/0JbXZDNJ3iFMqnQf0bvJI4heUI7ijRlwHdzzMlEBgOO8ezQTrmgoo2taWJL5WPWh7G6oZch3sQYh+N+/QXnSSVQknwI0HS6h3aB6u8F1WG+Yu3s3apdPVjlw9sUvdIAOOZdrtubYyaAQNcCLcdF1r6LP96MyIwuBf5haey8mGaXbDiL37a0gBgL/7/LQUQBQlX4GIKrWpdaqjpANcU0LixhfVZ8qGOM4V1Kr94JwN8NjVF94jOpbS+6GkZUOnLZ9JB1ZxRpLGdX8MztyIXGpjAmlWzNBJgVeU8OhdHKBtOuwn8pHVWY2Sr/LhJZfBrchPRHw+ylQvN0uK5XtGoq/SdOJefWl79tua65pYemCP1QkYgsSdgn/Jya3btnFFTgT96msOpSjkeRbEtJikppbFgHHHNnFYCl/2mLwmhYOWeVA4Sc/omTjJUd/guA+Ihiej0+E+7Bedc7L8uJ3QJZWQRC/1FzbmstVfaTTGCKtseeJIMAAAAKvSURBVC8R8HRQ3N1wDe/eKmVWJJ9E1otf6rKk0kFSv7OlbtFRlth7QEjs+qfpcB/5v86wbNdQfSIPWkEFWNPh1NULToGdQc719wllu47i7LJ1DMlxCWkLY1piX3O4pnssAJCs21TVNO3s4rUDAmNuF26DejS7LC2vFPmrd6H461SA6CBB3LUqbUGL5y6ezn5rSxznsvNWbvdzHdpDXLxYICcVzn0DmlRe6Y7DyHr+c4bA555OfrEtta85XPM9FnA+0oqT3EBMgzrfPph8om+AaMJVLvuJPBR9nYqiL5IZUurEeKPMrM+r7/C7qcwIi51EoK89RvWlwKduBjXDh15WOZD33+9R9Pl+QKGvnYu1OuOKtTW/CGEBQITF5q5CzGch5gpXJ7iP6qt6jAyBc4gfFE/X//km9KIKVB3JRdXBbJR+f1DaTxYI1BwFvq8LLEpMXnisLWyMssQ+DMK/nPsFsP9vJyqNeY0JAMgKO0q+SUNe4g+6LKkUTGSTA/otbU//+F+MsC4QaY3tQ+DHSFVnsqZ3BQBhUqTwdNGlXSM4dJJVjp+7C0F7SMdKTUVi49/93Hyiw5aMBanvs9SDXIf1Yo8bQsglLAimLu644PHKDh3VJ/NRfTgX5T8eQ/nuY8yaJIL4VgrMvZIvvKyLX5ywfoYp2rosjMGhIO7HDF8AdsHsYNBpKJzsLGRKXR6pbUmExeakCuUBFvQI9J/f8CFcnHRp1wR0+dPvxoKKIHk1CV6ZkLxwW3v4XtXGL1hYVwcRFluAKpQbJCgYzF0JsDNRFUEeZqZ9OV30Q7VFJDQwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDC4Gvl/5T1ICiXH7/UAAAAASUVORK5CYII=",
             cancer: "data:image/png;base64,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"
         };
+        fsc.dataSuppressionTexts = getDataSuppressionLinks();
 
         fsc.getFactSheet = getFactSheet;
         fsc.exportMinorityFactSheet = exportMinorityFactSheet;
@@ -195,6 +196,17 @@
                 }
             });
         }
+        function getDataSuppressionLinks() {
+            var dataTypesSuppressionLinks = {bridgeRace:'bridge_race', mortality: 'deaths', infantMortality:'infant_mortality',
+                prams: 'prams', brfss:'brfss', yrbs: 'mental_health', natality: 'natality', tb:'tb',
+                std:'std', aids:'aids', cancer_incidence: 'cancer_incidence'};
+            var dataSuppressionTexts = {};
+            angular.forEach(dataTypesSuppressionLinks, function(value, key) {
+                dataSuppressionTexts[key] = {text: 'Click here for data suppression rules', link: 'http://gateway.womenshealth.gov/description/'+value};
+            });
+            return dataSuppressionTexts;
+        }
+
 
         /**
          * To get query results usig queryID. If no results found with this queryID
@@ -832,13 +844,7 @@
             allTablesData.bridgeRaceTable1.bodyData = prepareTableBody(allTablesData.bridgeRaceTable1.bodyData);
             allTablesData.bridgeRaceTable1.bodyData.unshift(prepareTableHeaders(allTablesData.bridgeRaceTable1.headerData));
 
-            // var detailedMortalityHeaderData = ['Cause of Death', "State/National"];
-            // angular.forEach(fsc.factSheet.detailMortalityData[0].data, function(eachHeader) {
-            //     if(eachHeader.name != 'Unknown') {
-            //         detailedMortalityHeaderData.push(eachHeader.name);
-            //     }
-            // });
-
+            //Detailed Mortality
             var detailsMortalityData = [];
             angular.forEach(fsc.factSheet.detailMortalityData, function(eachRecord, index){
                 var stateRow = [{text:eachRecord.causeOfDeath, rowSpan: 2}, 'State'];
@@ -867,21 +873,17 @@
                 bodyData: detailsMortalityData
             };
 
-            // //Infant Mortality
-
-            // var infantMortalityHeaderData = ['Indicator', "State/National"];
-            // angular.forEach(fsc.factSheet.infantMortalityData, function(eachHeader, key) {
-            //     if(eachHeader.name != 'Unknown') {
-            //         infantMortalityHeaderData.push(key);
-            //     }
-            // });
-
+            //Infant Mortality
             var infantMortalityData = [];
             var deathRateStateRow = [{text:"Death rate", rowSpan: 2}, 'State'];
             var deathRateNationalRow = ["", "National"];
             angular.forEach(fsc.factSheet.infantMortalityData, function(eachRecord, key){
-                deathRateStateRow.push($filter('number')(eachRecord.deathRate, 1));
-                deathRateNationalRow.push($filter('number')($rootScope.nationalFactSheet.infantMortalityData[key].deathRate, 1));
+                deathRateStateRow.push((eachRecord.deathRate=='Suppressed')?eachRecord.deathRate:$filter('number')(eachRecord.deathRate, 1));
+                if($rootScope.nationalFactSheet.infantMortalityData[key].deathRate=='Suppressed') {
+                    deathRateNationalRow.push('Suppressed');
+                } else {
+                    deathRateNationalRow.push($filter('number')($rootScope.nationalFactSheet.infantMortalityData[key].deathRate, 1));
+                }
             });
             infantMortalityData.push(deathRateStateRow);
             infantMortalityData.push(deathRateNationalRow);
@@ -890,29 +892,9 @@
                 bodyData: infantMortalityData
             };
 
-            // //PRAMS
-            // var pramsTableData = [];
-            // angular.forEach(fsc.factSheet.prams, function(eachRecord, index){
-            //     pramsTableData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data),
-            //         fsc.getMeanDisplayValue($rootScope.nationalFactSheet.prams[index].data)]);
-            // });
-            // allTablesData.pramsTable = {
-            //     headerData: ['Question', 'State', 'National'],
-            //     bodyData: pramsTableData
-            // };
-
-            //BRFSS
-            // var brfssHeaderData = ['Question'];
-            // angular.forEach(fsc.minorityFactSheet.tableHeaders.brfss, function(eachHeader) {
-            //     if(eachHeader.name != 'Unknown') {
-            //         brfssHeaderData.push(eachHeader);
-            //     }
-            // });
-
             var brfssData = [];
             angular.forEach(fsc.factSheet.brfss, function(eachRecord, index){
-                var stateRow = [{text:eachRecord.question, rowSpan: 2}, 'State'];
-                var nationalRow = ["", "National"];
+                var stateRow = [{text:eachRecord.question}];
 
                 if(eachRecord.data!='Not applicable') {
                     angular.forEach(eachRecord.data, function(data, index){
@@ -925,46 +907,15 @@
                         stateRow.push('Not available');
                     }
                 }
-                if($rootScope.nationalFactSheet.brfss[index].data!='Not applicable') {
-                    angular.forEach($rootScope.nationalFactSheet.brfss[index].data, function(nationalData, j) {
-                        if(nationalData.name !== 'Unknown') {
-                            nationalRow.push(fsc.getMeanDisplayValue(nationalData.brfss.mean));
-                        }
-                    });
-                } else {
-                    for(var i=0; i < fsc.minorityFactSheet.tableHeaders.brfss.length-2; i++) {
-                        nationalRow.push('Not available');
-                    }
-                }
                 brfssData.push(stateRow);
-                brfssData.push(nationalRow);
             });
             allTablesData.brfss = {
                 headerData:  fsc.minorityFactSheet.tableHeaders.brfss,
                 bodyData: brfssData
             };
-
-            //YRBS
-            // var yrbsData = [];
-            // angular.forEach(fsc.factSheet.yrbs, function(eachRecord, index){
-            //     yrbsData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data),
-            //         fsc.getMeanDisplayValue($rootScope.nationalFactSheet.yrbs[index].data)]);
-            // });
-            // allTablesData.yrbs = {
-            //     headerData: ["Question", "State", "National"],
-            //     bodyData: yrbsData
-            // };
             //Natality
             allTablesData.natality = prepareMinorityNatalityData();
 
-            //Tuberculosis
-            // var tbHeaderData = [""];
-            // var tbData = [];
-            // angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord, index) {
-            //     if(eachRecord.name !== 'Unknown') {
-            //         tbHeaderData.push(eachRecord.name);
-            //     }
-            // });
             var stateData = ['State'];
             var nationalData = ['National'];
             angular.forEach(fsc.factSheet.tuberculosis, function(eachRecord, index) {
@@ -974,17 +925,9 @@
                 }
             });
             allTablesData.tb = {
-                headerData:  fsc.minorityFactSheet.tableHeaders.tb,
+                headerData:  fsc.minorityFactSheet.tableHeaders.tuberculosis,
                 bodyData: [stateData, nationalData]
             };
-
-            //STD
-            // var stdHeaderData = ['Disease', "State/National"];
-            // angular.forEach(fsc.factSheet.stdData[0].data, function(eachHeader) {
-            //     if(eachHeader.name != 'Unknown') {
-            //         stdHeaderData.push(eachHeader.name);
-            //     }
-            // });
 
             var stdData = [];
             angular.forEach(fsc.factSheet.stdData, function(eachRecord, index){
@@ -992,12 +935,12 @@
                 var nationalRow = ["", "National"];
                 angular.forEach(eachRecord.data, function(data, index){
                     if(data.name !== 'Unknown') {
-                        stateRow.push((data.rates =='Suppressed' ? '': data.rates));
+                        stateRow.push((data.rates =='Suppressed' ? 'Suppressed': data.rates));
                     }
                 });
                 angular.forEach($rootScope.nationalFactSheet.stdData[index].data, function(nationalData, j) {
                     if(nationalData.name !== 'Unknown') {
-                        nationalRow.push((nationalData.rates == 'Suppressed' ? '' :
+                        nationalRow.push((nationalData.rates == 'Suppressed' ? 'Suppressed' :
                             nationalData.rates));
                     }
                 });
@@ -1016,12 +959,6 @@
             };
 
             //HIV/AIDS
-            // var hivHeaderData = ['Indicator', 'State/National'];
-            // angular.forEach(fsc.factSheet.hivAIDSData[0].data, function(eachHeader, index){
-            //     if(eachHeader.name !== 'Unknown') {
-            //         hivHeaderData.push(eachHeader.name);
-            //     }
-            // });
             var hivData = [];
             angular.forEach(fsc.factSheet.hivAIDSData, function(eachRecord, index) {
                 var stateRow = [{text:eachRecord.disease, rowSpan: 2}, 'State'];
@@ -1701,17 +1638,12 @@
                 var brfssTableData = allTablesData.brfss.bodyData;
                 brfssTableData.unshift(prepareTableHeaders(allTablesData.brfss.headerData));
 
-                // allTablesData.pramsTable.bodyData = prepareTableBody(allTablesData.pramsTable.bodyData);
-                // allTablesData.pramsTable.bodyData.unshift(prepareTableHeaders(allTablesData.pramsTable.headerData));
-                //
-                // allTablesData.yrbs.bodyData = prepareTableBody(allTablesData.yrbs.bodyData);
-                // allTablesData.yrbs.bodyData.unshift(prepareTableHeaders(allTablesData.yrbs.headerData));
-
                 var natalityTableData = allTablesData.natality.bodyData;
                 natalityTableData.unshift(prepareTableHeaders(allTablesData.natality.headerData));
 
-                allTablesData.tb.bodyData = prepareTableBody(allTablesData.tb.bodyData);
-                allTablesData.tb.bodyData.unshift(prepareTableHeaders(allTablesData.tb.headerData));
+
+                var tbTableData = allTablesData.tb.bodyData;
+                tbTableData.unshift(prepareTableHeaders(allTablesData.tb.headerData));
 
                 var stdTableData = allTablesData.std.bodyData;
                 stdTableData.unshift(prepareTableHeaders(allTablesData.std.headerData));
@@ -1839,6 +1771,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.health.footnote'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.bridgeRace, style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Mortality ',
                             {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}],  style: 'heading'},
@@ -1854,6 +1787,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.health.mortality.footnote'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.mortality, style: 'info'},
                     {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Infant Mortality ',
                     {text:$filter('translate')('fs.rates.per.thousand'), bold:false}], style: 'heading'},
@@ -1869,19 +1803,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.infant.mortality.footnote'), style: 'info'},
-                    // {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
-                    // {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
-                    // {
-                    //     style: 'table',
-                    //     table: {
-                    //         widths: $.map( allTablesData.pramsTable.headerData, function (d, i) {
-                    //             return '*';
-                    //         }),
-                    //         body: allTablesData.pramsTable.bodyData
-                    //     },
-                    //     layout: lightHorizontalLines
-                    // },
-                    // {text: PRAMSSource, style: 'info'},
+                    {text: fsc.dataSuppressionTexts.infantMortality, style: 'info'},
                     {image: fsc.imageDataURLs.brfs, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Behavioral Risk Factors', style: 'heading'},
                     {
@@ -1895,20 +1817,8 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.brfss.footnote'), style: 'info'},
-                    // {image: fsc.imageDataURLs.yrbs, width: 50, height: 50, style: 'dataset-image'},
-                    // {text: 'Teen Health', style: 'heading'},
-                    // {
-                    //     style: 'table',
-                    //     table: {
-                    //         widths: $.map( allTablesData.yrbs.headerData, function (d, i) {
-                    //             return '*';
-                    //         } ),
-                    //         body: allTablesData.yrbs.bodyData
-                    //     },
-                    //     layout: lightHorizontalLines
-                    // },
-                    // {text: YRBSSource, style: 'info'},
-                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                    {text: fsc.dataSuppressionTexts.brfss, style: 'info'},
+                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Births ',
                     {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
                     {
@@ -1922,10 +1832,10 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.birth.footnote'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.natality, style: 'info'},
                     {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Tuberculosis ',
                     {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
-                    {text: 'Population: '+ $filter('number')(fsc.factSheet.tbPopulation)},
                     {
                         style: 'table',
                         table: {
@@ -1937,7 +1847,8 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.tuberculosis.footnote'), style: 'info'},
-                    {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
+                    {text: fsc.dataSuppressionTexts.tb, style: 'info'},
+                    {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: ['Sexually Transmitted Infections ',
                             {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
                     {
@@ -1951,7 +1862,8 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.std.footnote'), style: 'info'},
-                    {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                    {text: fsc.dataSuppressionTexts.std, style: 'info'},
+                    {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['HIV/AIDS ',
                             {text:$filter('translate')('fs.hiv.rates.per.hundredK'), bold:false}],style: 'heading'},
                     {
@@ -1965,6 +1877,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.aids.footnote'), style: 'info'},
+                    {text: fsc.dataSuppressionTexts.aids, style: 'info'},
                     {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Cancer Statistics ',
                             {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
@@ -1978,7 +1891,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: CancerSource, style: 'info'}
+                    {text: CancerSource, style: 'info'},
+                    {text: fsc.dataSuppressionTexts.cancer_incidence, style: 'info'}
                 ];
 
                 var document = pdfMake.createPdf(pdfDefinition);

@@ -36,8 +36,8 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             factsheet.infantMortalityData = infantData;
             return getTBDataForFactSheets(factSheetQueryJSON);
         }).then(function (tbData) {
-            factsheet.tuberculosis = tbData.data;
-            factsheet.tbPopulation = tbData.population;
+            factsheet.tuberculosis = tbData;
+            // factsheet.tbPopulation = tbData.population;
             return getSTDDataForFactSheets(factSheetQueryJSON);
         }).then(function (stdData) {
             factsheet.stdData = stdData;
@@ -53,15 +53,9 @@ MinorityFactSheet.prototype.prepareFactSheet = function (state, fsType) {
             return getCancerDataForFactSheet(factSheetQueryJSON);
         }).then(function (cancerData) {
             factsheet.cancerData = cancerData;
-        //     return getYRBSDataForFactSheet(factSheetQueryJSON)
-        // }).then(function (yrbsData) {
-        //     factsheet.yrbs = yrbsData;
-            return getBRFSDataForFactSheet(factSheetQueryJSON);
+            return getBRFSDataForFactSheet(factSheetQueryJSON, state);
         }).then(function (brfssData) {
             factsheet.brfss = brfssData;
-        //     return getPRAMSDataForFactSheet(factSheetQueryJSON);
-        // }).then(function (pramsData) {
-        //     factsheet.prams = pramsData;
             factsheet.state = state;
             factsheet.fsType = fsType;
             deferred.resolve(factsheet);
@@ -159,7 +153,7 @@ function processYrbsValue(data) {
  * @param countKey
  */
 function prepareDiseaseData(data, countKey) {
-    var sortOrder = ['All races/ethnicities', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
+    var sortOrder = ['American Indian or Alaska Native', 'Asian', 'Black or African American',
     'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'Unknown', 'White'];
     var diseaseData = sortArrayByPropertyAndSortOrder(data.data.nested.table.race, 'name', sortOrder);
     diseaseData.forEach(function(record, index){
@@ -349,14 +343,14 @@ function getTBDataForFactSheets(factSheetQueryJSON) {
         var promises = [
             es.executeESQuery('owh_tb', 'tb', factSheetQueryJSON.tuberculosis[0]),
             es.aggregateCensusDataQuery(factSheetQueryJSON.tuberculosis[1], 'owh_tb', "tb", 'pop'),
-            es.executeESQuery('owh_tb', 'tb', factSheetQueryJSON.tuberculosis[1])
         ];
+        // es.executeESQuery('owh_tb', 'tb', factSheetQueryJSON.tuberculosis[1])
         Q.all(promises).then(function (resp) {
             var tbData = searchUtils.populateDataWithMappings(resp[0], 'tb' , 'cases');
             es.mergeWithCensusData(tbData, resp[1], undefined, 'pop');
             var data = prepareDiseaseData(tbData, 'tb');
-            var totalPop = resp[2].aggregations.total_pop.value;
-            deferred.resolve({data:data, population: totalPop});
+            // var totalPop = resp[2].aggregations.total_pop.value;
+            deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
             deferred.reject(err);
@@ -1041,15 +1035,19 @@ function getYRBSDataForFactSheet(factSheetQueryJSON) {
     return deferred.promise;
 }
 
-function getBRFSDataForFactSheet(factSheetQueryJSON) {
+function getBRFSDataForFactSheet(factSheetQueryJSON, state) {
     var deferred = Q.defer();
-    var brfsQuery = factSheetQueryJSON.brfss.query_2016;
-    new yrbs().invokeYRBSService(brfsQuery).then(function (resp) {
-        deferred.resolve(prepareBRFSSData(resp));
-    }, function (err) {
-        logger.error(err.message);
-        deferred.reject(err);
-    });
+    if(state) {
+        var brfsQuery = factSheetQueryJSON.brfss.query_2016;
+        new yrbs().invokeYRBSService(brfsQuery).then(function (resp) {
+            deferred.resolve(prepareBRFSSData(resp));
+        }, function (err) {
+            logger.error(err.message);
+            deferred.reject(err);
+        });
+    } else {
+        deferred.resolve({});
+    }
     return deferred.promise;
 }
 
