@@ -1996,6 +1996,7 @@
                 pdfDefinition.content = [
                     {image: response.data[0], width: 50, height: 50, style: 'state-image'},
                     {text: fsc.factSheetTitle, style: 'state-heading'},
+                    {text: $filter('translate')('women.reproductive.factsheet.definition'), style:'factsheet-def' },
                     { canvas: [{ type: 'line', x1: 0, y1: 5, x2: 525-10, y2: 5, lineWidth: 0.1 }] },
                     {image: fsc.imageDataURLs.bridgeRace, width: 50, height: 50, style: 'dataset-image'},
                     {text: "Population in " + fsc.stateName, style: 'heading'},
