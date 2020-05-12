@@ -193,7 +193,7 @@ ElasticClient.prototype.aggregateDeaths = function(query, isStateSelected, allSe
             data.data.nested.maps = mapData.data.nested.maps;
             data.data.nested.tableCounts = dataCounts.data.nested.tableCounts;
             self.mergeWithCensusData(data, respArray[2], respArray[3], 'pop');
-            this.mergeCensusRecursively(data.data.nested.maps, respArray[5].data.nested.maps, 'pop');
+            self.mergeCensusRecursively(data.data.nested.maps, respArray[5].data.nested.maps, 'pop');
             data.data.simple.grandTotals = {ageAdjustedRate : 'Not available', standardPop: 'Not available'};
             if(query.wonderQuery) {
                 respArray[6].table && searchUtils.mergeAgeAdjustedRates(data.data.nested.table, respArray[6].table);
@@ -318,7 +318,7 @@ ElasticClient.prototype.aggregateNatalityData = function(query, isStateSelected,
             self.mergeWithCensusData(data, resp[2], resp[3], 'pop');
             var mapData = searchUtils.populateDataWithMappings(resp[4], 'natality', undefined, allSelectedFilterOptions, query[4]);
             data.data.nested.maps = mapData.data.nested.maps;
-            this.mergeCensusRecursively(data.data.nested.maps, resp[5].data.nested.maps, 'pop');
+            self.mergeCensusRecursively(data.data.nested.maps, resp[5].data.nested.maps, 'pop');
             //apply supression on whole data if state selected
             if (isStateSelected) {
                 searchUtils.applySuppressions(data, 'natality');
