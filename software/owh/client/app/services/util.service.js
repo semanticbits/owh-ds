@@ -684,7 +684,7 @@
 
             //Below logic will iterate the result table entries and counts total of all columns
             if(rowHeaders.length > 0 && columnHeaders.length > 0 && addLastRow) {
-                if(countKey != 'std' && countKey != 'tb' && countKey !== 'aids') {
+                if(countKey != 'std' && countKey != 'tb' && countKey !== 'aids' && countKey !== 'mental_health') {
                     tableData.push(prepareTotalRow(rowHeaders, columnHeaders, undefined, dataCounts, countKey,
                         0, totalCount, calculatePercentage, secondaryCountKeys,
                         seqRowHeaders, seqColHeaders, true, grandTotals));
@@ -701,8 +701,11 @@
                 colspan: 1,
                 isGrandTotal: true
             };
-            for(var i=0;i<columns.length;i++) {
-                var data = columns[i];
+            $.each(columns, function(i, data){
+                if(data[countKey]== 'suppressed') {
+                    cell.title = 'suppressed';
+                    return false;
+                }
                 var title = Number(data[countKey]);
                 if(isNaN(title)) {
                     title = data[countKey];
@@ -721,7 +724,7 @@
                         }
                     });
                 }
-            }
+            });
             //Update the average of all columns
             if (calculatePercentage) {
                 for(var i=0;i<columns.length;i++) {
