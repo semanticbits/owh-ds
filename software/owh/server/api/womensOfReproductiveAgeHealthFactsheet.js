@@ -585,8 +585,8 @@ function prepareBRFSSData(brfssResp) {
                 if(eachRecord.yes && eachRecord.yes.brfss) brfssData[2].data = eachRecord.yes.brfss.mean;
                 break;
             case "checkup1":
-                if(eachRecord["within the past 5 years"] && eachRecord["within the past 5 years"].brfss)
-                    brfssData[0].data = eachRecord["within the past 5 years"].brfss.mean;
+                if(eachRecord["within the past year"] && eachRecord["within the past year"].brfss)
+                    brfssData[4].data = eachRecord["within the past year"].brfss.mean;
                 break;
         }
     });

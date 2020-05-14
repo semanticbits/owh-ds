@@ -684,7 +684,7 @@
 
             //Below logic will iterate the result table entries and counts total of all columns
             if(rowHeaders.length > 0 && columnHeaders.length > 0 && addLastRow) {
-                if(countKey != 'std' && countKey != 'tb' && countKey !== 'aids' && countKey !== 'mental_health') {
+                if(countKey != 'std' && countKey != 'tb' && countKey !== 'aids' && countKey !== 'mental_health' && countKey !== 'brfss') {
                     tableData.push(prepareTotalRow(rowHeaders, columnHeaders, undefined, dataCounts, countKey,
                         0, totalCount, calculatePercentage, secondaryCountKeys,
                         seqRowHeaders, seqColHeaders, true, grandTotals));
