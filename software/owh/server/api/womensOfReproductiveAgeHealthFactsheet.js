@@ -586,7 +586,7 @@ function prepareBRFSSData(brfssResp) {
                 break;
             case "checkup1":
                 if(eachRecord["within the past year"] && eachRecord["within the past year"].brfss)
-                    brfssData[4].data = eachRecord["within the past year"].brfss.mean;
+                    brfssData[3].data = eachRecord["within the past year"].brfss.mean;
                 break;
         }
     });
