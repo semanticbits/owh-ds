@@ -776,7 +776,7 @@
                 isBold: true
             });
             // colspan: seqRowHeaders.length,
-            var columnTotalColumns = prepareTotalCountCells(rowHeaders, columnHeaders, dataCounts, countKey, totalCount,
+            var columnTotalColumns = prepareTotalCountCells(rowHeaders, columnHeaders, dataCounts, countKey, data?data[countKey]:totalCount,
                 calculatePercentage, secondaryCountKeys, seqRowHeaders, seqColHeaders);
             totalArray = totalArray.concat(columnTotalColumns);
             if(isGrandTotal) {

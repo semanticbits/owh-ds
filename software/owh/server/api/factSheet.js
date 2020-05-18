@@ -602,7 +602,7 @@ function prepareBRFSSData(data_2015){
             case "hlthpln1":
                 if(eachRecord.yes) brfssData[1].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
-            case "x_rfhype5":
+            case "_rfhype5":
                 if(eachRecord["meet criteria for heavy drinking"]) brfssData[2].data = getMeanDisplayValue(eachRecord["meet criteria for heavy drinking"].brfss.mean);
                 break;
             case "_paindx1":

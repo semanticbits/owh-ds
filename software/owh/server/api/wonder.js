@@ -1530,6 +1530,9 @@ function addMeasures(wreq, dbID) {
 
 function addOptionParams(wreq, locationFilter, dbID){
     if(dbID === 'D77') {
+        //Adding the below properties ['O_post_pops', 'O_icd'] to fix the errors from API
+        addParamToWONDERReq(wreq, 'O_post_pops', true); 
+        addParamToWONDERReq(wreq, 'O_icd', dbID+'.V16');
         addParamToWONDERReq(wreq, 'O_V10_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V13_fmode', 'fadv');
         addParamToWONDERReq(wreq, 'O_V1_fmode', 'freg');
@@ -1555,6 +1558,7 @@ function addOptionParams(wreq, locationFilter, dbID){
         addParamToWONDERReq(wreq, 'O_all_labels', 'true');
     }
     else if(dbID === 'D69' || dbID === 'D31' || dbID === 'D18' ) {
+        addParamToWONDERReq(wreq, 'O_post_pops', true);
         addParamToWONDERReq(wreq, 'O_V10_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V16_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V19_fmode', 'freg');
