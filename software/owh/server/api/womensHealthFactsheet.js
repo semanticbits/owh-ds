@@ -93,7 +93,7 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON, sex) {
                 nationalGenderData = searchUtils.populateDataWithMappings(resp[5], 'bridge_race', 'pop');
                 nationalAgeGroupData = searchUtils.populateDataWithMappings(resp[6], 'bridge_race', 'pop');
             }
-            var data =  prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
+            var data =  prepareFactSheetForPopulation(sex, genderData, nonHispanicRaceData,
                 raceData, hispanicData, ageGroupData, nationalGenderData,nationalAgeGroupData);
             deferred.resolve(data);
         }, function (err) {
@@ -593,7 +593,7 @@ function prepareBRFSSData(brfssResp) {
     return brfssData;
 }
 
-function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
+function prepareFactSheetForPopulation(sex, genderData, nonHispanicRaceData,
                                        raceData, hispanicData, ageGroupData, nationalGenderData,nationalAgeGroupData) {
     var factSheet = {};
     factSheet.gender = genderData.data.simple.group_table_sex;
