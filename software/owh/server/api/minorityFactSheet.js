@@ -103,7 +103,7 @@ function prepareBRFSSData(data){
     ];
     data.table.question.forEach(function(eachRecord, index) {
         var property = 'name';
-        var sortOrder = ['AI/AN', 'Asian', 'Black', 'NHOPI', 'Multiracial non-Hispanic', 'Other Race', 'Hispanic'];
+        var sortOrder = ['AI/AN', 'Asian', 'Black', 'NHOPI', 'Multiracial non-Hispanic', 'Other Race', 'Hispanic', 'White'];
         switch(eachRecord.name){
             case "_bmi5cat":
                 if(eachRecord["obese (bmi 30.0 - 99.8)"]) brfssData[index].data = sortArrayByPropertyAndSortOrder(eachRecord["obese (bmi 30.0 - 99.8)"].race, property, sortOrder);

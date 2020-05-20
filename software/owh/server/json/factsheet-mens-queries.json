@@ -67,7 +67,7 @@
           }
         }
       },
-      "gender_men_population": {
+      "gender_national_population": {
         "size": 0,
         "aggregations": {
           "group_table_sex": {
@@ -111,17 +111,6 @@
                         {
                           "term": {
                             "current_year": "2016"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "state": "$state$"
                           }
                         }
                       ]
@@ -547,7 +536,7 @@
           }
         }
       },
-      "age_men_population": {
+      "age_national_population": {
         "size": 0,
         "aggregations": {
           "group_table_agegroup": {
@@ -586,17 +575,6 @@
                         {
                           "term": {
                             "current_year": "2016"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "bool": {
-                      "should": [
-                        {
-                          "term": {
-                            "state": "$state$"
                           }
                         }
                       ]
@@ -5644,7 +5622,6 @@
           "value": [
             "_bmi5cat",
             "_rfsmok3",
-            "_rfdrhv5",
             "_paindx1"
           ],
           "primary": false

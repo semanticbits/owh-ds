@@ -30,9 +30,9 @@
                     <tbody>
                     <tr>
                         <td class="bold-class">Population</td>
-                        <td>{{fsc.factSheet.totalGenderPop | number }}</td>
+                        <td>{{fsc.factSheet.totalGenderPop | number }} ({{fsc.factSheet.totalGenderPop/nationalFactSheet.totalGenderPop *100 | number:2}})</td>
                         <td>{{nationalFactSheet.totalGenderPop | number }}</td>
-                        <td>{{mensFactSheet.totalGenderPop | number }}</td>
+                        <td>{{mensFactSheet.totalGenderPop | number }} ({{mensFactSheet.totalGenderPop/nationalFactSheet.totalMenGenderPop *100 | number:2}})</td>
                     </tr>
                     </tbody>
                 </table>
@@ -55,7 +55,6 @@
                 <i class="bridge-race-info">
                     {{'fs.women.health.footnote1'| translate}}<br> {{'fs.women.health.footnote2'| translate}}<br>
                 </i>
-                <i>Click here for <a ng-href="/description/bridge_race" target="_blank">data suppression</a> rules</i>
             </div>
         </div>
         <!--  Detail Mortality - Cause of Death -->
@@ -96,7 +95,7 @@
             <i class="mortality-info footer-notes primary" translate="{{ 'fs.women.health.mortality.footnote1' }}"></i>
             <i class="mortality-info footer-notes" translate="{{ 'fs.women.health.mortality.footnote2' }}"></i>
             <i class="mortality-info footer-notes" translate="{{ 'fs.women.health.mortality.footnote3' }}"></i>
-            <i>Click here for <a ng-href="/description/deaths" target="_blank">data suppression</a> rules</i>
+            <i><a ng-href="/description/deaths" target="_blank">Click here for data suppression rules</a></i>
         </div>
         <br/>
         <!-- Prenatal Care and Pregnancy Risk -->
@@ -122,7 +121,7 @@
             </table>
             <i ng-hide="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.prams.footnote' }}"></i>
             <i ng-show="fsc.notParticipateStates['PRAMS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['PRAMS'].message}}</i>
-            <i>Click here for <a ng-href="/description/prams" target="_blank">data suppression</a> rules</i>
+            <i><a ng-href="/description/prams" target="_blank">Click here for data suppression rules</a></i>
         </div>
         <br/>
         <!--Maternal Risk Factors-->
@@ -173,7 +172,7 @@
                 </tbody>
             </table>
             <i translate="{{ 'fs.women.brfss.footnote' }}"></i>
-            <i>Click here for <a ng-href="/description/brfss" target="_blank">data suppression</a> rules</i>
+            <i><a ng-href="/description/brfss" target="_blank">Click here for data suppression rules</a></i>
         </div>
         <br/>
         <!-- YRBS -->
@@ -202,7 +201,7 @@
             </table>
             <i ng-hide="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1" translate="{{ 'fs.women.yrbs.footnote' }}"></i>
             <i ng-show="fsc.notParticipateStates['YRBS'].states.indexOf(fsc.state) > -1">{{fsc.notParticipateStates['YRBS'].message}}</i>
-            <i>Click here for <a ng-href="/description/mental_health" target="_blank">data suppression</a> rules</i>
+            <i><a ng-href="/description/mental_health" target="_blank">Click here for data suppression rules</a></i>
         </div>
     </div>
     <div class="factsheet-part2">
@@ -242,7 +241,7 @@
                 </tbody>
             </table>
             <i translate="{{ 'fs.women.std.footnote' }}"></i>
-            <i>Click here for <a ng-href="/description/std" target="_blank">data suppression</a> rules</i>
+            <i><a ng-href="/description/std" target="_blank">Click here for data suppression rules</a></i>
         </div>
         <br/>
         <!-- HIV/AIDS -->
@@ -281,7 +280,7 @@
                 </tbody>
             </table>
             <i translate="{{ 'fs.women.aids.footnote' }}"></i>
-            <i>Click here for <a ng-href="/description/aids" target="_blank">data suppression</a> rules</i>
+            <i><a ng-href="/description/aids" target="_blank">Click here for data suppression rules</a></i>
         </div>
         <br/>
         <!-- Cancer - Moratlity - Incidence -->
@@ -332,7 +331,7 @@
             </table>
             <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, CDC NPCR , † Female only</i>
             <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, CDC NPCR , † Female only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
-            <i>Click here for <a ng-href="/description/cancer_incidence" target="_blank">data suppression</a> rules</i>
+            <i><a ng-href="/description/cancer_incidence" target="_blank">Click here for data suppression rules</a></i>
         </div>
     </div>
     <div class="usa-width-one-whole">

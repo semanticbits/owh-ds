@@ -24,7 +24,7 @@
         fsc.queryID = $stateParams.queryID;
         fsc.fsTypes = {
             state_health: "State Health",
-            womens_health: "Women's and Girls' Health",
+            womens_health: "Women and Girls Health",
             women_of_reproductive_age_health: "Women of Reproductive Age Health",
             minority_health: 'Minority Health'
         };
@@ -144,7 +144,7 @@
                 detailedMortality: ['Cause of Death', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
                 infantMortality: ['Indicator', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
                 brfss: ['Question', 'American Indian or Alaskan Native, non-Hispanic', 'Asian, non-Hispanic', 'Black, non-Hispanic',
-                    'Native Hawaiian or other Pacific Islander, non-Hispanic', 'Multiracial non-Hispanic', 'Other, non-Hispanic', 'Hispanic'],
+                    'Native Hawaiian or other Pacific Islander, non-Hispanic', 'Multiracial non-Hispanic', 'Other, non-Hispanic', 'Hispanic', 'White'],
                 natality: ['', 'State/National', 'American Indian or Alaska Native', 'Asian or Pacific Islander', 'Black or African American', 'Hispanic', 'White'],
                 tuberculosis: ['', 'American Indian or Alaska Native', 'Asian', 'Black or African American',
                     'Native Hawaiian or Other Pacific Islander', 'Multiple races', 'Hispanic or Latino', 'White'],
@@ -451,7 +451,6 @@
                         },
                         {text: $filter('translate')('fs.state.health.bridgerace.footnote1'), style: 'info'},
                         {text: $filter('translate')('fs.state.health.bridgerace.footnote2'), style: 'info'},
-                        {text: fsc.dataSuppressionTexts.bridgeRace, style: 'info'},
                         {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Mortality',  style: 'heading'},
                         {
@@ -1051,8 +1050,8 @@
             for(var i=0; i<entriesTitles.length-1;i++) {
                 var tableRow = [];
                 tableRow.push(entriesTitles[i]);
-                tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
-                tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i));
+                tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i)));
+                tableRow.push($filter('number')(getPopValue($rootScope.nationalFactSheet.ageGroups, i)));
                 fsc.populationTableEntries.push(tableRow);
             }
         }
@@ -1062,9 +1061,11 @@
             for(var i=0; i<entriesTitles.length;i++) {
                 var tableRow = [];
                 tableRow.push(entriesTitles[i]);
-                tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
-                tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i));
-                tableRow.push(getPopValue($rootScope.mensFactSheet.ageGroups, i));
+                tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i))+' ('+
+                    $filter('number')((getPopValue(fsc.factSheet.ageGroups, i)/getPopValue($rootScope.nationalFactSheet.ageGroups, i) * 100),1)+'%)');
+                tableRow.push($filter('number')(getPopValue($rootScope.nationalFactSheet.ageGroups, i)));
+                tableRow.push($filter('number')(getPopValue($rootScope.mensFactSheet.ageGroups, i))+' ('+
+                    $filter('number')((getPopValue($rootScope.mensFactSheet.ageGroups, i)/getPopValue($rootScope.mensFactSheet.nationalMenAgeGroups, i) * 100),1)+'%)');
                 fsc.populationTableEntries.push(tableRow);
             }
         }
@@ -1075,8 +1076,8 @@
             for(var i=0; i<entriesTitles.length; i++) {
                 var tableRow = [];
                 tableRow.push(entriesTitles[i]);
-                tableRow.push(getPopValue(fsc.factSheet.ageGroups, i, fsc.fsType));
-                tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i, fsc.fsType));
+                tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i, fsc.fsType)));
+                tableRow.push($filter('number')(getPopValue($rootScope.nationalFactSheet.ageGroups, i, fsc.fsType)));
                 fsc.populationTableEntries.push(tableRow);
             }
             for(var i=0; i<fsc.factSheet.deliveryFactorsData.length; i++) {
@@ -1099,13 +1100,13 @@
             var tableRow = [];
             tableRow.push("State Population");
             for(var i=0; i<6;i++) {
-                tableRow.push(getPopValue(fsc.factSheet.ageGroups, i));
+                tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i)));
             }
             fsc.populationTableEntries.push(tableRow);
             tableRow = [];
             tableRow.push("National Population");
             for(var i=0; i<6;i++) {
-                tableRow.push(getPopValue($rootScope.nationalFactSheet.ageGroups, i));
+                tableRow.push($filter('number')(getPopValue($rootScope.nationalFactSheet.ageGroups, i)));
             }
             fsc.populationTableEntries.push(tableRow);
         }
@@ -1113,14 +1114,12 @@
             var popValue;
             if (index==1) {
                 popValue = (fsType && fsType == fsc.fsTypes.women_of_reproductive_age_health) ?
-                    $filter('number')(ageGroups[1].bridge_race) :
-                    $filter('number')(ageGroups[1]["15-44 years"][0].bridge_race);
+                    ageGroups[1].bridge_race : ageGroups[1]["15-44 years"][0].bridge_race;
             } else if (index==2) {
                 popValue = (fsType && fsType == fsc.fsTypes.women_of_reproductive_age_health) ?
-                    $filter('number')(ageGroups[1].bridge_race) :
-                    $filter('number')(ageGroups[1]["15-44 years"][1].bridge_race);
+                    ageGroups[1].bridge_race : ageGroups[1]["15-44 years"][1].bridge_race;
             } else {
-                popValue = $filter('number')(ageGroups[(index==0)?index:index-1].bridge_race);
+                popValue = ageGroups[(index==0)?index:index-1].bridge_race;
             }
             return popValue;
         }
@@ -1782,7 +1781,6 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.minority.health.footnote'), style: 'info'},
-                    {text: fsc.dataSuppressionTexts.bridgeRace, style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Mortality ',
                             {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}],  style: 'heading'},
@@ -2028,7 +2026,6 @@
                     },
                     {text: $filter('translate')('fs.women.reproductive.health.footnote1'), style: 'info'},
                     {text: $filter('translate')('fs.women.reproductive.health.footnote2'), style: 'info'},
-                    {text: fsc.dataSuppressionTexts.bridgeRace, style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {
@@ -2242,7 +2239,6 @@
                     },
                     {text: $filter('translate')('fs.women.health.footnote1'), style: 'info'},
                     {text: $filter('translate')('fs.women.health.footnote2'), style: 'info'},
-                    {text: fsc.dataSuppressionTexts.bridgeRace, style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {

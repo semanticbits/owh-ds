@@ -11412,7 +11412,6 @@
           "value": [
             "_bmi5cat",
             "_rfsmok3",
-            "_rfdrhv5",
             "_paindx1"
           ],
           "primary": false
@@ -25376,7 +25375,8 @@
               "NHOPI",
               "Other Race",
               "Multiracial non-Hispanic",
-              "Hispanic"
+              "Hispanic",
+              "White"
             ],
             "primary": false
           },

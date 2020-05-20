@@ -127,7 +127,7 @@ var searchRouter = function(app, rConfig) {
                             }
                             res.send(new result('OK', resData, "success"));
                         });
-                    } else if (fsType === "Women's and Girls' Health") {
+                    } else if (fsType === "Women and Girls Health") {
                         var sex = req.sanitize(req.body.sex);
                         new womenHealthFactSheet().prepareFactSheet(state, fsType, sex).then(function(response) {
                             if(!config.disableQueryCache) {

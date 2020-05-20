@@ -34,7 +34,7 @@ WomenHealthFactSheet.prototype.prepareFactSheet = function (state, fsType, sex) 
             }
         }
         var factsheet = {};
-        getBridgeRaceDataForFactSheet(factSheetQueryJSON).then(function (bridgeRaceData) {
+        getBridgeRaceDataForFactSheet(factSheetQueryJSON, sex).then(function (bridgeRaceData) {
             factsheet = bridgeRaceData;
             return getDetailMortalityDataForFactSheet(factSheetQueryJSON);
         }).then(function (mortalityData) {
@@ -65,7 +65,7 @@ WomenHealthFactSheet.prototype.prepareFactSheet = function (state, fsType, sex) 
     return deferred.promise;
 };
 
-function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
+function getBridgeRaceDataForFactSheet(factSheetQueryJSON, sex) {
     var deferred = Q.defer();
     try {
         var bridgeRaceQueryObj = factSheetQueryJSON.bridge_race;
@@ -77,6 +77,10 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
             es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.hispanic_population),
             es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_population)
         ];
+        if(sex == 'male') {
+            promises.push(es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.gender_national_population));
+            promises.push(es.executeESQuery('owh_census', 'census', bridgeRaceQueryObj.age_national_population));
+        }
 
         Q.all(promises).then( function (resp) {
             var genderData = searchUtils.populateDataWithMappings(resp[0], 'bridge_race', 'pop');
@@ -84,8 +88,13 @@ function getBridgeRaceDataForFactSheet(factSheetQueryJSON) {
             var raceData = searchUtils.populateDataWithMappings(resp[2], 'bridge_race', 'pop');
             var hispanicData = searchUtils.populateDataWithMappings(resp[3], 'bridge_race', 'pop');
             var ageGroupData = searchUtils.populateDataWithMappings(resp[4], 'bridge_race', 'pop');
+            var nationalGenderData,nationalAgeGroupData;
+            if(sex == 'male') {
+                nationalGenderData = searchUtils.populateDataWithMappings(resp[5], 'bridge_race', 'pop');
+                nationalAgeGroupData = searchUtils.populateDataWithMappings(resp[6], 'bridge_race', 'pop');
+            }
             var data =  prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-                raceData, hispanicData, ageGroupData);
+                raceData, hispanicData, ageGroupData, nationalGenderData,nationalAgeGroupData);
             deferred.resolve(data);
         }, function (err) {
             logger.error(err.message);
@@ -564,7 +573,6 @@ function prepareBRFSSData(brfssResp) {
     var brfssData = [
         {question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' },
         {question: 'Adults who are current smokers', data: 'Not applicable'},
-        {question: 'Women who are heavy drinkers (having more than 7 drinks per week)', data: 'Not applicable'},
         {question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'}
     ];
 
@@ -577,12 +585,8 @@ function prepareBRFSSData(brfssResp) {
             case "_rfsmok3":
                 if(eachRecord.yes && eachRecord.yes.brfss) brfssData[1].data = eachRecord.yes.brfss.mean;
                 break;
-            case "_rfdrhv5":
-                if(eachRecord["meet criteria for heavy drinking"] && eachRecord["meet criteria for heavy drinking"].brfss)
-                    brfssData[2].data = eachRecord["meet criteria for heavy drinking"].brfss.mean;
-                break;
             case "_paindx1":
-                if(eachRecord.yes && eachRecord.yes.brfss) brfssData[3].data = eachRecord.yes.brfss.mean;
+                if(eachRecord.yes && eachRecord.yes.brfss) brfssData[2].data = eachRecord.yes.brfss.mean;
                 break;
         }
     });
@@ -590,7 +594,7 @@ function prepareBRFSSData(brfssResp) {
 }
 
 function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
-                                       raceData, hispanicData, ageGroupData) {
+                                       raceData, hispanicData, ageGroupData, nationalGenderData,nationalAgeGroupData) {
     var factSheet = {};
     factSheet.gender = genderData.data.simple.group_table_sex;
 
@@ -603,6 +607,16 @@ function prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
 
     ageGroupData = ageGroupData.data.simple.group_table_agegroup;
     prepareAgeGroups(factSheet, ageGroupData, "ageGroups");
+
+    if(sex == 'male') {
+        factSheet.menData = nationalGenderData.data.simple.group_table_sex;
+        factSheet.totalMenGenderPop = 0;
+        factSheet.menData.forEach(function (data) {
+            factSheet.totalMenGenderPop += data.bridge_race;
+        });
+        nationalAgeGroupData = nationalAgeGroupData.data.simple.group_table_agegroup;
+        prepareAgeGroups(factSheet, nationalAgeGroupData, "nationalMenAgeGroups");
+    }
     factSheet.race = race;
     return factSheet;
 }
