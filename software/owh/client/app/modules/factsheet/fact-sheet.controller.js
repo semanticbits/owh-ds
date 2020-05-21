@@ -1064,8 +1064,7 @@
                 tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i))+' ('+
                     $filter('number')((getPopValue(fsc.factSheet.ageGroups, i)/getPopValue($rootScope.nationalFactSheet.ageGroups, i) * 100),1)+'%)');
                 tableRow.push($filter('number')(getPopValue($rootScope.nationalFactSheet.ageGroups, i)));
-                tableRow.push($filter('number')(getPopValue($rootScope.mensFactSheet.ageGroups, i))+' ('+
-                    $filter('number')((getPopValue($rootScope.mensFactSheet.ageGroups, i)/getPopValue($rootScope.mensFactSheet.nationalMenAgeGroups, i) * 100),1)+'%)');
+                tableRow.push($filter('number')(getPopValue($rootScope.mensFactSheet.ageGroups, i)));
                 fsc.populationTableEntries.push(tableRow);
             }
         }

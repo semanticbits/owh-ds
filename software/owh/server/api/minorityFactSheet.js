@@ -74,7 +74,7 @@ function preparePRAMSData(respData) {
     // var selectedRaces = {options: ['Black', 'Other Race' ,'Hispanic']};
     var resultData = [
         {"question": "In the 12 months before your baby was born  you were in a physical fight", data: processPramsValue(respData[0])},
-        {"question": "Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?",
+        {"question": "Was your baby seen by a doctor nurse or other healthcare provider in the first week after he or she left the hospital?",
             data: processPramsValue(respData[1])}
     ];
     return resultData;

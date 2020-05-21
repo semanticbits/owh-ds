@@ -608,7 +608,7 @@
   "label.help.text.brfss.income": "This field indicates the household income of the survey respondents",
   "datadoc.tb.data.filter.restrictions":"TB state-level data can be viewed in aggregate format or one-way stratifications (i.e., by Sex, Race/Ethnicity, Age group or Country of birth).",
   "minority.factsheet.definition": "This fact sheet displays demographic and health status information for Hispanic individuals of any race and the following non-Hispanic groups: Black/African American, American Indian and Alaska Native, Asian American, Native Hawaiian and Pacific Islander. Racial classifications reflect those used in each dataset.",
-  "women.reproductive.factsheet.definition": "Of reproductive age is defined as 15-44.",
+  "women.reproductive.factsheet.definition": "Reproductive age is defined as 15-44.",
 
   "fs.rates.per.hundredK":"(rate per 100,000 population)",
   "fs.hiv.rates.per.hundredK": "(rate per 100,000 population aged 13 years and older)",

@@ -560,7 +560,7 @@ function preparePRAMSData(pramsData, state) {
         return [
             {"question": "In the 12 months before your baby was born  you were in a physical fight",
                 data:  processPramsResponse(pramsData[0], state)},
-            {"question": "Was your baby seen by a doctor  nurse or other healthcare provider in the first week after he or she left the hospital?",
+            {"question": "Was your baby seen by a doctor nurse or other healthcare provider in the first week after he or she left the hospital?",
                 data:  processPramsResponse(pramsData[1], state)},
         ];
     } else

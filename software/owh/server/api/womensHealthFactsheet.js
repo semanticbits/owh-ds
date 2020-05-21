@@ -246,7 +246,7 @@ function getPramsDataForFactSheet(factSheetQueryJSON, state, sex) {
             Q.all(promises).then(function (resp) {
                 var pramsData = [
                     {"question": "In the 12 months before your baby was born  you were in a physical fight", data: processPramsResponse(resp[0], state)},
-                    {"question": "Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?",
+                    {"question": "Was your baby seen by a doctor  nurse or other healthcare provider in the first week after he or she left the hospital?",
                         data: processPramsResponse(resp[1], state)}
                 ];
                 deferred.resolve(pramsData);
