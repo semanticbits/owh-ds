@@ -1941,7 +1941,8 @@
                 detailMortalityTableData.unshift(detailMortalityHeaders[1]);
                 detailMortalityTableData.unshift(detailMortalityHeaders[0]);
 
-                var bridgeRaceTotalText = "Total state female population: "+$filter('number')(fsc.factSheet.gender[0].bridge_race);
+                var bridgeRaceTotalText = $filter('translate')('fs.women.reproductive.population.total.label')+
+                    ': '+$filter('number')(fsc.factSheet.gender[0].bridge_race);
 
                 var lightHorizontalLines = {
                     hLineWidth: function (i, node) {return .5;}, vLineWidth: function (i, node) {return .5;},
@@ -2046,7 +2047,6 @@
                         layout: lightHorizontalLines
                     },
                     {text: $filter('translate')('fs.women.reproductive.health.mortality.footnote1'), style: 'info'},
-                    {text: 'Age adjustment is a technique for "removing" the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures.', style: 'info'},
                     {text: fsc.dataSuppressionTexts.mortality, style: 'info'},
                     {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},

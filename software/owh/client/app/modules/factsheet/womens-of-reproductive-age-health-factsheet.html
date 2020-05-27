@@ -16,7 +16,7 @@
         <div class="bridge-race-factsheet">
             <h5 class="bridge-race-heading"><img src="../../images/icons/bridged-race-icon.svg"/>Population in {{fsc.stateName}}</h5>
             <p class="bridge-race-description">
-                Total state female population: {{fsc.factSheet.gender[0].bridge_race | number }}
+                {{'fs.women.reproductive.population.total.label'| translate}}: {{fsc.factSheet.gender[0].bridge_race | number }}
             </p>
             <div>
                 <table class="bridge-race-table1">
@@ -86,7 +86,6 @@
                 </tbody>
             </table><br>
             <i class="mortality-info footer-notes primary" translate="{{ 'fs.women.reproductive.health.mortality.footnote1' }}"></i>
-            <i class="mortality-info footer-notes" translate="{{ 'fs.women.reproductive.health.mortality.footnote2' }}"></i>
             <i><a ng-href="/description/deaths" target="_blank">Click here for data suppression rules</a></i>
         </div>
         <br/>
