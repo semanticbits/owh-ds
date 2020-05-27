@@ -51,7 +51,9 @@
                     </tbody>
                 </table>
                 <i class="bridge-race-info">
-                    {{'fs.women.reproductive.health.footnote1'| translate}}<br> {{'fs.women.reproductive.health.footnote2'| translate}}<br>
+                    {{'fs.women.reproductive.health.footnote1'| translate}}<br>
+                    {{'fs.women.reproductive.health.footnote2'| translate}}<br>
+                    {{'fs.women.reproductive.health.footnote3'| translate}}<br>
                 </i>
             </div>
         </div>
@@ -63,7 +65,7 @@
                 <tr>
                     <th rowspan="2">Cause of Death</th>
                     <th colspan="2" scope="colgroup">Number of Deaths</th>
-                    <th colspan="2" scope="colgroup">Age-Adjusted Death Rate (per 100,000)</th>
+                    <th colspan="2" scope="colgroup">Crude Death Rate (per 100,000)</th>
                 </tr>
                 <tr>
                     <th scope="col">State</th>
@@ -78,9 +80,8 @@
                     <td ng-bind="eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : ( eachRecord.data.deaths | number )"></td>
                     <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.deaths === 'suppressed' ? 'Suppressed' :
                      ( nationalFactSheet.detailMortalityData[$index].data.deaths | number )"></td>
-                    <td ng-bind="eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate :'Not Available'"></td>
-                    <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.ageAdjustedRate ?
-                     nationalFactSheet.detailMortalityData[$index].data.ageAdjustedRate :'Not Available'"></td>
+                    <td ng-bind="eachRecord.data.deaths / eachRecord.data.standardPop * 100000 | number : 1"></td>
+                    <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.deaths / nationalFactSheet.detailMortalityData[$index].data.standardPop * 100000 | number : 1"></td>
                 </tr>
                 </tbody>
             </table><br>

@@ -99,7 +99,7 @@ function prepareBRFSSData(data){
         { question: 'Adults who are current smokers', data: 'Not applicable' },
         { question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable' },
         { question: 'Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)', data: 'Not applicable' },
-        { question: 'I do have health care coverage', data: 'Not applicable' },
+        { question: 'I do have healthcare coverage', data: 'Not applicable' },
     ];
     data.table.question.forEach(function(eachRecord, index) {
         var property = 'name';
@@ -1055,7 +1055,7 @@ function getPRAMSDataForFactSheet(factSheetQueryJSON) {
     var deferred = Q.defer();
     var promises = [
         new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn205']),//In the 12 months before your baby was born  you were in a physical fight
-        new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn101'])//Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?
+        new yrbs().invokeYRBSService(factSheetQueryJSON.prams['qn101'])//Was your baby seen by a doctor  nurse or other healthcare provider in the first week after he or she left the hospital?
     ];
 
     Q.all(promises).then(function (resp) {

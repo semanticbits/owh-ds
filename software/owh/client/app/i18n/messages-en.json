@@ -623,7 +623,8 @@
   "fs.minority.yrbs.footnote":"Sources: 2015, YRBS",
   "fs.minority.brfss.footnote":"Source:  2017, CDC BRFSS",
   "fs.minority.prams.footnote":"Sources: 2011, CDC PRAMS",
-  "fs.minority.health.footnote": "Sources: 2016, U.S. Census Bureau and NCHS",
+  "fs.minority.health.footnote1": "Sources: 2016, U.S. Census Bureau and NCHS",
+  "fs.minority.health.footnote2": "Percent shows age range based on total state minority population",
   "fs.women.health.mortality.footnote1":"Source: 2016, CDC NVSS",
   "fs.women.health.mortality.footnote2":"Age adjustment is a technique for \"removing\" the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures.",
   "fs.women.health.mortality.footnote3":"Top 10 causes of death nationally are displayed in the table above",
@@ -635,6 +636,7 @@
   "fs.women.aids.footnote":"Source: 2016, CDC NCHHSTP Atlas",
   "fs.women.health.footnote1": "Sources: 2016, U.S. Census Bureau and CDC NCHS",
   "fs.women.health.footnote2": "Data are available from ages 10 and older",
+  "fs.women.health.footnote3": "Percent shows age range based on total state female population",
   "fs.women.reproductive.health.mortality.footnote1":"Source: 2016, CDC NVSS",
   "fs.women.reproductive.health.mortality.footnote2":"Age adjustment is a technique for \"removing\" the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures.",
   "fs.women.reproductive.health.mortality.footnote3":"Top 10 causes of death nationally are displayed in the table above",
@@ -646,6 +648,7 @@
   "fs.women.reproductive.aids.footnote":"Source: 2016, CDC NCHHSTP Atlas",
   "fs.women.reproductive.health.footnote1": "Sources: 2016, U.S. Census Bureau and CDC NCHS",
   "fs.women.reproductive.health.footnote2": "Data are available from ages 15 to 44",
+  "fs.women.reproductive.health.footnote3": "Percent shows age range based on total state reproductive age female population",
   "fs.state.health.mortality.footnote1":"Source: 2016, CDC NVSS",
   "fs.state.health.mortality.footnote2":"Age adjustment is a technique for \"removing\" the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures.",
   "fs.state.health.mortality.footnote3":"Top 10 causes of death nationally are displayed in the table above",
@@ -658,5 +661,6 @@
   "fs.state.std.footnote":"Source: 2016, CDC NCHHSTP Atlas",
   "fs.state.aids.footnote":"Source: 2016, CDC NCHHSTP Atlas",
   "fs.state.health.bridgerace.footnote1": "Sources: 2016, U.S. Census Bureau and CDC NCHS",
-  "fs.state.health.bridgerace.footnote2": "Data are available from ages 10 to 84"
+  "fs.state.health.bridgerace.footnote2": "Data are available from ages 10 to 84",
+  "fs.state.health.bridgerace.footnote3": "Percent shows age range based on total state population"
 }

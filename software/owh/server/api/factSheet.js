@@ -134,7 +134,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
         var prams_indicator_depression_query = factSheetQueryJSON.prams['qn133'];
         //PRAMS - 2011 - In the 12 months before your baby was born  you were in a physical fight
         var prams_QN205 = factSheetQueryJSON.prams['qn205'];
-        //PRAMS - 2011 - Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?
+        //PRAMS - 2011 - Was your baby seen by a doctor  nurse or other healthcare provider in the first week after he or she left the hospital?
         var prams_QN101 = factSheetQueryJSON.prams['qn101'];
 
         var es = new elasticSearch();
@@ -250,7 +250,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
             new yrbs().invokeYRBSService(brfss_2015_query),
             //PRAMS - 2011 - In the 12 months before your baby was born  you were in a physical fight
             new yrbs().invokeYRBSService(prams_QN205),
-            //PRAMS - 2011 - Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?
+            //PRAMS - 2011 - Was your baby seen by a doctor  nurse or other healthcare provider in the first week after he or she left the hospital?
             new yrbs().invokeYRBSService(prams_QN101),
 
             //Detail Mortality - Disease of Heart
@@ -470,7 +470,7 @@ FactSheet.prototype.prepareFactSheet = function (state, fsType) {
                 var brfss_2015_data = resp[77];
                 //PRAMS - 2011 - In the 12 months before your baby was born  you were in a physical fight
                 var prams_QN205 = resp[78];
-                //PRAMS - 2011 - Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?
+                //PRAMS - 2011 - Was your baby seen by a doctor  nurse or other healthcare provider in the first week after he or she left the hospital?
                 var prams_QN101 = resp[79];
 
                 var factSheet = prepareFactSheetForPopulation(genderData, nonHispanicRaceData,
@@ -591,9 +591,8 @@ function getMeanDisplayValue(data) {
 function prepareBRFSSData(data_2015){
     var brfssData = [];
     brfssData.push({question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' });
-    brfssData.push({question: 'Do you have any kind of health care coverage?', data: 'Not applicable'});
+    brfssData.push({question: 'Do you have any kind of healthcare coverage?', data: 'Not applicable'});
     brfssData.push({question: 'Adults who have been told they have high blood pressure (variable calculated from one or more BRFSS questions)', data: 'Not applicable'});
-    brfssData.push({question: 'Participated in 150 minutes or more of Aerobic Physical Activity per week', data: 'Not applicable'});
     data_2015.table.question.forEach(function(eachRecord){
         switch(eachRecord.name){
             case "_bmi5cat":
@@ -604,9 +603,6 @@ function prepareBRFSSData(data_2015){
                 break;
             case "_rfhype5":
                 if(eachRecord["meet criteria for heavy drinking"]) brfssData[2].data = getMeanDisplayValue(eachRecord["meet criteria for heavy drinking"].brfss.mean);
-                break;
-            case "_paindx1":
-                if(eachRecord.yes) brfssData[3].data = getMeanDisplayValue(eachRecord.yes.brfss.mean);
                 break;
         }
     });

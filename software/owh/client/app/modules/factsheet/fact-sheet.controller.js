@@ -451,6 +451,7 @@
                         },
                         {text: $filter('translate')('fs.state.health.bridgerace.footnote1'), style: 'info'},
                         {text: $filter('translate')('fs.state.health.bridgerace.footnote2'), style: 'info'},
+                        {text: $filter('translate')('fs.state.health.bridgerace.footnote3'), style: 'info'},
                         {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                         {text: 'Mortality',  style: 'heading'},
                         {
@@ -466,7 +467,7 @@
                             layout: lightHorizontalLines
                         },
                         {text: $filter('translate')('fs.state.health.mortality.footnote1'), style: 'info'},
-                        {text: $filter('translate')('fs.state.health.mortality.footnote2'), style: 'info'},
+                        {text: 'Age adjustment is a technique for "removing" the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures.', style: 'info'},
                         {text: $filter('translate')('fs.state.health.mortality.footnote3'), style: 'info'},
                         {text: fsc.dataSuppressionTexts.mortality, style: 'info'},
                         {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
@@ -835,7 +836,8 @@
             var bridgeRaceTableOneStateData = [], bridgeRaceTableOneNationalData = [];
             bridgeRaceTableOneStateData.push('State Population');
             angular.forEach(fsc.factSheet.race, function(race){
-                bridgeRaceTableOneStateData.push($filter('number')(race.bridge_race));
+                bridgeRaceTableOneStateData.push($filter('number')(race.bridge_race)+(
+                    race.name!='Total'?' ('+$filter('number')(race.bridge_race/fsc.factSheet.totalPop * 100, 1)+')':''));
             });
             bridgeRaceTableOneNationalData.push('National Population');
             angular.forEach($rootScope.nationalFactSheet.race, function(race){
@@ -1050,7 +1052,8 @@
             for(var i=0; i<entriesTitles.length-1;i++) {
                 var tableRow = [];
                 tableRow.push(entriesTitles[i]);
-                tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i)));
+                tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i))+' ('+
+                    $filter('number')((getPopValue(fsc.factSheet.ageGroups, i)/fsc.factSheet.totalGenderPop * 100),1)+'%)');
                 tableRow.push($filter('number')(getPopValue($rootScope.nationalFactSheet.ageGroups, i)));
                 fsc.populationTableEntries.push(tableRow);
             }
@@ -1062,7 +1065,7 @@
                 var tableRow = [];
                 tableRow.push(entriesTitles[i]);
                 tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i))+' ('+
-                    $filter('number')((getPopValue(fsc.factSheet.ageGroups, i)/getPopValue($rootScope.nationalFactSheet.ageGroups, i) * 100),1)+'%)');
+                    $filter('number')((getPopValue(fsc.factSheet.ageGroups, i)/fsc.factSheet.totalGenderPop * 100),1)+'%)');
                 tableRow.push($filter('number')(getPopValue($rootScope.nationalFactSheet.ageGroups, i)));
                 tableRow.push($filter('number')(getPopValue($rootScope.mensFactSheet.ageGroups, i)));
                 fsc.populationTableEntries.push(tableRow);
@@ -1075,7 +1078,8 @@
             for(var i=0; i<entriesTitles.length; i++) {
                 var tableRow = [];
                 tableRow.push(entriesTitles[i]);
-                tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i, fsc.fsType)));
+                tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i, fsc.fsType))+' ('+
+                    $filter('number')((getPopValue(fsc.factSheet.ageGroups, i, fsc.fsType)/fsc.factSheet.totalGenderPop * 100),1)+'%)');
                 tableRow.push($filter('number')(getPopValue($rootScope.nationalFactSheet.ageGroups, i, fsc.fsType)));
                 fsc.populationTableEntries.push(tableRow);
             }
@@ -1099,7 +1103,8 @@
             var tableRow = [];
             tableRow.push("State Population");
             for(var i=0; i<6;i++) {
-                tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i)));
+                tableRow.push($filter('number')(getPopValue(fsc.factSheet.ageGroups, i))+' ('+
+                    $filter('number')((getPopValue(fsc.factSheet.ageGroups, i)/fsc.factSheet.totalGenderPop * 100),1)+'%)');
             }
             fsc.populationTableEntries.push(tableRow);
             tableRow = [];
@@ -1163,14 +1168,14 @@
                 }
 
                 detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, nationalDeathCount,
-                    eachRecord.data.ageAdjustedRate ? eachRecord.data.ageAdjustedRate : "Not available",
-                    $rootScope.nationalFactSheet.detailMortalityData[index].data.ageAdjustedRate ?
-                        $rootScope.nationalFactSheet.detailMortalityData[index].data.ageAdjustedRate : "Not available"
+                    $filter('number')(eachRecord.data.deaths / eachRecord.data.standardPop * 100000,1),
+                    $filter('number')($rootScope.nationalFactSheet.detailMortalityData[index].data.deaths /
+                    $rootScope.nationalFactSheet.detailMortalityData[index].data.standardPop * 100000, 1)
                 ]);
             });
             allTablesData.detailMortality = {
                 headerData: [{header: 'Cause of Death'}, {header:'Number of Deaths', nestedHeaders: ['State (Women)','National (Women)']},
-                    {header:'Age-Adjusted Death Rate (per 100,000)',nestedHeaders: ['State (Women)', 'National (Women)']}],
+                    {header:'Crude Death Rate (per 100,000)',nestedHeaders: ['State (Women)', 'National (Women)']}],
                 bodyData: detailsMortalityData
             };
 
@@ -1222,7 +1227,7 @@
             //BRFSS
             var brfssData = [];
             angular.forEach(fsc.factSheet.brfss, function(eachRecord, index){
-                brfssData.push([eachRecord.question, eachRecord.data]);
+                brfssData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data)]);
             });
             allTablesData.brfss = {
                 headerData: ['', 'State (Women)'],
@@ -1779,7 +1784,8 @@
                         },
                         layout: lightHorizontalLines
                     },
-                    {text: $filter('translate')('fs.minority.health.footnote'), style: 'info'},
+                    {text: $filter('translate')('fs.minority.health.footnote1'), style: 'info'},
+                    {text: $filter('translate')('fs.minority.health.footnote2'), style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Mortality ',
                             {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}],  style: 'heading'},
@@ -2025,6 +2031,7 @@
                     },
                     {text: $filter('translate')('fs.women.reproductive.health.footnote1'), style: 'info'},
                     {text: $filter('translate')('fs.women.reproductive.health.footnote2'), style: 'info'},
+                    {text: $filter('translate')('fs.women.reproductive.health.footnote3'), style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {
@@ -2238,6 +2245,7 @@
                     },
                     {text: $filter('translate')('fs.women.health.footnote1'), style: 'info'},
                     {text: $filter('translate')('fs.women.health.footnote2'), style: 'info'},
+                    {text: $filter('translate')('fs.women.health.footnote3'), style: 'info'},
                     {image: fsc.imageDataURLs.detailMortality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Mortality',  style: 'heading'},
                     {

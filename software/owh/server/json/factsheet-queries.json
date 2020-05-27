@@ -6230,8 +6230,7 @@
             "value": [
               "_bmi5cat",
               "hlthpln1",
-              "_rfhype5",
-              "_paindx1"
+              "_rfhype5"
             ],
             "primary": false
           }
@@ -12135,8 +12134,7 @@
           "queryKey": "question.key",
           "value": [
             "_bmi5cat",
-            "_rfsmok3",
-            "_paindx1"
+            "_rfsmok3"
           ],
           "primary": false
         }

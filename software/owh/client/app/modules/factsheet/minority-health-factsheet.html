@@ -27,7 +27,8 @@
                     <tbody>
                     <tr>
                         <td class="bold-class">State Population</td>
-                        <td ng-repeat="race in fsc.factSheet.race" ng-bind="race.bridge_race | number "></td>
+                        <td ng-repeat="race in fsc.factSheet.race">
+                            {{race.bridge_race | number}} <span ng-if="race.name!='Total'">({{race.bridge_race/fsc.factSheet.totalPop * 100 | number : 1}}%)</span></td>
                     </tr>
                     <tr>
                         <td class="bold-class">National Population</td>
@@ -35,7 +36,8 @@
                     </tr>
                     </tbody>
                 </table>
-                <i class="bridge-race-info" translate="{{ 'fs.minority.health.footnote'}}"></i>
+                <i class="bridge-race-info" translate="{{ 'fs.minority.health.footnote1'}}"></i>
+                <i class="bridge-race-info" translate="{{ 'fs.minority.health.footnote2'}}"></i>
             </div>
         </div>
         <!--  Detail Mortality - Cause of Death -->

@@ -144,7 +144,7 @@ function getPramsDataForFactSheet(factSheetQueryJSON, state, sex) {
     if(sex != 'male') {
         //Question: In the 12 months before your baby was born  you were in a physical fight
         var qn205 = factSheetQueryJSON.prams['qn205'];
-        //Question: Was your baby seen by a doctor  nurse or other health care provider in the first week after he or she left the hospital?
+        //Question: Was your baby seen by a doctor  nurse or other healthcare provider in the first week after he or she left the hospital?
         var qn101 = factSheetQueryJSON.prams['qn101'];
         var yrbsAPI = new yrbs();
         var promises = [
@@ -568,7 +568,7 @@ function prepareBRFSSData(brfssResp) {
     var brfssData = [
         {question: 'Obese (Body Mass Index 30.0 - 99.8)', data: 'Not applicable' },
         {question: 'In the past 12 months I needed to see a doctor but could not because of cost', data: 'Not applicable'},
-        {question: 'I do have health care coverage', data: 'Not applicable'},
+        {question: 'I do have healthcare coverage', data: 'Not applicable'},
         {question: 'I visited a doctor for a routine checkup within the past year', data: 'Not applicable'}
     ];
 

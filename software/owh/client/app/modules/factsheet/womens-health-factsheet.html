@@ -30,7 +30,7 @@
                     <tbody>
                     <tr>
                         <td class="bold-class">Population</td>
-                        <td>{{fsc.factSheet.totalGenderPop | number }} ({{fsc.factSheet.totalGenderPop/nationalFactSheet.totalGenderPop *100 | number:2}})</td>
+                        <td>{{fsc.factSheet.totalGenderPop | number }}</td>
                         <td>{{nationalFactSheet.totalGenderPop | number }}</td>
                         <td>{{mensFactSheet.totalGenderPop | number }}</td>
                     </tr>
@@ -53,7 +53,9 @@
                     </tbody>
                 </table>
                 <i class="bridge-race-info">
-                    {{'fs.women.health.footnote1'| translate}}<br> {{'fs.women.health.footnote2'| translate}}<br>
+                    {{'fs.women.health.footnote1'| translate}}<br>
+                    {{'fs.women.health.footnote2'| translate}}<br>
+                    {{'fs.women.health.footnote3'| translate}}<br>
                 </i>
             </div>
         </div>
