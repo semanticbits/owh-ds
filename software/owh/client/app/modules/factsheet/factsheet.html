@@ -6,10 +6,10 @@
 <div class="factsheet-container">
     <div style="padding: 30px;">
 
-        <h2 id="pageHeading" class="margin-top-10">Fact Sheets by State</h2>
+        <h2 id="pageHeading" class="margin-top-10">Snapshots by State</h2>
 
         <div class="usa-width-one-whole">
-            <div id="pageDescription">Select desired state to download fact sheets that present a snapshot of demographic characteristics as well as a variety of health status indicators</div>
+            <div id="pageDescription">Select desired state to download snapshots that present a snapshot of demographic characteristics as well as a variety of health status indicators</div>
 
             <div class="usa-grid fact-sheet-generator">
                 <div class="usa-width-one-third">
@@ -20,7 +20,7 @@
                     </select>
                 </div>
                 <div class="usa-width-one-third">
-                    <label for="type">for fact sheet type</label>
+                    <label for="type">for snapshot type</label>
                     <select name="type" id="type"
                             ng-model="fsc.fsType"
                             ng-options="v for (k,v) in fsc.fsTypes" required>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="usa-width-one-third">
                     <a class="usa-button-secondary generate-btn" id="generateFactSheetLink" href="#" ng-click="fsc.getFactSheet(fsc.state, fsc.fsType);">
-                        Generate fact sheet <i class="material-icons arrow-forward-white">arrow_forward</i>
+                        Generate snapshot <i class="material-icons arrow-forward-white">arrow_forward</i>
                     </a>
                 </div>
             </div>
