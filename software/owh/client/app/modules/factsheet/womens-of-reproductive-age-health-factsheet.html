@@ -80,8 +80,9 @@
                     <td ng-bind="eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : ( eachRecord.data.deaths | number )"></td>
                     <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.deaths === 'suppressed' ? 'Suppressed' :
                      ( nationalFactSheet.detailMortalityData[$index].data.deaths | number )"></td>
-                    <td ng-bind="eachRecord.data.deaths / eachRecord.data.standardPop * 100000 | number : 1"></td>
-                    <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.deaths / nationalFactSheet.detailMortalityData[$index].data.standardPop * 100000 | number : 1"></td>
+                    <td ng-bind="eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : (eachRecord.data.deaths / eachRecord.data.standardPop * 100000 | number : 1)"></td>
+                    <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.deaths === 'suppressed' ? 'Suppressed' :
+                     (nationalFactSheet.detailMortalityData[$index].data.deaths / nationalFactSheet.detailMortalityData[$index].data.standardPop * 100000 | number : 1)"></td>
                 </tr>
                 </tbody>
             </table><br>
