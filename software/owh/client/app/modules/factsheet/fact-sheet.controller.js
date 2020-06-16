@@ -605,7 +605,7 @@
 
                     ];
                 var document = pdfMake.createPdf(pdfDefinition);
-                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
+                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-snapshot.pdf");
                 return document.docDefinition;
             });
         }
@@ -1332,8 +1332,8 @@
             //YRBS
             var yrbsData = [];
             angular.forEach(fsc.factSheet.yrbs, function(eachRecord, index){
-                yrbsData.push([eachRecord.question, eachRecord.data, $rootScope.nationalFactSheet.yrbs[index].data,
-                    $rootScope.mensFactSheet.yrbs[index].data]);
+                yrbsData.push([eachRecord.question, fsc.getMeanDisplayValue(eachRecord.data), fsc.getMeanDisplayValue($rootScope.nationalFactSheet.yrbs[index].data),
+                    fsc.getMeanDisplayValue($rootScope.mensFactSheet.yrbs[index].data)]);
             });
             allTablesData.yrbsTable = {
                 headerData: ["", "State (Girls)", "National (Girls)",'State (Men)'],
@@ -1402,8 +1402,10 @@
             angular.forEach(fsc.factSheet.cancerData, function(eachRecord, index) {
                 var aRow = [
                     eachRecord.site,
-                    fsc.calculateRate(eachRecord.incidence.cancer_incidence, eachRecord.incidence.pop, true),
-                    fsc.calculateRate(eachRecord.mortality.cancer_mortality, eachRecord.mortality.pop, true),
+                    eachRecord.incidence ?
+                        fsc.calculateRate(eachRecord.incidence.cancer_incidence, eachRecord.incidence.pop, true): 'Not available',
+                    eachRecord.mortality ?
+                        fsc.calculateRate(eachRecord.mortality.cancer_mortality, eachRecord.mortality.pop, true): 'Not available',
                     fsc.calculateRate($rootScope.nationalFactSheet.cancerData[index].incidence.cancer_incidence,
                         $rootScope.nationalFactSheet.cancerData[index].incidence.pop, true),
                     fsc.calculateRate($rootScope.nationalFactSheet.cancerData[index].mortality.cancer_mortality,
@@ -1413,12 +1415,12 @@
                     aRow.push(fsc.calculateRate($rootScope.mensFactSheet.cancerData[index].incidence.cancer_incidence,
                         $rootScope.mensFactSheet.cancerData[index].incidence.pop, true));
                 else
-                    aRow.push('Not available');
+                    aRow.push('Not applicable');
                 if($rootScope.mensFactSheet.cancerData[index].mortality)
                     aRow.push(fsc.calculateRate($rootScope.mensFactSheet.cancerData[index].mortality.cancer_mortality,
                         $rootScope.mensFactSheet.cancerData[index].mortality.pop, true));
                 else
-                    aRow.push('Not available');
+                    aRow.push('Not applicable');
                 cancerData.push(aRow);
             });
             allTablesData.cancer = {
@@ -1912,7 +1914,7 @@
                 ];
 
                 var document = pdfMake.createPdf(pdfDefinition);
-                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
+                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-snapshot.pdf");
                 return document.docDefinition;
             });
         }
@@ -2112,7 +2114,7 @@
                     {text: fsc.dataSuppressionTexts.brfss, style: 'info'}
                 ];
                 var document = pdfMake.createPdf(pdfDefinition);
-                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
+                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-snapshot.pdf");
                 return document.docDefinition;
             });
         }
@@ -2369,7 +2371,7 @@
 
                 ];
                 var document = pdfMake.createPdf(pdfDefinition);
-                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
+                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-snapshot.pdf");
                 return document.docDefinition;
             });
         }

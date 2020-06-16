@@ -232,7 +232,8 @@
                     <td>{{eachRecord.disease}}</td>
                     <td ng-if="eachRecord.data==undefined" ng-bind="'Not available'"></td>
                     <td ng-if="eachRecord.data!=undefined" ng-bind="eachRecord.data.std | number"></td>
-                    <td ng-bind="fsc.calculateRate(eachRecord.data.std, eachRecord.data.pop)"></td>
+                    <td ng-if="eachRecord.data.std==undefined" ng-bind="'Not available'"></td>
+                    <td ng-if="eachRecord.data.std!=undefined" ng-bind="fsc.calculateRate(eachRecord.data.std, eachRecord.data.pop)"></td>
                     <td ng-if="nationalFactSheet.stdData[$index].data==undefined" ng-bind="'Not available'"></td>
                     <td ng-if="nationalFactSheet.stdData[$index].data!=undefined" ng-bind="nationalFactSheet.stdData[$index].data.std | number"></td>
                     <td ng-bind="fsc.calculateRate(nationalFactSheet.stdData[$index].data.std, nationalFactSheet.stdData[$index].data.pop)"></td>
