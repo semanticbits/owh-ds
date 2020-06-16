@@ -84,7 +84,7 @@
                     <td>State</td>
                     <td ng-repeat="(key, eachRaceValue) in fsc.factSheet.infantMortalityData">
                         <span ng-if="eachRaceValue.deathRate === 'Suppressed'" ng-bind="'Suppressed'"></span>
-                        <span ng-if="!eachRaceValue.deathRate" ng-bind="'Not available'"></span>
+                        <span ng-if="eachRaceValue.deathRate === 'Unreliable'" ng-bind="'Unreliable'"></span>
                         <span ng-if="fsc.isNumeric(eachRaceValue.deathRate)" ng-bind="eachRaceValue.deathRate | number:1"></span>
                     </td>
                 </tr>
@@ -92,7 +92,7 @@
                     <td>National</td>
                     <td ng-repeat="(key, eachRaceValue) in nationalFactSheet.infantMortalityData">
                         <span ng-if="eachRaceValue.deathRate === 'Suppressed'" ng-bind="'Suppressed'"></span>
-                        <span ng-if="!eachRaceValue.deathRate" ng-bind="'Not available'"></span>
+                        <span ng-if="eachRaceValue.deathRate === 'Unreliable'" ng-bind="'Unreliable'"></span>
                         <span ng-if="fsc.isNumeric(eachRaceValue.deathRate)" ng-bind="eachRaceValue.deathRate | number:1"></span>
                     </td>
                 </tr>

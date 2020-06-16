@@ -1415,12 +1415,12 @@
                     aRow.push(fsc.calculateRate($rootScope.mensFactSheet.cancerData[index].incidence.cancer_incidence,
                         $rootScope.mensFactSheet.cancerData[index].incidence.pop, true));
                 else
-                    aRow.push('Not applicable');
+                    aRow.push('Not available');
                 if($rootScope.mensFactSheet.cancerData[index].mortality)
                     aRow.push(fsc.calculateRate($rootScope.mensFactSheet.cancerData[index].mortality.cancer_mortality,
                         $rootScope.mensFactSheet.cancerData[index].mortality.pop, true));
                 else
-                    aRow.push('Not applicable');
+                    aRow.push('Not available');
                 cancerData.push(aRow);
             });
             allTablesData.cancer = {
