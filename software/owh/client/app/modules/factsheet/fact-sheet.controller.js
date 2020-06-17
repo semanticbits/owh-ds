@@ -1159,9 +1159,10 @@
             var detailsMortalityData = [];
             angular.forEach(fsc.factSheet.detailMortalityData, function(eachRecord, index){
                 var deathCount = "", nationalDeathCount = "", mensDeathCount="";
-                if(eachRecord.data.deaths){
-                    deathCount = eachRecord.data ? (eachRecord.data.deaths === 'suppressed' ?
-                        'Suppressed' : $filter('number')(eachRecord.data.deaths)): 'Not available';
+                if(eachRecord.data && eachRecord.data.deaths){
+                    deathCount = eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : $filter('number')(eachRecord.data.deaths);
+                }else {
+                    deathCount = 'Not available'
                 }
                 if($rootScope.nationalFactSheet.detailMortalityData[index].data.deaths) {
                     nationalDeathCount = $rootScope.nationalFactSheet.detailMortalityData[index].data.deaths === 'suppressed'
@@ -1169,7 +1170,7 @@
                 }
 
                 detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, nationalDeathCount,
-                    $filter('number')(eachRecord.data.deaths / eachRecord.data.standardPop * 100000,1),
+                    eachRecord.data ? $filter('number')(eachRecord.data.deaths / eachRecord.data.standardPop * 100000,1): 'Not available',
                     $filter('number')($rootScope.nationalFactSheet.detailMortalityData[index].data.deaths /
                     $rootScope.nationalFactSheet.detailMortalityData[index].data.standardPop * 100000, 1)
                 ]);
