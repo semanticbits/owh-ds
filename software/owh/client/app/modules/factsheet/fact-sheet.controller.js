@@ -1160,7 +1160,8 @@
             angular.forEach(fsc.factSheet.detailMortalityData, function(eachRecord, index){
                 var deathCount = "", nationalDeathCount = "", mensDeathCount="";
                 if(eachRecord.data.deaths){
-                    deathCount = eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : $filter('number')(eachRecord.data.deaths);
+                    deathCount = eachRecord.data ? (eachRecord.data.deaths === 'suppressed' ?
+                        'Suppressed' : $filter('number')(eachRecord.data.deaths)): 'Not available';
                 }
                 if($rootScope.nationalFactSheet.detailMortalityData[index].data.deaths) {
                     nationalDeathCount = $rootScope.nationalFactSheet.detailMortalityData[index].data.deaths === 'suppressed'
