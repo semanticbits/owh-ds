@@ -1170,7 +1170,7 @@
                 }
 
                 detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, nationalDeathCount,
-                    eachRecord.data ? $filter('number')(eachRecord.data.deaths / eachRecord.data.standardPop * 100000,1): 'Not available',
+                    eachRecord.data !== undefined ? $filter('number')(eachRecord.data.deaths / eachRecord.data.standardPop * 100000,1): 'Not available',
                     $filter('number')($rootScope.nationalFactSheet.detailMortalityData[index].data.deaths /
                     $rootScope.nationalFactSheet.detailMortalityData[index].data.standardPop * 100000, 1)
                 ]);
