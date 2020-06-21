@@ -256,19 +256,19 @@
             var colors;
             if(labels.length === 0) {
                 if(suppression.suppressed && suppression.isNA) {
-                    labels.push('Suppressed'); labels.push('NA');
+                    labels.push('<10'); labels.push('NA');
                     colors = ['#4bb6c0', '#c0414b'];
                 } else if (suppression.suppressed) {
-                    labels.push('Suppressed'); colors = ['#4bb6c0'];
+                    labels.push('<10'); colors = ['#4bb6c0'];
                 } else if (suppression.isNA) {
                     labels.push('NA'); colors = ['#c0414b'];
                 }
             } else if (labels.length === 1){
                 if(suppression.suppressed && suppression.isNA) {
-                    labels.push('Suppressed');labels.push('NA');
+                    labels.push('<10');labels.push('NA');
                     colors = ['#aa7ed4', '#4bb6c0', '#c0414b' ];
                 } else if (suppression.suppressed) {
-                    labels.push('Suppressed');
+                    labels.push('<10');
                     colors = ['#aa7ed4', '#4bb6c0'];
                 } else if (suppression.isNA) {
                     labels.push('NA');
@@ -278,10 +278,10 @@
                 }
             } else if(labels.length === 2) {
                 if (suppression.suppressed && suppression.isNA) {
-                    labels.push('Suppressed');labels.push('NA');
+                    labels.push('<10');labels.push('NA');
                     colors = ['#aa7ed4', '#5569de', '#4bb6c0', '#c0414b' ];
                 } else if (suppression.suppressed) {
-                    labels.push('Suppressed');
+                    labels.push('<10');
                     colors = ['#aa7ed4', '#5569de', '#4bb6c0'];
                 } else if (suppression.isNA) {
                     labels.push('NA');
@@ -292,10 +292,10 @@
             } else if (labels.length > 2) {
                 colors = ['#aa7ed4', '#5569de', '#6f9af1', '#8bd480', '#fff280', '#f3af60', '#ea8484'];
                 if (suppression.suppressed && suppression.isNA) {
-                    labels.push('Suppressed');labels.push('NA');
+                    labels.push('<10');labels.push('NA');
                     colors.push('#4bb6c0'); colors.push('#c0414b');
                 } else if (suppression.suppressed) {
-                    labels.push('Suppressed'); colors.push('#4bb6c0');
+                    labels.push('<10'); colors.push('#4bb6c0');
                 } else if (suppression.isNA) {
                     labels.push('NA'); colors.push('#c0414b');
                 }
@@ -415,18 +415,18 @@
                 measure= $translate.instant('chart.title.measure.'+(primaryFilter.tableView?primaryFilter.tableView:primaryFilter.key) + (primaryFilter.chartView?('.'+primaryFilter.chartView):''));
             }
 
-            var yearfilter;
-            angular.forEach(primaryFilter.allFilters, function(filter){
-            if (filter.key === 'year' || filter.key === 'current_year' || filter.key === 'year_of_death'){
-                    if(!filter.value || (Array.isArray(filter.value) && filter.value.length != 1)){
-                        yearfilter = 'selected years';
-                    }else {
-                        yearfilter = Array.isArray(filter.value)?filter.value[0]:filter.value;
-                    }
-                }
-            });
+            // var yearfilter;
+            // angular.forEach(primaryFilter.allFilters, function(filter){
+            // if (filter.key === 'year' || filter.key === 'current_year' || filter.key === 'year_of_death'){
+            //         if(!filter.value || (Array.isArray(filter.value) && filter.value.length != 1)){
+            //             yearfilter = 'selected years';
+            //         }else {
+            //             yearfilter = Array.isArray(filter.value)?filter.value[0]:filter.value;
+            //         }
+            //     }
+            // });
 
-            return measure+ ' by Sex' +' for '+yearfilter;
+            return measure+ ' by Sex' +' for selected filters';
         }
 
         function getTotalLabel(key) {

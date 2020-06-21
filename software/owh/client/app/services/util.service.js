@@ -378,16 +378,25 @@
          * @param allOptionValues  -> List of All option values for STD, TB, HIV-AIDS filters
          * @return Table data and headers
          */
-        function prepareMixedTableData(headers, data, countKey, totalCount, countLabel, calculatePercentage,
-                                       calculateRowTotal, secondaryCountKeys, allOptionValues) {
+        function prepareMixedTableData(headers, data, dataCounts, countKey, totalCount, countLabel,
+                                       grandTotals, calculatePercentage, calculateRowTotal, secondaryCountKeys,
+                                       allOptionValues, tableView) {
             var tableData = {
                 headers: prepareMixedTableHeaders(headers, countLabel, allOptionValues),
                 data: [],
                 calculatePercentage: calculatePercentage
             };
-            tableData.data = prepareMixedTableRowData(headers.rowHeaders, headers.columnHeaders, data, countKey,
-                totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
+            tableData.data = prepareMixedTableRowData(headers.rowHeaders, headers.columnHeaders, data, dataCounts, countKey,
+                totalCount, grandTotals, calculatePercentage, calculateRowTotal, secondaryCountKeys, true,
+                tableView, [], []);
             tableData.calculatePercentage = calculatePercentage;
+            //"Show Percentages" button will be hidden in following scenarios
+            //  > If there are no columns or no rows available
+            //  > If there one row and one column available
+            tableData.hidePercentageButton = (((headers.rowHeaders.length==0 || headers.columnHeaders.length==0) ||
+                (headers.columnHeaders.length==1 &&
+                    ((headers.columnHeaders[0].allChecked && headers.columnHeaders[0].autoCompleteOptions.length==1) ||
+                        headers.columnHeaders[0].value.length==1))));
             return tableData;
         }
 
@@ -548,7 +557,9 @@
          * @param secondaryCountKey
          * @returns {Array}
          */
-        function prepareMixedTableRowData(rowHeaders, columnHeaders, data, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys) {
+        function prepareMixedTableRowData(rowHeaders, columnHeaders, data, dataCounts, countKey, totalCount, grandTotals,
+                                          calculatePercentage, calculateRowTotal, secondaryCountKeys, addLastRow, tableView,
+                                          seqRowHeaders, seqColHeaders) {
             var tableData = [];
             /**
              * This if condition prepares data
@@ -578,9 +589,12 @@
 
                         var questionCellAdded = false;
                         angular.forEach(eachData, function(eachPramsData) {
-                            var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachPramsData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
+                            var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders,
+                                eachPramsData, dataCounts, countKey, totalCount, grandTotals, calculatePercentage, calculateRowTotal, secondaryCountKeys,
+                                false, tableView, undefined, undefined);
                             if(rowHeaders.length > 1 && calculateRowTotal) {
-                                childTableData.push(prepareTotalRow(eachPramsData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
+                                childTableData.push(prepareTotalRow(eachPramsData, countKey, childTableData[0].length,
+                                    totalCount, secondaryCountKeys, seqRowHeaders.concat([{'headerName': eachHeader.key, 'key': key}]), seqColHeaders, false));
                             }
                             var responseCell = {
                                 title: eachPramsData.response,
@@ -629,9 +643,14 @@
                         if(!eachData) {
                             return;
                         }
-                        var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachData, countKey, totalCount, calculatePercentage, calculateRowTotal, secondaryCountKeys);
+                        var childTableData = prepareMixedTableRowData(rowHeaders.slice(1), columnHeaders, eachData, dataCounts,
+                            countKey, totalCount, grandTotals, calculatePercentage, calculateRowTotal, secondaryCountKeys,
+                            false, tableView, seqRowHeaders.concat([{'headerName': eachHeader.key, 'key': key}]),
+                            seqColHeaders);
                         if(rowHeaders.length > 1 && calculateRowTotal) {
-                            childTableData.push(prepareTotalRow(eachData, countKey, childTableData[0].length, totalCount, secondaryCountKeys));
+                            childTableData.push(prepareTotalRow(rowHeaders, columnHeaders, eachData, dataCounts, countKey,
+                                childTableData[0].length, totalCount, calculatePercentage, secondaryCountKeys,
+                                seqRowHeaders.concat([{'headerName': eachHeader.key, 'key': key}]), seqColHeaders, false, undefined));
                         }
                         var eachTableRow = {
                             title: matchedOption.title,
@@ -662,7 +681,62 @@
                 }
                 tableData.push(columnData);
             }
+
+            //Below logic will iterate the result table entries and counts total of all columns
+            if(rowHeaders.length > 0 && columnHeaders.length > 0 && addLastRow) {
+                if(countKey != 'std' && countKey != 'tb' && countKey !== 'aids' && countKey !== 'mental_health' && countKey !== 'brfss') {
+                    tableData.push(prepareTotalRow(rowHeaders, columnHeaders, undefined, dataCounts, countKey,
+                        0, totalCount, calculatePercentage, secondaryCountKeys,
+                        seqRowHeaders, seqColHeaders, true, grandTotals));
+                }
+            }
             return tableData;
+        }
+
+        function prepareGrandTotalCell(columns, countKey, totalCount, calculatePercentage, secondaryCountKeys, isTotal, grandTotals) {
+
+            var cell = {
+                isCount: true,
+                rowspan: 1,
+                colspan: 1,
+                isGrandTotal: true
+            };
+            $.each(columns, function(i, data){
+                if(data[countKey]== 'suppressed') {
+                    cell.title = 'suppressed';
+                    return false;
+                }
+                var title = Number(data[countKey]);
+                if(isNaN(title)) {
+                    title = data[countKey];
+                }
+                if(cell.title!= 'suppressed')
+                    cell.title = cell.title?(cell.title+title):title;
+                //add additional data to the cell, used for population
+                if(secondaryCountKeys) {
+                    angular.forEach(secondaryCountKeys, function(secondaryCountKey) {
+                        if(data[secondaryCountKey] && (secondaryCountKey=='ageAdjustedRate' || secondaryCountKey=='standardPop' || secondaryCountKey=='deathRate')) {
+                            cell[secondaryCountKey] = grandTotals[secondaryCountKey];
+                        } else {
+                            var secondaryCount = parseFloat(data[secondaryCountKey]);
+                            if(cell[secondaryCountKey]!= 'suppressed')
+                                cell[secondaryCountKey] = (cell[secondaryCountKey]!=undefined && !isNaN(secondaryCount))?(cell[secondaryCountKey]+secondaryCount):secondaryCount;
+                        }
+                    });
+                }
+            });
+            //Update the average of all columns
+            if (calculatePercentage) {
+                for(var i=0;i<columns.length;i++) {
+                    columns[i].percentage = (calculatePercentage && !isNaN(columns[i].title)) ? (Number(columns[i].title) / cell.title) * 100 : undefined;
+                }
+                cell.percentage = (calculatePercentage && !isNaN(totalCount)) ? (Number(cell[countKey]) / totalCount) * 100 : undefined;
+            }
+            if(isTotal) {
+                cell.isBold = true;
+                cell.isTotal = true;
+            }
+            return cell;
         }
 
         function prepareCountCell(count, data, countKey, totalCount, calculatePercentage, secondaryCountKeys, isTotal) {
@@ -691,32 +765,102 @@
             return cell;
         }
 
-        function prepareTotalRow(data, countKey, colspan, totalCount, secondaryCountKeys) {
+        function prepareTotalRow(rowHeaders, columnHeaders, data, dataCounts, countKey, colspan, totalCount,
+                                 calculatePercentage, secondaryCountKeys, seqRowHeaders, seqColHeaders, isGrandTotal, grandTotals) {
             var totalArray = [];
             totalArray.push({
                 title: 'Total',
                 isCount: false,
                 rowspan: 1,
-                colspan: colspan - 1,
+                colspan: (isGrandTotal?rowHeaders.length: rowHeaders.length-1),
                 isBold: true
             });
-            var total = data[countKey];
-            var cell = {
-                title: total,
-                percentage: total / totalCount * 100,
-                isCount: true,
-                rowspan: 1,
-                colspan: 1,
-                isBold: true
+            // colspan: seqRowHeaders.length,
+            var columnTotalColumns = prepareTotalCountCells(rowHeaders, columnHeaders, dataCounts, countKey, data?data[countKey]:totalCount,
+                calculatePercentage, secondaryCountKeys, seqRowHeaders, seqColHeaders);
+            totalArray = totalArray.concat(columnTotalColumns);
+            if(isGrandTotal) {
+                totalArray.push(prepareGrandTotalCell(columnTotalColumns, "title", totalCount, calculatePercentage, secondaryCountKeys, true, grandTotals));
+            } else {
+                var total = data?data[countKey]:'';
+                var cell = {
+                    title: total,
+                    percentage: total / totalCount * 100,
+                    isCount: true,
+                    rowspan: 1,
+                    colspan: 1,
+                    isBold: true
+                }
+                if(data && secondaryCountKeys) {
+                    angular.forEach(secondaryCountKeys, function(secondaryCountKey) {
+                        var secondaryCount = data[secondaryCountKey];
+                        cell[secondaryCountKey] = secondaryCount;
+                    });
+                }
+                totalArray.push(cell);
             }
-            if(secondaryCountKeys) {
-                angular.forEach(secondaryCountKeys, function(secondaryCountKey) {
-                    var secondaryCount = data[secondaryCountKey];
-                    cell[secondaryCountKey] = secondaryCount;
+            return totalArray;
+        }
+        function getNestedCountsValue(dataCounts, seqRowHeaders, seqColHeaders) {
+            var eachHeaderData, matchedData;
+            if(seqColHeaders.length>0) {
+                eachHeaderData = dataCounts[seqColHeaders[0].headerName];
+                matchedData = findByKeyAndValue(eachHeaderData, 'name', seqColHeaders[0].key);
+                seqColHeaders = clone(seqColHeaders);
+                return getNestedCountsValue(matchedData, seqRowHeaders, seqColHeaders.slice(1));
+            } else if(seqRowHeaders.length>0) {
+                eachHeaderData = dataCounts[seqRowHeaders[0].headerName];
+                matchedData = findByKeyAndValue(eachHeaderData, 'name', seqRowHeaders[0].key);
+                if(matchedData) {
+                    seqRowHeaders = clone(seqRowHeaders);
+                    return getNestedCountsValue(matchedData, seqRowHeaders.slice(1), seqColHeaders);
+                }
+                else
+                    return false;
+            } else {
+                return dataCounts;
+            }
+        }
+        function prepareTotalCountCells(rowHeaders, columnHeaders, dataCounts, countKey, totalCount,
+                                        calculatePercentage, secondaryCountKeys, seqRowHeaders, seqColHeaders, includeOnly) {
+            var tableData = [];
+            var percentage ;
+            if(calculatePercentage) {
+                percentage = 0 ;
+            }
+            if(columnHeaders && columnHeaders.length > 0) {
+                var eachColumnHeader = columnHeaders[0];
+
+                var eachOptionLength = 0;
+                angular.forEach(getSelectedAutoCompleteOptions(eachColumnHeader), function (eachOption, optionIndex) {
+                    if (!includeOnly || !angular.isArray(includeOnly) || includeOnly.indexOf(eachOption.key) >= 0) {
+                            if (columnHeaders.length > 1) {
+                                var includeKeys = [];
+                                if (eachOption.options) {
+                                    angular.forEach(eachOption.options, function (subOption) {
+                                        includeKeys.push(subOption.key);
+                                    });
+                                }
+
+                                var childTableData = prepareTotalCountCells(rowHeaders, columnHeaders.slice(1), dataCounts,
+                                    countKey, totalCount, calculatePercentage, secondaryCountKeys, seqRowHeaders, seqColHeaders.concat([{'headerName': eachColumnHeader.key, 'key': eachOption.key}]),
+                                    eachOption.options ? includeKeys : undefined);
+                                eachOptionLength = childTableData.length;
+                                tableData = tableData.concat(childTableData);
+                            } else {
+                                var matchedData = getNestedCountsValue(dataCounts, seqRowHeaders, seqColHeaders.concat([{'headerName': eachColumnHeader.key, 'key': eachOption.key}]));
+                                if(matchedData) {
+                                    var count = matchedData[countKey];
+                                    eachOptionLength = 1;
+                                    tableData.push(prepareCountCell(count, matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys, true));
+                                } else {
+                                    tableData = tableData.concat(getArrayWithDefaultValue(eachOptionLength,{title: 'na',isCount: true, standardPop: 'na', pop:'n/a'}));
+                                }
+                            }
+                    }
                 });
             }
-            totalArray.push(cell);
-            return totalArray;
+            return tableData;
         }
 
         /**
@@ -754,7 +898,9 @@
                                     });
                                 }
 
-                                var childTableData = prepareMixedTableColumnData(columnHeaders.slice(1), matchedData, countKey, totalCount, calculatePercentage, secondaryCountKeys, eachOption.options ? includeKeys : undefined);
+                                var childTableData = prepareMixedTableColumnData(columnHeaders.slice(1), matchedData,
+                                    countKey, totalCount, calculatePercentage, secondaryCountKeys,
+                                    eachOption.options ? includeKeys : undefined);
                                 eachOptionLength = childTableData.length;
                                 tableData = tableData.concat(childTableData);
                             } else {

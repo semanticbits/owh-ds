@@ -1,0 +1,350 @@
+<!--for minority factsheets-->
+<div ng-if="fsc.fsTypeForTable == fsc.fsTypes.minority_health && fsc.factSheet" class="minority-health-factsheet factsheet-content">
+    <div class="factsheet-header flex-container" id="factsheetHeader">
+        <img id="stateImage" ng-src="{{fsc.stateImgUrl}}" />
+        <h3 ng-bind="fsc.factSheetTitle" class="state-heading"></h3>
+        <a href="#" id="downloadFactSheetLink" ng-click="fsc.exportMinorityFactSheet()" ng-if="fsc.factSheet"
+           class="download-link">
+            <i class="material-icons margin-right-10 pdf-icon">file_download</i>Download snapshot for
+            {{fsc.stateName}} (PDF)
+        </a>
+    </div>
+    <div ng-bind="'minority.factsheet.definition' | translate" class="padding-bottom-10"></div>
+    <div class="factsheet-details">
+
+        <div class="bridge-race-factsheet">
+            <h5 class="bridge-race-heading"><img src="../../images/icons/bridged-race-icon.svg"/>Population in {{fsc.stateName}}</h5>
+            <p class="bridge-race-description">
+                Total minority state population: {{fsc.factSheet.totalPop | number }}
+            </p>
+            <div>
+                <table class="bridge-race-table1">
+                    <thead>
+                    <tr>
+                        <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.population" ng-bind="header"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="bold-class">State Population</td>
+                        <td ng-repeat="race in fsc.factSheet.race">
+                            {{race.bridge_race | number}} <span ng-if="race.name!='Total'">({{race.bridge_race/fsc.factSheet.totalPop * 100 | number : 1}}%)</span></td>
+                    </tr>
+                    <tr>
+                        <td class="bold-class">National Population</td>
+                        <td ng-repeat="race in nationalFactSheet.race" ng-bind="race.bridge_race | number "></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <i class="bridge-race-info" translate="{{ 'fs.minority.health.footnote1'}}"></i>
+                <i class="bridge-race-info" translate="{{ 'fs.minority.health.footnote2'}}"></i>
+            </div>
+        </div>
+        <!--  Detail Mortality - Cause of Death -->
+        <div class="detail-mortality-factsheet">
+            <h5 class="mortality-heading"><img src="../../images/icons/detailed-mortality-icon.svg"/>Mortality
+                <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div></h5>
+            <table class="detail-mortality-table">
+                <thead>
+                <tr>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.detailedMortality" ng-bind="header"></th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
+                    <tr>
+                        <td ng-bind="eachRecord.causeOfDeath" rowspan="2"></td>
+                        <td>State</td>
+                        <td ng-repeat="eachRaceData in eachRecord.data" ng-bind="fsc.calculateRate(eachRaceData.deaths, eachRaceData.standardPop)"></td>
+                    </tr>
+                    <tr>
+                        <td>National</td>
+                        <td ng-repeat="eachRaceData in nationalFactSheet.detailMortalityData[$index].data"
+                            ng-bind="fsc.calculateRate(eachRaceData.deaths, eachRaceData.standardPop)"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <i class="mortality-info" translate="{{ 'fs.minority.health.mortality.footnote' }}"></i>
+            <i><a ng-href="/description/deaths" target="_blank">Click here for data suppression rules</a></i>
+        </div>
+        <br/>
+        <!-- Infant mortality total deaths, births and rates for 2014 for selected state -->
+        <div class="infant-mortality-factsheet" ng-if="fsc.factSheet.infantMortalityData">
+            <div class="table-heading"><h5><img src="../../images/icons/infant-mortality-icon.svg"/>Infant Mortality
+                <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.thousand' | translate"></div></h5>
+            </div>
+            <table class="infant-mortality-table">
+                <thead>
+                <tr>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.infantMortality" ng-bind="header"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="2">Death rate</td>
+                    <td>State</td>
+                    <td ng-repeat="(key, eachRaceValue) in fsc.factSheet.infantMortalityData">
+                        <span ng-if="eachRaceValue.deathRate === 'Suppressed'" ng-bind="'Suppressed'"></span>
+                        <span ng-if="eachRaceValue.deathRate === 'Unreliable'" ng-bind="'Unreliable'"></span>
+                        <span ng-if="fsc.isNumeric(eachRaceValue.deathRate)" ng-bind="eachRaceValue.deathRate | number:1"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-repeat="(key, eachRaceValue) in nationalFactSheet.infantMortalityData">
+                        <span ng-if="eachRaceValue.deathRate === 'Suppressed'" ng-bind="'Suppressed'"></span>
+                        <span ng-if="eachRaceValue.deathRate === 'Unreliable'" ng-bind="'Unreliable'"></span>
+                        <span ng-if="fsc.isNumeric(eachRaceValue.deathRate)" ng-bind="eachRaceValue.deathRate | number:1"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <i translate="{{ 'fs.minority.infant.mortality.footnote' }}"></i>
+            <i><a ng-href="/description/infant_mortality" target="_blank">Click here for data suppression rules</a></i>
+        </div>
+
+        <!-- BRFSS -->
+        <br/>
+        <div class="brfss-factsheet">
+            <div class="table-heading"><h5><img src="../../images/icons/brfss-icon.svg"/>Behavioral Risk Factors</h5></div>
+            <table class="brfss-table">
+                <thead>
+                <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss" ng-bind="header"></th>
+                </thead>
+                <tbody ng-repeat="eachRecord in fsc.factSheet.brfss">
+                    <tr ng-class="{solidBorder: $index == 0}" ng-if="eachRecord.data !='Not applicable'">
+                        <td ng-bind="eachRecord.question"></td>
+                        <td ng-repeat="(key, eachRaceValue) in eachRecord.data track by key"
+                            ng-bind="fsc.getMeanDisplayValue(eachRaceValue.brfss.mean)"></td>
+                    </tr>
+                    <tr ng-class="{solidBorder: $index == 0}" ng-if="eachRecord.data =='Not applicable'">
+                        <td ng-bind="eachRecord.question"></td>
+                        <td ng-repeat="header in fsc.minorityFactSheet.tableHeaders.brfss track by header"
+                            ng-if="header!='Question'" ng-bind="'Not applicable'"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <i translate="{{ 'fs.minority.brfss.footnote' }}"></i>
+            <i><a ng-href="/description/brfss" target="_blank">Click here for data suppression rules</a></i>
+        </div>
+        <br/>
+    </div>
+    <div class="factsheet-part2">
+        <!-- Natality -->
+        <div class="natality-factsheet">
+            <h5>
+                <img src="../../images/icons/natality-icon.svg" class="margin-right-10"/>
+                Births <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div>
+            </h5>
+            <table class="natality-table">
+                <thead>
+                <tr>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.natality" ng-bind="header"></th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="2">Birth rates</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in fsc.factSheet.natality.birthRateData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, eachRaceValue.pop)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.natality.birthRateData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, eachRaceValue.pop)">
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Fertility rates</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in fsc.factSheet.natality.fertilityRatesData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, eachRaceValue.pop)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.natality.fertilityRatesData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, eachRaceValue.pop)">
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Vaginal rates</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in fsc.factSheet.natality.vaginalData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(fsc.factSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.natality.vaginalData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(nationalFactSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Cesarean rates</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in fsc.factSheet.natality.cesareanData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(fsc.factSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.natality.cesareanData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(nationalFactSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Low birth weight (<2500 gms)</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in fsc.factSheet.natality.lowBirthWeightData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(fsc.factSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.natality.lowBirthWeightData" ng-if="eachRaceValue.name != 'Unknown'"
+                        ng-bind="fsc.calculateRate(eachRaceValue.natality, fsc.findByKey(nationalFactSheet.natality.totalBirthPopulation, 'name', eachRaceValue.name).natality)">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <i translate="{{ 'fs.minority.birth.footnote' }}"></i>
+            <i><a ng-href="/description/natality" target="_blank">Click here for data suppression rules</a></i>
+        </div>
+        <!-- Tuberculosis -->
+        <div class="tb-factsheet">
+            <div class="table-heading">
+                <h5><img src="../../images/icons/tuberculosis-icon.svg"/>
+                    Tuberculosis <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div>
+                </h5>
+            </div>
+            <table class="tb-table">
+                <thead>
+                <tr>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.tuberculosis" ng-bind="header"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>State</td>
+                    <td ng-repeat="eachRecord in fsc.factSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'">{{eachRecord.rates}}</td>
+                </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-repeat="eachRecord in nationalFactSheet.tuberculosis" ng-if="eachRecord.name != 'Unknown'">{{eachRecord.rates}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <i translate="{{ 'fs.minority.tuberculosis.footnote' }}"></i>
+            <i><a ng-href="/description/tb" target="_blank">Click here for data suppression rules</a></i>
+        </div>
+        <br/>
+        <!-- STD -->
+        <div class="std-factsheet">
+            <div class="table-heading">
+                <h5><img src="../../images/icons/std-icon.svg"/>
+                    Sexually Transmitted Infections
+                    <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div></h5>
+            </div>
+            <table class="std-table">
+                <thead>
+                <tr>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.std" ng-bind="header"></th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="eachRecord in fsc.factSheet.stdData">
+                <tr>
+                    <td rowspan="2">{{eachRecord.disease}}</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">
+                        <span ng-if="fsc.isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
+                        <span ng-if="(!fsc.isValueInvalidDisplay(eachRaceValue.cases)) && (eachRaceValue.name != 'Unknown')">{{eachRaceValue.rates}}</span>
+                </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.stdData[$index].data" ng-if="eachRaceValue.name != 'Unknown'">
+                        <span ng-if="isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
+                        <span ng-if="!isValueInvalidDisplay(eachRaceValue.cases)">{{eachRaceValue.rates}}</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <i translate="{{ 'fs.minority.std.footnote' }}"></i>
+            <i><a ng-href="/description/std" target="_blank">Click here for data suppression rules</a></i>
+        </div>
+        <br/>
+        <!-- HIV/AIDS -->
+        <div class="hiv-factsheet">
+            <div class="table-heading"><h5><img src="../../images/icons/aids-hiv-icon.svg"/>
+                HIV/AIDS <div class="fs-dataset-subheading" ng-bind="'fs.hiv.rates.per.hundredK' | translate"></div></h5>
+            </div>
+            <table class="hiv-table">
+                <thead>
+                <tr>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.hiv" ng-bind="header"></th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="eachRecord in fsc.factSheet.hivAIDSData">
+                <tr>
+                    <td rowspan="2">{{eachRecord.disease}}</td>
+                    <td>State</td>
+                    <td ng-repeat="eachRaceValue in eachRecord.data" ng-if="eachRaceValue.name != 'Unknown'">
+                        <span ng-if="fsc.isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
+                        <span ng-if="(!fsc.isValueInvalidDisplay(eachRaceValue.cases)) && (eachRaceValue.name != 'Unknown')">{{eachRaceValue.rates}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>National</td>
+                    <td ng-repeat="eachRaceValue in nationalFactSheet.hivAIDSData[$index].data" ng-if="eachRaceValue.name != 'Unknown'">
+                        <span ng-if="isValueInvalidDisplay(eachRaceValue.cases)" ng-bind="eachRaceValue.cases"></span>
+                        <span ng-if="!isValueInvalidDisplay(eachRaceValue.cases)">{{eachRaceValue.rates}}</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <i translate="{{ 'fs.minority.aids.footnote' }}"></i>
+            <i><a ng-href="/description/aids" target="_blank">Click here for data suppression rules</a></i>
+        </div>
+        <br/>
+        <!-- Cancer - Moratlity & Incidence -->
+        <div class="cancer-factsheet">
+            <h5>
+                <img src="../../images/icons/cancer-incidence-icon.svg"/>
+                Cancer Incidence Rates <div class="fs-dataset-subheading" ng-bind="'fs.rates.per.hundredK' | translate"></div>
+            </h5>
+            <table class="cancer-table">
+                <thead>
+                <tr>
+                    <th ng-repeat="header in fsc.minorityFactSheet.tableHeaders.cancer" ng-bind="header"></th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="eachRecord in fsc.factSheet.cancerData">
+                    <tr>
+                        <td ng-bind="eachRecord.site" rowspan="2"></td>
+                        <td>State</td>
+                        <td ng-if="fsc.state != 'KS'" ng-repeat="eachRaceValue in eachRecord.incidence"
+                            ng-bind="fsc.calculateRate(eachRaceValue.cancer_incidence, eachRaceValue.pop, true)"></td>
+                    </tr>
+                    <tr>
+                        <td>National</td>
+                        <td ng-if="fsc.state != 'KS'" ng-repeat="eachRaceValue in nationalFactSheet.cancerData[$index].incidence"
+                            ng-bind="fsc.calculateRate(eachRaceValue.cancer_incidence, eachRaceValue.pop, true)"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <i ng-hide="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only</i>
+            <i ng-show="fsc.notParticipateStates['CancerIncidence'].states.indexOf(fsc.state) > -1">Sources: 2016, NPCR Cancer Statistics, † Female only, †† Male only. {{fsc.notParticipateStates['CancerIncidence'].message}}</i>
+            <i><a ng-href="/description/cancer_incidence" target="_blank">Click here for data suppression rules</a></i>
+        </div>
+    </div>
+    <div class="usa-width-one-whole">
+        <hr/>
+        <i>
+            Note: Please go to the &quot;<a href="#" ng-click="redirectToMortalityPage()">Explore</a>&quot; tab to see more fine-grained breakdown of results for each of the datasets
+            <span class="pull-right">Last Updated On: {{'app.revision.date'| translate}}</span>
+        </i>
+    </div>
+</div>

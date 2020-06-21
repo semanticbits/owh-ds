@@ -640,6 +640,51 @@
           "rowspan": 1,
           "colspan": 1
         }
+      ],
+      [
+        {
+          "title": "Total",
+          "isBold": true
+        },
+        {
+          "title": 1917489,
+          "percentage": 35.3848535945586,
+          "isCount": true,
+          "rowspan": 1,
+          "colspan": 1,
+          "ageAdjustedRate": 0,
+          "deathRate": 0,
+          "pop": 0,
+          "standardPop": 0,
+          "isBold": true,
+          "isColumntotal": true
+        },
+        {
+          "title": 875647,
+          "percentage": 14.588153831179548,
+          "isCount": true,
+          "rowspan": 1,
+          "colspan": 1,
+          "ageAdjustedRate": 0,
+          "deathRate": 0,
+          "pop": 0,
+          "standardPop": 0,
+          "isBold": true,
+          "isColumntotal": true
+        },
+        {
+          "title": 2797835,
+          "percentage": 0,
+          "isCount": true,
+          "rowspan": 1,
+          "colspan": 1,
+          "ageAdjustedRate": 0,
+          "deathRate": 0,
+          "pop": 0,
+          "standardPop": 0,
+          "isBold": true,
+          "isColumntotal": true
+        }
       ]
     ],
     "calculatePercentage": true

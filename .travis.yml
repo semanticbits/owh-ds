@@ -1,7 +1,7 @@
 sudo: required
 
 language: node_js
-#dist: trusty
+dist: trusty
 node_js:
   - "node"
 
@@ -13,21 +13,17 @@ addons:
   code_climate:
     repo_token: aa4bb84528f703e93a68f03079e9870898d452659e9498bbba8fb043c66e3083
 
-# env:
-#   global:
-#     - |
-#       if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then
-#          AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY;
-#          AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET;
-#          NODE_ENV=test;
-#       else
-#          AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD;
-#          AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD;
-#       fi;
-
 env:
-  AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_PROD
-  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_PROD
+  global:
+    - |
+      if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then
+         AWS_ACCESS_KEY_ID=$OWH_ACCESS_KEY;
+         AWS_SECRET_ACCESS_KEY=$OWH_ACCESS_SECRET;
+         NODE_ENV=test;
+      else
+         AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PROD;
+         AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PROD;
+      fi;
 
 before_install:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then docker info; fi
@@ -73,7 +69,7 @@ before_script:
 group: deprecated-2017Q4
 language: if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then java; fi
 jdk:
-  - openjdk8
+  - oraclejdk8
 
 script:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm run-script test-single-run; fi
@@ -132,8 +128,8 @@ deploy:
     on: &2
       repo: semanticbits/owh-ds
       branch:
-       - develop
-       # - release (TBD)
+        - develop
+        # - release (TBD)
     bucket: sb-owh-deployment
   - provider: codedeploy
     access_key_id: $OWH_ACCESS_KEY
@@ -149,18 +145,17 @@ deploy:
 #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then kill -9 $(fuser -n tcp 3000 2> /dev/null); fi
 
 script:
-#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm run-script test-single-run; fi
-#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls; fi
-#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls coverage; fi
-#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'; fi
-#  - cd $TRAVIS_BUILD_DIR/software/owh/server
-#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test; fi
-#  - npm start > /dev/null &
-#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 10; fi
-#  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then cd ../client; fi
+  #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm run-script test-single-run; fi
+  #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls; fi
+  #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls coverage; fi
+  #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then ls 'coverage/PhantomJS 2.1.1 (Linux 0.0.0)'; fi
+  #  - cd $TRAVIS_BUILD_DIR/software/owh/server
+  #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then istanbul cover node_modules/mocha/bin/_mocha -- -R spec --recursive test; fi
+  #  - npm start > /dev/null &
+  #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sleep 10; fi
+  #  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then cd ../client; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cd $TRAVIS_BUILD_DIR/software/owh; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cp -R $TRAVIS_BUILD_DIR/deployment/* $TRAVIS_BUILD_DIR/software/owh; fi
-  - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then aws s3 sync s3://owh-config-prod $TRAVIS_BUILD_DIR/software/owh; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then mkdir -p $TRAVIS_BUILD_DIR/software/owh/.owh/logs; fi
 
 after_success:
@@ -171,5 +166,4 @@ after_success:
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then docker push 498284886784.dkr.ecr.us-east-1.amazonaws.com/owh-prod:latest; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then cd $TRAVIS_BUILD_DIR; fi
   - if [ "$TRAVIS_BRANCH" == "deploy/production" ]; then sh script.sh; fi
-  
-  
+

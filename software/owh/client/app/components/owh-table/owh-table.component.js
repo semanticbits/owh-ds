@@ -9,6 +9,7 @@
             bindings: {
                 tableData: '<',
                 showPercentage: '<',
+                hidePercentageButton: '<',
                 tableView: '@',
                 rowspanThreshold: '<'
             }
@@ -110,20 +111,24 @@
                 if(column.isCount) {
                     classes += ' text-right';
                 }
-                var cell = '<td class="' + classes + '" colspan="' + column.colspan + '" rowspan="' + (flatten ? 1 : column.rowspan) + '">'
+                var cell = '<td class="' + classes + '" colspan="' + column.colspan + '" rowspan="' + (flatten ? 1 : column.rowspan) + '">';
+                if(column.hidden==undefined || column.hidden==false) {
                     if(column.isCount) {
                         cell += '<div class="custom-div owh-table__cell-content">';
                             cell += '<div>';
                         if(['crude_death_rates', 'age-adjusted_death_rates', 'birth_rates', 'fertility_rates', 'std', 'tb', 'aids', 'disease_rate', 'number_of_infant_deaths', 'crude_cancer_incidence_rates', 'crude_cancer_death_rates'].indexOf(otc.tableView) >= 0) {
                             cell += '<div id="crudeRateDiv" class="owh-table__left-col usa-width-one-half">'
+
+                            var rateLabel = {};
                             if(rowIndex === 0) {
-                                var rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates':'Birth Rate', 'fertility_rates':'Fertility Rate' }[otc.tableView] || 'Rate';
-                                var tooltip = { 'crude_death_rates': $translate.instant('label.help.text.crude.rate'),
-                                        'age-adjusted_death_rates': $translate.instant('label.help.text.age.adjusted.rate')}[otc.tableView] || 'Rate';
-
-                                cell += '<span class="owh-table-span" title="'+tooltip+'">' + rateLabel + '</span>';
-
+                                rateLabel = { 'crude_death_rates': 'Crude Death Rate', 'age-adjusted_death_rates': 'Age Adjusted Death Rate', 'birth_rates':'Birth Rate', 'fertility_rates':'Fertility Rate' }[otc.tableView] || 'Rate';
+                            } else {
+                                rateLabel = { 'crude_death_rates': 'Rate', 'age-adjusted_death_rates': 'Rate', 'birth_rates':'Rate', 'fertility_rates':'Rate' }[otc.tableView] || 'Rate';
                             }
+                            var tooltip = { 'crude_death_rates': $translate.instant('label.help.text.crude.rate'),
+                                    'age-adjusted_death_rates': $translate.instant('label.help.text.age.adjusted.rate')}[otc.tableView] || 'Rate';
+                            cell += '<span class="owh-table-span" title="'+tooltip+'">' + rateLabel + '</span>';
+
                             var rateVisibility = getRateVisibility(column.title, column.pop, otc.tableView);
                             if(otc.tableView === 'age-adjusted_death_rates') {
                                 cell += '<span>'
@@ -138,7 +143,8 @@
                             else {
                                 cell += '<span>'
                                 if(rateVisibility === 'visible') {
-                                    cell += otc.tableView === 'number_of_infant_deaths' ? $filter('number')(column.deathRate, 1) : $filter('number')(column.title / column.pop * 100000, 1) ;
+                                    cell += (otc.tableView === 'number_of_infant_deaths' || column.isColumntotal) ?
+                                        $filter('number')(column.deathRate, 1) : $filter('number')(column.title / column.pop * 100000, 1) ;
                                 }
                                 else if (rateVisibility === 'suppressed') {
                                     cell += 'Suppressed';
@@ -152,48 +158,49 @@
                             cell += '</div>';
                             cell += '<div id="curdeDeathsPopuDiv" class="usa-width-one-half">';
                             cell += '<div>';
-                            if(rowIndex === 0) {
-                                if(otc.tableView === 'birth_rates' || otc.tableView === 'fertility_rates') {
-                                    cell += '<span class="owh-table-span">Births</span>';
-                                }
-                                else if(otc.tableView === 'std' || otc.tableView === 'tb' || otc.tableView === 'aids' || otc.tableView === 'disease_rate') {
-                                    cell += '<span class="owh-table-span">Cases</span>';
-                                }
-                                else if(otc.tableView === 'crude_cancer_incidence_rates') {
-                                    cell += '<span class="owh-table-span">Incidence</span>';
-                                }
-                                else if(otc.tableView === 'number_of_infant_deaths') {
-                                    cell += '<span class="owh-table-span">Infant Deaths</span>';
-                                }
-                                else {
-                                    var deaths = $translate.instant('label.help.text.deaths');
-                                    cell += '<span class="owh-table-span" title="'+deaths+'">Deaths</span>';
-                                }
+                            if(otc.tableView === 'birth_rates' || otc.tableView === 'fertility_rates') {
+                                cell += '<span class="owh-table-span">Births</span>';
                             }
+                            else if(otc.tableView === 'std' || otc.tableView === 'tb' || otc.tableView === 'aids' || otc.tableView === 'disease_rate') {
+                                cell += '<span class="owh-table-span">Cases</span>';
+                            }
+                            else if(otc.tableView === 'crude_cancer_incidence_rates') {
+                                cell += '<span class="owh-table-span">Incidence</span>';
+                            }
+                            else if(otc.tableView === 'number_of_infant_deaths') {
+                                cell += '<span class="owh-table-span">Infant Deaths</span>';
+                            }
+                            else {
+                                var deaths = $translate.instant('label.help.text.deaths');
+                                cell += '<span class="owh-table-span" title="'+deaths+'">Deaths</span>';
+                            }
+
                             cell += '<span>';
                             if(column.title === 'suppressed' || column.title === -1) {
                                 cell += 'Suppressed';
                             }
                             else if(column.title === 'na' || column.title === -2) {
                                 cell += 'Not Available';
+                            } if(isNaN(column.title)) {
+                                cell += '<br />';
                             } else {
                                 cell += $filter('number')(column.title);
                             }
                             cell += '</span>';
                             cell += '</div>';
                             cell += '<div>';
-                            if(rowIndex === 0) {
-                                if(otc.tableView == 'fertility_rates') {
-                                    cell += '<span class="owh-table-span">Female Population</span>';
-                                }
-                                else if(otc.tableView == 'number_of_infant_deaths') {
-                                    cell += '<span class="owh-table-span">Births</span>';
-                                }
-                                else {
-                                    var pop = $translate.instant('label.help.text.pop');
-                                    cell += '<span class="owh-table-span" title="'+pop+'">Population</span>';
-                                }
+
+                            if(otc.tableView == 'fertility_rates') {
+                                cell += '<span class="owh-table-span">Female Population</span>';
                             }
+                            else if(otc.tableView == 'number_of_infant_deaths') {
+                                cell += '<span class="owh-table-span">Births</span>';
+                            }
+                            else {
+                                var pop = $translate.instant('label.help.text.pop');
+                                cell += '<span class="owh-table-span" title="'+pop+'">Population</span>';
+                            }
+
                             if(otc.tableView !== 'age-adjusted_death_rates') {
                                 cell += '<span>';
                                 if(column.pop && column.pop !== 'n/a') {
@@ -226,7 +233,7 @@
                                 cell += '<span>Not Available</span>';
                             } else {
                                 cell += '<span class="count-value">' + $filter('number')(column.title) + '</span>';
-                                if(colIndex !== row.length - 1 && column.percentage  > 0 && otc.showPercentage) {
+                                if(colIndex !== row.length - 1 && column.percentage  > 0 && otc.showPercentage && !otc.hidePercentageButton) {
                                     cell += '<span class="count-value" title="Row Percentage"> (' + $filter('number')(column.percentage, 1) + '%)</span>';
                                 }
                             }
@@ -247,6 +254,7 @@
                     } else {
                         cell += column.title;
                     }
+                }
                     cell += '</td>';
                 return cell;
             };

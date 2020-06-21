@@ -1269,6 +1269,8 @@ wonder.prototype.invokeWONDER = function (query){
     }else {
         var reqArray = [];
         reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.table, dbID));
+        if(query.aggregations.nested.tableCounts)
+            reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.tableCounts, dbID));
         if(query.aggregations.nested.maps){
             reqArray.push(createWONDERRquest(query.query, query.aggregations.nested.maps[0], dbID));
         }
@@ -1285,8 +1287,9 @@ wonder.prototype.invokeWONDER = function (query){
           var result = {};
           if(respArray.length > 0) {
               result.table = respArray[0];
-              result.maps = respArray[1];
-              respArray.splice(0, 2);
+              result.tableCounts = respArray[1];
+              result.maps = respArray[2];
+              respArray.splice(0, 3);
               result.charts = respArray;
           }
           defer.resolve(result);
@@ -1527,6 +1530,9 @@ function addMeasures(wreq, dbID) {
 
 function addOptionParams(wreq, locationFilter, dbID){
     if(dbID === 'D77') {
+        //Adding the below properties ['O_post_pops', 'O_icd'] to fix the errors from API
+        addParamToWONDERReq(wreq, 'O_post_pops', true);
+        addParamToWONDERReq(wreq, 'O_icd_selections', '');
         addParamToWONDERReq(wreq, 'O_V10_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V13_fmode', 'fadv');
         addParamToWONDERReq(wreq, 'O_V1_fmode', 'freg');
@@ -1552,6 +1558,7 @@ function addOptionParams(wreq, locationFilter, dbID){
         addParamToWONDERReq(wreq, 'O_all_labels', 'true');
     }
     else if(dbID === 'D69' || dbID === 'D31' || dbID === 'D18' ) {
+        addParamToWONDERReq(wreq, 'O_post_pops', true);
         addParamToWONDERReq(wreq, 'O_V10_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V16_fmode', 'freg');
         addParamToWONDERReq(wreq, 'O_V19_fmode', 'freg');

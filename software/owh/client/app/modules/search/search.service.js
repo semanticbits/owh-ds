@@ -10,6 +10,7 @@
             searchResults : searchResults,
             uploadImage : uploadImage,
             generateHashCode : generateHashCode,
+            validateCachedQuery : validateCachedQuery,
             getDsMetadata: getDsMetadata,
             SVGtoPNG:SVGtoPNG,
             getFactSheetForState:getFactSheetForState
@@ -56,14 +57,25 @@
             return deferred.promise;
         }
 
-        function getFactSheetForState(state, fsType, queryID) {
+        function getFactSheetForState(state, fsType, queryID, sex) {
             var deferred = $q.defer();
-            API.getFactSheet({state:state, fsType:fsType, qID: queryID}).$promise.then(onComplete).catch(onFailed);
+            API.getFactSheet({state:state, fsType:fsType, qID: queryID, sex: sex}).$promise.then(onComplete).catch(onFailed);
             function onComplete(response) {
                 deferred.resolve(response);
             }
             function onFailed(error) {
                 deferred.reject(error)
+            }
+            return deferred.promise;
+        }
+        function validateCachedQuery(queryID) {
+            var deferred = $q.defer();
+            API.validateCachedQuery({qID: queryID}).$promise.then(onComplete).catch(onFailed);
+            function onComplete(response) {
+                deferred.resolve(response);
+            }
+            function onFailed(error) {
+                deferred.reject(error);
             }
             return deferred.promise;
         }

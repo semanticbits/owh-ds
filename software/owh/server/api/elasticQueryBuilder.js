@@ -20,6 +20,20 @@ var prepareCensusAggregationQuery = function(aggregations, datasetName) {
     return censusQuery;
 };
 
+var prepareCensusTableCountsAggregationQuery = function(aggregations, datasetName) {
+    var censusQuery = { size: 0};
+    censusQuery.aggregations = {};
+    if (aggregations['nested']) {
+        if (aggregations['nested']['tableCounts'] && aggregations['nested']['tableCounts'].length > 0) {
+             aggregations['nested']['tableCounts']= aggregations['nested']['tableCounts'].filter(function (filter) {
+                return !~[ 'site', 'childhood_cancer' ].indexOf(filter.key);
+            });
+            censusQuery.aggregations = merge(censusQuery.aggregations, generateNestedCensusAggQuery(aggregations['nested']['tableCounts'], 'group_table_counts_'));
+        }
+    }
+    return censusQuery;
+};
+
 var generateNestedCensusAggQuery = function(aggregations, groupByKeyStart) {
     var aggQuery = generateCensusAggregationQuery(aggregations[0], groupByKeyStart);
     var aggKeys = Object.keys(aggQuery);
@@ -74,6 +88,23 @@ var prepareAggregationQuery = function(aggregations, countQueryKey, datasetName)
             for(var index in aggregations['nested']['charts']) {
                 elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['charts'][index], 'group_chart_' + index + '_', countQueryKey));
             }
+        }
+    }
+    console.log(JSON.stringify(elasticQuery));
+    return elasticQuery;
+};
+var prepareTableCountsAggregationQuery = function(aggregations, countQueryKey, datasetName) {
+    var elasticQuery = {};
+    elasticQuery.aggregations = {};
+    //build array for
+    if(aggregations['simple']) {
+        for (var i = 0; i < aggregations['simple'].length; i++) {
+            elasticQuery.aggregations = merge(elasticQuery.aggregations, prepareTableCountsAggregationQuery(aggregations['simple'][i], undefined, countQueryKey));
+        }
+    }
+    if (aggregations['nested']) {
+        if (aggregations['nested']['tableCounts'] && aggregations['nested']['tableCounts'].length > 0) {
+            elasticQuery.aggregations = merge(elasticQuery.aggregations, generateNestedAggQuery(aggregations['nested']['tableCounts'], 'group_table_counts_', countQueryKey));
         }
     }
     console.log(JSON.stringify(elasticQuery));
@@ -166,21 +197,32 @@ function getCasesSumQuery() {
 var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     var userQuery = params.query ? params.query : {};
     var elasticQuery = {};
+    var elasticTableCountQuery = {};
     var  searchQueryArray = [];
     var censusQuery = undefined;
+    var censusCountQuery = undefined;
     if ( isAggregation ){
         elasticQuery.size = 0;
+        elasticTableCountQuery.size = 0;
         elasticQuery = merge(elasticQuery, prepareAggregationQuery(params.aggregations, params.countQueryKey, params.searchFor));
+        elasticTableCountQuery = merge(elasticTableCountQuery, prepareTableCountsAggregationQuery(params.aggregations, params.countQueryKey, params.searchFor));
         if(params.aggregations['nested'] && params.aggregations['nested']['table']){
             censusQuery = prepareCensusAggregationQuery(params.aggregations , params.searchFor);
+        }
+        if(params.aggregations['nested'] && params.aggregations['nested']['tableCounts']){
+            censusCountQuery = prepareCensusTableCountsAggregationQuery(params.aggregations , params.searchFor);
         }
 
     } else {
         elasticQuery.from = params.pagination.from;
         elasticQuery.size = params.pagination.size;
+        elasticTableCountQuery.from = params.pagination.from;
+        elasticTableCountQuery.size = params.pagination.size;
     }
     elasticQuery.query = {};
     elasticQuery.query.filtered = {};
+    elasticTableCountQuery.query = {};
+    elasticTableCountQuery.query.filtered = {};
 
     /*
     * For STD, TB, HIV-AIDS
@@ -203,6 +245,8 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
     //check if primary query is empty
     elasticQuery.query.filtered.query = primaryQuery;
     elasticQuery.query.filtered.filter = filterQuery;
+    elasticTableCountQuery.query.filtered.query = primaryQuery;
+    elasticTableCountQuery.query.filtered.filter = filterQuery;
     var clonedFilterQuery, mapPopQuery;
     if(censusQuery) {
         var clonedUserQuery = clone(userQuery);
@@ -226,10 +270,17 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
 
         censusQuery.query.filtered.query = clonedPrimaryQuery;
         censusQuery.query.filtered.filter = clonedFilterQuery;
+
+        censusCountQuery.query = {};
+        censusCountQuery.query.filtered = {};
+
+        censusCountQuery.query.filtered.query = clone(clonedPrimaryQuery);
+        censusCountQuery.query.filtered.filter = clone(clonedFilterQuery);
     }
     //prepare query for map
     var  mapQuery = buildMapQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, params.searchFor, params.view);
     searchQueryArray.push(elasticQuery);
+    if(params.aggregations['nested'] && params.aggregations['nested']['tableCounts'])searchQueryArray.push(elasticTableCountQuery);
     //Prepare chart query for disease datasets 'std', 'tb' and 'aids'.
     if(params.searchFor == 'std' || params.searchFor == 'tb' || params.searchFor == 'aids') {
         var chartQueryArray = buildChartQuery(params.aggregations, params.countQueryKey, primaryQuery, filterQuery, censusQuery, params.searchFor);
@@ -243,10 +294,12 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
         searchQueryArray.push(mapQuery);
         //Chart 'Cases' query
         searchQueryArray.push(chartQueryArray[1]);
+        searchQueryArray.push(censusCountQuery);
     } else if ((params.searchFor === 'cancer_incidence' || params.searchFor === 'cancer_mortality') && mapQuery) {
         mapPopQuery = clone(mapQuery);
         mapPopQuery.query.filtered.filter = clonedFilterQuery;
         searchQueryArray.push(censusQuery);
+        searchQueryArray.push(censusCountQuery);
         searchQueryArray.push(mapQuery);
         searchQueryArray.push(mapPopQuery);
     } else {
@@ -254,9 +307,10 @@ var buildSearchQuery = function(params, isAggregation, allOptionValues) {
             mapPopQuery = clone(mapQuery);
             mapPopQuery.query.filtered.query = clonedPrimaryQuery;
         }
-        searchQueryArray.push(censusQuery);
-        searchQueryArray.push(mapQuery);
-        searchQueryArray.push(mapPopQuery);
+        if(censusQuery)searchQueryArray.push(censusQuery);
+        if(censusCountQuery)searchQueryArray.push(censusCountQuery);
+        if(mapQuery)searchQueryArray.push(mapQuery);
+        if(mapPopQuery)searchQueryArray.push(mapPopQuery);
     }
 
     return searchQueryArray;
@@ -414,6 +468,7 @@ function buildAPIQuery(primaryFilter) {
             simple: [],
             nested: {
                 table: [],
+                tableCounts: [],
                 charts: [],
                 maps:[]
             }
@@ -521,6 +576,7 @@ function buildAPIQuery(primaryFilter) {
         getPramsQueryForAllYearsAndQuestions(primaryFilter, apiQuery)
     }
     apiQuery.aggregations.nested.table = rowAggregations.concat(columnAggregations);
+    apiQuery.aggregations.nested.tableCounts = columnAggregations.concat(rowAggregations);
     var result = prepareChartAggregations(headers.rowHeaders.concat(headers.columnHeaders), apiQuery.searchFor);
     headers.chartHeaders = result.chartHeaders;
     apiQuery.aggregations.nested.charts = result.chartAggregations;

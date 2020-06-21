@@ -71,6 +71,10 @@
           method : 'POST',
           url: '/factsheet'
       },
+      'validateCachedQuery' : {
+          method : 'POST',
+          url: '/validateCachedQuery'
+      },
       'getGoogleAnalyticsInfo' : {
           method: 'GET',
           url: '/getGoogAnalyInfo'

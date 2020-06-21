@@ -441,29 +441,55 @@
       }
     },
     {
-      "column": "chronic_hypertension",
+      "column": "prepregnancy_hypertension",
       "type": "map",
-      "start": 335,
-      "stop": 335,
+      "start": 315,
+      "stop": 315,
       "field": "Chronic Hypertension",
       "mappings": {
-        "1": "Yes",
-        "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
+        "Y": "Yes",
+        "N": "No",
+        "U": "Unknown",
+        "": "Not on certificate"
       }
     },
     {
-      "column": "diabetes",
+      "column": "gestational_hypertension",
       "type": "map",
-      "start": 331,
-      "stop": 331,
+      "start": 316,
+      "stop": 316,
+      "field": "Chronic Hypertension",
+      "mappings": {
+        "Y": "Yes",
+        "N": "No",
+        "U": "Unknown",
+        "": "Not on certificate"
+      }
+    },
+    {
+      "column": "prepregnancy_diabetes",
+      "type": "map",
+      "start": 313,
+      "stop": 313,
       "field": "Diabetes",
       "mappings": {
-        "1": "Yes",
-        "2": "No",
-        "": "Not on certificate",
-        "9": "Unknown"
+        "Y": "Yes",
+        "N": "No",
+        "U": "Unknown",
+        "": "Not on certificate"
+      }
+    },
+    {
+      "column": "gestational_diabetes",
+      "type": "map",
+      "start": 314,
+      "stop": 314,
+      "field": "Diabetes",
+      "mappings": {
+        "Y": "Yes",
+        "N": "No",
+        "U": "Unknown",
+        "": "Not on certificate"
       }
     },
     {

@@ -1,0 +1,269 @@
+[
+  [
+    {
+      "size": 0,
+      "aggregations": {
+        "current_year": {
+          "terms": {
+            "field": "current_year",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        },
+        "sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "race": {
+          "terms": {
+            "field": "race",
+            "size": 0
+          },
+          "aggregations": {
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  [
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_race": {
+          "terms": {
+            "field": "race",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "size": 0,
+      "aggregations": {
+        "group_table_counts_sex": {
+          "terms": {
+            "field": "sex",
+            "size": 0
+          },
+          "aggregations": {
+            "group_table_counts_race": {
+              "terms": {
+                "field": "race",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {},
+    {},
+    {
+      "size": 0,
+      "aggregations": {
+        "group_maps_0_states": {
+          "terms": {
+            "field": "state",
+            "size": 0
+          },
+          "aggregations": {
+            "group_maps_0_sex": {
+              "terms": {
+                "field": "sex",
+                "size": 0
+              },
+              "aggregations": {
+                "group_count_pop": {
+                  "sum": {
+                    "field": "pop"
+                  }
+                }
+              }
+            },
+            "group_count_pop": {
+              "sum": {
+                "field": "pop"
+              }
+            }
+          }
+        },
+        "group_count_pop": {
+          "sum": {
+            "field": "pop"
+          }
+        }
+      },
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must": []
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "bool": {
+                    "should": [
+                      {
+                        "term": {
+                          "current_year": "2015"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+]

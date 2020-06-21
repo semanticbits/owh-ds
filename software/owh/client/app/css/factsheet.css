@@ -1,0 +1,248 @@
+/*--- Common ---*/
+.factsheet-content .footer-notes {
+    margin-top: 2px;
+}
+.factsheet-content .footer-notes.primary {
+    margin-top: auto;
+}
+
+/* --------------------------- */
+/* State Health Factsheet css */
+/* --------------------------- */
+.state-health-factsheet table.bridge-race-table1 td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.bridge-race-table1 td {
+    width: 30%;
+}
+.state-health-factsheet table.bridge-race-table2 td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.bridge-race-table2 td {
+    width: 30%;
+}
+.state-health-factsheet table.detail-mortality-table td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.detail-mortality-table td {
+    width: 15%;
+}
+.state-health-factsheet table.infant-mortality-table td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.infant-mortality-table td {
+    width: 30%;
+}
+.state-health-factsheet table.prams-table-1 td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.prams-table-1 td {
+    width: 30%;
+}
+.state-health-factsheet table.brfss-table td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.brfss-table td {
+    width: 30%;
+}
+.state-health-factsheet table.yrbs-table td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.yrbs-table td {
+    width: 30%;
+}
+.state-health-factsheet table.natality-table td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.natality-table td {
+    width: 30%;
+}
+.state-health-factsheet table.tb-table td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.tb-table td {
+    width: 30%;
+}
+.state-health-factsheet table.std-table td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.std-table td {
+    width: 15%;
+}
+.state-health-factsheet table.hiv-table td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.hiv-table td {
+    width: 15%;
+}
+.state-health-factsheet table.cancer-table td:nth-child(1) {
+    width: 40%;
+}
+.state-health-factsheet table.cancer-table td {
+    width: 15%;
+}
+
+/* --------------------------- */
+/* Women's Health Factsheet css */
+/* --------------------------- */
+.womens-health-factsheet table.bridge-race-table1 td:nth-child(1) {
+    width: 19%;
+}
+.womens-health-factsheet table.bridge-race-table1 td {
+    width: 15%;
+}
+.womens-health-factsheet table.bridge-race-table2 td:nth-child(1) {
+    width: 19%;
+}
+.womens-health-factsheet table.bridge-race-table2 td {
+    width: 15%;
+}
+.womens-health-factsheet table.detail-mortality-table td:nth-child(1) {
+    width: 30%;
+}
+.womens-health-factsheet table.detail-mortality-table td {
+    width: 12%;
+}
+.womens-health-factsheet table.infant-mortality-table td:nth-child(1) {
+    width: 30%;
+}
+.womens-health-factsheet table.infant-mortality-table td {
+    width: 30%;
+}
+.womens-health-factsheet table.prams-table-1 td:nth-child(1) {
+    width: 30%;
+}
+.womens-health-factsheet table.prams-table-1 td {
+    width: 23%;
+}
+.womens-health-factsheet table.brfss-table td:nth-child(1) {
+    width: 30%;
+}
+.womens-health-factsheet table.brfss-table td {
+    width: 23%;
+}
+.womens-health-factsheet table.yrbs-table td:nth-child(1) {
+    width: 30%;
+}
+.womens-health-factsheet table.yrbs-table td {
+    width: 23%;
+}
+.womens-health-factsheet table.natality-table td:nth-child(1) {
+    width: 30%;
+}
+.womens-health-factsheet table.natality-table td {
+    width: 23%;
+}
+.womens-health-factsheet table.delivery-factors-table td:nth-child(1) {
+    width: 15%;
+}
+.womens-health-factsheet table.delivery-factors-table td:nth-child(2) {
+    width: 15%;
+}
+.womens-health-factsheet table.delivery-factors-table td {
+    width: 23%;
+}
+.womens-health-factsheet table.tb-table td:nth-child(1) {
+    width: 30%;
+}
+.womens-health-factsheet table.tb-table td {
+    width: 30%;
+}
+.womens-health-factsheet table.std-table td:nth-child(1) {
+    width: 30%;
+}
+.womens-health-factsheet table.std-table td {
+    width: 11%;
+}
+.womens-health-factsheet table.hiv-table td:nth-child(1) {
+    width: 30%;
+}
+.womens-health-factsheet table.hiv-table td {
+    width: 11%;
+}
+.womens-health-factsheet table.cancer-table td:nth-child(1) {
+    width: 30%;
+}
+.womens-health-factsheet table.cancer-table td {
+    width: 11%;
+}
+
+/* --------------------------- */
+/* Minority Health Factsheet css */
+/* --------------------------- */
+
+.minority-health-factsheet table.bridge-race-table1 td:nth-child(1) {
+    width: 15%;
+}
+.minority-health-factsheet table.bridge-race-table1 td:nth-child(2) {
+    width: 15%;
+}
+.minority-health-factsheet table.bridge-race-table1 td {
+    width: 10%;
+}
+.minority-health-factsheet table.bridge-race-table2 td:nth-child(1) {
+    width: 34%;
+}
+.minority-health-factsheet table.bridge-race-table2 td {
+    width: 10%;
+}
+.minority-health-factsheet table.detail-mortality-table td:nth-child(1) {
+    width: 15%;
+}
+.minority-health-factsheet table.detail-mortality-table td {
+    width: 10%;
+}
+.minority-health-factsheet table.infant-mortality-table td:nth-child(1) {
+    width: 15%;
+}
+.minority-health-factsheet table.infant-mortality-table td {
+    width: 10%;
+}
+.minority-health-factsheet table.prams-table-1 td:nth-child(1) {
+    width: 40%;
+}
+.minority-health-factsheet table.prams-table-1 td {
+    width: 30%;
+}
+.minority-health-factsheet table.brfss-table td:nth-child(1) {
+    width: 24%;
+}
+.minority-health-factsheet table.brfss-table td {
+    width: 10%;
+}
+.minority-health-factsheet table.yrbs-table td:nth-child(1) {
+    width: 40%;
+}
+.minority-health-factsheet table.yrbs-table td {
+    width: 30%;
+}
+.minority-health-factsheet table.natality-table td:nth-child(1) {
+    width: 15%;
+}
+.minority-health-factsheet table.natality-table td {
+    width: 11%;
+}
+.minority-health-factsheet table.tb-table td:nth-child(1) {
+    width: 15%;
+}
+.minority-health-factsheet table.tb-table td {
+    width: 10%;
+}
+.minority-health-factsheet table.std-table td:nth-child(1) {
+    width: 12%;
+}
+.minority-health-factsheet table.std-table td {
+    width: 11%;
+}
+.minority-health-factsheet table.hiv-table td:nth-child(1) {
+    width: 12%;
+}
+.minority-health-factsheet table.hiv-table td {
+    width: 11%;
+}
+.minority-health-factsheet table.cancer-table td:nth-child(1) {
+    width: 12%;
+}
+.minority-health-factsheet table.cancer-table td {
+    width: 11%;
+}

@@ -10,6 +10,7 @@ var dsmetadata = require('../api/dsmetadata');
 var factSheet = require('../api/factSheet');
 var minorityFactSheet = require('../api/minorityFactSheet');
 var womenHealthFactSheet = require('../api/womensHealthFactsheet');
+var womensOfReproductiveAgeHealthFactsheet = require('../api/womensOfReproductiveAgeHealthFactsheet');
 var Q = require('q');
 var config = require('../config/config');
 var svgtopng = require('svg2png');
@@ -18,6 +19,27 @@ var fs = require('fs');
 var queryCache = new qc();
 
 var searchRouter = function(app, rConfig) {
+    app.post('/validateCachedQuery', function (req, res) {
+        var queryId = req.sanitize(req.body.qID);
+        if (queryId) {
+            queryCache.getCachedQuery(queryId).then(function (r) {
+                if(r && !config.disableQueryCache) {
+                    logger.info("Retrieved query results for query ID " + queryId + " from query cache");
+                    res.send(new result('OK', {}, "success"));
+                }
+                else if(req.body.fsType) {
+                    logger.info("Query with ID " + queryId + " not in cache, executing query");
+                    res.send(new result('FAILED', 'Query ID not present', "failed"));
+                } else{
+                    logger.warn('Query ID not present, query failed');
+                    res.send(new result('FAILED', 'Query ID not present', "failed"));
+                }
+            });
+        } else {
+            logger.warn('Query ID not present, query failed');
+            res.send(new result('FAILED', 'Query ID not present', "failed"));
+        }
+    });
     app.post('/search', function (req, res) {
         var q = req.body.q;
         logger.debug("Incoming RAW query: ", JSON.stringify(q));
@@ -90,7 +112,7 @@ var searchRouter = function(app, rConfig) {
                     resData.resultData = JSON.parse(r._source.resultJSON);
                     res.send(new result('OK', resData, "success"));
                 }
-                else if(req.body.state && req.body.fsType) {
+                else if(req.body.fsType) {
                     logger.info("Query with ID " + queryId + " not in cache, executing query");
                     var state = req.sanitize(req.body.state);
                     var fsType = req.sanitize(req.body.fsType);
@@ -105,8 +127,20 @@ var searchRouter = function(app, rConfig) {
                             }
                             res.send(new result('OK', resData, "success"));
                         });
-                    } else if (fsType === "Women's and Girls' Health") {
-                        new womenHealthFactSheet().prepareFactSheet(state, fsType).then(function(response) {
+                    } else if (fsType === "Women and Girls Health") {
+                        var sex = req.sanitize(req.body.sex);
+                        new womenHealthFactSheet().prepareFactSheet(state, fsType, sex).then(function(response) {
+                            if(!config.disableQueryCache) {
+                                var resData = {};
+                                resData.queryJSON = {};
+                                resData.resultData = response;
+                                queryCache.cacheQuery(queryId, 'fact_sheets', resData);
+                            }
+                            res.send(new result('OK', resData, "success"));
+                        });
+                    } else if (fsType === "Women of Reproductive Age Health") {
+                        var sex = req.sanitize(req.body.sex);
+                        new womensOfReproductiveAgeHealthFactsheet().prepareFactSheet(state, fsType, sex).then(function(response) {
                             if(!config.disableQueryCache) {
                                 var resData = {};
                                 resData.queryJSON = {};
@@ -273,15 +307,17 @@ function search(q) {
         logger.debug("Natality - Selected filters and filter options: ", JSON.stringify(allSelectedFilterOptions));
         logger.debug("Natality - All Filters and filter options: ", JSON.stringify(allFilterOptions));
         var sideFilterQuery = queryBuilder.buildSearchQuery(queryBuilder.addCountsToAutoCompleteOptions(q), true);
-        var mapQuery = JSON.stringify(finalQuery[2]);
+        var mapQuery = JSON.stringify(finalQuery[4]);
         //keep a copy for census rates query
-        finalQuery[3] = mapQuery;
+        finalQuery[5] = mapQuery;
         new elasticSearch().aggregateNatalityData(sideFilterQuery, isStateSelected, allFilterOptions).then(function (sideFilterResults) {
-            if(q.tableView === 'fertility_rates' && finalQuery[1]) {
-                var censusQuery = JSON.stringify(finalQuery[1]);
+            if(q.tableView === 'fertility_rates' && finalQuery[2]) {
+                var censusQuery = JSON.stringify(finalQuery[2]);
+                var censusCountQuery = JSON.stringify(finalQuery[3]);
                 //For Natality Fertility Rates add mother's age filter
-                finalQuery[1] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(censusQuery));
-                finalQuery[3] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(mapQuery));
+                finalQuery[2] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(censusQuery));
+                finalQuery[3] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(censusCountQuery));
+                finalQuery[5] = queryBuilder.addFiltersToCalcFertilityRates(JSON.parse(mapQuery));
             }
             new elasticSearch().aggregateNatalityData(finalQuery, isStateSelected, allSelectedFilterOptions).then(function (response) {
                 var resData = {};
