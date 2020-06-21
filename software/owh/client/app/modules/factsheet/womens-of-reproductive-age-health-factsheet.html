@@ -77,11 +77,14 @@
                 <tbody>
                 <tr ng-repeat="eachRecord in fsc.factSheet.detailMortalityData">
                     <td ng-bind="eachRecord.causeOfDeath"></td>
-                    <td ng-bind="eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : ( eachRecord.data.deaths | number )"></td>
+                    <td ng-if="!eachRecord.data" ng-bind="'Not available'"></td>
+                    <td ng-if="eachRecord.data" ng-bind="eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : ( eachRecord.data.deaths | number )"></td>
                     <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.deaths === 'suppressed' ? 'Suppressed' :
                      ( nationalFactSheet.detailMortalityData[$index].data.deaths | number )"></td>
-                    <td ng-bind="eachRecord.data.deaths / eachRecord.data.standardPop * 100000 | number : 1"></td>
-                    <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.deaths / nationalFactSheet.detailMortalityData[$index].data.standardPop * 100000 | number : 1"></td>
+                    <td ng-if="!eachRecord.data" ng-bind="'Not available'"></td>
+                    <td ng-if="eachRecord.data" ng-bind="eachRecord.data.deaths === 'suppressed' ? 'Suppressed' : (eachRecord.data.deaths / eachRecord.data.standardPop * 100000 | number : 1)"></td>
+                    <td ng-bind="nationalFactSheet.detailMortalityData[$index].data.deaths === 'suppressed' ? 'Suppressed' :
+                     (nationalFactSheet.detailMortalityData[$index].data.deaths / nationalFactSheet.detailMortalityData[$index].data.standardPop * 100000 | number : 1)"></td>
                 </tr>
                 </tbody>
             </table><br>

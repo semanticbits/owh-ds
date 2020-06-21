@@ -231,7 +231,8 @@
                 <tr ng-repeat="eachRecord in fsc.factSheet.stdData">
                     <td>{{eachRecord.disease}}</td>
                     <td ng-if="eachRecord.data==undefined" ng-bind="'Not available'"></td>
-                    <td ng-if="eachRecord.data!=undefined" ng-bind="eachRecord.data.std | number"></td>
+                    <td ng-if="eachRecord.data!=undefined && eachRecord.data.std !='suppressed'" ng-bind="eachRecord.data.std | number"></td>
+                    <td ng-if="eachRecord.data!=undefined && eachRecord.data.std =='suppressed'" ng-bind="'Suppressed'"></td>
                     <td ng-bind="fsc.calculateRate(eachRecord.data.std, eachRecord.data.pop)"></td>
                     <td ng-if="nationalFactSheet.stdData[$index].data==undefined" ng-bind="'Not available'"></td>
                     <td ng-if="nationalFactSheet.stdData[$index].data!=undefined" ng-bind="nationalFactSheet.stdData[$index].data.std | number"></td>
