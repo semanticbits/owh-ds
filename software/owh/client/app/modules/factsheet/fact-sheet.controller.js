@@ -272,6 +272,8 @@
         function exportFactSheet() {
             //We can pass multiple images to 'SVGtoPNG' method to generate dataURL
             var imageNamesForPDF = ["../client/app/images/state-shapes/"+fsc.stateImg];
+            imageNamesForPDF.push('../client/app/images/owh-logo.svg');
+            imageNamesForPDF.push('../client/app/images/hig-logo.svg');
             SearchService.SVGtoPNG(imageNamesForPDF).then(function(response){
                 var allTablesData = prepareStateHelthTablesData();
 
@@ -341,7 +343,10 @@
                         },
                         "state-image": {
                             alignment: 'left',
-                            margin: [0, 0, 55, -35]
+                            margin: [0, -50, 55, -35]
+                        },
+                        "hig-logo-image": {
+                            decoration: 'underline'
                         },
                         "state-heading": {
                             fontSize: 16,
@@ -376,6 +381,14 @@
                             fontSize: 6,
                             italics: true,
                             margin: [0, 1, 0, 0]
+                        },
+                        header: {
+                            background: '#6f399a'
+                        },
+                        headerFont: {
+                            fontSize: 8,
+                            color: '#FFFFFF',
+                            margin: [0, 6, 0, 0]
                         }
                     },
                     defaultStyle: {
@@ -399,8 +412,8 @@
                     return {
                         columns: [
                             { text: [
-                                    {text: 'This snapshot is last updated on '
-                                        + $filter('translate')('app.revision.date')+' and downloaded from',
+                                    {text: 'This snapshot was last updated on '
+                                            + $filter('translate')('app.revision.date')+' and downloaded from',
                                         style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
                                 ]
@@ -603,7 +616,8 @@
                         {text: CancerSource, style: 'info'},
                         {text: fsc.dataSuppressionTexts.cancer_incidence, style: 'info'}
 
-                    ];
+                ];
+                pdfDefinition.content.unshift(prepareExportPDFHeaders(response.data[1], response.data[2]));
                 var document = pdfMake.createPdf(pdfDefinition);
                 document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
                 return document.docDefinition;
@@ -681,6 +695,63 @@
             });
 
             return [tableHeaders, nestedHeaders];
+        }
+
+        /**
+         * Prepare Header definations for the PDF Headers
+         * @param OWHLogo
+         * @param HIGLogo
+         * @returns {({table: {widths: [string], body: [[{fillColor: string, border: boolean[], columns: [{image: string, margin: number[], width: number, height: number}, {style: string, text: string, alignment: string}], fontSize: number, alignment: string}]]}}|{table: {widths: [string], body: [[{border: boolean[], columnGap: number, columns: [{image: *, margin: number[], width: number}, {image: *, margin: number[]}], style: string, alignment: string}]]}})[]}
+         */
+        function prepareExportPDFHeaders(OWHLogo, HIGLogo) {
+            return [
+                {
+                    table: {
+                        widths: ['*'],
+                        body: [[{
+                            fontSize: 10,
+                            fillColor: '#185394',
+                            alignment: 'left',
+                            border: [false, false, false, false],
+                            columns: [
+                                {
+                                    margin: [30, 0, 0, 0],
+                                    image: 'data:image/png;base64,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',
+                                    width: 100,
+                                    height: 25
+                                },
+                                {
+                                    alignment: 'center',
+                                    text: 'US Department of Health & Human Services',
+                                    style: 'headerFont'
+                                }
+                            ]
+                        }]]
+                    }
+                },
+                {
+                    table: {
+                        widths: ['*'],
+                        body: [[{
+                            alignment: 'left',
+                            style: 'hig-logo-image',
+                            border: [false, false, false, false],
+                            columns: [
+                                {
+                                    margin: [30, 0, 0, 0],
+                                    image: OWHLogo,
+                                    width: 50
+                                },
+                                {
+                                    margin: [40, -50, 0, 0],
+                                    image: HIGLogo
+                                }
+                            ],
+                            columnGap: 10
+                        }]]
+                    }
+                }
+            ]
         }
 
         /**
@@ -1170,7 +1241,7 @@
                 detailsMortalityData.push([eachRecord.causeOfDeath, deathCount, nationalDeathCount,
                     $filter('number')(eachRecord.data.deaths / eachRecord.data.standardPop * 100000,1),
                     $filter('number')($rootScope.nationalFactSheet.detailMortalityData[index].data.deaths /
-                    $rootScope.nationalFactSheet.detailMortalityData[index].data.standardPop * 100000, 1)
+                        $rootScope.nationalFactSheet.detailMortalityData[index].data.standardPop * 100000, 1)
                 ]);
             });
             allTablesData.detailMortality = {
@@ -1642,6 +1713,8 @@
         function exportMinorityFactSheet() {
             //We can pass multiple images to 'SVGtoPNG' method to generate dataURL
             var imageNamesForPDF = ["../client/app/images/state-shapes/"+fsc.stateImg];
+            imageNamesForPDF.push('../client/app/images/owh-logo.svg');
+            imageNamesForPDF.push('../client/app/images/hig-logo.svg');
             SearchService.SVGtoPNG(imageNamesForPDF).then(function(response){
                 var allTablesData = prepareMinorityTablesData();
 
@@ -1689,7 +1762,7 @@
                         },
                         "state-image": {
                             alignment: 'left',
-                            margin: [0, 0, 55, -35]
+                            margin: [0, -50, 55, -35]
                         },
                         "state-heading": {
                             fontSize: 16,
@@ -1727,6 +1800,14 @@
                         },
                         'factsheet-def': {
                             margin: [0, 20, 0, 0]
+                        },
+                        header: {
+                            background: '#6f399a'
+                        },
+                        headerFont: {
+                            fontSize: 8,
+                            color: '#FFFFFF',
+                            margin: [0, 6, 0, 0]
                         }
                     },
                     defaultStyle: {
@@ -1750,8 +1831,8 @@
                     return {
                         columns: [
                             { text: [
-                                    {text: 'This snapshot is last updated on '
-                                        + $filter('translate')('app.revision.date')+' and downloaded from', style: 'footer'},
+                                    {text: 'This snapshot was last updated on '
+                                            + $filter('translate')('app.revision.date')+' and downloaded from', style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
                                 ]
                             },
@@ -1804,9 +1885,9 @@
                     },
                     {text: $filter('translate')('fs.minority.health.mortality.footnote'), style: 'info'},
                     {text: fsc.dataSuppressionTexts.mortality, style: 'info'},
-                    {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image'},
+                    {image: fsc.imageDataURLs.infantMortality, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: ['Infant Mortality ',
-                    {text:$filter('translate')('fs.rates.per.thousand'), bold:false}], style: 'heading'},
+                            {text:$filter('translate')('fs.rates.per.thousand'), bold:false}], style: 'heading'},
                     {
                         style: 'table',
                         table: {
@@ -1836,7 +1917,7 @@
                     {text: fsc.dataSuppressionTexts.brfss, style: 'info'},
                     {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Births ',
-                    {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
+                            {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
                     {
                         style: 'table',
                         table: {
@@ -1849,9 +1930,9 @@
                     },
                     {text: $filter('translate')('fs.minority.birth.footnote'), style: 'info'},
                     {text: fsc.dataSuppressionTexts.natality, style: 'info'},
-                    {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image'},
+                    {image: fsc.imageDataURLs.tb, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: ['Tuberculosis ',
-                    {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
+                            {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
                     {
                         style: 'table',
                         table: {
@@ -1864,7 +1945,7 @@
                     },
                     {text: $filter('translate')('fs.minority.tuberculosis.footnote'), style: 'info'},
                     {text: fsc.dataSuppressionTexts.tb, style: 'info'},
-                    {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                    {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
                     {text: ['Sexually Transmitted Infections ',
                             {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
                     {
@@ -1894,7 +1975,7 @@
                     },
                     {text: $filter('translate')('fs.minority.aids.footnote'), style: 'info'},
                     {text: fsc.dataSuppressionTexts.aids, style: 'info'},
-                    {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image'},
+                    {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: ['Cancer Statistics ',
                             {text:$filter('translate')('fs.rates.per.hundredK'), bold:false}], style: 'heading'},
                     {
@@ -1910,6 +1991,7 @@
                     {text: CancerSource, style: 'info'},
                     {text: fsc.dataSuppressionTexts.cancer_incidence, style: 'info'}
                 ];
+                pdfDefinition.content.unshift(prepareExportPDFHeaders(response.data[1], response.data[2]));
 
                 var document = pdfMake.createPdf(pdfDefinition);
                 document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
@@ -1922,6 +2004,8 @@
          */
         function exportWomensOfReproductiveAgeFactSheet() {
             var imageNamesForPDF = ["../client/app/images/state-shapes/"+fsc.stateImg];
+            imageNamesForPDF.push('../client/app/images/owh-logo.svg');
+            imageNamesForPDF.push('../client/app/images/hig-logo.svg');
             SearchService.SVGtoPNG(imageNamesForPDF).then(function(response){
                 var allTablesData = prepareWomenOfReproductiveHealthTabledData();
                 allTablesData.bridgeRaceTable2.bodyData = prepareTableBody(allTablesData.bridgeRaceTable2.bodyData);
@@ -1953,7 +2037,7 @@
                 var pdfDefinition = {
                     styles: {
                         'dataset-image': { alignment: 'left', margin: [0, 0, 55, -35]},
-                        'state-image': { alignment: 'left', margin: [0, 0, 55, -25]},
+                        'state-image': { alignment: 'left',  margin: [0, -50, 55, -25]},
                         'state-heading': { fontSize: 16, alignment: 'left', margin: [50, 0, 0, 0] },
                         'footer': { fontSize: 5, italics: true },
                         'footerLink': { fontSize: 5, color: '#6f399a', italics: true },
@@ -1961,7 +2045,9 @@
                         'underline': { decoration: 'underline' },
                         'tableHeader': { bold: true },
                         'table': { margin: [0, 2, 0, 2]},
-                        'info': { fontSize: 6, italics: true, margin: [0, 1, 0, 0]}
+                        'info': { fontSize: 6, italics: true, margin: [0, 1, 0, 0]},
+                        'header': { background: '#6f399a'},
+                        'headerFont': { fontSize: 8, color: '#FFFFFF', margin: [0, 6, 0, 0] }
                     },
                     defaultStyle: { fontSize: 8 }
                 };
@@ -1982,7 +2068,7 @@
                     return {
                         columns: [
                             { text: [
-                                    {text: 'This snapshot is last updated on '
+                                    {text: 'This snapshot was last updated on '
                                             + $filter('translate')('app.revision.date')+' and downloaded from', style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
                                 ]
@@ -2065,7 +2151,7 @@
                     },
                     {text: PRAMSSource, style: 'info'} ,
                     {text: fsc.dataSuppressionTexts.prams, style: 'info'},
-                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
+                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: 'Pregnancy Risk Factors', style: 'heading'},
                     {
                         style: 'table',
@@ -2080,7 +2166,7 @@
                     },
                     {text: $filter('translate')('fs.women.reproductive.natality.footnote'), style: 'info'},
                     {text: fsc.dataSuppressionTexts.natality, style: 'info'},
-                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                    {image: fsc.imageDataURLs.natality, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Delivery Factors', style: 'heading'},
                     {
                         style: 'table',
@@ -2111,6 +2197,7 @@
                     {text: $filter('translate')('fs.women.reproductive.brfss.footnote'), style: 'info'},
                     {text: fsc.dataSuppressionTexts.brfss, style: 'info'}
                 ];
+                pdfDefinition.content.unshift(prepareExportPDFHeaders(response.data[1], response.data[2]));
                 var document = pdfMake.createPdf(pdfDefinition);
                 document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
                 return document.docDefinition;
@@ -2121,6 +2208,8 @@
          */
         function exportWomenFactSheet() {
             var imageNamesForPDF = ["../client/app/images/state-shapes/"+fsc.stateImg];
+            imageNamesForPDF.push('../client/app/images/owh-logo.svg');
+            imageNamesForPDF.push('../client/app/images/hig-logo.svg');
             SearchService.SVGtoPNG(imageNamesForPDF).then(function(response){
                 var allTablesData = prepareWomenHealthTabledData();
                 allTablesData.bridgeRaceTable2.bodyData = prepareTableBody(allTablesData.bridgeRaceTable2.bodyData);
@@ -2167,7 +2256,7 @@
                 var pdfDefinition = {
                     styles: {
                         'dataset-image': { alignment: 'left', margin: [0, 0, 55, -35]},
-                        'state-image': { alignment: 'left', margin: [0, 0, 55, -25]},
+                        'state-image': { alignment: 'left', margin: [0, -50, 55, -25]},
                         'state-heading': { fontSize: 16, alignment: 'left', margin: [50, 0, 0, 0] },
                         'footer': { fontSize: 5, italics: true },
                         'footerLink': { fontSize: 5, color: '#6f399a', italics: true },
@@ -2175,7 +2264,9 @@
                         'underline': { decoration: 'underline' },
                         'tableHeader': { bold: true },
                         'table': { margin: [0, 2, 0, 2]},
-                        'info': { fontSize: 6, italics: true, margin: [0, 1, 0, 0]}
+                        'info': { fontSize: 6, italics: true, margin: [0, 1, 0, 0]},
+                        'header': { background: '#6f399a'},
+                        'headerFont': { fontSize: 8, color: '#FFFFFF', margin: [0, 6, 0, 0] }
                     },
                     defaultStyle: { fontSize: 8 }
                 };
@@ -2196,8 +2287,8 @@
                     return {
                         columns: [
                             { text: [
-                                    {text: 'This snapshot is last updated on '
-                                        + $filter('translate')('app.revision.date')+' and downloaded from', style: 'footer'},
+                                    {text: 'This snapshot was last updated on '
+                                            + $filter('translate')('app.revision.date')+' and downloaded from', style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
                                 ]
                             },
@@ -2265,7 +2356,7 @@
                     {text: 'Age adjustment is a technique for "removing" the effects of age from crude rates, so as to allow meaningful comparisons across populations with different underlying age structures.', style: 'info'},
                     {text: $filter('translate')('fs.women.health.mortality.footnote3'), style: 'info'},
                     {text: fsc.dataSuppressionTexts.mortality, style: 'info'},
-                    {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image'},
+                    {image: fsc.imageDataURLs.prams, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: 'Prenatal Care and Pregnancy Risk', style: 'heading'},
                     {
                         style: 'table',
@@ -2294,7 +2385,7 @@
                     //     layout: lightHorizontalLines
                     // },
                     // {text: $filter('translate')('fs.women.natality.footnote'), style: 'info'},
-                    {image: fsc.imageDataURLs.brfs, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                    {image: fsc.imageDataURLs.brfs, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Behavioral Risk Factors', style: 'heading'},
                     {
                         style: 'table',
@@ -2338,7 +2429,7 @@
                     },
                     {text: $filter('translate')('fs.women.std.footnote'), style: 'info'},
                     {text: fsc.dataSuppressionTexts.std, style: 'info'},
-                    {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
+                    {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
                     {text: 'HIV/AIDS', style: 'heading'},
                     {
                         style: 'table',
@@ -2352,7 +2443,7 @@
                     },
                     {text: $filter('translate')('fs.women.aids.footnote'), style: 'info'},
                     {text: fsc.dataSuppressionTexts.aids, style: 'info'},
-                    {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image', pageBreak: 'before'},
+                    {image: fsc.imageDataURLs.cancer, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'Cancer Statistics', style: 'heading'},
                     {
                         style: 'table',
@@ -2368,6 +2459,7 @@
                     {text: fsc.dataSuppressionTexts.cancer_incidence, style: 'info'}
 
                 ];
+                pdfDefinition.content.unshift(prepareExportPDFHeaders(response.data[1], response.data[2]));
                 var document = pdfMake.createPdf(pdfDefinition);
                 document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
                 return document.docDefinition;
@@ -2407,11 +2499,11 @@
             }
             return false;
         }
-        function findByKey(array, key, value) { 
-            return array.filter(function(item) { 
-                return item[key] === value; 
+        function findByKey(array, key, value) {
+            return array.filter(function(item) {
+                return item[key] === value;
             })[0];
-         }
+        }
         function calculateRate(count, totalPopulation, checkReliability) {
             if(count === undefined) {
                 return 'Not available';
@@ -2442,7 +2534,7 @@
             if (fsc.state === 'KS') {
                 return 'Not available';
             } else if(count === 'suppressed') {
-              return 'Suppressed';
+                return 'Suppressed';
             } else {
                 return $filter('number')(count);
             }
