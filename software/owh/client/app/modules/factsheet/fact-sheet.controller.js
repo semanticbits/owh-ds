@@ -463,9 +463,9 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
-                                            margin: [0, 50, 0, 0],
-                                            fontSize: 10
+                                            fontSize: 10,
                                         }
                                     }
                                 ]
@@ -596,8 +596,9 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
-                                            fontSize: 10
+                                            fontSize: 10,
                                         }
                                     }
                                 ]
@@ -706,6 +707,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -816,6 +818,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -874,7 +877,7 @@
 
                 ];
                 var document = pdfMake.createPdf(pdfDefinition);
-                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
+                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-snapshot.pdf");
                 return document.docDefinition;
             });
         }
@@ -1001,6 +1004,7 @@
                                 {
                                     alignment: 'right',
                                     text: "Snapshot",
+                                    margin: [0, 8, 0, 0],
                                     style: {
                                         fontSize: 10,
                                     }
@@ -2163,6 +2167,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -2265,6 +2270,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -2361,6 +2367,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -2472,6 +2479,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -2530,7 +2538,7 @@
                     {text: fsc.dataSuppressionTexts.cancer_incidence, style: 'info'}
                 ];
                 var document = pdfMake.createPdf(pdfDefinition);
-                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
+                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-snapshot.pdf");
                 return document.docDefinition;
             });
         }
@@ -2661,6 +2669,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -2792,6 +2801,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -2865,7 +2875,7 @@
                     {text: fsc.dataSuppressionTexts.brfss, style: 'info'}
                 ];
                 var document = pdfMake.createPdf(pdfDefinition);
-                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
+                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-snapshot.pdf");
                 return document.docDefinition;
             });
         }
@@ -3009,6 +3019,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -3126,6 +3137,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -3264,6 +3276,7 @@
                                     {
                                         alignment: 'right',
                                         text: "Snapshot",
+                                        margin: [0, 8, 0, 0],
                                         style: {
                                             fontSize: 10
                                         }
@@ -3322,7 +3335,7 @@
 
                 ];
                 var document = pdfMake.createPdf(pdfDefinition);
-                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-factsheet.pdf");
+                document.download(fsc.stateName+"-"+fsc.fsTypeForTable+"-snapshot.pdf");
                 return document.docDefinition;
             });
         }
