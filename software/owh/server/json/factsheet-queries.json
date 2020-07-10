@@ -4988,7 +4988,7 @@
                       "should": [
                         {
                           "term": {
-                            "current_year": "2016"
+                            "current_year": "2018"
                           }
                         }
                       ]
