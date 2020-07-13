@@ -1554,7 +1554,6 @@ function addOptionParams(wreq, locationFilter, dbID){
         addParamToWONDERReq(wreq, 'O_mcd', 'D77.V13');
         addParamToWONDERReq(wreq, 'O_urban', 'D77.V19');
         addParamToWONDERReq(wreq, 'O_all_labels', 'true');
-        addParamToWONDERReq(wreq, 'O_post_pops', 'false');
     }
     else if(dbID === 'D69' || dbID === 'D31' || dbID === 'D18' ) {
         addParamToWONDERReq(wreq, 'O_V10_fmode', 'freg');
@@ -1582,7 +1581,6 @@ function addOptionParams(wreq, locationFilter, dbID){
         addParamToWONDERReq(wreq, 'finder-stage-'+dbID+'.V26', 'codeset');
         addParamToWONDERReq(wreq, 'O_all_labels', 'true');
         addParamToWONDERReq(wreq, 'stage', 'request');
-        addParamToWONDERReq(wreq, 'O_post_pops', 'false');
     }
 }
 
