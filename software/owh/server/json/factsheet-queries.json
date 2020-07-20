@@ -433,7 +433,7 @@
           "key": "year_of_death",
           "queryKey": "year_of_death",
           "value": [
-            "2016"
+            "2017"
           ],
           "primary": false
         },
@@ -530,7 +530,7 @@
                       "should": [
                         {
                           "term": {
-                            "current_year": "2016"
+                            "current_year": "2017"
                           }
                         }
                       ]
@@ -629,7 +629,7 @@
                       "should": [
                         {
                           "term": {
-                            "current_year": "2016"
+                            "current_year": "2017"
                           }
                         }
                       ]
@@ -1785,7 +1785,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -1895,7 +1895,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -2012,7 +2012,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -2122,7 +2122,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -2239,7 +2239,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -2349,7 +2349,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -2466,7 +2466,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -2576,7 +2576,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -2693,7 +2693,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -2803,7 +2803,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -2920,7 +2920,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -3030,7 +3030,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -6147,7 +6147,7 @@
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2015",
+            "value": "2017",
             "primary": false
           },
           "sitecode": {
@@ -6206,7 +6206,7 @@
       }
     },
     "brfss": {
-      "query_2016": {
+      "query_2017": {
         "basicSearch":true,
         "searchFor": "brfss",
         "query": {
@@ -6214,7 +6214,7 @@
             "key": "year",
             "queryKey": "year",
             "value": [
-              "2016"
+              "2017"
             ],
             "primary": false
           },
@@ -8102,7 +8102,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -8212,7 +8212,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -8329,7 +8329,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -8439,7 +8439,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -8556,7 +8556,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -8666,7 +8666,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -8783,7 +8783,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -8893,7 +8893,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -9010,7 +9010,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -9120,7 +9120,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -9237,7 +9237,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -9347,7 +9347,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -12046,7 +12046,7 @@
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2015",
+            "value": "2018",
             "primary": false
           },
           "sitecode": {
@@ -12119,7 +12119,7 @@
           "key": "year",
           "queryKey": "year",
           "value": [
-            "2016"
+            "2017"
           ],
           "primary": false
         },
@@ -14504,7 +14504,7 @@
           "key": "year",
           "queryKey": "year",
           "value": [
-            "2016"
+            "2017"
           ],
           "primary": false
         },
@@ -15399,7 +15399,7 @@
             "key": "year_of_death",
             "queryKey": "year_of_death",
             "value": [
-              "2016"
+              "2017"
             ],
             "primary": false
           },
@@ -15583,7 +15583,7 @@
                       "should": [
                         {
                           "term": {
-                            "current_year": "2016"
+                            "current_year": "2017"
                           }
                         }
                       ]
@@ -15727,7 +15727,7 @@
                       "should": [
                         {
                           "term": {
-                            "current_year": "2016"
+                            "current_year": "2017"
                           }
                         }
                       ]
@@ -17344,7 +17344,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -17494,7 +17494,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -17646,7 +17646,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -17796,7 +17796,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -17948,7 +17948,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -18098,7 +18098,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -18250,7 +18250,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -18400,7 +18400,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -18552,7 +18552,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -18702,7 +18702,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -18854,7 +18854,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -19004,7 +19004,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2016"
+                              "current_year": "2017"
                             }
                           }
                         ]
@@ -27409,7 +27409,7 @@
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2015",
+            "value": "2017",
             "primary": false
           },
           "sitecode": {
@@ -27458,7 +27458,7 @@
       }
     },
     "brfss": {
-      "query_2016": {
+      "query_2017": {
         "basicSearch":true,
         "searchFor": "brfss",
         "query": {
