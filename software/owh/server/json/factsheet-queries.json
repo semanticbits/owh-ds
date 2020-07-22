@@ -27458,7 +27458,7 @@
       }
     },
     "brfss": {
-      "query_2017": {
+      "query_2016": {
         "basicSearch":true,
         "searchFor": "brfss",
         "query": {
