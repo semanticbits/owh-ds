@@ -6147,7 +6147,7 @@
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2015",
+            "value": "2017",
             "primary": false
           },
           "sitecode": {
@@ -6206,7 +6206,7 @@
       }
     },
     "brfss": {
-      "query_2017": {
+      "query_2016": {
         "basicSearch":true,
         "searchFor": "brfss",
         "query": {
@@ -27409,7 +27409,7 @@
           "year": {
             "key": "year",
             "queryKey": "year",
-            "value": "2015",
+            "value": "2017",
             "primary": false
           },
           "sitecode": {
