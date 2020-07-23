@@ -406,7 +406,8 @@
                                             + $filter('translate')('app.revision.date')+' and downloaded from',
                                         style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
-                                ]
+                                ],
+                                margin: [30, 0, 0, 0]
                             },
                             {
                                 alignment: 'right',
@@ -414,7 +415,8 @@
                                     { text: page.toString(), italics: true, style: 'footer' },
                                     { text: ' of ', italics: true, style: 'footer'},
                                     { text: pages.toString(), italics: true, style: 'footer' }
-                                ]
+                                ],
+                                margin: [0, 0, 30, 0]
                             }
                         ],
                         margin: [10, 0]
@@ -2081,7 +2083,17 @@
                                     {text: 'This snapshot was last updated on '
                                             + $filter('translate')('app.revision.date')+' and downloaded from', style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
-                                ]
+                                ],
+                                margin: [30, 0, 0, 0]
+                            },
+                            {
+                                alignment: 'right',
+                                text: [
+                                    { text: page.toString(), italics: true, style: 'footer' },
+                                    { text: ' of ', italics: true, style: 'footer'},
+                                    { text: pages.toString(), italics: true, style: 'footer' }
+                                ],
+                                margin: [0, 0, 30, 0]
                             }
                         ],
                         margin: [10, 0]
@@ -2547,7 +2559,17 @@
                                     {text: 'This snapshot was last updated on '
                                             + $filter('translate')('app.revision.date')+' and downloaded from', style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
-                                ]
+                                ],
+                                margin: [30, 0, 0, 0]
+                            },
+                            {
+                                alignment: 'right',
+                                text: [
+                                    { text: page.toString(), italics: true, style: 'footer' },
+                                    { text: ' of ', italics: true, style: 'footer'},
+                                    { text: pages.toString(), italics: true, style: 'footer' }
+                                ],
+                                margin: [0, 0, 30, 0]
                             }
                         ],
                         margin: [10, 0]
@@ -2875,7 +2897,17 @@
                                     {text: 'This snapshot was last updated on '
                                             + $filter('translate')('app.revision.date')+' and downloaded from', style: 'footer'},
                                     {text: ' Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
-                                ]
+                                ],
+                                margin: [30, 0, 0, 0]
+                            },
+                            {
+                                alignment: 'right',
+                                text: [
+                                    { text: page.toString(), italics: true, style: 'footer' },
+                                    { text: ' of ', italics: true, style: 'footer'},
+                                    { text: pages.toString(), italics: true, style: 'footer' }
+                                ],
+                                margin: [0, 0, 30, 0]
                             }
                         ],
                         margin: [10, 0]
@@ -3111,20 +3143,7 @@
                         layout: lightHorizontalLines
                     },
                     {text: YRBSSource, style: 'info'},
-                    {text: fsc.dataSuppressionTexts.yrbs, style: 'info'},
-                    {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
-                    {text: 'Sexually Transmitted Infections', style: 'heading'},
-                    {
-                        style: 'table',
-                        table: {
-                            widths: $.map( stdTableData[0], function (d, i) {
-                                return i==0 ? 200 : '*';
-                            } ),
-                            body: stdTableData
-                        },
-                        layout: lightHorizontalLines
-                    },
-                    {text: $filter('translate')('fs.women.std.footnote'), style: 'info', pageBreak: 'after'},
+                    {text: fsc.dataSuppressionTexts.yrbs, style: 'info', pageBreak: 'after'},
                     {
                         table: {
                             widths: ['*'],
@@ -3185,6 +3204,19 @@
                             paddingTop: function(i, node) { return -6; }
                         }
                     },
+                    {image: fsc.imageDataURLs.std, width: 50, height: 50, style: 'dataset-image'},
+                    {text: 'Sexually Transmitted Infections', style: 'heading'},
+                    {
+                        style: 'table',
+                        table: {
+                            widths: $.map( stdTableData[0], function (d, i) {
+                                return i==0 ? 200 : '*';
+                            } ),
+                            body: stdTableData
+                        },
+                        layout: lightHorizontalLines
+                    },
+                    {text: $filter('translate')('fs.women.std.footnote'), style: 'info'},
                     {text: fsc.dataSuppressionTexts.std, style: 'info'},
                     {image: fsc.imageDataURLs.hiv, width: 50, height: 50, style: 'dataset-image'},
                     {text: 'HIV/AIDS', style: 'heading'},
