@@ -79,6 +79,11 @@
             { "key": "Male", "title": "Male" }
         ];
 
+        var natalityGenderOptions =  [
+            { "key": "Female", "title": "Female child" },
+            { "key": "Male", "title": "Male child" }
+        ];
+
         var raceOptions =  [
             { "key": "American Indian", "title": "American Indian or Alaska Native" },
             { "key": "Asian or Pacific Islander", "title": "Asian or Pacific Islander" },
@@ -1011,7 +1016,7 @@
                     filterType: "checkbox", autoCompleteOptions: weekDayOptions, helpText:"label.help.text.week.day"},
 
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [], defaultGroup:'column', groupBy: 'column',
-                    filterType: "checkbox", autoCompleteOptions: genderOptions, helpText:"label.help.text.sex"},
+                    filterType: "checkbox", autoCompleteOptions: natalityGenderOptions, helpText:"label.help.text.sex"},
                 {key: 'gestational_age_r10', title: 'label.filter.gestational.birth.age', queryKey:"gestational_age_r10",
                     primary: false, value: [], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: gestationalAgeAtBirth,
