@@ -37,8 +37,8 @@ class CensusETL (ETL):
             year = 0
             if f.startswith("pcen_v"):
                 year = int(f[6:10]) #pcen_v2011_y11.txt
-            if year >= 2012: # common mappings file for years 2012 to 2017
-                config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'y2012_2017.json')
+            if year >= 2012: # common mappings file for years 2012 to 2018
+                config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'y2012_2018.json')
             else:
                 config_file =  os.path.join(self.dataDirectory, 'data_mapping', f.replace(".txt", ".json"))
             censusParser = DataFileParser(file_path, config_file)

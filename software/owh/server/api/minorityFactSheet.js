@@ -315,7 +315,7 @@ function getFactSheetDataForInfants(factSheetQueryJSON) {
             //non-hispanic races
             var infantMortalityData = resp[0].table;
             //hispanic data
-            infantMortalityData['Hispanic'] = resp[1].table['2016'];
+            infantMortalityData['Hispanic'] = resp[1].table['2017'];
             //cdc returns NUMBER+(Unreliable) i.e. 5.20 (Unreliable) if data is Unreliable
             //Convert it into 'Unreliable' string
             for (var prop in infantMortalityData) {
