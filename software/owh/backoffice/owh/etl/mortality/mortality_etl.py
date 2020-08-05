@@ -63,7 +63,7 @@ class MortalityIndexer (ETL):
             else:
                 year = 2000 + int(f[2:4])  # e.g Mort01us
 
-            if year <= 2017 and year >= 2003:   # data file for year 2003 to 2014
+            if year <= 2018 and year >= 2003:   # data file for year 2003 to 2014
                 config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_03-17.json')
             elif year <= 2002 and year >= 2000:
                 config_file =  os.path.join(self.dataDirectory, 'data_mapping', 'mortality_mapping_00-02.json')
@@ -92,8 +92,12 @@ class MortalityIndexer (ETL):
                 recordCount += 1
                 self._process_conditions(record,'entity_axis_condn_count', 'EAC')
                 self._process_conditions(record,'record_axis_condn_count', 'RAC')
-
+#                 logger.info("icdCode: "+record['ICD_10_code'])
+#                 logger.info("Found icdCode mapping: ")
+#                 logger.info(self.ucd_icd_10_code_mappings[record['ICD_10_code']])
                 icdcode = record['ICD_10_code'].upper()
+#                 logger.info("Found icdCode mapping: ")
+#                 logger.info(self.ucd_icd_10_code_mappings[icdcode])
                 if (icdcode):
                     record['ICD_10_code'] = {'code': icdcode, 'path':self.ucd_icd_10_code_mappings[icdcode]}
                 else:
