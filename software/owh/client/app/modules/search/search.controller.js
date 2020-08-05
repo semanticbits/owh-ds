@@ -195,17 +195,17 @@
                     'Unknown'
                 ],
                 "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
-                "year": ['2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000', '1999', '1997','1995','1993','1991' ]
+                "year": ['2018','2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000', '1999', '1997','1995','1993','1991' ]
             },
             "crude_death_rates": {
                 "hispanicOrigin": ['Non-Hispanic', 'Hispanic', 'Unknown'],
                 "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
-                "year": ['2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
+                "year": ['2018','2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
             },
             "age-adjusted_death_rates": {
                 "hispanicOrigin": ['Non-Hispanic', 'Hispanic', 'Unknown'],
                 "race": ['American Indian', 'Asian or Pacific Islander', 'Black', 'White'],
-                "year": ['2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
+                "year": ['2018','2017','2016','2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000']
             },
             number_of_births: {},
             number_of_infant_deaths: {},
@@ -428,7 +428,7 @@
         function setDefaults() {
             var yearFilter = utilService.findByKeyAndValue(sc.filters.selectedPrimaryFilter.allFilters, 'key', 'year');
             if(yearFilter.length == 0) {
-                yearFilter.value.push('2017');
+                yearFilter.value.push('2018');
             }
         }
 
