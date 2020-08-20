@@ -346,6 +346,10 @@
             $templateCache.put("app/partials/marker-template.html", content);
         });
 
+        $http.get("app/partials/marker-template.html").success(function(content, status) {
+            $templateCache.put("app/partials/marker-template.html", content);
+        });
+
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
