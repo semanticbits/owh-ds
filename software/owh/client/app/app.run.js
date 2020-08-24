@@ -342,6 +342,40 @@
             "race&gestation_weekly": "horizontalBar"
         };
 
+        //Adding Static urls map to register sub-urls in DAP analytics page
+        $rootScope.staticUrls = {
+            home: {url: "", title: 'Home'},
+            description: {url: "description", title: 'Description'},
+            factsheets: {url: "factsheets", title: 'Snapshots'},
+            deaths: {url: "detailMortality", title: 'Detailed Mortality'},
+            mental_health: {url: "yrbs", title: 'Youth Risk Behavior'},
+            bridge_race: {url: "bridgeRace", title: 'Bridged-Race Population Estimates'},
+            natality: {url: "natality", title: 'Births'},
+            prams: {url: "prams", title: 'Pregnancy Risk Assessment'},
+            brfss: {url: "brfss", title: 'Behavioral Risk Factors'},
+            cancer_incidence: {url: "cancerIncidence", title: 'Cancer Incidence'},
+            cancer_mortality: {url: "cancerMortality", title: 'Cancer Mortality'},
+            infant_mortality: {url: "infantMortality", title: 'Infant Mortality'},
+            tb: {url: "tuberculosis", title: 'Tuberculosis'},
+            std: {url: "std", title: 'Sexually Transmitted Diseases/Infections'},
+            aids: {url: "aids", title: 'HIV/AIDS'},
+        };
+
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+            if(gas != undefined) {
+                //Adding "Virtual pageview tracking" code for all angular states.
+                //Calling DAP Google analytics method to register the angular page urls
+                //Refer:
+                //    https://github.com/digital-analytics-program/gov-wide-code/blob/master/documentation/GSA%20DAP%204.1%20-%20DAP%20Code%20Capabilities%20Summary%20and%20Reference.pdf
+                //    https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
+                if(toState.name == 'search') {
+                    gas('send', 'pageview', '/search/'+$rootScope.staticUrls[toParams.primaryFilterKey].url, $rootScope.staticUrls[toParams.primaryFilterKey].title);
+                } else {
+                    gas('send', 'pageview', '/'+$rootScope.staticUrls[toState.name].url, $rootScope.staticUrls[toState.name].title);
+                }
+            }
+        });
+
         $http.get("app/partials/marker-template.html").success(function(content, status) {
             $templateCache.put("app/partials/marker-template.html", content);
         });
