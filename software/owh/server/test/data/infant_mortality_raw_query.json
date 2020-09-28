@@ -577,20 +577,20 @@
           "disabled": false
         },
         {
-          "key": "Master's degree (MA, MS)",
-          "title": "Master's degree (MA, MS)",
+          "key": "Master's degree (MA, MS, MEng, MEd, MSW, MBA)",
+          "title": "Master's degree (MA, MS, MEng, MEd, MSW, MBA)",
           "count": 0,
           "disabled": false
         },
         {
-          "key": "Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
-          "title": "Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+          "key": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+          "title": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
           "count": 0,
           "disabled": false
         },
         {
-          "key": "Unknown/Not on certificate",
-          "title": "Unknown/Not on certificate",
+          "key": "Unknown or Not Stated",
+          "title": "Unknown or Not Stated",
           "count": 0,
           "disabled": false
         }
@@ -2365,20 +2365,20 @@
                 "disabled": false
               },
               {
-                "key": "Master's degree (MA, MS)",
-                "title": "Master's degree (MA, MS)",
+                "key": "Master's degree (MA, MS, MEng, MEd, MSW, MBA)",
+                "title": "Master's degree (MA, MS, MEng, MEd, MSW, MBA)",
                 "count": 0,
                 "disabled": false
               },
               {
-                "key": "Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
-                "title": "Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+                "key": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+                "title": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
                 "count": 0,
                 "disabled": false
               },
               {
-                "key": "Unknown/Not on certificate",
-                "title": "Unknown/Not on certificate",
+                "key": "Unknown or Not Stated",
+                "title": "Unknown or Not Stated",
                 "count": 0,
                 "disabled": false
               }
