@@ -228,6 +228,14 @@
           "field": "July 1, 2018 postcensal resident population estimate",
           "mappings": {
           }
+        },
+        {
+          "start": 94,
+          "stop": 101,
+          "index_value": "2019",
+          "field": "July 1, 2019 postcensal resident population estimate",
+          "mappings": {
+          }
         }
       ]
     }

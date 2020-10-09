@@ -213,9 +213,9 @@ var wonderParamCodeMap = {
                 'Some college credit, but not a degree': '4',
                 'Associate degree (AA, AS)': '5',
                 "Bachelor's degree (BA, AB, BS)": '6',
-                "Master's degree (MA, MS)": '7',
-                'Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)': '8',
-                'Unknown/Not on certificate': 'Unk',
+                "Master's degree (MA, MS, MEng, MEd, MSW, MBA)": '7',
+                'Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)': '8',
+                'Unknown or Not Stated': 'Unk',
                 'Not on certificate': '999'
             }
         },
