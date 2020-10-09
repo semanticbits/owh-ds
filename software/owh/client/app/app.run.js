@@ -475,7 +475,9 @@
                 } else {
                     url = url + '/?dataset='+routes[$state.current.name];
                 }
-                $window.ga('send', 'pageview', url);
+                if(routes[$stateParams.primaryFilterKey]!=undefined || routes[$state.current.name]!=undefined) {
+                    $window.ga('send', 'pageview', url);
+                }
             });
         }).catch(function(error){
             console.log(" Failed to get google analytics tracking ID ", error);

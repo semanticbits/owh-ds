@@ -64,9 +64,9 @@
         "4": "Some college credit, but not a degree",
         "5": "Associate degree (AA, AS)",
         "6": "Bachelor's degree (BA, AB, BS)",
-        "7": "Master's degree (MA, MS)",
-        "8": "Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
-        "9": "Unknown/Not on certificate"
+        "7": "Master's degree (MA, MS, MEng, MEd, MSW, MBA)",
+        "8": "Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)",
+        "9": "Unknown or Not Stated"
       }
     },
     {

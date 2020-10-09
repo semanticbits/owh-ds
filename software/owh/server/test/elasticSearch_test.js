@@ -216,19 +216,19 @@ describe("Elastic Search", function () {
         return new elasticSearch().aggregateCensusData(query, true).then(function (response) {
             var data = response.data.simple;
             expect(data.current_year[0].name).to.eql("2015");
-            expect(data.current_year[0].bridge_race).to.eql(320742673);
+            expect(data.current_year[0].bridge_race).to.eql(320635163);
 
             expect(data.sex[0].name).to.eql("Female");
-            expect(data.sex[0].bridge_race).to.eql(162831898);
+            expect(data.sex[0].bridge_race).to.eql(162778769);
 
             expect(data.sex[1].name).to.eql("Male");
-            expect(data.sex[1].bridge_race).to.eql(157910775);
+            expect(data.sex[1].bridge_race).to.eql(157856394);
 
             expect(data.race[0].name).to.eql("American Indian");
-            expect(data.race[0].bridge_race).to.eql(4569610);
+            expect(data.race[0].bridge_race).to.eql(4568698);
 
             expect(data.race[1].name).to.eql("Asian or Pacific Islander");
-            expect(data.race[1].bridge_race).to.eql(19900702);
+            expect(data.race[1].bridge_race).to.eql(19859285);
         });
     });
 

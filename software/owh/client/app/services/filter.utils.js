@@ -805,6 +805,7 @@
 
             //bridge data filter options
             var censusYearsOptions = [
+                { "key": "2019", "title": "2019" },
                 { "key": "2018", "title": "2018" },
                 { "key": "2017", "title": "2017" },
                 { "key": "2016", "title": "2016" },
@@ -909,7 +910,7 @@
             //prepare filter definitions
             var bridgeDataFilters = [
                 {key: 'current_year', title: 'label.filter.yearly.estimate', queryKey:"current_year",
-                    primary: false, value: ['2018'], defaultGroup:'row', groupBy: false, filterType: 'checkbox',
+                    primary: false, value: ['2019'], defaultGroup:'row', groupBy: false, filterType: 'checkbox',
                     autoCompleteOptions: censusYearsOptions, refreshFiltersOnChange: true, helpText:"label.help.text.bridged-race.year" },
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'column', filterType: 'checkbox',
@@ -1197,21 +1198,21 @@
             ];
 
             var infantEducationOptions = [
-                {key:'0 -  8 years', title:'0 – 8 years'},
-                {key:'9 - 11 years', title:'9 – 11 years'},
-                {key:'12 years', title:'12 years'},
-                {key:'13 - 15 years', title:'13 – 15 years'},
-                {key:'16 years and over', title:'16 years and over'},
-                {key:'Not stated/Not on certificate', title:'Not stated/Not on certificate'},
                 {key:'8th grade or less', title:'8th grade or less'},
                 {key:'9th through 12th grade with no diploma', title:'9th through 12th grade with no diploma'},
                 {key:'High school graduate or GED completed', title:'High school graduate or GED completed'},
                 {key:'Some college credit, but not a degree', title:'Some college credit, but not a degree'},
                 {key:'Associate degree (AA, AS)', title:'Associate degree (AA,AS)'},
                 {key:"Bachelor's degree (BA, AB, BS)", title:"Bachelor's degree (BA, AB, BS)"},
-                {key:"Master's degree (MA, MS)", title:"Master's degree (MA, MS)"},
-                {key:'Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)', title:'Doctorate (PHD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)'},
-                {key:'Unknown/Not on certificate', title:'Unknown/Not on certificate'}
+                {key:"Master's degree (MA, MS, MEng, MEd, MSW, MBA)", title:"Master's degree (MA, MS, MEng, MEd, MSW, MBA)"},
+                {key:'Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)', title:'Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)'},
+                {key:'Unknown or Not Stated', title:'Unknown or Not Stated'},
+                {key:'0 -  8 years', title:'0 – 8 years'},
+                {key:'9 - 11 years', title:'9 – 11 years'},
+                {key:'12 years', title:'12 years'},
+                {key:'13 - 15 years', title:'13 – 15 years'},
+                {key:'16 years and over', title:'16 years and over'},
+                {key:'Not stated/Not on certificate', title:'Not stated/Not on certificate'}
             ];
             var infantPrenatalCareMonthOptions = [
                 { "key": "No prenatal care", "title": "No prenatal care" },
@@ -1308,7 +1309,7 @@
 
                 {key: 'sex', title: 'label.filter.gender', queryKey:"sex", primary: false, value: [],
                     defaultGroup:'column', groupBy: 'column', filterType: "checkbox",
-                    autoCompleteOptions: genderOptions, helpText:"label.help.text.infantmort.sex"},
+                    autoCompleteOptions: natalityGenderOptions, helpText:"label.help.text.infantmort.sex"},
 
                 {key: 'infant_age_at_death', title: 'label.filter.infant_age_at_death', queryKey: 'infant_age_at_death', primary: false,
                     value: [], defaultGroup: 'column', groupBy: false, filterType: 'checkbox',
