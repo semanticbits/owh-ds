@@ -1,7 +1,7 @@
 {
   "app.title": "OWH-Health Information Gateway",
-  "app.version": "v1.15",
-  "app.revision.date":"08/23/2020",
+  "app.version": "v1.16",
+  "app.revision.date":"10/09/2020",
   "label.total": "Total",
   "label.search": "Search",
   "label.inline.charting": "Inline charting",
