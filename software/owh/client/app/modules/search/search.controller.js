@@ -99,6 +99,7 @@
                         {key: 'basic_cholesterol_awareness', title: 'Cholesterol Awareness'},
                         {key: 'basic_chronic_health_indicator', title: 'Chronic Health Indicators'},
                         {key: 'basic_colorectal_cancer_screening', title: 'Colorectal Cancer Screening'},
+                        {key: 'basic_days_of_poor_health', title: 'Days of Poor Health'},
                         {key: 'basic_brfs_demographics', title: 'Demographics'},
                         {key: 'basic_ecigarette', title: 'E-Cigarette Use'},
                         {key: 'basic_fruits_vegetables', title: 'Fruits and Vegetables'},
@@ -122,6 +123,7 @@
                         {key: 'advance_cholesterol_awareness', title: 'Cholesterol Awareness'},
                         {key: 'advance_chronic_health_indicator', title: 'Chronic Health Indicators'},
                         {key: 'advance_colorectal_cancer_screening', title: 'Colorectal Cancer Screening'},
+                        {key: 'advance_days_of_poor_health', title: 'Days of Poor Health'},
                         {key: 'advance_brfs_demographics', title: 'Demographics'},
                         {key: 'advance_ecigarette', title: 'E-Cigarette Use'},
                         {key: 'advance_fruits_vegetables', title: 'Fruits and Vegetables'},
@@ -223,31 +225,32 @@
             prams:{},
             brfss:{},
             basic_delivery: {
-                "topic": ['cat_45', 'cat_39', 'cat_0']
+                "topic": ['cat_46', 'cat_40', 'cat_0']
             },
             basic_demographics: {
-                "topic": ['cat_15', 'cat_38']
+                "topic": ['cat_15', 'cat_39']
             },
             basic_family_planning: {
-                "topic": ['cat_31', 'cat_20', 'cat_28', 'cat_11']
+                "topic": ['cat_32', 'cat_21', 'cat_29', 'cat_11']
             },
             basic_flu: {
                 "topic": ['cat_3', 'cat_5', 'cat_8', 'cat_7']
             },
             basic_infant_health: {
-                "topic": ['cat_43', 'cat_1', 'cat_24', 'cat_19', 'cat_14', 'cat_25', 'cat_6']
+                "topic": ['cat_44', 'cat_1', 'cat_25', 'cat_20', 'cat_14', 'cat_26', 'cat_6']
             },
+            //TODO: cat_26 is not available...
             basic_maternal_behavior: {
-                "topic": ['cat_2', 'cat_13', 'cat_34', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_35', 'cat_23', 'cat_10', 'cat_22', 'cat_26']
+                "topic": ['cat_2', 'cat_13', 'cat_35', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_36', 'cat_24', 'cat_10', 'cat_23', 'cat_26']
             },
             basic_maternal_experiences: {
-                "topic": ['cat_29', 'cat_33', 'cat_42', 'cat_27']
+                "topic": ['cat_30', 'cat_34', 'cat_43', 'cat_28']
             },
             basic_prenatal_care: {
-                "topic": ['cat_37', 'cat_30', 'cat_4', 'cat_40', 'cat_36', 'cat_16']
+                "topic": ['cat_38', 'cat_30', 'cat_4', 'cat_41', 'cat_37', 'cat_16']
             },
             basic_insurance_medicaid_services: {
-                "topic": ['cat_32', 'cat_21', 'cat_44']
+                "topic": ['cat_33', 'cat_22', 'cat_45']
             },
             advance_delivery: {
                 "topic": ['cat_26', 'cat_24']
@@ -274,45 +277,48 @@
                 "topic": ['cat_11', 'cat_20', 'cat_38']
             },
             basic_alcohol_consumption: {
-                "topic": ['cat_49', 'cat_24', 'cat_27']
+                "topic": ['cat_50', 'cat_25', 'cat_28']
             },
             basic_cholesterol_awareness: {
-                "topic": ['cat_4', 'cat_25']
+                "topic": ['cat_4', 'cat_26']
+            },
+            basic_days_of_poor_health: {
+                "topic": ['cat_19']
             },
             basic_chronic_health_indicator:{
-                "topic": ['cat_10', 'cat_2', 'cat_19', 'cat_41', 'cat_38', 'cat_48',
-                    'cat_42', 'cat_43', 'cat_44', 'cat_45']
+                "topic": ['cat_10', 'cat_2', 'cat_20', 'cat_42', 'cat_39', 'cat_49',
+                    'cat_43', 'cat_44', 'cat_45', 'cat_46']
             },
             basic_healthcare_access_coverage: {
-                "topic": ['cat_58', 'cat_54', 'cat_46', 'cat_59', 'cat_17']
+                "topic": ['cat_59', 'cat_55', 'cat_47', 'cat_60', 'cat_17']
             },
             basic_colorectal_cancer_screening:{
                 "topic": ['cat_13', 'cat_5', 'cat_15', 'cat_6']
             },
             basic_brfs_demographics:{
-                "topic": ['cat_39', 'cat_40', 'cat_50','cat_51', 'cat_47', 'cat_55',
-                    'cat_56', 'cat_57', 'cat_3', 'cat_60', 'cat_61', 'cat_62', 'cat_66']
+                "topic": ['cat_40', 'cat_41', 'cat_51','cat_52', 'cat_48', 'cat_56',
+                    'cat_57', 'cat_58', 'cat_3', 'cat_61', 'cat_62', 'cat_63', 'cat_67']
             },
             basic_ecigarette: {
                 "topic": ['cat_7']
             },
             basic_fruits_vegetables:{
-                "topic": ['cat_16', 'cat_14', 'cat_37']
+                "topic": ['cat_16', 'cat_14', 'cat_38']
             },
             basic_health_status:{
-                "topic": ['cat_28', 'cat_52']
+                "topic": ['cat_29', 'cat_53']
             },
             basic_hiv_aids:{
-                "topic": ['cat_53']
+                "topic": ['cat_54']
             },
             basic_hypertension_awareness:{
-                "topic": ['cat_29']
+                "topic": ['cat_30']
             },
             basic_immunization:{
-                "topic": ['cat_12', 'cat_23', 'cat_64', 'cat_63']
+                "topic": ['cat_12', 'cat_24', 'cat_65', 'cat_64']
             },
             basic_injury:{
-                "topic": ['cat_9', 'cat_33']
+                "topic": ['cat_9', 'cat_34']
             },
             basic_oral_health:{
                 "topic": ['cat_0', 'cat_8', 'cat_11']
@@ -321,22 +327,25 @@
                 "topic": ['cat_1']
             },
             basic_prostate_cancer:{
-                "topic": ['cat_32']
+                "topic": ['cat_33']
             },
             basic_tobbaco_use:{
-                "topic": ['cat_34', 'cat_65', 'cat_35']
+                "topic": ['cat_35', 'cat_66', 'cat_36']
             },
             basic_womens_health:{
-                "topic": ['cat_18', 'cat_31']
+                "topic": ['cat_18', 'cat_32']
             },
             basic_physical_activity:{
-                "topic": ['cat_20', 'cat_36', 'cat_30', 'cat_21', 'cat_22']
+                "topic": ['cat_21', 'cat_37', 'cat_31', 'cat_22', 'cat_23']
             },
             advance_alcohol_consumption: {
-                "topic": ['cat_13', 'cat_52', 'cat_54']
+                "topic": ['cat_13', 'cat_53', 'cat_55']
             },
             advance_cholesterol_awareness: {
-                "topic": ['cat_3', 'cat_53']
+                "topic": ['cat_3', 'cat_54']
+            },
+            advance_days_of_poor_health: {
+                "topic": ['cat_48']
             },
             advance_chronic_health_indicator:{
                 "topic": ['cat_39', 'cat_33', 'cat_10', 'cat_4', 'cat_0', 'cat_12',
@@ -356,22 +365,22 @@
                 "topic": ['cat_37']
             },
             advance_fruits_vegetables:{
-                "topic": ['cat_44', 'cat_63']
+                "topic": ['cat_44', 'cat_64']
             },
             advance_health_status:{
-                "topic": ['cat_55', 'cat_16']
+                "topic": ['cat_56', 'cat_16']
             },
             advance_hiv_aids:{
                 "topic": ['cat_17']
             },
             advance_hypertension_awareness:{
-                "topic": ['cat_56']
+                "topic": ['cat_57']
             },
             advance_immunization:{
-                "topic": ['cat_42', 'cat_51', 'cat_28', 'cat_27']
+                "topic": ['cat_42', 'cat_52', 'cat_28', 'cat_27']
             },
             advance_injury:{
-                "topic": ['cat_40', 'cat_59']
+                "topic": ['cat_40', 'cat_60']
             },
             advance_oral_health:{
                 "topic": ['cat_31', 'cat_38', 'cat_41']
@@ -380,16 +389,16 @@
                 "topic": ['cat_32']
             },
             advance_prostate_cancer:{
-                "topic": ['cat_58']
+                "topic": ['cat_59']
             },
             advance_tobbaco_use:{
-                "topic": ['cat_60', 'cat_29', 'cat_61']
+                "topic": ['cat_61', 'cat_29', 'cat_62']
             },
             advance_womens_health:{
-                "topic": ['cat_47', 'cat_57']
+                "topic": ['cat_47', 'cat_58']
             },
             advance_physical_activity:{
-                "topic": ['cat_48', 'cat_62', 'cat_49', 'cat_50']
+                "topic": ['cat_49', 'cat_63', 'cat_50', 'cat_51']
             }
 
         };
