@@ -239,7 +239,6 @@
             basic_infant_health: {
                 "topic": ['cat_44', 'cat_1', 'cat_25', 'cat_20', 'cat_14', 'cat_26', 'cat_6']
             },
-            //TODO: cat_26 is not available...
             basic_maternal_behavior: {
                 "topic": ['cat_2', 'cat_13', 'cat_35', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_36', 'cat_24', 'cat_10', 'cat_23', 'cat_26']
             },
