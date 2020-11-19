@@ -1904,7 +1904,6 @@
             ];
 
             filters.yrbsYearsOptions = [
-                { "key": "2019", "title": "2019" },
                 { "key": "2017", "title": "2017" },
                 { "key": "2015", "title": "2015" },
                 { "key": "2013", "title": "2013" },
@@ -1994,7 +1993,7 @@
             ];
 
             filters.yrbsAdvancedFilters = [
-                {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: ['2019'], groupBy: false,
+                {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: ['2017'], groupBy: false,
                     filterType: 'checkbox', autoCompleteOptions: filters.yrbsYearsOptions, donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
                 { key: 'yrbsSex', title: 'label.yrbs.filter.sex', queryKey:"sex", primary: false, value: [], groupBy: false,
                     filterType: 'checkbox',autoCompleteOptions: filters.yrbsGenderOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.sex" },
@@ -2022,7 +2021,7 @@
             ];
 
             filters.yrbsBasicFilters = [
-                {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: '2019', groupBy: false,defaultGroup:"column",
+                {key: 'year', title: 'label.yrbs.filter.year', queryKey:"year",primary: false, value: '2017', groupBy: false,defaultGroup:"column",
                     filterType: 'radio',autoCompleteOptions: filters.yrbsYearsOptions, doNotShowAll: true, donotshowOnSearch:true, helpText:"label.help.text.yrbs.year" },
                 { key: 'yrbsSex', title: 'label.yrbs.filter.sex', queryKey:"sex", primary: false, value: '', groupBy: false,
                     filterType: 'radio',autoCompleteOptions: filters.yrbsGenderOptions, defaultGroup:"column", helpText:"label.help.text.yrbs.sex" },
