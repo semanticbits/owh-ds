@@ -225,31 +225,31 @@
             prams:{},
             brfss:{},
             basic_delivery: {
-                "topic": ['cat_46', 'cat_40', 'cat_0']
+                "topic": ['cat_45', 'cat_39', 'cat_0']
             },
             basic_demographics: {
-                "topic": ['cat_15', 'cat_39']
+                "topic": ['cat_15', 'cat_38']
             },
             basic_family_planning: {
-                "topic": ['cat_32', 'cat_21', 'cat_29', 'cat_11']
+                "topic": ['cat_31', 'cat_20', 'cat_28', 'cat_11']
             },
             basic_flu: {
                 "topic": ['cat_3', 'cat_5', 'cat_8', 'cat_7']
             },
             basic_infant_health: {
-                "topic": ['cat_44', 'cat_1', 'cat_25', 'cat_20', 'cat_14', 'cat_26', 'cat_6']
+                "topic": ['cat_43', 'cat_1', 'cat_24', 'cat_19', 'cat_14', 'cat_25', 'cat_6']
             },
             basic_maternal_behavior: {
-                "topic": ['cat_2', 'cat_13', 'cat_35', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_36', 'cat_24', 'cat_10', 'cat_23', 'cat_26']
+                "topic": ['cat_2', 'cat_13', 'cat_34', 'cat_12', 'cat_18', 'cat_9', 'cat_17', 'cat_35', 'cat_23', 'cat_10', 'cat_22', 'cat_26']
             },
             basic_maternal_experiences: {
-                "topic": ['cat_30', 'cat_34', 'cat_43', 'cat_28']
+                "topic": ['cat_29', 'cat_33', 'cat_42', 'cat_27']
             },
             basic_prenatal_care: {
-                "topic": ['cat_38', 'cat_30', 'cat_4', 'cat_41', 'cat_37', 'cat_16']
+                "topic": ['cat_37', 'cat_30', 'cat_4', 'cat_40', 'cat_36', 'cat_16']
             },
             basic_insurance_medicaid_services: {
-                "topic": ['cat_33', 'cat_22', 'cat_45']
+                "topic": ['cat_32', 'cat_21', 'cat_44']
             },
             advance_delivery: {
                 "topic": ['cat_26', 'cat_24']
