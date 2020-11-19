@@ -1231,7 +1231,7 @@
                         }
                     });
                 } else {
-                    for(var i=0; i < fsc.minorityFactSheet.tableHeaders.brfss.length-2; i++) {
+                    for(var i=0; i < fsc.minorityFactSheet.tableHeaders.brfss.length-1; i++) {
                         stateRow.push('Not available');
                     }
                 }
