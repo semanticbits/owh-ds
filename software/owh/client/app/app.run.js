@@ -362,16 +362,16 @@
         };
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
-            if(gas != undefined) {
+            if($window.ga != undefined) {
                 //Adding "Virtual pageview tracking" code for all angular states.
                 //Calling DAP Google analytics method to register the angular page urls
                 //Refer:
                 //    https://github.com/digital-analytics-program/gov-wide-code/blob/master/documentation/GSA%20DAP%204.1%20-%20DAP%20Code%20Capabilities%20Summary%20and%20Reference.pdf
                 //    https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
                 if(toState.name == 'search') {
-                    gas('send', 'pageview', '/search/'+$rootScope.staticUrls[toParams.primaryFilterKey].url, $rootScope.staticUrls[toParams.primaryFilterKey].title);
+                    $window.ga('send', 'pageview', '/search/'+$rootScope.staticUrls[toParams.primaryFilterKey].url, $rootScope.staticUrls[toParams.primaryFilterKey].title);
                 } else {
-                    gas('send', 'pageview', '/'+$rootScope.staticUrls[toState.name].url, $rootScope.staticUrls[toState.name].title);
+                    $window.ga('send', 'pageview', '/'+$rootScope.staticUrls[toState.name].url, $rootScope.staticUrls[toState.name].title);
                 }
             }
         });
