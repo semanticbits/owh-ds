@@ -357,6 +357,15 @@
                             color: '#6f399a',
                             italics: true
                         },
+                        "headerLinkLabel": {
+                            fontSize: 7,
+                            italics: true
+                        },
+                        "headerLink": {
+                            fontSize: 7,
+                            color: '#6f399a',
+                            italics: true
+                        },
                         heading: {
                             fontSize: 10,
                             bold: true,
@@ -464,13 +473,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -602,13 +608,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -718,13 +721,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -833,13 +833,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -2074,6 +2071,15 @@
                             color: '#6f399a',
                             italics: true
                         },
+                        "headerLinkLabel": {
+                            fontSize: 7,
+                            italics: true
+                        },
+                        "headerLink": {
+                            fontSize: 7,
+                            color: '#6f399a',
+                            italics: true
+                        },
                         heading: {
                             fontSize: 10,
                             bold: true,
@@ -2188,13 +2194,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -2296,13 +2299,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -2398,13 +2398,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -2515,13 +2512,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -2623,6 +2617,8 @@
                         'state-heading': { fontSize: 16, alignment: 'left', margin: [50, -45, 0, 0] },
                         'footer': { fontSize: 5, italics: true },
                         'footerLink': { fontSize: 5, color: '#6f399a', italics: true },
+                        "headerLinkLabel": {fontSize: 7, italics: true},
+                        "headerLink": {fontSize: 7,color: '#6f399a',italics: true},
                         'heading': { fontSize: 10, bold: true, decoration: 'underline', margin: [50, 5, 0, 10]},
                         'underline': { decoration: 'underline' },
                         'tableHeader': { bold: true },
@@ -2712,13 +2708,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -2849,13 +2842,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -2986,6 +2976,8 @@
                         'state-heading': { fontSize: 16, alignment: 'left', margin: [50, -45, 0, 0] },
                         'footer': { fontSize: 5, italics: true },
                         'footerLink': { fontSize: 5, color: '#6f399a', italics: true },
+                        "headerLinkLabel": {fontSize: 7, italics: true},
+                        "headerLink": {fontSize: 7,color: '#6f399a',italics: true},
                         'heading': { fontSize: 10, bold: true, decoration: 'underline', margin: [50, 5, 0, 10]},
                         'underline': { decoration: 'underline' },
                         'tableHeader': { bold: true },
@@ -3074,13 +3066,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -3197,13 +3186,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
@@ -3328,13 +3314,10 @@
                                     {
                                         alignment: 'center',
                                         text: [
-                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'footer'},
-                                            {text: 'Health Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'footerLink'}
+                                            {text: $filter('translate')('fs.header.explore.link.message'), style: 'headerLinkLabel'},
+                                            {text: '\nHealth Information Gateway', link: 'http://gateway.womenshealth.gov/',  style: 'headerLink'}
                                         ],
-                                        margin: [200, 24, 0, 0],
-                                        style: {
-                                            fontSize: 6
-                                        }
+                                        margin: [170, 0, 0, 0]
                                     }
                                 ]
                             }]]
