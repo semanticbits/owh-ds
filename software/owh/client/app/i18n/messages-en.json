@@ -1,7 +1,7 @@
 {
   "app.title": "OWH-Health Information Gateway",
-  "app.version": "v1.17",
-  "app.revision.date":"11/19/2020",
+  "app.version": "v1.18",
+  "app.revision.date":"11/23/2020",
   "label.total": "Total",
   "label.search": "Search",
   "label.inline.charting": "Inline charting",
@@ -610,6 +610,7 @@
   "minority.factsheet.definition": "This snapshot displays demographic and health status information for Hispanic individuals of any race and the following non-Hispanic groups: Black/African American, American Indian and Alaska Native, Asian American, Native Hawaiian and Pacific Islander. Racial classifications reflect those used in each dataset.",
   "women.reproductive.factsheet.definition": "Reproductive age is defined as 15-44.",
 
+  "fs.header.explore.link.message": "You can explore the data on your own at the ",
   "fs.rates.per.hundredK":"(rate per 100,000 population)",
   "fs.hiv.rates.per.hundredK": "(rate per 100,000 population aged 13 years and older)",
   "fs.rates.per.thousand":"(rate per 1000 population)",
