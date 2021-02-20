@@ -41,7 +41,7 @@ install:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then nvm install node; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then nvm use node; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then node --version; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sudo apt-get -qq update && apt-get -qq -y install bzip2; fi
+  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sudo apt-get install -y bzip2; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then npm install --dev; fi
   - cd $TRAVIS_BUILD_DIR/software/owh/client
