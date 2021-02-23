@@ -19,7 +19,7 @@
     "express-sanitizer": "^1.0.2",
     "helmet": "^3.8.1",
     "jsonfile": "^2.3.0",
-    "merge": "^1.2.1",
+    "merge": "^2.1.0",
     "mime": "^2.4.0",
     "morgan": "~1.9.1",
     "node-uuid": "^1.4.7",
