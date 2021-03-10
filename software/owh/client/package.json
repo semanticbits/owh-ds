@@ -6,7 +6,7 @@
   "repository": "",
   "license": "",
   "dependencies": {
-    "jspdf": "^1.5.3"
+    "jspdf": "^2.3.1"
   },
   "devDependencies": {
     "bower": "^1.8.8",
