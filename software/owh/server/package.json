@@ -15,7 +15,7 @@
     "debug": "~2.6.9",
     "ejs": "2.5.7",
     "elasticsearch": "^15.4.1",
-    "express": "~4.16.4",
+    "express": "~4.17.1",
     "express-sanitizer": "^1.0.2",
     "helmet": "^3.8.1",
     "jsonfile": "^2.3.0",
