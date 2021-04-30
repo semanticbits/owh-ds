@@ -484,10 +484,13 @@ button {
 }
 
 .owh-logo {
-	width: 130px;
+	width: 230px;
+}
+.owh-footer-logo {
+	width: 210px;
 }
 .hig-logo {
-	width:335px;
+	width:285px;
 }
 
 
