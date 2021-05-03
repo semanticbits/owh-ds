@@ -37,6 +37,8 @@
                     description: description,
                     message: 'OWH Mortality graph',
                     display:'popup'
+                }, function(response){
+                    console.log('Posting feed on Facebook.');
                 });
             });
         }

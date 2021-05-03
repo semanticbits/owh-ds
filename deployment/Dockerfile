@@ -4,7 +4,6 @@ FROM node:10.16.0-jessie
 RUN mkdir -p /usr/local/owh
 WORKDIR /usr/local/owh
 COPY . /usr/local/owh
-RUN npm install -g bower
 RUN npm install -g nodemon
 RUN chmod 777 /usr/local/owh/scripts/*.sh
 WORKDIR /usr/local/owh/server

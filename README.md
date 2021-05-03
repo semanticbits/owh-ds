@@ -71,9 +71,8 @@ Below steps are to load YRBS and Mortality data sets(few years data) into local 
 
 ## Files and importance
 1. package.json - nodeJS root file and it has all dependencies and start-up scripts
-2. bower.json - bower root file and it has all dependencies
-3. karma.conf.js - Unit test cases configuration file
-4. protractor.conf.js - Selenium test cases using Protractor. 
+2. karma.conf.js - Unit test cases configuration file
+3. protractor.conf.js - Selenium test cases using Protractor. 
 
 ## Run the application
 ### Development
