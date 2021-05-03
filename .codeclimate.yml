@@ -23,10 +23,8 @@ ratings:
 exclude_paths:
   - software/owh/client/node_modules/**/*
   - software/owh/client/bower_components/**/*
-  - software/owh/client/.bowerrc
   - software/owh/client/.gitignore
   - software/owh/client/.jshintrc
-  - software/owh/client/bower.json
   - software/owh/client/package.json
   - software/owh/client/vendor/**/*
   - software/owh/client/test/*
