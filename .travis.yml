@@ -29,7 +29,7 @@ before_install:
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then docker info; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then mkdir -p .owh/logs; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then openssl aes-256-cbc -K $encrypted_24a8a70e72ba_key -iv $encrypted_24a8a70e72ba_iv -in .owh/owh-config.yaml.enc -out .owh/owh-config.yaml -d; fi
-  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sudo pip install awscli==1.19.62; fi
+  - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then sudo pip install 'awscli==1.19.62' -v; fi
   - if [ "$TRAVIS_BRANCH" != "deploy/production" ]; then export PATH=$PATH:$HOME/.local/bin; fi
 
 install:
