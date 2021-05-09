@@ -376,7 +376,7 @@
             }
         });
 
-        $http.get("app/partials/marker-template.html").success(function(content, status) {
+        $http.get("app/partials/marker-template.html").then(function(content, status) {
             $templateCache.put("app/partials/marker-template.html", content);
         });
 
