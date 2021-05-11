@@ -3396,7 +3396,7 @@
             return fsc.states[key];
         }
         $scope.redirectToMortalityPage = function(){
-            $state.go('search');
+            $state.go('search', {queryID: undefined});
         };
 
         function getMeanDisplayValue(data) {

@@ -21,7 +21,7 @@
     "angular-sanitize": "~1.8.2",
     "angular-translate": "~2.18.2",
     "angular-translate-loader-static-files": "~2.18.0",
-    "angular-ui-router": "^0.4.3",
+    "angular-ui-router": "1.0.15",
     "angular-ui-select": "0.12.100",
     "canvas-toBlob": "~1.0.0",
     "checklist-model": "^0.9.0",

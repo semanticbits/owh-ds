@@ -14,7 +14,7 @@
                    ng-class="{active:$root.$state.current.name === 'search'}"><i class="material-icons margin-right-10 explore-icon">explore</i>Explore</a>
             </li>
             <li class="banner-link cursor-pointer">
-                <a href="javascript:void(0);" ui-sref="factsheets" id="factsheet"
+                <a href="javascript:void(0);" ui-sref="factsheets({queryID: undefined})" id="factsheet"
                    ng-class="{active:$root.$state.current.name === 'factsheets'}">
                     <i class="material-icons margin-right-10 description-icon">description</i>Snapshots</a>
             </li>
