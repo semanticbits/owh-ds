@@ -58,7 +58,7 @@
             if(format != 'PPT') {
                 getPNGfromSVG(chart).then(function (response) {
                     if (format == 'PNG') {
-                        var graphSection = jQuery('#graphBody');
+                        var graphSection = $('#graphBody');
                         graphSection.addClass('html-png-download-active');
                         var node = document.getElementById('graphBody');
                         if(isIE()) {

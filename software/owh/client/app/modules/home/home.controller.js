@@ -18,11 +18,11 @@
         }
 
         function toggleSlideUp(id) {
-            jQuery('#' + id).slideUp();
+            $('#' + id).slideUp();
         }
 
         function toggleSlideDown(id) {
-            jQuery('#' + id).slideDown();
+            $('#' + id).slideDown();
         }
 
         $scope.redirectToMortalityPage = function(){

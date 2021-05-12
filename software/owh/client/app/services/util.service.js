@@ -63,7 +63,7 @@
 
         // Util for finding a value is empty or not
         function isValueNotEmpty(value) {
-            return angular.isDefined(value) && value !== null && !jQuery.isEmptyObject(value) &&
+            return angular.isDefined(value) && value !== null && !$.isEmptyObject(value) &&
                 (!angular.isString(value) || value != '');
         }
 
@@ -418,13 +418,13 @@
                 } else {
                     autoCompleteOptions= filter.autoCompleteOptions
                 }
-               
+
             } else {
                 var selectedOption = findByKeyAndValue(filter.autoCompleteOptions, 'key', filterValue);
                 autoCompleteOptions = selectedOption ? [selectedOption]: filter.autoCompleteOptions;
 
             }
-            
+
             // Append suboptions
             if(filter.queryKey === 'census_region' || filter.queryKey === 'census_division') {
                 return autoCompleteOptions;
