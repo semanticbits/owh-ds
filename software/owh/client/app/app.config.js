@@ -26,9 +26,9 @@
                 controller: 'SearchController',
                 controllerAs: 'sc',
                 params: {primaryFilterKey: 'deaths', allFilters: null, selectedFilters: null, tableView: 'number_of_deaths', cacheQuery: false, queryID: null}
-                // onEnter: function () {
-                //     $('html, body').animate({ scrollTop: -10000 }, 100);
-                // }
+                onEnter: function () {
+                    $('html, body').animate({ scrollTop: -10000 }, 100);
+                }
         }).state('description',  {
                 url:'/description/:dataSetKey',
                 templateUrl: 'app/modules/description/description.html',
