@@ -15,7 +15,7 @@
     "angular-loader": "~1.8.2",
     "angular-mocks": "~1.8.2",
     "angular-modal-service": "~0.10.1",
-    "angular-nvd3": "^1.0.9",
+    "angular-nvd3": "^1.0.7",
     "angular-resource": "~1.8.2",
     "angular-route": "~1.8.2",
     "angular-sanitize": "~1.8.2",
@@ -38,7 +38,7 @@
     "ngstorage": "^0.3.11",
     "pdfmake": "^0.1.32",
     "plotly.js": "^1.29.3",
-    "pptxgenjs": "^3.6.0",
+    "pptxgenjs": "^1.6.1",
     "spin.js": "^2.3.2",
     "ui-leaflet": "^2.0.0"
   },
