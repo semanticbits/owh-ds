@@ -19,7 +19,10 @@
         var lfc = this;
         lfc.getFilterOrder = getFilterOrder;
         lfc.getSelectedOptionTitlesOfFilter = getSelectedOptionTitlesOfFilter;
-        lfc.appliedFilters = getAppliedFilters();
+        lfc.appliedFilters = getAppliedFilters(lfc.filters);
+        lfc.$onChanges = function(changes) {
+            lfc.appliedFilters = getAppliedFilters(changes.filters.currentValue);
+        };
 
         //Determines the filter's display order
         function getFilterOrder(filter) {
@@ -27,9 +30,9 @@
         }
 
         //Returns applied filters
-        function getAppliedFilters() {
+        function getAppliedFilters(filters) {
             var appliedFilters = [];
-            angular.forEach(lfc.filters, function(filter){
+            angular.forEach(filters, function(filter){
                 (filter.value.length > 0 && filter.key != 'question') && appliedFilters.push(filter)
             });
             return appliedFilters;

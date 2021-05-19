@@ -488,7 +488,7 @@
                 childScope.isStatDta = isStatDta;
                 childScope.totalLabel = getTotalLabel(properties.tableView);
                 var ele = angular.element('<div></div>');
-                ele.html($templateCache.get('app/partials/marker-template.html'));
+                ele.html($templateCache.get('app/partials/marker-template.html').data);
                 var compileEle = $compile(ele.contents())(childScope);
                 $timeout(function () {
                     mapPopup
