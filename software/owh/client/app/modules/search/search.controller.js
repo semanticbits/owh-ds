@@ -440,7 +440,7 @@
             }
         }
 
-        if(sc.queryID === '') {
+        if(sc.queryID===null || sc.queryID === '') {
             //queryID is empty, run the default query
             setDefaults();
             search(true);
