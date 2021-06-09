@@ -1188,14 +1188,14 @@ select.gray-border {
 }
 .ui-select-multiple.ui-select-bootstrap .ui-select-match-item {
 	background: #8c56b7;
-	padding-left: 12px;
 	color: white;
 	margin-bottom: 0;
-	padding: 8px;
+	padding: 8px 8px 8px 12px;
 	font-weight: bold;
 	box-shadow: none;
 	vertical-align: inherit;
-	border-radius: 4px
+	border-radius: 4px;
+	-webkit-appearance: none;
 }
 .ui-select-multiple.ui-select-bootstrap {
 	padding: 3px 4px 2px 4px;
