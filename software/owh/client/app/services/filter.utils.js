@@ -945,6 +945,7 @@
         function getNatalityDataFilters() {
 
             var birthYearOptions = [
+                { "key": "2019", "title": "2019"},
                 { "key": "2018", "title": "2018"},
                 { "key": "2017", "title": "2017"},
                 { "key": "2016", "title": "2016"},
@@ -1007,7 +1008,7 @@
                     value: [], defaultGroup:'column', groupBy: false, filterType: "checkbox",
                     autoCompleteOptions: educationOptions, helpText:"label.help.text.mother.education"},
 
-                {key: 'current_year', title: 'label.filter.year', queryKey:"current_year", primary: false, value: ["2018"], defaultGroup:'column', groupBy: false,
+                {key: 'current_year', title: 'label.filter.year', queryKey:"current_year", primary: false, value: ["2019"], defaultGroup:'column', groupBy: false,
                     filterType: "checkbox", autoCompleteOptions: birthYearOptions, helpText:"label.help.text.year"},
 
                 {key: 'month', title: 'label.filter.month', queryKey:"month", primary: false, value: [], defaultGroup:'column', groupBy: false,
