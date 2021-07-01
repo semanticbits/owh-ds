@@ -39,8 +39,10 @@
             }
         };
         if(plotly.plotlyData && plotly.plotlyData.length>0) {
-            plotly.buildGraph();
-            plotly.builtGraph=true;
+            if(!plotly.builtGraph && plotly.buildGraph!=undefined) {
+                plotly.buildGraph();
+                plotly.builtGraph=true;
+            }
         }
         plotly.buildGraph = function() {
             Plotly.newPlot(graph, plotly.plotlyData, plotly.plotlyLayout, options);
