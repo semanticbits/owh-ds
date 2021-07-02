@@ -2909,7 +2909,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2018"
+                              "current_year": "2019"
                             }
                           }
                         ]
@@ -2955,7 +2955,7 @@
               "key": "year",
               "queryKey": "current_year",
               "value": [
-                "2018"
+                "2019"
               ],
               "primary": false
             },
@@ -3101,7 +3101,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2018"
+                              "current_year": "2019"
                             }
                           }
                         ]
@@ -3161,7 +3161,7 @@
               "key": "year",
               "queryKey": "current_year",
               "value": [
-                "2018"
+                "2019"
               ],
               "primary": false
             },
@@ -3367,7 +3367,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2018"
+                              "current_year": "2019"
                             }
                           }
                         ]
@@ -3439,7 +3439,7 @@
               "key": "year",
               "queryKey": "current_year",
               "value": [
-                "2018"
+                "2019"
               ],
               "primary": false
             },
@@ -3515,7 +3515,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2018"
+                              "current_year": "2019"
                             }
                           }
                         ]
@@ -3561,7 +3561,7 @@
               "key": "year",
               "queryKey": "current_year",
               "value": [
-                "2018"
+                "2019"
               ],
               "primary": false
             },
@@ -3637,7 +3637,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2018"
+                              "current_year": "2019"
                             }
                           }
                         ]
@@ -3683,7 +3683,7 @@
               "key": "year",
               "queryKey": "current_year",
               "value": [
-                "2018"
+                "2019"
               ],
               "primary": false
             },
@@ -3759,7 +3759,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2018"
+                              "current_year": "2019"
                             }
                           }
                         ]
@@ -3805,7 +3805,7 @@
               "key": "year",
               "queryKey": "current_year",
               "value": [
-                "2018"
+                "2019"
               ],
               "primary": false
             },
@@ -3881,7 +3881,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2018"
+                              "current_year": "2019"
                             }
                           }
                         ]
@@ -3927,7 +3927,7 @@
               "key": "year",
               "queryKey": "current_year",
               "value": [
-                "2018"
+                "2019"
               ],
               "primary": false
             },
@@ -4023,7 +4023,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2018"
+                              "current_year": "2019"
                             }
                           }
                         ]
@@ -4073,7 +4073,7 @@
               "key": "year",
               "queryKey": "current_year",
               "value": [
-                "2018"
+                "2019"
               ],
               "primary": false
             },
@@ -4159,7 +4159,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2018"
+                              "current_year": "2019"
                             }
                           }
                         ]
@@ -4208,7 +4208,7 @@
               "key": "year",
               "queryKey": "current_year",
               "value": [
-                "2018"
+                "2019"
               ],
               "primary": false
             },
@@ -4329,7 +4329,7 @@
                         "should": [
                           {
                             "term": {
-                              "current_year": "2018"
+                              "current_year": "2019"
                             }
                           }
                         ]
@@ -4381,7 +4381,7 @@
               "key": "year",
               "queryKey": "current_year",
               "value": [
-                "2018"
+                "2019"
               ],
               "primary": false
             },

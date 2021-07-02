@@ -13,8 +13,8 @@ data_mapping_configs = {'Nat2000US.PubUse.txt':'nat_2000_2002.json', 'Nat2001US.
                         'Nat2010US.LimGeo.txt': 'nat_2007_2010.json', 'Nat2011US.LimGeo.txt':'nat_2011_2013.json',
                         'Nat2012US.LimGeo.txt':'nat_2011_2013.json', 'Nat2013US.LimGeo.txt':'nat_2011_2013.json',
                         'Nat2014us.LimGeo.txt':'nat_2014_2015.json', 'Nat2015us.LimGeo.txt': 'nat_2014_2015.json',
-                        'Nat2016US.LimGeo.txt': 'nat_2016_2018.json', 'Nat2017US.LimGeo.txt': 'nat_2016_2018.json',
-                        'Nat2018US.LimGeo.txt': 'nat_2016_2018.json'}
+                        'Nat2016US.LimGeo.txt': 'nat_2016_2019.json', 'Nat2017US.LimGeo.txt': 'nat_2016_2019.json',
+                        'Nat2018US.LimGeo.txt': 'nat_2016_2019.json', 'Nat2019.LimGeo.txt': 'nat_2016_2019.json'}
 
 class NatalityETL (ETL):
     """
@@ -86,9 +86,10 @@ class NatalityETL (ETL):
         self.loadDataSetMetaData('natality', '2013', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2011_2013.json'))
         self.loadDataSetMetaData('natality', '2014', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2014_2015.json'))
         self.loadDataSetMetaData('natality', '2015', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2014_2015.json'))
-        self.loadDataSetMetaData('natality', '2016', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2016_2018.json'))
-        self.loadDataSetMetaData('natality', '2017', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2016_2018.json'))
-        self.loadDataSetMetaData('natality', '2018', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2016_2018.json'))
+        self.loadDataSetMetaData('natality', '2016', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2016_2019.json'))
+        self.loadDataSetMetaData('natality', '2017', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2016_2019.json'))
+        self.loadDataSetMetaData('natality', '2018', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2016_2019.json'))
+        self.loadDataSetMetaData('natality', '2019', os.path.join(self.dataDirectory, 'data_mapping', 'nat_2016_2019.json'))
 
     def validate_etl(self):
         """ Validate the ETL"""
