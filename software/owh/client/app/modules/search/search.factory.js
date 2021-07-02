@@ -1795,6 +1795,7 @@
             ];
 
             filters.yearOptions = [
+                {key: '2019', title: '2019'},
                 {key: '2018', title: '2018'},
                 {key: '2017', title: '2017'},
                 {key: '2016', title: '2016'},
@@ -2064,7 +2065,7 @@
 
                 /*Year and Month*/
                 //TODO: consider setting default selected years elsewhere
-                {key: 'year', title: 'label.filter.year', queryKey:"current_year",primary: false, value: ['2018'],
+                {key: 'year', title: 'label.filter.year', queryKey:"current_year",primary: false, value: ['2019'],
                     groupBy: false, type:"label.filter.group.year.month", filterType: 'checkbox',
                     autoCompleteOptions: filters.yearOptions,defaultGroup:"row", helpText: 'label.help.text.mortality.year'},
                 {key: 'month', title: 'label.filter.month', queryKey:"month_of_death", primary: false, value: [],
