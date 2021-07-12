@@ -395,7 +395,7 @@
                 ng-class="{'thin-border-top': (group.value.length > 0 && group.displaySelectedFirst)}">
                 <input type="checkbox" id="{{group.queryKey}}_all" name="{{group.queryKey}}_all"
                        ng-checked="group.value.length === 0"
-                       ng-click="sfic.updateGroupValue();" ng-model="group.allChecked"
+                       ng-change="sfic.updateGroupValue();" ng-model="group.allChecked"
                        ng-disabled='!!group.disableAll'
                        ng-init="group.allChecked = group.value.length === 0"
                        ng-show="group.filterType === 'checkbox'">
@@ -412,7 +412,7 @@
                     <input id="{{sfic.primaryKey}}_{{group.key}}_{{option.key}}" type="checkbox"
                            checklist-model="group.value" checklist-value="option.key"
                            ng-disabled="sfic.isOptionDisabled(group, option)"
-                           ng-click="sfic.onFilterValueChange()">
+                           ng-change="sfic.onFilterValueChange()">
                     <label for="{{sfic.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                            ng-init="title = option.title">
                         <span class="count-label" translate="{{title}}"></span>
@@ -433,7 +433,7 @@
                     <input id="{{sfic.primaryKey}}_{{group.key}}_{{option.key}}" type="checkbox"
                            checklist-model="group.value" checklist-value="option.key"
                            ng-disabled="(sfic.isOptionDisabled(group, option))"
-                           ng-click="sfic.onFilterValueChange()">
+                           ng-change="sfic.onFilterValueChange()">
                     <label for="{{sfic.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                            ng-init="title = option.title">
                         <span ng-class="option.disabled?'disable-click':'count-label'"
@@ -453,7 +453,7 @@
                            type="checkbox"
                            checklist-model="group.value" checklist-value="option.key"
                            ng-disabled="sfic.isOptionDisabled(group, option)"
-                           ng-click="sfic.filterGroup(option, group)">
+                           ng-change="sfic.filterGroup(option, group)">
                     <label for="{{sfic.primaryKey}}_{{group.key}}_{{option.key}}" class="custom-label"
                            ng-init="title = option.title">
                         <a href="javascript:void(0)" title="{{option.title}}"
@@ -476,7 +476,7 @@
                                    checklist-model="group.value"
                                    checklist-value="subOption.key"
                                    ng-disabled="sfic.isOptionDisabled(group, subOption)"
-                                   ng-click="sfic.onFilterValueChange()">
+                                   ng-change="sfic.onFilterValueChange()">
                             <label for="{{sfic.primaryKey}}_{{group.key}}_{{subOption.key}}"
                                    class="custom-label"
                                    ng-init="title = subOption.title">

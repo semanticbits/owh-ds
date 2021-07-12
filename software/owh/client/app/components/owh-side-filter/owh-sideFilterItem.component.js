@@ -55,7 +55,8 @@
                 //clear group options, and then add subOptions to value
                 clearGroupOptions(option, group);
                 angular.forEach(option.options, function (subOption) {
-                    group.value.push(subOption.key);
+                    if(group.value.indexOf(subOption.key)<0)
+                        group.value.push(subOption.key);
                 });
             } else {
                 //else, clear group options
@@ -274,7 +275,8 @@
                 if (group.allChecked === false) {
                     // When All is unchecked, select all other values
                     angular.forEach(group.autoCompleteOptions, function (option) {
-                        group.value.push(option.key);
+                        if(group.value.indexOf(option.key)<0)
+                            group.value.push(option.key);
                     });
                 } else {
                     // When All is selected, unselect individual values

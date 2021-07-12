@@ -71,7 +71,8 @@
                 //clear group options, and then add subOptions to value
                 clearGroupOptions(option, group);
                 angular.forEach(option.options, function(subOption) {
-                    group.value.push(subOption.key);
+                    if(group.value.indexOf(subOption.key)<0)
+                        group.value.push(subOption.key);
                 });
             } else {
                 //else, clear group options
